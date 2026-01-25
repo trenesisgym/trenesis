@@ -5,16 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trenesis</title>
 
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: Roboto, sans-serif;
-      background: #0F1113;
+      background-color: #0F1113;
       color: #E5E5E5;
     }
 
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAV */
     nav {
       display: flex;
       justify-content: space-between;
@@ -28,8 +40,6 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      text-decoration: none;
-      color: #F2F2F2;
     }
 
     .brand img {
@@ -39,62 +49,90 @@
     .brand span {
       font-family: Inter, sans-serif;
       font-weight: 700;
-      letter-spacing: 2px;
       font-size: 15px;
+      letter-spacing: 2px;
+      color: #F2F2F2;
     }
 
     .nav-links a {
       margin-left: 32px;
       font-size: 14px;
       color: #B5B5B5;
-      text-decoration: none;
     }
 
     .nav-links a:hover {
       color: #FFFFFF;
     }
 
+    /* HERO */
     header {
       padding: 100px 48px 80px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    h1 {
+    header h1 {
       font-family: Inter, sans-serif;
+      font-weight: 700;
       font-size: 32px;
       max-width: 620px;
+      color: #F2F2F2;
     }
 
-    p {
+    header p {
+      margin-top: 16px;
+      font-size: 18px;
       max-width: 520px;
       color: #B5B5B5;
-      font-size: 18px;
     }
 
     .btn {
       display: inline-block;
       margin-top: 32px;
       padding: 14px 28px;
-      background: #2E4F6F;
-      color: #fff;
-      border-radius: 4px;
-      text-decoration: none;
       font-size: 15px;
+      font-weight: 500;
+      background-color: #2E4F6F;
+      color: #FFFFFF;
+      border-radius: 4px;
     }
 
     .btn:hover {
-      background: #3A628A;
+      background-color: #3A628A;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav {
+        padding: 20px 24px;
+      }
+
+      header {
+        padding: 80px 24px 60px;
+      }
+
+      header h1 {
+        font-size: 26px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAV -->
   <nav>
     <a href="index.html" class="brand">
-      <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true" alt="Trenesis Logo">
+      <img
+        src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true"
+        alt="Trenesis Logo"
+      >
       <span>TRENESIS</span>
     </a>
+
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="training.html">Training</a>
@@ -103,6 +141,7 @@
     </div>
   </nav>
 
+  <!-- HERO -->
   <header>
     <h1>Focus on what actually works.</h1>
     <p>Training, nutrition & performance — no bullshit, just results.</p>
