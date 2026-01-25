@@ -5,34 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trenesis</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* ======================
-       RESET & BASE
-    ====================== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
+      margin: 0;
       font-family: Roboto, sans-serif;
-      background-color: #0F1113;
+      background: #0F1113;
       color: #E5E5E5;
-      line-height: 1.6;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* ======================
-       NAVIGATION
-    ====================== */
     nav {
       display: flex;
       justify-content: space-between;
@@ -46,207 +28,86 @@
       display: flex;
       align-items: center;
       gap: 14px;
+      text-decoration: none;
+      color: #F2F2F2;
     }
 
     .brand img {
       height: 40px;
-      width: auto;
-      display: block;
     }
 
     .brand span {
       font-family: Inter, sans-serif;
       font-weight: 700;
-      font-size: 15px;
       letter-spacing: 2px;
-      color: #F2F2F2;
+      font-size: 15px;
     }
 
     .nav-links a {
       margin-left: 32px;
       font-size: 14px;
       color: #B5B5B5;
+      text-decoration: none;
     }
 
     .nav-links a:hover {
       color: #FFFFFF;
     }
 
-    /* ======================
-       HERO
-    ====================== */
     header {
       padding: 100px 48px 80px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    header h1 {
+    h1 {
       font-family: Inter, sans-serif;
-      font-weight: 700;
       font-size: 32px;
-      color: #F2F2F2;
       max-width: 620px;
     }
 
-    header p {
-      margin-top: 16px;
-      font-size: 18px;
-      color: #B5B5B5;
+    p {
       max-width: 520px;
+      color: #B5B5B5;
+      font-size: 18px;
     }
 
     .btn {
       display: inline-block;
       margin-top: 32px;
       padding: 14px 28px;
-      font-size: 15px;
-      font-weight: 500;
-      background-color: #2E4F6F;
-      color: #FFFFFF;
+      background: #2E4F6F;
+      color: #fff;
       border-radius: 4px;
+      text-decoration: none;
+      font-size: 15px;
     }
 
     .btn:hover {
-      background-color: #3A628A;
-    }
-
-    /* ======================
-       SECTIONS
-    ====================== */
-    section {
-      padding: 80px 48px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    section h2 {
-      font-family: Inter, sans-serif;
-      font-size: 24px;
-      margin-bottom: 16px;
-      color: #F2F2F2;
-    }
-
-    section p {
-      font-size: 16px;
-      color: #B5B5B5;
-    }
-
-    /* ======================
-       FOOTER
-    ====================== */
-    footer {
-      padding: 60px 48px;
-      border-top: 1px solid #1A1D20;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-logo {
-      font-family: Inter, sans-serif;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-    }
-
-    .footer-text {
-      font-size: 14px;
-      color: #B5B5B5;
-    }
-
-    .footer-copy {
-      margin-top: 16px;
-      font-size: 12px;
-      color: #666666;
-    }
-
-    /* ======================
-       MOBILE
-    ====================== */
-    @media (max-width: 768px) {
-      nav {
-        padding: 20px 24px;
-      }
-
-      header {
-        padding: 80px 24px 60px;
-      }
-
-      header h1 {
-        font-size: 26px;
-      }
-
-      header p {
-        font-size: 16px;
-      }
-
-      section {
-        padding: 60px 24px;
-      }
-
-      footer {
-        padding: 48px 24px;
-      }
+      background: #3A628A;
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
-    <a href="#top" class="brand">
-      <img
-        src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true"
-        alt="Trenesis Logo"
-      >
+    <a href="index.html" class="brand">
+      <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true" alt="Trenesis Logo">
       <span>TRENESIS</span>
     </a>
-
     <div class="nav-links">
-      <a href="#top">Home</a>
-      <a href="#training">Training</a>
-      <a href="#nutrition">Nutrition</a>
-      <a href="#products">Products</a>
+      <a href="index.html">Home</a>
+      <a href="training.html">Training</a>
+      <a href="nutrition.html">Nutrition</a>
+      <a href="products.html">Products</a>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header id="top">
+  <header>
     <h1>Focus on what actually works.</h1>
     <p>Training, nutrition & performance — no bullshit, just results.</p>
-    <a href="#training" class="btn">Get Started</a>
+    <a href="training.html" class="btn">Get Started</a>
   </header>
-
-  <!-- SECTIONS -->
-  <section id="training">
-    <h2>Training Basics</h2>
-    <p>
-      Evidence‑based training principles.
-      No hype. No shortcuts. Just fundamentals that work.
-    </p>
-  </section>
-
-  <section id="nutrition">
-    <h2>Nutrition Basics</h2>
-    <p>
-      Simple, practical nutrition guidance.
-      Built for consistency, not perfection.
-    </p>
-  </section>
-
-  <section id="products">
-    <h2>Products</h2>
-    <p>
-      Guides, plans and tools — coming soon.
-    </p>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">TRENESIS</div>
-    <div class="footer-text">Training • Nutrition • Performance</div>
-    <div class="footer-copy">© 2026 Trenesis. All rights reserved.</div>
-  </footer>
 
 </body>
 </html>
