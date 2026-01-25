@@ -8,34 +8,63 @@
 
   <style>
     body {
-      margin: 0;
       font-family: Roboto, sans-serif;
       background: #0F1113;
       color: #E5E5E5;
-      padding: 80px 24px;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .nav-links a {
+      margin-left: 32px;
+      font-size: 14px;
+      color: #B5B5B5;
+      text-decoration: none;
+    }
+
+    .nav-links a.active {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    main {
+      padding: 80px 48px;
       text-align: center;
     }
 
     h1 {
       font-family: Inter, sans-serif;
       font-size: 32px;
-      margin-bottom: 16px;
-    }
-
-    a {
-      color: #2E4F6F;
-      text-decoration: none;
-      font-size: 14px;
     }
   </style>
 </head>
 <body>
 
+<nav>
+  <a href="index.html">
+    <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true" height="40">
+  </a>
+
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="training.html">Training</a>
+    <a href="nutrition.html">Nutrition</a>
+    <a href="products.html" class="active">Products</a>
+  </div>
+</nav>
+
+<main>
   <h1>Products</h1>
   <p>Coming soon.</p>
-
-  <br><br>
-  <a href="index.html">← Back to Home</a>
+</main>
 
 </body>
 </html>
