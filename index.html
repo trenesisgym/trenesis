@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trenesis</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
@@ -34,9 +33,7 @@
       gap: 14px;
     }
 
-    .brand img {
-      height: 40px;
-    }
+    .brand img { height: 40px; }
 
     .brand span {
       font-family: Inter, sans-serif;
@@ -102,18 +99,42 @@
       margin-bottom: 32px;
     }
 
-    /* CARD GRID */
+    /* GRID */
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 24px;
     }
 
+    /* STATIC CARDS (WHAT WE OFFER) */
+    .card-static {
+      height: 180px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: #1A1D20;
+    }
+
+    .card-static h3 {
+      font-family: Inter, sans-serif;
+      font-size: 18px;
+      margin-bottom: 6px;
+      color: #FFFFFF;
+    }
+
+    .card-static p {
+      font-size: 14px;
+      color: #B5B5B5;
+      line-height: 1.4;
+    }
+
+    /* CLICKABLE CARDS (TRAINING / NUTRITION) */
     .card {
       position: relative;
       height: 180px;
       border-radius: 12px;
-      background: #1A1D20; /* PLACEHOLDER */
+      background: #1A1D20;
       padding: 24px;
       display: flex;
       flex-direction: column;
@@ -165,40 +186,35 @@
   <a href="training.html" class="btn">Get Started</a>
 </header>
 
-<!-- WHAT WE OFFER -->
+<!-- WHAT WE OFFER (STATIC) -->
 <section>
   <h2>What we offer</h2>
-
   <div class="card-grid">
-    <a class="card">
+    <div class="card-static">
       <h3>Effective Workouts</h3>
       <p>Evidence‑based training focused on real progress.</p>
-    </a>
-
-    <a class="card">
+    </div>
+    <div class="card-static">
       <h3>Expert Guidance</h3>
       <p>Clear principles instead of confusing fitness noise.</p>
-    </a>
-
-    <a class="card">
+    </div>
+    <div class="card-static">
       <h3>Healthy Lifestyle</h3>
       <p>Sustainable habits for long‑term performance.</p>
-    </a>
+    </div>
   </div>
 </section>
 
 <!-- TRAINING -->
 <section>
   <h2>Training</h2>
-
   <div class="card-grid">
     <a href="training.html" class="card">
       <h3>Strength Training</h3>
       <p>Build strength with proven fundamentals.</p>
     </a>
-
     <a href="training.html" class="card">
-      <h3>Cardio & Conditioning</h3>
+      <h3>Cardio</h3>
       <p>Improve endurance and overall health.</p>
     </a>
   </div>
@@ -207,13 +223,11 @@
 <!-- NUTRITION -->
 <section>
   <h2>Nutrition</h2>
-
   <div class="card-grid">
     <a href="nutrition.html" class="card">
       <h3>Macronutrients</h3>
       <p>Protein, carbs & fats explained simply.</p>
     </a>
-
     <a href="nutrition.html" class="card">
       <h3>Meal Planning</h3>
       <p>Practical nutrition you can stick to.</p>
