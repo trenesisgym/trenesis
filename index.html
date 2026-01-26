@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trenesis</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -82,74 +82,79 @@
       margin-top: 32px;
       padding: 14px 28px;
       background: #2E4F6F;
-      color: #fff;
+      color: #FFFFFF;
       border-radius: 4px;
       font-size: 15px;
     }
 
-    .btn:hover { background: #3A628A; }
+    .btn:hover {
+      background: #3A628A;
+    }
 
     /* SECTIONS */
     section {
+      padding: 80px 48px;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 80px 48px;
     }
 
     section h2 {
       font-family: Inter, sans-serif;
-      font-size: 24px;
+      font-size: 22px;
       margin-bottom: 32px;
     }
 
-    /* CARD GRID */
-    .card-grid {
+    /* WHAT WE STAND FOR */
+    .offer-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 24px;
     }
 
-    .card {
-      position: relative;
-      height: 180px;
-      border-radius: 12px;
-      background: #1A1D20; /* PLACEHOLDER */
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      cursor: pointer;
+    .offer-card {
+      padding: 28px;
+      border: 1px solid #1A1D20;
+      background: #121417;
+      border-radius: 6px;
+      transition: border 0.2s ease, background 0.2s ease;
+      cursor: default; /* bewusst kein Button */
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    .offer-card:hover {
+      border-color: #2E4F6F;
+      background: #14171B;
     }
 
-    .card h3 {
+    .offer-card h3 {
       font-family: Inter, sans-serif;
-      font-size: 18px;
-      margin-bottom: 6px;
-      color: #FFFFFF;
+      font-size: 16px;
+      margin-bottom: 10px;
     }
 
-    .card p {
+    .offer-card p {
       font-size: 14px;
       color: #B5B5B5;
-      line-height: 1.4;
+      line-height: 1.5;
+    }
+
+    /* NEXT SECTIONS PLACEHOLDER */
+    .placeholder {
+      border: 1px dashed #1A1D20;
+      padding: 40px;
+      color: #777;
+      font-size: 14px;
     }
   </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="brand">
-    <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
+    <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true" alt="Trenesis Logo">
     <span>TRENESIS</span>
   </a>
+
   <div class="nav-links">
     <a href="index.html" class="active">Home</a>
     <a href="training.html">Training</a>
@@ -158,66 +163,37 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <header>
   <h1>Focus on what actually works.</h1>
   <p>Training, nutrition & performance — no bullshit, just results.</p>
   <a href="training.html" class="btn">Get Started</a>
 </header>
 
-<!-- WHAT WE OFFER -->
 <section>
-  <h2>What we offer</h2>
+  <h2>What we stand for</h2>
 
-  <div class="card-grid">
-    <a class="card">
+  <div class="offer-grid">
+    <div class="offer-card">
       <h3>Effective Workouts</h3>
-      <p>Evidence‑based training focused on real progress.</p>
-    </a>
+      <p>Evidence‑based training focused on results, efficiency and long‑term progress.</p>
+    </div>
 
-    <a class="card">
+    <div class="offer-card">
       <h3>Expert Guidance</h3>
-      <p>Clear principles instead of confusing fitness noise.</p>
-    </a>
+      <p>Built on real experience and science — not trends, not influencer noise.</p>
+    </div>
 
-    <a class="card">
+    <div class="offer-card">
       <h3>Healthy Lifestyle</h3>
-      <p>Sustainable habits for long‑term performance.</p>
-    </a>
+      <p>A sustainable approach to training, nutrition and daily habits.</p>
+    </div>
   </div>
 </section>
 
-<!-- TRAINING -->
 <section>
-  <h2>Training</h2>
-
-  <div class="card-grid">
-    <a href="training.html" class="card">
-      <h3>Strength Training</h3>
-      <p>Build strength with proven fundamentals.</p>
-    </a>
-
-    <a href="training.html" class="card">
-      <h3>Cardio & Conditioning</h3>
-      <p>Improve endurance and overall health.</p>
-    </a>
-  </div>
-</section>
-
-<!-- NUTRITION -->
-<section>
-  <h2>Nutrition</h2>
-
-  <div class="card-grid">
-    <a href="nutrition.html" class="card">
-      <h3>Macronutrients</h3>
-      <p>Protein, carbs & fats explained simply.</p>
-    </a>
-
-    <a href="nutrition.html" class="card">
-      <h3>Meal Planning</h3>
-      <p>Practical nutrition you can stick to.</p>
-    </a>
+  <h2>Training & Nutrition</h2>
+  <div class="placeholder">
+    Training guides, nutrition basics and downloads will live here.
   </div>
 </section>
 
