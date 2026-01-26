@@ -4,10 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trenesis</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: Roboto, sans-serif;
@@ -93,57 +98,60 @@
       padding: 80px 48px;
     }
 
-    section h2 {
-      font-family: Inter, sans-serif;
-      font-size: 24px;
-      margin-bottom: 32px;
+    /* SECTION HEADERS WITH LINES */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 48px;
     }
 
-    /* GRID */
+    .section-header.centered {
+      justify-content: center;
+    }
+
+    .section-header::before,
+    .section-header::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #2A2E33;
+    }
+
+    .section-header h2 {
+      font-family: Inter, sans-serif;
+      font-size: 24px;
+      white-space: nowrap;
+    }
+
+    /* CARD GRID */
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 24px;
     }
 
-    /* STATIC CARDS (WHAT WE OFFER) */
-    .card-static {
-      height: 180px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      background: #1A1D20;
-    }
-
-    .card-static h3 {
-      font-family: Inter, sans-serif;
-      font-size: 18px;
-      margin-bottom: 6px;
-      color: #FFFFFF;
-    }
-
-    .card-static p {
-      font-size: 14px;
-      color: #B5B5B5;
-      line-height: 1.4;
-    }
-
-    /* CLICKABLE CARDS (TRAINING / NUTRITION) */
     .card {
-      position: relative;
       height: 180px;
-      border-radius: 12px;
-      background: #1A1D20;
       padding: 24px;
+      background: #1A1D20;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      cursor: pointer;
     }
 
-    .card:hover {
+    /* STATIC CARDS (What we offer) */
+    .card.static {
+      cursor: default;
+    }
+
+    /* INTERACTIVE CARDS */
+    .card.clickable {
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card.clickable:hover {
       transform: translateY(-4px);
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
@@ -183,22 +191,25 @@
 <header>
   <h1>Focus on what actually works.</h1>
   <p>Training, nutrition & performance — no bullshit, just results.</p>
-  <a href="training.html" class="btn">Get Started</a>
+  <a href="#training" class="btn">Get Started</a>
 </header>
 
-<!-- WHAT WE OFFER (STATIC) -->
+<!-- WHAT WE OFFER -->
 <section>
-  <h2>What we offer</h2>
+  <div class="section-header centered">
+    <h2>What we offer</h2>
+  </div>
+
   <div class="card-grid">
-    <div class="card-static">
+    <div class="card static">
       <h3>Effective Workouts</h3>
       <p>Evidence‑based training focused on real progress.</p>
     </div>
-    <div class="card-static">
+    <div class="card static">
       <h3>Expert Guidance</h3>
       <p>Clear principles instead of confusing fitness noise.</p>
     </div>
-    <div class="card-static">
+    <div class="card static">
       <h3>Healthy Lifestyle</h3>
       <p>Sustainable habits for long‑term performance.</p>
     </div>
@@ -206,14 +217,17 @@
 </section>
 
 <!-- TRAINING -->
-<section>
-  <h2>Training</h2>
+<section id="training">
+  <div class="section-header">
+    <h2>Training</h2>
+  </div>
+
   <div class="card-grid">
-    <a href="training.html" class="card">
+    <a href="training.html" class="card clickable">
       <h3>Strength Training</h3>
       <p>Build strength with proven fundamentals.</p>
     </a>
-    <a href="training.html" class="card">
+    <a href="training.html" class="card clickable">
       <h3>Cardio</h3>
       <p>Improve endurance and overall health.</p>
     </a>
@@ -222,13 +236,16 @@
 
 <!-- NUTRITION -->
 <section>
-  <h2>Nutrition</h2>
+  <div class="section-header">
+    <h2>Nutrition</h2>
+  </div>
+
   <div class="card-grid">
-    <a href="nutrition.html" class="card">
+    <a href="nutrition.html" class="card clickable">
       <h3>Macronutrients</h3>
       <p>Protein, carbs & fats explained simply.</p>
     </a>
-    <a href="nutrition.html" class="card">
+    <a href="nutrition.html" class="card clickable">
       <h3>Meal Planning</h3>
       <p>Practical nutrition you can stick to.</p>
     </a>
