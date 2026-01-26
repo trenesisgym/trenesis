@@ -1,70 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Nutrition Basics – Trenesis</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Training – Trenesis</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: Roboto, sans-serif;
-      background: #0F1113;
+      background-color: #0F1113;
       color: #E5E5E5;
-      margin: 0;
     }
 
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 24px 48px;
-      max-width: 1200px;
-      margin: 0 auto;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-wrap img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo {
+      font-family: Inter, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: #F2F2F2;
     }
 
     .nav-links a {
       margin-left: 32px;
       font-size: 14px;
       color: #B5B5B5;
-      text-decoration: none;
     }
 
     .nav-links a.active {
       color: #FFFFFF;
-      font-weight: 600;
+      font-weight: 700;
     }
 
+    .nav-links a:hover {
+      color: #FFFFFF;
+    }
+
+    /* CONTENT */
     main {
-      padding: 80px 48px;
-      text-align: center;
+      padding: 100px 48px;
+      max-width: 800px;
     }
 
     h1 {
       font-family: Inter, sans-serif;
       font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #B5B5B5;
     }
   </style>
 </head>
+
 <body>
 
-<nav>
-  <a href="index.html">
-    <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true" height="40">
-  </a>
+  <nav>
+    <a href="index.html" class="logo-wrap">
+      <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true" alt="Trenesis Logo">
+      <div class="logo">TRENESIS</div>
+    </a>
 
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="training.html">Training</a>
-    <a href="nutrition.html" class="active">Nutrition</a>
-    <a href="products.html">Products</a>
-  </div>
-</nav>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="training.html" class="active">Training</a>
+      <a href="nutrition.html">Nutrition</a>
+      <a href="products.html">Products</a>
+    </div>
+  </nav>
 
-<main>
-  <h1>Nutrition Basics</h1>
-  <p>Coming soon.</p>
-</main>
+  <main>
+    <h1>Training</h1>
+    <p>Content coming soon.</p>
+  </main>
 
 </body>
 </html>
