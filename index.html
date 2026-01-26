@@ -9,10 +9,7 @@
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: Roboto, sans-serif;
@@ -98,30 +95,38 @@
       padding: 80px 48px;
     }
 
-    /* SECTION HEADERS WITH LINES */
+    /* SECTION HEADERS */
     .section-header {
       display: flex;
       align-items: center;
       gap: 24px;
-      margin-bottom: 48px;
-    }
-
-    .section-header.centered {
-      justify-content: center;
-    }
-
-    .section-header::before,
-    .section-header::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: #2A2E33;
+      margin-bottom: 32px;
     }
 
     .section-header h2 {
       font-family: Inter, sans-serif;
       font-size: 24px;
       white-space: nowrap;
+    }
+
+    .section-header.center {
+      justify-content: center;
+    }
+
+    .section-header.center::before,
+    .section-header.center::after {
+      content: "";
+      height: 1px;
+      width: 120px;
+      background: #2A2E33;
+    }
+
+    .section-header.left::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: #2A2E33;
+      margin-left: 24px;
     }
 
     /* CARD GRID */
@@ -133,8 +138,8 @@
 
     .card {
       height: 180px;
-      padding: 24px;
       background: #1A1D20;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -145,13 +150,18 @@
       cursor: default;
     }
 
-    /* INTERACTIVE CARDS */
-    .card.clickable {
+    .card.static:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* CLICKABLE CARDS */
+    .card.link {
       cursor: pointer;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .card.clickable:hover {
+    .card.link:hover {
       transform: translateY(-4px);
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
@@ -196,7 +206,7 @@
 
 <!-- WHAT WE OFFER -->
 <section>
-  <div class="section-header centered">
+  <div class="section-header center">
     <h2>What we offer</h2>
   </div>
 
@@ -218,16 +228,16 @@
 
 <!-- TRAINING -->
 <section id="training">
-  <div class="section-header">
+  <div class="section-header left">
     <h2>Training</h2>
   </div>
 
   <div class="card-grid">
-    <a href="training.html" class="card clickable">
+    <a href="training.html" class="card link">
       <h3>Strength Training</h3>
       <p>Build strength with proven fundamentals.</p>
     </a>
-    <a href="training.html" class="card clickable">
+    <a href="training.html" class="card link">
       <h3>Cardio</h3>
       <p>Improve endurance and overall health.</p>
     </a>
@@ -236,16 +246,16 @@
 
 <!-- NUTRITION -->
 <section>
-  <div class="section-header">
+  <div class="section-header left">
     <h2>Nutrition</h2>
   </div>
 
   <div class="card-grid">
-    <a href="nutrition.html" class="card clickable">
+    <a href="nutrition.html" class="card link">
       <h3>Macronutrients</h3>
       <p>Protein, carbs & fats explained simply.</p>
     </a>
-    <a href="nutrition.html" class="card clickable">
+    <a href="nutrition.html" class="card link">
       <h3>Meal Planning</h3>
       <p>Practical nutrition you can stick to.</p>
     </a>
