@@ -18,6 +18,7 @@
 
     a { text-decoration: none; color: inherit; }
 
+    /* NAV */
     nav {
       display: flex;
       justify-content: space-between;
@@ -33,7 +34,9 @@
       gap: 14px;
     }
 
-    .brand img { height: 40px; }
+    .brand img {
+      height: 40px;
+    }
 
     .brand span {
       font-family: Inter, sans-serif;
@@ -54,19 +57,20 @@
       font-weight: 600;
     }
 
+    /* HERO */
     header {
       padding: 100px 48px 80px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    h1 {
+    header h1 {
       font-family: Inter, sans-serif;
       font-size: 32px;
       max-width: 620px;
     }
 
-    p {
+    header p {
       margin-top: 16px;
       font-size: 18px;
       max-width: 520px;
@@ -84,16 +88,68 @@
     }
 
     .btn:hover { background: #3A628A; }
+
+    /* SECTIONS */
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+
+    section h2 {
+      font-family: Inter, sans-serif;
+      font-size: 24px;
+      margin-bottom: 32px;
+    }
+
+    /* CARD GRID */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      position: relative;
+      height: 180px;
+      border-radius: 12px;
+      background: #1A1D20; /* PLACEHOLDER */
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .card h3 {
+      font-family: Inter, sans-serif;
+      font-size: 18px;
+      margin-bottom: 6px;
+      color: #FFFFFF;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #B5B5B5;
+      line-height: 1.4;
+    }
   </style>
 </head>
+
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="index.html" class="brand">
     <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
     <span>TRENESIS</span>
   </a>
-
   <div class="nav-links">
     <a href="index.html" class="active">Home</a>
     <a href="training.html">Training</a>
@@ -102,11 +158,68 @@
   </div>
 </nav>
 
+<!-- HERO -->
 <header>
   <h1>Focus on what actually works.</h1>
   <p>Training, nutrition & performance — no bullshit, just results.</p>
   <a href="training.html" class="btn">Get Started</a>
 </header>
+
+<!-- WHAT WE OFFER -->
+<section>
+  <h2>What we offer</h2>
+
+  <div class="card-grid">
+    <a class="card">
+      <h3>Effective Workouts</h3>
+      <p>Evidence‑based training focused on real progress.</p>
+    </a>
+
+    <a class="card">
+      <h3>Expert Guidance</h3>
+      <p>Clear principles instead of confusing fitness noise.</p>
+    </a>
+
+    <a class="card">
+      <h3>Healthy Lifestyle</h3>
+      <p>Sustainable habits for long‑term performance.</p>
+    </a>
+  </div>
+</section>
+
+<!-- TRAINING -->
+<section>
+  <h2>Training</h2>
+
+  <div class="card-grid">
+    <a href="training.html" class="card">
+      <h3>Strength Training</h3>
+      <p>Build strength with proven fundamentals.</p>
+    </a>
+
+    <a href="training.html" class="card">
+      <h3>Cardio & Conditioning</h3>
+      <p>Improve endurance and overall health.</p>
+    </a>
+  </div>
+</section>
+
+<!-- NUTRITION -->
+<section>
+  <h2>Nutrition</h2>
+
+  <div class="card-grid">
+    <a href="nutrition.html" class="card">
+      <h3>Macronutrients</h3>
+      <p>Protein, carbs & fats explained simply.</p>
+    </a>
+
+    <a href="nutrition.html" class="card">
+      <h3>Meal Planning</h3>
+      <p>Practical nutrition you can stick to.</p>
+    </a>
+  </div>
+</section>
 
 </body>
 </html>
