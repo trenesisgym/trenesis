@@ -4,21 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trenesis</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       font-family: Roboto, sans-serif;
       background: #0F1113;
       color: #E5E5E5;
     }
-
     a { text-decoration: none; color: inherit; }
 
-    /* NAV */
     nav {
       display: flex;
       justify-content: space-between;
@@ -34,9 +29,7 @@
       gap: 14px;
     }
 
-    .brand img {
-      height: 40px;
-    }
+    .brand img { height: 40px; }
 
     .brand span {
       font-family: Inter, sans-serif;
@@ -57,20 +50,19 @@
       font-weight: 600;
     }
 
-    /* HERO */
     header {
       padding: 100px 48px 80px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    header h1 {
+    h1 {
       font-family: Inter, sans-serif;
       font-size: 32px;
       max-width: 620px;
     }
 
-    header p {
+    p {
       margin-top: 16px;
       font-size: 18px;
       max-width: 520px;
@@ -82,79 +74,21 @@
       margin-top: 32px;
       padding: 14px 28px;
       background: #2E4F6F;
-      color: #FFFFFF;
+      color: #fff;
       border-radius: 4px;
       font-size: 15px;
     }
 
-    .btn:hover {
-      background: #3A628A;
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 80px 48px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    section h2 {
-      font-family: Inter, sans-serif;
-      font-size: 22px;
-      margin-bottom: 32px;
-    }
-
-    /* WHAT WE STAND FOR */
-    .offer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
-
-    .offer-card {
-      padding: 28px;
-      border: 1px solid #1A1D20;
-      background: #121417;
-      border-radius: 6px;
-      transition: border 0.2s ease, background 0.2s ease;
-      cursor: default; /* bewusst kein Button */
-    }
-
-    .offer-card:hover {
-      border-color: #2E4F6F;
-      background: #14171B;
-    }
-
-    .offer-card h3 {
-      font-family: Inter, sans-serif;
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-
-    .offer-card p {
-      font-size: 14px;
-      color: #B5B5B5;
-      line-height: 1.5;
-    }
-
-    /* NEXT SECTIONS PLACEHOLDER */
-    .placeholder {
-      border: 1px dashed #1A1D20;
-      padding: 40px;
-      color: #777;
-      font-size: 14px;
-    }
+    .btn:hover { background: #3A628A; }
   </style>
 </head>
-
 <body>
 
 <nav>
   <a href="index.html" class="brand">
-    <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true" alt="Trenesis Logo">
+    <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
     <span>TRENESIS</span>
   </a>
-
   <div class="nav-links">
     <a href="index.html" class="active">Home</a>
     <a href="training.html">Training</a>
@@ -168,34 +102,6 @@
   <p>Training, nutrition & performance — no bullshit, just results.</p>
   <a href="training.html" class="btn">Get Started</a>
 </header>
-
-<section>
-  <h2>What we stand for</h2>
-
-  <div class="offer-grid">
-    <div class="offer-card">
-      <h3>Effective Workouts</h3>
-      <p>Evidence‑based training focused on results, efficiency and long‑term progress.</p>
-    </div>
-
-    <div class="offer-card">
-      <h3>Expert Guidance</h3>
-      <p>Built on real experience and science — not trends, not influencer noise.</p>
-    </div>
-
-    <div class="offer-card">
-      <h3>Healthy Lifestyle</h3>
-      <p>A sustainable approach to training, nutrition and daily habits.</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Training & Nutrition</h2>
-  <div class="placeholder">
-    Training guides, nutrition basics and downloads will live here.
-  </div>
-</section>
 
 </body>
 </html>
