@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <title>Trenesis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -52,7 +50,9 @@
       font-size: 15px;
     }
 
-    .btn:hover { background: #3A628A; }
+    .btn:hover {
+      background: #3A628A;
+    }
 
     /* SECTION HEADERS */
     .section-header {
@@ -91,13 +91,31 @@
 
     .offer-card {
       aspect-ratio: 2 / 1;
-      background: linear-gradient(145deg, #15181d, #101318);
       border-radius: 2px;
       padding: 24px;
       display: flex;
-      align-items: flex-end;          /* Y-Achse wie vorher */
-      justify-content: center;        /* X-Achse zentriert */
+      align-items: flex-end;      /* Y stays like before */
+      justify-content: center;    /* X centered */
       text-align: center;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .offer-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0.05)
+      );
+    }
+
+    .offer-card > div {
+      position: relative;
+      z-index: 1;
     }
 
     .offer-card h3 {
@@ -108,14 +126,19 @@
 
     .offer-card p {
       font-size: 14px;
-      color: #B5B5B5;
+      color: #D0D0D0;
     }
 
     .offer-card.effective {
-      background-image:
-        url("https://github.com/trenesisgym/trenesis-assets/blob/main/Effective%20Workout.png?raw=true");
-      background-size: cover;
-      background-position: center;
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Effective%20Workout.png?raw=true");
+    }
+
+    .offer-card.expert {
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Expert%20Guidance.png?raw=true");
+    }
+
+    .offer-card.lifestyle {
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Healthy%20Lifestyle.png?raw=true");
     }
 
     /* TRAINING & NUTRITION */
@@ -150,9 +173,7 @@
     }
   </style>
 </head>
-
 <body>
-
   <div class="container">
 
     <!-- HERO -->
@@ -177,14 +198,14 @@
         </div>
       </div>
 
-      <div class="offer-card">
+      <div class="offer-card expert">
         <div>
           <h3>Expert Guidance</h3>
           <p>Clear principles instead of fitness noise.</p>
         </div>
       </div>
 
-      <div class="offer-card">
+      <div class="offer-card lifestyle">
         <div>
           <h3>Healthy Lifestyle</h3>
           <p>Sustainable habits for long‑term performance.</p>
@@ -205,7 +226,6 @@
           <p>Build strength with proven fundamentals.</p>
         </div>
       </a>
-
       <a href="training.html" class="wide-card">
         <div>
           <h3>Cardio</h3>
@@ -227,7 +247,6 @@
           <p>Protein, carbs & fats explained.</p>
         </div>
       </a>
-
       <a href="nutrition.html" class="wide-card">
         <div>
           <h3>Meal Planning</h3>
@@ -237,6 +256,5 @@
     </section>
 
   </div>
-
 </body>
 </html>
