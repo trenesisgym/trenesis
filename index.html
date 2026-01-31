@@ -14,7 +14,7 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* NAV HEADER (unchanged from training.html) */
+    /* NAV */
     nav {
       display: flex;
       justify-content: space-between;
@@ -111,12 +111,11 @@
     }
     .offer-card {
       aspect-ratio: 2 / 1;
-      background: linear-gradient(145deg, #15181d, #101318);
       border-radius: 2px;
       padding: 24px;
       display: flex;
-      align-items: flex-end;   /* Y stays as before */
-      justify-content: center; /* X centered */
+      align-items: flex-end;
+      justify-content: center;
       text-align: center;
     }
     .offer-card h3 {
@@ -129,19 +128,13 @@
       color: #B5B5B5;
     }
     .offer-card.effective {
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Effective%20Workout.png?raw=true");
-      background-size: cover;
-      background-position: center;
+      background: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Effective%20Workout.png?raw=true") center/cover;
     }
     .offer-card.expert {
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Expert%20Guidance.png?raw=true");
-      background-size: cover;
-      background-position: center;
+      background: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Expert%20Guidance.png?raw=true") center/cover;
     }
     .offer-card.healthy {
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Healthy%20Lifestyle.png?raw=true");
-      background-size: cover;
-      background-position: center;
+      background: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Healthy%20Lifestyle.png?raw=true") center/cover;
     }
 
     /* TRAINING & NUTRITION */
@@ -170,12 +163,15 @@
       font-size: 14px;
       color: #B5B5B5;
     }
+
+    /* ONLY ADDITION */
+    .wide-card.strength-training {
+      background: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Build%20Muscle%20Mass.png?raw=true") center/cover;
+    }
   </style>
 </head>
-
 <body>
 
-<!-- TOP HEADER -->
 <nav>
   <a href="index.html" class="brand">
     <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
@@ -191,82 +187,78 @@
 
 <div class="container">
 
-  <!-- HERO -->
-  <header>
-    <h1>Focus on what actually works.</h1>
-    <p>Training, nutrition & performance — no bullshit, just results.</p>
-    <a href="#training" class="btn">Get Started</a>
-  </header>
+<header>
+  <h1>Focus on what actually works.</h1>
+  <p>Training, nutrition & performance — no bullshit, just results.</p>
+  <a href="#training" class="btn">Get Started</a>
+</header>
 
-  <!-- WHAT WE OFFER -->
-  <div class="section-header center">
-    <div class="line"></div>
-    <h2>What We Offer</h2>
-    <div class="line"></div>
-  </div>
+<div class="section-header center">
+  <div class="line"></div>
+  <h2>What We Offer</h2>
+  <div class="line"></div>
+</div>
 
-  <section class="grid offer-grid">
-    <div class="offer-card effective">
-      <div>
-        <h3>Effective Workouts</h3>
-        <p>Evidence‑based training focused on real progress.</p>
-      </div>
+<section class="grid offer-grid">
+  <div class="offer-card effective">
+    <div>
+      <h3>Effective Workouts</h3>
+      <p>Evidence‑based training focused on real progress.</p>
     </div>
-    <div class="offer-card expert">
-      <div>
-        <h3>Expert Guidance</h3>
-        <p>Clear principles instead of fitness noise.</p>
-      </div>
-    </div>
-    <div class="offer-card healthy">
-      <div>
-        <h3>Healthy Lifestyle</h3>
-        <p>Sustainable habits for long‑term performance.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRAINING -->
-  <div class="section-header">
-    <h2>Training</h2>
-    <div class="line"></div>
   </div>
-
-  <section id="training" class="grid wide-grid">
-    <a href="training.html" class="wide-card">
-      <div>
-        <h3>Strength Training</h3>
-        <p>Build strength with proven fundamentals.</p>
-      </div>
-    </a>
-    <a href="training.html" class="wide-card">
-      <div>
-        <h3>Cardio</h3>
-        <p>Improve endurance and overall health.</p>
-      </div>
-    </a>
-  </section>
-
-  <!-- NUTRITION -->
-  <div class="section-header">
-    <h2>Nutrition</h2>
-    <div class="line"></div>
+  <div class="offer-card expert">
+    <div>
+      <h3>Expert Guidance</h3>
+      <p>Clear principles instead of fitness noise.</p>
+    </div>
   </div>
+  <div class="offer-card healthy">
+    <div>
+      <h3>Healthy Lifestyle</h3>
+      <p>Sustainable habits for long‑term performance.</p>
+    </div>
+  </div>
+</section>
 
-  <section class="grid wide-grid">
-    <a href="nutrition.html" class="wide-card">
-      <div>
-        <h3>Macronutrients</h3>
-        <p>Protein, carbs & fats explained.</p>
-      </div>
-    </a>
-    <a href="nutrition.html" class="wide-card">
-      <div>
-        <h3>Meal Planning</h3>
-        <p>Practical nutrition you can stick to.</p>
-      </div>
-    </a>
-  </section>
+<div class="section-header">
+  <h2>Training</h2>
+  <div class="line"></div>
+</div>
+
+<section id="training" class="grid wide-grid">
+  <a href="training.html" class="wide-card strength-training">
+    <div>
+      <h3>Strength Training</h3>
+      <p>Build strength with proven fundamentals.</p>
+    </div>
+  </a>
+  <a href="training.html" class="wide-card">
+    <div>
+      <h3>Cardio</h3>
+      <p>Improve endurance and overall health.</p>
+    </div>
+  </a>
+</section>
+
+<div class="section-header">
+  <h2>Nutrition</h2>
+  <div class="line"></div>
+</div>
+
+<section class="grid wide-grid">
+  <a href="nutrition.html" class="wide-card">
+    <div>
+      <h3>Macronutrients</h3>
+      <p>Protein, carbs & fats explained.</p>
+    </div>
+  </a>
+  <a href="nutrition.html" class="wide-card">
+    <div>
+      <h3>Meal Planning</h3>
+      <p>Practical nutrition you can stick to.</p>
+    </div>
+  </a>
+</section>
 
 </div>
 </body>
