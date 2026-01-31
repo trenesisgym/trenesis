@@ -111,14 +111,13 @@
     }
     .offer-card {
       aspect-ratio: 2 / 1;
+      background: linear-gradient(145deg, #15181d, #101318);
       border-radius: 2px;
       padding: 24px;
       display: flex;
       align-items: flex-end;
       justify-content: center;
       text-align: center;
-      background-size: cover;
-      background-position: center;
     }
     .offer-card h3 {
       font-family: Inter, sans-serif;
@@ -131,12 +130,18 @@
     }
     .offer-card.effective {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Effective%20Workout.png?raw=true");
+      background-size: cover;
+      background-position: center;
     }
     .offer-card.expert {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Expert%20Guidance.png?raw=true");
+      background-size: cover;
+      background-position: center;
     }
     .offer-card.healthy {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Healthy%20Lifestyle.png?raw=true");
+      background-size: cover;
+      background-position: center;
     }
 
     /* TRAINING & NUTRITION */
@@ -145,12 +150,11 @@
     }
     .wide-card {
       aspect-ratio: 3 / 1;
+      background: #1A1D20;
       border-radius: 6px;
       padding: 28px;
       display: flex;
       align-items: flex-end;
-      background-size: cover;
-      background-position: center;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     .wide-card:hover {
@@ -170,15 +174,23 @@
     /* IMAGES */
     .wide-card.strength-training {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Build%20Muscle%20Mass.png?raw=true");
+      background-size: cover;
+      background-position: center;
     }
     .wide-card.cardio {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Cardio2.png?raw=true");
+      background-size: cover;
+      background-position: center;
+    }
+    .wide-card.macros {
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Macros.png?raw=true");
+      background-size: cover;
+      background-position: center;
     }
   </style>
 </head>
 
 <body>
-
 <nav>
   <a href="index.html" class="brand">
     <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
@@ -193,7 +205,6 @@
 </nav>
 
 <div class="container">
-
   <header>
     <h1>Focus on what actually works.</h1>
     <p>Training, nutrition & performance — no bullshit, just results.</p>
@@ -253,7 +264,7 @@
   </div>
 
   <section class="grid wide-grid">
-    <a href="nutrition.html" class="wide-card">
+    <a href="nutrition.html" class="wide-card macros">
       <div>
         <h3>Macronutrients</h3>
         <p>Protein, carbs & fats explained.</p>
@@ -266,7 +277,6 @@
       </div>
     </a>
   </section>
-
 </div>
 </body>
 </html>
