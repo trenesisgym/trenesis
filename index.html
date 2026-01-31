@@ -14,7 +14,7 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* NAV HEADER */
+    /* NAV */
     nav {
       display: flex;
       justify-content: space-between;
@@ -111,13 +111,14 @@
     }
     .offer-card {
       aspect-ratio: 2 / 1;
-      background: linear-gradient(145deg, #15181d, #101318);
       border-radius: 2px;
       padding: 24px;
       display: flex;
       align-items: flex-end;
       justify-content: center;
       text-align: center;
+      background-size: cover;
+      background-position: center;
     }
     .offer-card h3 {
       font-family: Inter, sans-serif;
@@ -130,18 +131,12 @@
     }
     .offer-card.effective {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Effective%20Workout.png?raw=true");
-      background-size: cover;
-      background-position: center;
     }
     .offer-card.expert {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Expert%20Guidance.png?raw=true");
-      background-size: cover;
-      background-position: center;
     }
     .offer-card.healthy {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Healthy%20Lifestyle.png?raw=true");
-      background-size: cover;
-      background-position: center;
     }
 
     /* TRAINING & NUTRITION */
@@ -150,11 +145,12 @@
     }
     .wide-card {
       aspect-ratio: 3 / 1;
-      background: #1A1D20;
       border-radius: 6px;
       padding: 28px;
       display: flex;
       align-items: flex-end;
+      background-size: cover;
+      background-position: center;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     .wide-card:hover {
@@ -171,17 +167,18 @@
       color: #B5B5B5;
     }
 
-    /* Cardio image – ONLY new addition */
+    /* IMAGES */
+    .wide-card.strength-training {
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Build%20Muscle%20Mass.png?raw=true");
+    }
     .wide-card.cardio {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Cardio2.png?raw=true");
-      background-size: cover;
-      background-position: center;
     }
   </style>
 </head>
 
 <body>
-<!-- TOP HEADER -->
+
 <nav>
   <a href="index.html" class="brand">
     <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
@@ -196,14 +193,13 @@
 </nav>
 
 <div class="container">
-  <!-- HERO -->
+
   <header>
     <h1>Focus on what actually works.</h1>
     <p>Training, nutrition & performance — no bullshit, just results.</p>
     <a href="#training" class="btn">Get Started</a>
   </header>
 
-  <!-- WHAT WE OFFER -->
   <div class="section-header center">
     <div class="line"></div>
     <h2>What We Offer</h2>
@@ -231,20 +227,18 @@
     </div>
   </section>
 
-  <!-- TRAINING -->
   <div class="section-header">
     <h2>Training</h2>
     <div class="line"></div>
   </div>
 
   <section id="training" class="grid wide-grid">
-    <a href="training.html" class="wide-card">
+    <a href="training.html" class="wide-card strength-training">
       <div>
         <h3>Strength Training</h3>
         <p>Build strength with proven fundamentals.</p>
       </div>
     </a>
-
     <a href="training.html" class="wide-card cardio">
       <div>
         <h3>Cardio</h3>
@@ -253,7 +247,6 @@
     </a>
   </section>
 
-  <!-- NUTRITION -->
   <div class="section-header">
     <h2>Nutrition</h2>
     <div class="line"></div>
@@ -273,6 +266,7 @@
       </div>
     </a>
   </section>
+
 </div>
 </body>
 </html>
