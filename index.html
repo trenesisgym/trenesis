@@ -5,16 +5,13 @@
   <title>Trenesis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: Roboto, sans-serif;
       background: #0F1113;
       color: #E5E5E5;
     }
-
     a { text-decoration: none; color: inherit; }
 
     /* NAV */
@@ -26,35 +23,28 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-
     .brand {
       display: flex;
       align-items: center;
       gap: 14px;
     }
-
     .brand img { height: 40px; }
-
     .brand span {
       font-family: Inter, sans-serif;
       font-weight: 700;
       letter-spacing: 2px;
       font-size: 15px;
-      color: #F2F2F2;
     }
-
     .nav-links a {
       margin-left: 32px;
       font-size: 14px;
       color: #B5B5B5;
     }
-
     .nav-links a.active {
       color: #FFFFFF;
       font-weight: 600;
     }
 
-    /* LAYOUT */
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -65,30 +55,25 @@
     header {
       padding: 100px 0 80px;
     }
-
     header h1 {
       font-family: Inter, sans-serif;
       font-size: 32px;
       max-width: 620px;
     }
-
     header p {
       margin-top: 16px;
       font-size: 18px;
       max-width: 520px;
       color: #B5B5B5;
     }
-
     .btn {
       display: inline-block;
       margin-top: 32px;
       padding: 14px 28px;
       background: #2E4F6F;
-      color: #fff;
       border-radius: 4px;
       font-size: 15px;
     }
-
     .btn:hover { background: #3A628A; }
 
     /* SECTION HEADERS */
@@ -98,17 +83,14 @@
       gap: 24px;
       margin: 80px 0 32px;
     }
-
     .section-header.center {
       justify-content: center;
     }
-
     .section-header h2 {
       font-family: Inter, sans-serif;
       font-size: 24px;
       white-space: nowrap;
     }
-
     .line {
       height: 1px;
       background: #2A2D30;
@@ -125,7 +107,6 @@
     .offer-grid {
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
-
     .offer-card {
       aspect-ratio: 2 / 1;
       background: linear-gradient(145deg, #15181d, #101318);
@@ -137,40 +118,10 @@
       text-align: center;
     }
 
-    .offer-card h3 {
-      font-family: Inter, sans-serif;
-      font-size: 18px;
-      margin-bottom: 6px;
-    }
-
-    .offer-card p {
-      font-size: 14px;
-      color: #B5B5B5;
-    }
-
-    .offer-card.effective {
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Effective%20Workout.png?raw=true");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .offer-card.expert {
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Expert%20Guidance.png?raw=true");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .offer-card.healthy {
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Healthy%20Lifestyle.png?raw=true");
-      background-size: cover;
-      background-position: center;
-    }
-
-    /* TRAINING / NUTRITION */
+    /* TRAINING */
     .wide-grid {
       grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
     }
-
     .wide-card {
       aspect-ratio: 3 / 1;
       background: #1A1D20;
@@ -180,25 +131,13 @@
       align-items: flex-end;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-
     .wide-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 32px rgba(0,0,0,0.45);
     }
 
-    .wide-card h3 {
-      font-family: Inter, sans-serif;
-      font-size: 18px;
-      margin-bottom: 6px;
-    }
-
-    .wide-card p {
-      font-size: 14px;
-      color: #B5B5B5;
-    }
-
-    /* TRAINING GUIDE IMAGES */
-    .wide-card.build-muscle {
+    /* Strength Training image */
+    .wide-card.strength-training {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Build%20Muscle%20Mass.png?raw=true");
       background-size: cover;
       background-position: center;
@@ -207,75 +146,42 @@
 </head>
 
 <body>
-
-<!-- NAV -->
-<nav>
-  <a href="index.html" class="brand">
-    <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
-    <span>TRENESIS</span>
-  </a>
-  <div class="nav-links">
-    <a href="index.html" class="active">Home</a>
-    <a href="training.html">Training</a>
-    <a href="nutrition.html">Nutrition</a>
-    <a href="products.html">Products</a>
-  </div>
-</nav>
-
-<div class="container">
-
-  <!-- HERO -->
-  <header>
-    <h1>Focus on what actually works.</h1>
-    <p>Training, nutrition & performance — no bullshit, just results.</p>
-    <a href="#training" class="btn">Get Started</a>
-  </header>
-
-  <!-- WHAT WE OFFER -->
-  <div class="section-header center">
-    <div class="line"></div>
-    <h2>What We Offer</h2>
-    <div class="line"></div>
-  </div>
-
-  <section class="grid offer-grid">
-    <div class="offer-card effective">
-      <div>
-        <h3>Effective Workouts</h3>
-        <p>Evidence‑based training focused on real progress.</p>
-      </div>
-    </div>
-
-    <div class="offer-card expert">
-      <div>
-        <h3>Expert Guidance</h3>
-        <p>Clear principles instead of fitness noise.</p>
-      </div>
-    </div>
-
-    <div class="offer-card healthy">
-      <div>
-        <h3>Healthy Lifestyle</h3>
-        <p>Sustainable habits for long‑term performance.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRAINING -->
-  <div class="section-header">
-    <h2>Training Guides</h2>
-    <div class="line"></div>
-  </div>
-
-  <section id="training" class="grid wide-grid">
-    <a href="training.html" class="wide-card build-muscle">
-      <div>
-        <h3>Build Muscle Mass</h3>
-        <p>Progressive overload and proven hypertrophy principles.</p>
-      </div>
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="brand">
+      <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
+      <span>TRENESIS</span>
     </a>
-  </section>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="training.html">Training</a>
+      <a href="nutrition.html">Nutrition</a>
+      <a href="products.html">Products</a>
+    </div>
+  </nav>
 
-</div>
+  <div class="container">
+    <!-- HERO -->
+    <header>
+      <h1>Focus on what actually works.</h1>
+      <p>Training, nutrition & performance — no bullshit, just results.</p>
+      <a href="#training" class="btn">Get Started</a>
+    </header>
+
+    <!-- TRAINING -->
+    <div class="section-header">
+      <h2>Training</h2>
+      <div class="line"></div>
+    </div>
+
+    <section id="training" class="grid wide-grid">
+      <a href="training.html" class="wide-card strength-training">
+        <div>
+          <h3>Strength Training</h3>
+          <p>Build raw strength with proven compound lifts.</p>
+        </div>
+      </a>
+    </section>
+  </div>
 </body>
 </html>
