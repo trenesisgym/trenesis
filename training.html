@@ -24,23 +24,28 @@
       max-width: 1200px;
       margin: 0 auto;
     }
+
     .brand {
       display: flex;
       align-items: center;
       gap: 14px;
     }
+
     .brand img { height: 40px; }
+
     .brand span {
       font-family: Inter, sans-serif;
       font-weight: 700;
       letter-spacing: 2px;
       font-size: 15px;
     }
+
     .nav-links a {
       margin-left: 32px;
       font-size: 14px;
       color: #B5B5B5;
     }
+
     .nav-links a.active {
       color: #FFFFFF;
       font-weight: 600;
@@ -52,75 +57,86 @@
       padding: 0 48px;
     }
 
-    /* HERO */
     header {
       padding: 100px 0 80px;
       max-width: 720px;
     }
+
     header h1 {
       font-family: Inter, sans-serif;
       font-size: 34px;
       margin-bottom: 16px;
     }
+
     header p {
       font-size: 18px;
       color: #B5B5B5;
       line-height: 1.6;
+      margin-bottom: 8px;
     }
 
-    /* SECTION HEADER */
     .section-header {
       display: flex;
       align-items: center;
       gap: 24px;
       margin: 80px 0 32px;
     }
+
     .section-header h2 {
       font-family: Inter, sans-serif;
       font-size: 24px;
       white-space: nowrap;
     }
+
     .line {
       height: 1px;
       background: #2A2D30;
       flex: 1;
     }
 
-    /* GRID */
     .grid {
       display: grid;
       gap: 24px;
     }
+
     .training-grid {
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     }
 
-    /* PDF CARDS */
     .pdf-card {
       background: #15181D;
       border-radius: 6px;
       padding: 32px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       min-height: 220px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
+
     .pdf-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 14px 36px rgba(0,0,0,0.45);
     }
+
+    /* 🔥 GLOW HIGHLIGHT */
+    .highlight {
+      box-shadow: 0 0 0 2px #3A628A, 0 0 28px rgba(58,98,138,0.55);
+    }
+
     .pdf-card h3 {
       font-family: Inter, sans-serif;
       font-size: 20px;
       margin-bottom: 12px;
     }
+
     .pdf-card p {
       font-size: 15px;
       color: #B5B5B5;
       line-height: 1.6;
       margin-bottom: 24px;
     }
+
     .pdf-card a {
       align-self: flex-start;
       padding: 12px 22px;
@@ -129,6 +145,7 @@
       font-size: 14px;
       color: #fff;
     }
+
     .pdf-card a:hover {
       background: #3A628A;
     }
@@ -154,8 +171,6 @@
 </nav>
 
 <div class="container">
-
-  <!-- INTRO -->
   <header>
     <h1>Training that actually works.</h1>
     <p>Training isn’t about finding the perfect program.</p>
@@ -167,16 +182,14 @@
     </p>
   </header>
 
-  <!-- PROGRAMS -->
   <div class="section-header">
     <h2>Training Guides</h2>
     <div class="line"></div>
   </div>
 
   <section class="grid training-grid">
-
     <!-- STRENGTH -->
-    <div class="pdf-card">
+    <div class="pdf-card" id="strength">
       <div>
         <h3>Strength Training Fundamentals</h3>
         <p>
@@ -189,7 +202,7 @@
     </div>
 
     <!-- CARDIO -->
-    <div class="pdf-card">
+    <div class="pdf-card" id="cardio">
       <div>
         <h3>Cardio</h3>
         <p>
@@ -200,11 +213,22 @@
       </div>
       <a href="pdfs/cardio.pdf" target="_blank">Open PDF</a>
     </div>
-
   </section>
 
   <footer></footer>
 </div>
+
+<script>
+  const hash = window.location.hash.replace('#','');
+  if (hash) {
+    const el = document.getElementById(hash);
+    if (el) {
+      el.classList.add('highlight');
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => el.classList.remove('highlight'), 3000);
+    }
+  }
+</script>
 
 </body>
 </html>
