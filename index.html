@@ -15,6 +15,7 @@
     }
     a { text-decoration: none; color: inherit; }
 
+    /* NAV */
     nav {
       display: flex;
       justify-content: space-between;
@@ -23,28 +24,23 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-
     .brand {
       display: flex;
       align-items: center;
       gap: 14px;
     }
-
     .brand img { height: 40px; }
-
     .brand span {
       font-family: Inter, sans-serif;
       font-weight: 700;
       letter-spacing: 2px;
       font-size: 15px;
     }
-
     .nav-links a {
       margin-left: 32px;
       font-size: 14px;
       color: #B5B5B5;
     }
-
     .nav-links a.active {
       color: #FFFFFF;
       font-weight: 600;
@@ -56,23 +52,21 @@
       padding: 0 48px;
     }
 
+    /* HERO */
     header {
       padding: 100px 0 80px;
     }
-
     header h1 {
       font-family: Inter, sans-serif;
       font-size: 32px;
       max-width: 620px;
     }
-
     header p {
       margin-top: 16px;
       font-size: 18px;
       max-width: 520px;
       color: #B5B5B5;
     }
-
     .btn {
       display: inline-block;
       margin-top: 32px;
@@ -82,41 +76,39 @@
       font-size: 15px;
       color: #fff;
     }
-
     .btn:hover { background: #3A628A; }
 
+    /* SECTION HEADER */
     .section-header {
       display: flex;
       align-items: center;
       gap: 24px;
       margin: 80px 0 32px;
     }
-
     .section-header.center {
       justify-content: center;
     }
-
     .section-header h2 {
       font-family: Inter, sans-serif;
       font-size: 24px;
       white-space: nowrap;
     }
-
     .line {
       height: 1px;
       background: #2A2D30;
       flex: 1;
     }
 
+    /* GRIDS */
     .grid {
       display: grid;
       gap: 24px;
     }
 
+    /* WHAT WE OFFER */
     .offer-grid {
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
-
     .offer-card {
       aspect-ratio: 2 / 1;
       border-radius: 2px;
@@ -128,23 +120,29 @@
       background-size: cover;
       background-position: center;
     }
-
+    .offer-card h3 {
+      font-family: Inter, sans-serif;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+    .offer-card p {
+      font-size: 14px;
+      color: #B5B5B5;
+    }
     .offer-card.effective {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Effective%20Workout.png?raw=true");
     }
-
     .offer-card.expert {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Expert%20Guidance.png?raw=true");
     }
-
     .offer-card.healthy {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Healthy%20Lifestyle.png?raw=true");
     }
 
+    /* TRAINING / NUTRITION */
     .wide-grid {
       grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
     }
-
     .wide-card {
       aspect-ratio: 3 / 1;
       border-radius: 6px;
@@ -155,40 +153,44 @@
       background-position: center;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-
     .wide-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+    }
+    .wide-card h3 {
+      font-family: Inter, sans-serif;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+    .wide-card p {
+      font-size: 14px;
+      color: #B5B5B5;
     }
 
     .strength {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Build%20Muscle%20Mass.png?raw=true");
     }
-
     .cardio {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Cardio2.png?raw=true");
     }
-
     .macros {
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Macros2.png?raw=true");
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Macros.png?raw=true");
     }
-
-    /* ✅ ONLY ADDITION */
-    .mealplanning {
+    /* ✅ ONLY NEW ADDITION */
+    .meal-planning {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Meal%20Planning.png?raw=true");
     }
 
+    /* FOOTER */
     footer {
       margin: 120px 0 80px;
       text-align: center;
     }
-
     .newsletter-text {
       color: #B5B5B5;
       margin-bottom: 24px;
       font-size: 15px;
     }
-
     .newsletter {
       display: flex;
       justify-content: center;
@@ -196,7 +198,6 @@
       margin-bottom: 40px;
       flex-wrap: wrap;
     }
-
     .newsletter input {
       padding: 14px 16px;
       width: 260px;
@@ -205,7 +206,6 @@
       color: #fff;
       border-radius: 4px;
     }
-
     .newsletter button {
       padding: 14px 24px;
       background: #2E4F6F;
@@ -214,17 +214,19 @@
       border-radius: 4px;
       cursor: pointer;
     }
-
+    .newsletter button:hover {
+      background: #3A628A;
+    }
     .socials {
       display: flex;
       justify-content: center;
       gap: 28px;
     }
-
     .socials img {
       height: 36px;
       opacity: 0.85;
     }
+    .socials img:hover { opacity: 1; }
   </style>
 </head>
 
@@ -243,22 +245,47 @@
 </nav>
 
 <div class="container">
-<section class="grid wide-grid">
-  <a href="nutrition.html" class="wide-card macros">
-    <div>
-      <h3>Macronutrients</h3>
-      <p>Protein, carbs & fats explained.</p>
-    </div>
-  </a>
+<header>
+  <h1>Focus on what actually works.</h1>
+  <p>Training, nutrition & performance — no bullshit, just results.</p>
+  <a href="#training" class="btn">Get Started</a>
+</header>
 
-  <!-- ✅ IMAGE ADDED HERE -->
-  <a href="nutrition.html" class="wide-card mealplanning">
-    <div>
-      <h3>Meal Planning</h3>
-      <p>Practical nutrition you can stick to.</p>
-    </div>
-  </a>
+<div class="section-header center">
+  <div class="line"></div>
+  <h2>What We Offer</h2>
+  <div class="line"></div>
+</div>
+
+<section class="grid offer-grid">
+  <div class="offer-card effective"><div><h3>Effective Workouts</h3><p>Evidence‑based training focused on real progress.</p></div></div>
+  <div class="offer-card expert"><div><h3>Expert Guidance</h3><p>Clear principles instead of fitness noise.</p></div></div>
+  <div class="offer-card healthy"><div><h3>Healthy Lifestyle</h3><p>Sustainable habits for long‑term performance.</p></div></div>
 </section>
+
+<div class="section-header"><h2>Training</h2><div class="line"></div></div>
+<section id="training" class="grid wide-grid">
+  <a href="training.html" class="wide-card strength"><div><h3>Strength Training</h3><p>Build strength with proven fundamentals.</p></div></a>
+  <a href="training.html" class="wide-card cardio"><div><h3>Cardio</h3><p>Improve endurance and overall health.</p></div></a>
+</section>
+
+<div class="section-header"><h2>Nutrition</h2><div class="line"></div></div>
+<section class="grid wide-grid">
+  <a href="nutrition.html" class="wide-card macros"><div><h3>Macronutrients</h3><p>Protein, carbs & fats explained.</p></div></a>
+  <!-- ✅ ONLY CLASS ADDED HERE -->
+  <a href="nutrition.html" class="wide-card meal-planning"><div><h3>Meal Planning</h3><p>Practical nutrition you can stick to.</p></div></a>
+</section>
+
+<footer>
+  <div class="section-header center"><div class="line"></div><h2>Join Our Community</h2><div class="line"></div></div>
+  <p class="newsletter-text">Get the latest tips and updates.</p>
+  <div class="newsletter"><input type="email" placeholder="Enter your email here"><button>Subscribe</button></div>
+  <div class="socials">
+    <a href="https://www.instagram.com/trenesisgym/" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true"></a>
+    <a href="https://www.tiktok.com/@trenesis.gym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/TikTok%20Logo.png?raw=true"></a>
+    <a href="https://www.youtube.com/@TrenesisGym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Shorts%20Logo.png?raw=true"></a>
+  </div>
+</footer>
 </div>
 </body>
 </html>
