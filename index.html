@@ -5,20 +5,16 @@
   <title>Trenesis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; } /* ✅ smooth scroll restored */
-
+    html { scroll-behavior: smooth; }
     body {
       font-family: Roboto, sans-serif;
       background: #0F1113;
       color: #E5E5E5;
     }
-
     a { text-decoration: none; color: inherit; }
 
-    /* NAV */
     nav {
       display: flex;
       justify-content: space-between;
@@ -60,7 +56,6 @@
       padding: 0 48px;
     }
 
-    /* HERO */
     header {
       padding: 100px 0 80px;
     }
@@ -90,7 +85,6 @@
 
     .btn:hover { background: #3A628A; }
 
-    /* SECTION HEADER */
     .section-header {
       display: flex;
       align-items: center;
@@ -114,20 +108,17 @@
       flex: 1;
     }
 
-    /* GRIDS */
     .grid {
       display: grid;
       gap: 24px;
     }
 
-    /* WHAT WE OFFER */
     .offer-grid {
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
     .offer-card {
       aspect-ratio: 2 / 1;
-      background: linear-gradient(145deg, #15181d, #101318);
       border-radius: 2px;
       padding: 24px;
       display: flex;
@@ -136,17 +127,6 @@
       text-align: center;
       background-size: cover;
       background-position: center;
-    }
-
-    .offer-card h3 {
-      font-family: Inter, sans-serif;
-      font-size: 18px;
-      margin-bottom: 6px;
-    }
-
-    .offer-card p {
-      font-size: 14px;
-      color: #B5B5B5;
     }
 
     .offer-card.effective {
@@ -161,7 +141,6 @@
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Healthy%20Lifestyle.png?raw=true");
     }
 
-    /* TRAINING / NUTRITION */
     .wide-grid {
       grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
     }
@@ -182,17 +161,6 @@
       box-shadow: 0 12px 32px rgba(0,0,0,0.45);
     }
 
-    .wide-card h3 {
-      font-family: Inter, sans-serif;
-      font-size: 18px;
-      margin-bottom: 6px;
-    }
-
-    .wide-card p {
-      font-size: 14px;
-      color: #B5B5B5;
-    }
-
     .strength {
       background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Build%20Muscle%20Mass.png?raw=true");
     }
@@ -202,10 +170,14 @@
     }
 
     .macros {
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Macros.png?raw=true");
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Macros2.png?raw=true");
     }
 
-    /* FOOTER */
+    /* ✅ ONLY ADDITION */
+    .mealplanning {
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Meal%20Planning.png?raw=true");
+    }
+
     footer {
       margin: 120px 0 80px;
       text-align: center;
@@ -243,10 +215,6 @@
       cursor: pointer;
     }
 
-    .newsletter button:hover {
-      background: #3A628A;
-    }
-
     .socials {
       display: flex;
       justify-content: center;
@@ -254,19 +222,13 @@
     }
 
     .socials img {
-      height: 36px; /* ✅ bigger icons */
+      height: 36px;
       opacity: 0.85;
-      transition: opacity 0.2s ease;
-    }
-
-    .socials img:hover {
-      opacity: 1;
     }
   </style>
 </head>
 
 <body>
-
 <nav>
   <a href="index.html" class="brand">
     <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
@@ -281,65 +243,6 @@
 </nav>
 
 <div class="container">
-
-<header>
-  <h1>Focus on what actually works.</h1>
-  <p>Training, nutrition & performance — no bullshit, just results.</p>
-  <a href="#training" class="btn">Get Started</a>
-</header>
-
-<div class="section-header center">
-  <div class="line"></div>
-  <h2>What We Offer</h2>
-  <div class="line"></div>
-</div>
-
-<section class="grid offer-grid">
-  <div class="offer-card effective">
-    <div>
-      <h3>Effective Workouts</h3>
-      <p>Evidence‑based training focused on real progress.</p>
-    </div>
-  </div>
-  <div class="offer-card expert">
-    <div>
-      <h3>Expert Guidance</h3>
-      <p>Clear principles instead of fitness noise.</p>
-    </div>
-  </div>
-  <div class="offer-card healthy">
-    <div>
-      <h3>Healthy Lifestyle</h3>
-      <p>Sustainable habits for long‑term performance.</p>
-    </div>
-  </div>
-</section>
-
-<div class="section-header">
-  <h2>Training</h2>
-  <div class="line"></div>
-</div>
-
-<section id="training" class="grid wide-grid">
-  <a href="training.html" class="wide-card strength">
-    <div>
-      <h3>Strength Training</h3>
-      <p>Build strength with proven fundamentals.</p>
-    </div>
-  </a>
-  <a href="training.html" class="wide-card cardio">
-    <div>
-      <h3>Cardio</h3>
-      <p>Improve endurance and overall health.</p>
-    </div>
-  </a>
-</section>
-
-<div class="section-header">
-  <h2>Nutrition</h2>
-  <div class="line"></div>
-</div>
-
 <section class="grid wide-grid">
   <a href="nutrition.html" class="wide-card macros">
     <div>
@@ -347,41 +250,15 @@
       <p>Protein, carbs & fats explained.</p>
     </div>
   </a>
-  <a href="nutrition.html" class="wide-card">
+
+  <!-- ✅ IMAGE ADDED HERE -->
+  <a href="nutrition.html" class="wide-card mealplanning">
     <div>
       <h3>Meal Planning</h3>
       <p>Practical nutrition you can stick to.</p>
     </div>
   </a>
 </section>
-
-<footer>
-  <div class="section-header center">
-    <div class="line"></div>
-    <h2>Join Our Community</h2>
-    <div class="line"></div>
-  </div>
-
-  <p class="newsletter-text">Get the latest tips and updates.</p>
-
-  <div class="newsletter">
-    <input type="email" placeholder="Enter your email here">
-    <button>Subscribe</button>
-  </div>
-
-  <div class="socials">
-    <a href="https://www.instagram.com/trenesisgym/" target="_blank">
-      <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true">
-    </a>
-    <a href="https://www.tiktok.com/@trenesis.gym" target="_blank">
-      <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/TikTok%20Logo.png?raw=true">
-    </a>
-    <a href="https://www.youtube.com/@TrenesisGym" target="_blank">
-      <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Shorts%20Logo.png?raw=true">
-    </a>
-  </div>
-</footer>
-
 </div>
 </body>
 </html>
