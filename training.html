@@ -2,17 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>Training | Trenesis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Training – Trenesis</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
     body {
       font-family: Roboto, sans-serif;
       background: #0F1113;
       color: #E5E5E5;
     }
+
     a { text-decoration: none; color: inherit; }
+
+    /* NAV */
     nav {
       display: flex;
       justify-content: space-between;
@@ -21,51 +28,145 @@
       max-width: 1200px;
       margin: 0 auto;
     }
+
     .brand {
       display: flex;
       align-items: center;
       gap: 14px;
     }
+
     .brand img { height: 40px; }
+
     .brand span {
       font-family: Inter, sans-serif;
       font-weight: 700;
       letter-spacing: 2px;
       font-size: 15px;
-      color: #F2F2F2;
     }
+
     .nav-links a {
       margin-left: 32px;
       font-size: 14px;
       color: #B5B5B5;
     }
+
     .nav-links a.active {
       color: #FFFFFF;
       font-weight: 600;
     }
-    main {
+
+    .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 80px 48px;
+      padding: 0 48px;
     }
-    h1 {
+
+    /* HERO */
+    header {
+      padding: 100px 0 80px;
+      max-width: 720px;
+    }
+
+    header h1 {
       font-family: Inter, sans-serif;
-      font-size: 32px;
+      font-size: 34px;
+      margin-bottom: 16px;
     }
-    p {
-      margin-top: 16px;
+
+    header p {
       font-size: 18px;
       color: #B5B5B5;
-      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    /* SECTION HEADER */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin: 80px 0 32px;
+    }
+
+    .section-header h2 {
+      font-family: Inter, sans-serif;
+      font-size: 24px;
+      white-space: nowrap;
+    }
+
+    .line {
+      height: 1px;
+      background: #2A2D30;
+      flex: 1;
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .training-grid {
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    }
+
+    /* PDF CARDS */
+    .pdf-card {
+      background: #15181D;
+      border-radius: 6px;
+      padding: 32px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
+    }
+
+    .pdf-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px rgba(0,0,0,0.45);
+    }
+
+    .pdf-card h3 {
+      font-family: Inter, sans-serif;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .pdf-card p {
+      font-size: 15px;
+      color: #B5B5B5;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .pdf-card a {
+      align-self: flex-start;
+      padding: 12px 22px;
+      background: #2E4F6F;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .pdf-card a:hover {
+      background: #3A628A;
+    }
+
+    /* FOOTER SPACING */
+    footer {
+      margin: 120px 0 60px;
     }
   </style>
 </head>
+
 <body>
+
 <nav>
   <a href="index.html" class="brand">
     <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
     <span>TRENESIS</span>
   </a>
+
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="training.html" class="active">Training</a>
@@ -73,10 +174,66 @@
     <a href="products.html">Products</a>
   </div>
 </nav>
-<main>
-  <h1>Training</h1>
-  <p>Training content will be added here.  
-     Evidence‑based, simple, effective.</p>
-</main>
+
+<div class="container">
+
+  <!-- INTRO -->
+  <header>
+    <h1>Training that actually works.</h1>
+    <p>
+      No hype. No random workouts.  
+      Our training system is built on proven principles, long‑term progress and real-world results.
+      These guides will teach you how to train intelligently — whether your goal is strength, muscle, or performance.
+    </p>
+  </header>
+
+  <!-- PROGRAMS -->
+  <div class="section-header">
+    <h2>Training Guides</h2>
+    <div class="line"></div>
+  </div>
+
+  <section class="grid training-grid">
+
+    <div class="pdf-card">
+      <div>
+        <h3>Strength Training Fundamentals</h3>
+        <p>
+          Learn the core principles of effective strength training:
+          progressive overload, exercise selection, volume, intensity and recovery —
+          explained clearly and without fitness industry bullshit.
+        </p>
+      </div>
+      <a href="pdfs/strength-training.pdf" target="_blank">Open PDF</a>
+    </div>
+
+    <div class="pdf-card">
+      <div>
+        <h3>Hypertrophy & Muscle Growth</h3>
+        <p>
+          Understand how muscle growth actually works.
+          Volume ranges, rep schemes, frequency and common mistakes that keep people stuck for years.
+        </p>
+      </div>
+      <a href="pdfs/hypertrophy.pdf" target="_blank">Open PDF</a>
+    </div>
+
+    <div class="pdf-card">
+      <div>
+        <h3>Cardio & Conditioning</h3>
+        <p>
+          Cardio without killing your gains.
+          Learn how to improve endurance, heart health and conditioning
+          while supporting strength and recovery.
+        </p>
+      </div>
+      <a href="pdfs/cardio.pdf" target="_blank">Open PDF</a>
+    </div>
+
+  </section>
+
+  <footer></footer>
+</div>
+
 </body>
 </html>
