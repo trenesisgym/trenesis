@@ -4,19 +4,15 @@
   <meta charset="UTF-8" />
   <title>Training | Trenesis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
       font-family: Roboto, sans-serif;
       background: #0F1113;
       color: #E5E5E5;
     }
-
     a { text-decoration: none; color: inherit; }
 
     /* NAV */
@@ -28,28 +24,23 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-
     .brand {
       display: flex;
       align-items: center;
       gap: 14px;
     }
-
     .brand img { height: 40px; }
-
     .brand span {
       font-family: Inter, sans-serif;
       font-weight: 700;
       letter-spacing: 2px;
       font-size: 15px;
     }
-
     .nav-links a {
       margin-left: 32px;
       font-size: 14px;
       color: #B5B5B5;
     }
-
     .nav-links a.active {
       color: #FFFFFF;
       font-weight: 600;
@@ -66,13 +57,11 @@
       padding: 100px 0 80px;
       max-width: 720px;
     }
-
     header h1 {
       font-family: Inter, sans-serif;
       font-size: 34px;
       margin-bottom: 16px;
     }
-
     header p {
       font-size: 18px;
       color: #B5B5B5;
@@ -86,13 +75,11 @@
       gap: 24px;
       margin: 80px 0 32px;
     }
-
     .section-header h2 {
       font-family: Inter, sans-serif;
       font-size: 24px;
       white-space: nowrap;
     }
-
     .line {
       height: 1px;
       background: #2A2D30;
@@ -104,7 +91,6 @@
       display: grid;
       gap: 24px;
     }
-
     .training-grid {
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     }
@@ -120,25 +106,21 @@
       justify-content: space-between;
       min-height: 220px;
     }
-
     .pdf-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 14px 36px rgba(0,0,0,0.45);
     }
-
     .pdf-card h3 {
       font-family: Inter, sans-serif;
       font-size: 20px;
       margin-bottom: 12px;
     }
-
     .pdf-card p {
       font-size: 15px;
       color: #B5B5B5;
       line-height: 1.6;
       margin-bottom: 24px;
     }
-
     .pdf-card a {
       align-self: flex-start;
       padding: 12px 22px;
@@ -147,18 +129,15 @@
       font-size: 14px;
       color: #fff;
     }
-
     .pdf-card a:hover {
       background: #3A628A;
     }
 
-    /* FOOTER SPACING */
     footer {
       margin: 120px 0 60px;
     }
   </style>
 </head>
-
 <body>
 
 <nav>
@@ -166,7 +145,6 @@
     <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
     <span>TRENESIS</span>
   </a>
-
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="training.html" class="active">Training</a>
@@ -183,7 +161,7 @@
     <p>
       No hype. No random workouts.  
       Our training system is built on proven principles, long‑term progress and real-world results.
-      These guides will teach you how to train intelligently — whether your goal is strength, muscle, or performance.
+      These guides will teach you how to train intelligently — whether your goal is strength or performance.
     </p>
   </header>
 
@@ -195,6 +173,7 @@
 
   <section class="grid training-grid">
 
+    <!-- STRENGTH -->
     <div class="pdf-card">
       <div>
         <h3>Strength Training Fundamentals</h3>
@@ -207,17 +186,7 @@
       <a href="pdfs/strength-training.pdf" target="_blank">Open PDF</a>
     </div>
 
-    <div class="pdf-card">
-      <div>
-        <h3>Hypertrophy & Muscle Growth</h3>
-        <p>
-          Understand how muscle growth actually works.
-          Volume ranges, rep schemes, frequency and common mistakes that keep people stuck for years.
-        </p>
-      </div>
-      <a href="pdfs/hypertrophy.pdf" target="_blank">Open PDF</a>
-    </div>
-
+    <!-- CARDIO -->
     <div class="pdf-card">
       <div>
         <h3>Cardio & Conditioning</h3>
