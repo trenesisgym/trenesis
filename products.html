@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>Products | Trenesis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Products – Trenesis</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: Roboto, sans-serif;
       background: #0F1113;
@@ -14,6 +14,7 @@
     }
     a { text-decoration: none; color: inherit; }
 
+    /* NAV */
     nav {
       display: flex;
       justify-content: space-between;
@@ -44,20 +45,89 @@
       font-weight: 600;
     }
 
-    main {
+    .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 80px 48px;
+      padding: 0 48px;
     }
-    h1 {
+
+    /* HEADER */
+    header {
+      padding: 100px 0 80px;
+      max-width: 720px;
+    }
+    header h1 {
       font-family: Inter, sans-serif;
-      font-size: 32px;
+      font-size: 34px;
+      margin-bottom: 16px;
     }
-    p {
-      margin-top: 16px;
+    header p {
       font-size: 18px;
       color: #B5B5B5;
-      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    /* GRID */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 32px;
+      margin-top: 60px;
+    }
+
+    .category-card {
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
+      padding: 32px;
+      display: flex;
+      align-items: flex-end;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .category-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.7),
+        rgba(0,0,0,0.15)
+      );
+    }
+
+    .category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+    }
+
+    .category-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .category-content h2 {
+      font-family: Inter, sans-serif;
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .category-content p {
+      font-size: 15px;
+      color: #CFCFCF;
+    }
+
+    /* TEMP IMAGE PLACEHOLDERS */
+    .equipment { background-image: url("https://images.unsplash.com/photo-1583454110551-21f2fa2afe61"); }
+    .supplements { background-image: url("https://images.unsplash.com/photo-1605296867304-46d5465a13f1"); }
+    .apparel { background-image: url("https://images.unsplash.com/photo-1520975916090-3105956dac38"); }
+    .accessories { background-image: url("https://images.unsplash.com/photo-1599058917212-d750089bc07b"); }
+
+    footer {
+      margin: 120px 0 60px;
     }
   </style>
 </head>
@@ -76,10 +146,47 @@
   </div>
 </nav>
 
-<main>
-  <h1>Products</h1>
-  <p>Tools, plans and resources — built around what actually works.</p>
-</main>
+<div class="container">
+  <header>
+    <h1>Products we actually recommend.</h1>
+    <p>
+      No random Amazon lists.
+      Every product category is curated with performance, durability, and real‑world usefulness in mind.
+    </p>
+  </header>
+
+  <section class="category-grid">
+    <a href="equipment.html" class="category-card equipment">
+      <div class="category-content">
+        <h2>Equipment</h2>
+        <p>Dumbbells, barbells & training essentials.</p>
+      </div>
+    </a>
+
+    <a href="supplements.html" class="category-card supplements">
+      <div class="category-content">
+        <h2>Supplements</h2>
+        <p>Evidence‑based supplements that actually work.</p>
+      </div>
+    </a>
+
+    <a href="apparel.html" class="category-card apparel">
+      <div class="category-content">
+        <h2>Apparel</h2>
+        <p>Functional clothing built for training.</p>
+      </div>
+    </a>
+
+    <a href="accessories.html" class="category-card accessories">
+      <div class="category-content">
+        <h2>Accessories</h2>
+        <p>Straps, belts, bags & small essentials.</p>
+      </div>
+    </a>
+  </section>
+
+  <footer></footer>
+</div>
 
 </body>
 </html>
