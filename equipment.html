@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Equipment | Trenesis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+background:#0F1113;
+color:#E5E5E5;
+font-family:Roboto,sans-serif;
+}
+
+a{text-decoration:none;color:inherit;}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:0 48px;
+}
+
+/* NAV */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:24px 48px;
+max-width:1200px;
+margin:auto;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.brand img{height:40px;}
+
+.brand span{
+font-family:Inter;
+font-weight:700;
+letter-spacing:2px;
+font-size:15px;
+}
+
+.nav-links a{
+margin-left:32px;
+color:#B5B5B5;
+font-size:14px;
+}
+
+.nav-links a.active{
+color:#fff;
+font-weight:600;
+}
+
+/* HERO */
+
+header{
+padding:100px 0 60px;
+max-width:700px;
+}
+
+header h1{
+font-family:Inter;
+font-size:34px;
+margin-bottom:16px;
+}
+
+header p{
+color:#B5B5B5;
+line-height:1.6;
+font-size:18px;
+}
+
+/* SECTION */
+
+.section-header{
+display:flex;
+align-items:center;
+gap:24px;
+margin:80px 0 32px;
+}
+
+.section-header h2{
+font-family:Inter;
+font-size:24px;
+white-space:nowrap;
+}
+
+.line{
+height:1px;
+background:#2A2D30;
+flex:1;
+}
+
+/* PRODUCT GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:24px;
+}
+
+.product-card{
+background:#15181D;
+padding:26px;
+border-radius:6px;
+transition:0.25s;
+display:block;
+}
+
+.product-card:hover{
+transform:translateY(-4px);
+box-shadow:0 14px 36px rgba(0,0,0,0.45);
+}
+
+.product-card h3{
+font-family:Inter;
+font-size:18px;
+margin-bottom:6px;
+}
+
+.product-card span{
+font-size:13px;
+color:#8E949B;
+}
+
+.product-card p{
+margin-top:14px;
+color:#B5B5B5;
+font-size:14px;
+line-height:1.5;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="index.html" class="brand">
+<img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
+<span>TRENESIS</span>
+</a>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="training.html">Training</a>
+<a href="nutrition.html">Nutrition</a>
+<a href="products.html" class="active">Products</a>
+</div>
+</nav>
+
+<div class="container">
+
+<header>
+<h1>Equipment</h1>
+
+<p>
+Good equipment removes friction from training.
+This is not a massive catalog — only tools that actually
+fit into structured training and long‑term progression.
+</p>
+</header>
+
+
+<!-- DUMBBELLS -->
+
+<div class="section-header">
+<h2>Dumbbells & Barbells</h2>
+<div class="line"></div>
+</div>
+
+<section class="grid">
+
+<a href="https://amzn.to/4rGIu4K" target="_blank" class="product-card">
+<h3>Adjustable Dumbbell Set</h3>
+<span>Budget option</span>
+<p>Flexible setup for progressive overload without needing full rack space.</p>
+</a>
+
+<a href="#" class="product-card">
+<h3>EZ Curl Bar</h3>
+<span>Accessory bar</span>
+<p>Joint‑friendly grip angles for arm work and variation.</p>
+</a>
+
+</section>
+
+
+
+<!-- BENCHES -->
+
+<div class="section-header">
+<h2>Benches</h2>
+<div class="line"></div>
+</div>
+
+<section class="grid">
+
+<a href="#" class="product-card">
+<h3>Adjustable Training Bench</h3>
+<span>Incline / Flat</span>
+<p>Core setup piece for pressing, rows and accessory movements.</p>
+</a>
+
+</section>
+
+
+
+<!-- KETTLEBELLS -->
+
+<div class="section-header">
+<h2>Kettlebells</h2>
+<div class="line"></div>
+</div>
+
+<section class="grid">
+
+<a href="#" class="product-card">
+<h3>Adjustable Kettlebell</h3>
+<span>Space efficient</span>
+<p>Multiple loading options without owning multiple bells.</p>
+</a>
+
+</section>
+
+
+
+<!-- CALISTHENICS -->
+
+<div class="section-header">
+<h2>Calisthenics Equipment</h2>
+<div class="line"></div>
+</div>
+
+<section class="grid">
+
+<a href="#" class="product-card">
+<h3>Doorframe Pullup Bar</h3>
+<span>Home setup</span>
+<p>Simple vertical pulling solution without drilling.</p>
+</a>
+
+<a href="#" class="product-card">
+<h3>Gymnastic Rings</h3>
+<span>Advanced progression</span>
+<p>Extremely versatile for strength and stability training.</p>
+</a>
+
+</section>
+
+</div>
+</body>
+</html>
