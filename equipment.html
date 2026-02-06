@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Equipment | Trenesis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box;}
+*{box-sizing:border-box;margin:0;padding:0;}
 
 body{
 font-family:Roboto,sans-serif;
@@ -17,22 +17,79 @@ background:#0F1113;
 color:#E5E5E5;
 }
 
+a{text-decoration:none;color:inherit;}
+
+/* NAV (EXACT SAME) */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:24px 48px;
+max-width:1200px;
+margin:0 auto;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.brand img{height:40px;}
+
+.brand span{
+font-family:Inter,sans-serif;
+font-weight:700;
+letter-spacing:2px;
+font-size:15px;
+}
+
+.nav-links a{
+margin-left:32px;
+font-size:14px;
+color:#B5B5B5;
+}
+
+.nav-links a.active{
+color:#FFF;
+font-weight:600;
+}
+
+/* CONTAINER */
+
 .container{
 max-width:1200px;
-margin:auto;
+margin:0 auto;
 padding:0 48px;
 }
 
-h1{
-font-family:Inter;
-margin:80px 0 40px;
+/* HEADER */
+
+header{
+padding:100px 0 60px;
+max-width:720px;
 }
 
-.section{
-margin-bottom:80px;
+header h1{
+font-family:Inter,sans-serif;
+font-size:34px;
+margin-bottom:16px;
 }
 
-.section h2{
+header p{
+font-size:18px;
+color:#B5B5B5;
+line-height:1.6;
+}
+
+/* CATEGORY */
+
+.category{
+margin-top:60px;
+}
+
+.category h2{
 font-family:Inter;
 margin-bottom:24px;
 }
@@ -49,15 +106,12 @@ gap:24px;
 
 .product-card{
 position:relative;
-height:220px;
-background:#15181D;
-border-radius:6px;
-display:flex;
-align-items:flex-end;
+background:#15181B;
+border-radius:12px;
+height:260px;
 padding:20px;
 overflow:hidden;
-cursor:pointer;
-transition:.25s;
+transition:transform .25s;
 }
 
 .product-card:hover{
@@ -68,58 +122,48 @@ transform:translateY(-4px);
 
 .product-name{
 font-family:Inter;
+font-weight:600;
 font-size:16px;
-z-index:2;
 }
 
-/* OVERLAY */
+/* HOVER PANEL */
 
-.product-overlay{
+.hover-panel{
 position:absolute;
 inset:0;
-background:rgba(15,17,19,.96);
+background:rgba(0,0,0,0.92);
+padding:24px;
+opacity:0;
+transition:.25s;
 display:flex;
 flex-direction:column;
 justify-content:center;
-padding:20px;
-opacity:0;
-transition:.25s;
 }
 
-.product-card:hover .product-overlay{
+.product-card:hover .hover-panel{
 opacity:1;
 }
 
-/* MOBILE CLICK SUPPORT */
-
-.product-card.active .product-overlay{
-opacity:1;
-}
-
-.brand{
-font-size:13px;
-color:#888;
-margin-bottom:10px;
-}
-
-.desc{
-font-size:14px;
+.brand-name{
 color:#B5B5B5;
 margin-bottom:16px;
 }
 
-.btn{
-background:#2E4F6F;
+.amazon-btn{
+background:#FFF;
+color:#000;
 padding:10px 16px;
-border-radius:4px;
+border-radius:6px;
 font-size:14px;
-color:#fff;
-display:inline-block;
-width:fit-content;
+width:max-content;
 }
 
-.btn:hover{
-background:#3A628A;
+/* FOOTER */
+
+footer{
+margin:100px 0 60px;
+font-size:13px;
+color:#888;
 }
 
 </style>
@@ -127,113 +171,199 @@ background:#3A628A;
 
 <body>
 
+<nav>
+<a href="index.html" class="brand">
+<img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
+<span>TRENESIS</span>
+</a>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="training.html">Training</a>
+<a href="nutrition.html">Nutrition</a>
+<a href="products.html" class="active">Products</a>
+</div>
+</nav>
+
 <div class="container">
 
+<header>
 <h1>Equipment</h1>
+<p>Durable equipment selected for real training — not trends.</p>
+</header>
 
 <!-- DUMBBELLS & BARBELLS -->
 
-<div class="section">
+<section class="category">
 <h2>Dumbbells & Barbells</h2>
 
 <div class="product-grid">
 
 <div class="product-card">
-<div class="product-name">Adjustable Dumbbells</div>
+<div class="product-name">Adjustable Dumbbell Set</div>
+<div class="hover-panel">
+<div class="brand-name">Yes4All</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/4rGIu4K">View on Amazon</a>
+</div>
+</div>
 
-<div class="product-overlay">
-<div class="brand">Brand Name</div>
-<div class="desc">Space‑efficient adjustable dumbbells for progressive overload training.</div>
-<a href="#" target="_blank" class="btn">View Product</a>
+<div class="product-card">
+<div class="product-name">Cast Iron Dumbbell Set</div>
+<div class="hover-panel">
+<div class="brand-name">Amazon Basics</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/4poD2lK">View on Amazon</a>
+</div>
+</div>
+
+<div class="product-card">
+<div class="product-name">Olympic Barbell</div>
+<div class="hover-panel">
+<div class="brand-name">RITFIT</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/4aFLiZQ">View on Amazon</a>
 </div>
 </div>
 
 <div class="product-card">
 <div class="product-name">EZ Curl Bar</div>
-
-<div class="product-overlay">
-<div class="brand">Brand Name</div>
-<div class="desc">Joint‑friendly bar for curls and arm training.</div>
-<a href="#" target="_blank" class="btn">View Product</a>
+<div class="hover-panel">
+<div class="brand-name">DILANL</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/4pqk3aq">View on Amazon</a>
 </div>
 </div>
 
+<div class="product-card">
+<div class="product-name">Weight Plates Set</div>
+<div class="hover-panel">
+<div class="brand-name">RitFit</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/4ozmbv9">View on Amazon</a>
 </div>
 </div>
+
+<div class="product-card">
+<div class="product-name">Weight Plates Set</div>
+<div class="hover-panel">
+<div class="brand-name">Amazon Basics</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/3MpOWNt">View on Amazon</a>
+</div>
+</div>
+
+</div>
+</section>
 
 <!-- BENCHES -->
 
-<div class="section">
+<section class="category">
 <h2>Benches</h2>
 
 <div class="product-grid">
 
 <div class="product-card">
-<div class="product-name">Adjustable Bench</div>
-
-<div class="product-overlay">
-<div class="brand">Brand Name</div>
-<div class="desc">Stable adjustable bench suitable for most home gym setups.</div>
-<a href="#" target="_blank" class="btn">View Product</a>
+<div class="product-name">Flat Weight Bench</div>
+<div class="hover-panel">
+<div class="brand-name">Amazon Basics</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/48BxpcD">View on Amazon</a>
 </div>
 </div>
 
+<div class="product-card">
+<div class="product-name">Adjustable Weight Bench</div>
+<div class="hover-panel">
+<div class="brand-name">BARWING</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/4a2kkep">View on Amazon</a>
 </div>
 </div>
+
+<div class="product-card">
+<div class="product-name">Adjustable Training Bench</div>
+<div class="hover-panel">
+<div class="brand-name">YOLEO</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/4pLj9Fg">View on Amazon</a>
+</div>
+</div>
+
+</div>
+</section>
 
 <!-- KETTLEBELLS -->
 
-<div class="section">
+<section class="category">
 <h2>Kettlebells</h2>
 
 <div class="product-grid">
 
 <div class="product-card">
+<div class="product-name">Cast Iron Kettlebell</div>
+<div class="hover-panel">
+<div class="brand-name">Amazon Basics</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/4pLj9Fg">View on Amazon</a>
+</div>
+</div>
+
+<div class="product-card">
 <div class="product-name">Adjustable Kettlebell</div>
-
-<div class="product-overlay">
-<div class="brand">Brand Name</div>
-<div class="desc">Flexible kettlebell system for varied strength work.</div>
-<a href="#" target="_blank" class="btn">View Product</a>
+<div class="hover-panel">
+<div class="brand-name">APEX</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/48EOqmr">View on Amazon</a>
 </div>
 </div>
 
+<div class="product-card">
+<div class="product-name">Kettle Gryp Converter</div>
+<div class="hover-panel">
+<div class="brand-name">Kettle Gryp</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/4492OBV">View on Amazon</a>
 </div>
 </div>
+
+</div>
+</section>
 
 <!-- CALISTHENICS -->
 
-<div class="section">
+<section class="category">
 <h2>Calisthenics Equipment</h2>
 
 <div class="product-grid">
 
 <div class="product-card">
-<div class="product-name">Doorframe Pull‑Up Bar</div>
+<div class="product-name">Doorframe Pull-Up Bar (Hook)</div>
+<div class="hover-panel">
+<div class="brand-name">Ally Peaks</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/4oIQwaX">View on Amazon</a>
+</div>
+</div>
 
-<div class="product-overlay">
-<div class="brand">Brand Name</div>
-<div class="desc">Simple install pull‑up bar for bodyweight training.</div>
-<a href="#" target="_blank" class="btn">View Product</a>
+<div class="product-card">
+<div class="product-name">Doorframe Pull-Up Bar (Pressure Mount)</div>
+<div class="hover-panel">
+<div class="brand-name">BouPower</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/3MsutYM">View on Amazon</a>
+</div>
+</div>
+
+<div class="product-card">
+<div class="product-name">Wooden Gymnastic Rings</div>
+<div class="hover-panel">
+<div class="brand-name">Double Circle</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/4aBdEEF">View on Amazon</a>
+</div>
+</div>
+
+<div class="product-card">
+<div class="product-name">Dip Station</div>
+<div class="hover-panel">
+<div class="brand-name">RELIFE REBUILD YOUR LIFE</div>
+<a class="amazon-btn" target="_blank" href="https://amzn.to/4puQrZE">View on Amazon</a>
 </div>
 </div>
 
 </div>
-</div>
+</section>
+
+<footer>
+Disclosure: As an Amazon Associate we earn from qualifying purchases.
+</footer>
 
 </div>
-
-<script>
-
-/* MOBILE CLICK TO OPEN OVERLAY */
-
-document.querySelectorAll(".product-card").forEach(card=>{
-card.addEventListener("click",()=>{
-card.classList.toggle("active");
-});
-});
-
-</script>
-
 </body>
 </html>
