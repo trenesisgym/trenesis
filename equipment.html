@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Equipment | Trenesis</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 
-*{box-sizing:border-box;margin:0;padding:0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+
 body{
+font-family:Roboto,sans-serif;
 background:#0F1113;
 color:#E5E5E5;
-font-family:Roboto,sans-serif;
 }
-
-a{text-decoration:none;color:inherit;}
 
 .container{
 max-width:1200px;
@@ -24,120 +23,103 @@ margin:auto;
 padding:0 48px;
 }
 
-/* NAV */
-
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:24px 48px;
-max-width:1200px;
-margin:auto;
-}
-
-.brand{
-display:flex;
-align-items:center;
-gap:14px;
-}
-
-.brand img{height:40px;}
-
-.brand span{
+h1{
 font-family:Inter;
-font-weight:700;
-letter-spacing:2px;
-font-size:15px;
+margin:80px 0 40px;
 }
 
-.nav-links a{
-margin-left:32px;
-color:#B5B5B5;
-font-size:14px;
+.section{
+margin-bottom:80px;
 }
 
-.nav-links a.active{
-color:#fff;
-font-weight:600;
-}
-
-/* HERO */
-
-header{
-padding:100px 0 60px;
-max-width:700px;
-}
-
-header h1{
+.section h2{
 font-family:Inter;
-font-size:34px;
-margin-bottom:16px;
+margin-bottom:24px;
 }
 
-header p{
-color:#B5B5B5;
-line-height:1.6;
-font-size:18px;
-}
+/* GRID */
 
-/* SECTION */
-
-.section-header{
-display:flex;
-align-items:center;
-gap:24px;
-margin:80px 0 32px;
-}
-
-.section-header h2{
-font-family:Inter;
-font-size:24px;
-white-space:nowrap;
-}
-
-.line{
-height:1px;
-background:#2A2D30;
-flex:1;
-}
-
-/* PRODUCT GRID */
-
-.grid{
+.product-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:24px;
 }
+
+/* CARD */
 
 .product-card{
+position:relative;
+height:220px;
 background:#15181D;
-padding:26px;
 border-radius:6px;
-transition:0.25s;
-display:block;
+display:flex;
+align-items:flex-end;
+padding:20px;
+overflow:hidden;
+cursor:pointer;
+transition:.25s;
 }
 
 .product-card:hover{
 transform:translateY(-4px);
-box-shadow:0 14px 36px rgba(0,0,0,0.45);
 }
 
-.product-card h3{
+/* NAME */
+
+.product-name{
 font-family:Inter;
-font-size:18px;
-margin-bottom:6px;
+font-size:16px;
+z-index:2;
 }
 
-.product-card span{
+/* OVERLAY */
+
+.product-overlay{
+position:absolute;
+inset:0;
+background:rgba(15,17,19,.96);
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:20px;
+opacity:0;
+transition:.25s;
+}
+
+.product-card:hover .product-overlay{
+opacity:1;
+}
+
+/* MOBILE CLICK SUPPORT */
+
+.product-card.active .product-overlay{
+opacity:1;
+}
+
+.brand{
 font-size:13px;
-color:#8E949B;
+color:#888;
+margin-bottom:10px;
 }
 
-.product-card p{
-margin-top:14px;
-color:#B5B5B5;
+.desc{
 font-size:14px;
-line-height:1.5;
+color:#B5B5B5;
+margin-bottom:16px;
+}
+
+.btn{
+background:#2E4F6F;
+padding:10px 16px;
+border-radius:4px;
+font-size:14px;
+color:#fff;
+display:inline-block;
+width:fit-content;
+}
+
+.btn:hover{
+background:#3A628A;
 }
 
 </style>
@@ -145,119 +127,113 @@ line-height:1.5;
 
 <body>
 
-<nav>
-<a href="index.html" class="brand">
-<img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
-<span>TRENESIS</span>
-</a>
-
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="training.html">Training</a>
-<a href="nutrition.html">Nutrition</a>
-<a href="products.html" class="active">Products</a>
-</div>
-</nav>
-
 <div class="container">
 
-<header>
 <h1>Equipment</h1>
 
-<p>
-Good equipment removes friction from training.
-This is not a massive catalog — only tools that actually
-fit into structured training and long‑term progression.
-</p>
-</header>
+<!-- DUMBBELLS & BARBELLS -->
 
-
-<!-- DUMBBELLS -->
-
-<div class="section-header">
+<div class="section">
 <h2>Dumbbells & Barbells</h2>
-<div class="line"></div>
+
+<div class="product-grid">
+
+<div class="product-card">
+<div class="product-name">Adjustable Dumbbells</div>
+
+<div class="product-overlay">
+<div class="brand">Brand Name</div>
+<div class="desc">Space‑efficient adjustable dumbbells for progressive overload training.</div>
+<a href="#" target="_blank" class="btn">View Product</a>
+</div>
 </div>
 
-<section class="grid">
+<div class="product-card">
+<div class="product-name">EZ Curl Bar</div>
 
-<a href="https://amzn.to/4rGIu4K" target="_blank" class="product-card">
-<h3>Adjustable Dumbbell Set</h3>
-<span>Budget option</span>
-<p>Flexible setup for progressive overload without needing full rack space.</p>
-</a>
+<div class="product-overlay">
+<div class="brand">Brand Name</div>
+<div class="desc">Joint‑friendly bar for curls and arm training.</div>
+<a href="#" target="_blank" class="btn">View Product</a>
+</div>
+</div>
 
-<a href="#" class="product-card">
-<h3>EZ Curl Bar</h3>
-<span>Accessory bar</span>
-<p>Joint‑friendly grip angles for arm work and variation.</p>
-</a>
-
-</section>
-
-
+</div>
+</div>
 
 <!-- BENCHES -->
 
-<div class="section-header">
+<div class="section">
 <h2>Benches</h2>
-<div class="line"></div>
+
+<div class="product-grid">
+
+<div class="product-card">
+<div class="product-name">Adjustable Bench</div>
+
+<div class="product-overlay">
+<div class="brand">Brand Name</div>
+<div class="desc">Stable adjustable bench suitable for most home gym setups.</div>
+<a href="#" target="_blank" class="btn">View Product</a>
+</div>
 </div>
 
-<section class="grid">
-
-<a href="#" class="product-card">
-<h3>Adjustable Training Bench</h3>
-<span>Incline / Flat</span>
-<p>Core setup piece for pressing, rows and accessory movements.</p>
-</a>
-
-</section>
-
-
+</div>
+</div>
 
 <!-- KETTLEBELLS -->
 
-<div class="section-header">
+<div class="section">
 <h2>Kettlebells</h2>
-<div class="line"></div>
+
+<div class="product-grid">
+
+<div class="product-card">
+<div class="product-name">Adjustable Kettlebell</div>
+
+<div class="product-overlay">
+<div class="brand">Brand Name</div>
+<div class="desc">Flexible kettlebell system for varied strength work.</div>
+<a href="#" target="_blank" class="btn">View Product</a>
+</div>
 </div>
 
-<section class="grid">
-
-<a href="#" class="product-card">
-<h3>Adjustable Kettlebell</h3>
-<span>Space efficient</span>
-<p>Multiple loading options without owning multiple bells.</p>
-</a>
-
-</section>
-
-
+</div>
+</div>
 
 <!-- CALISTHENICS -->
 
-<div class="section-header">
+<div class="section">
 <h2>Calisthenics Equipment</h2>
-<div class="line"></div>
+
+<div class="product-grid">
+
+<div class="product-card">
+<div class="product-name">Doorframe Pull‑Up Bar</div>
+
+<div class="product-overlay">
+<div class="brand">Brand Name</div>
+<div class="desc">Simple install pull‑up bar for bodyweight training.</div>
+<a href="#" target="_blank" class="btn">View Product</a>
+</div>
 </div>
 
-<section class="grid">
-
-<a href="#" class="product-card">
-<h3>Doorframe Pullup Bar</h3>
-<span>Home setup</span>
-<p>Simple vertical pulling solution without drilling.</p>
-</a>
-
-<a href="#" class="product-card">
-<h3>Gymnastic Rings</h3>
-<span>Advanced progression</span>
-<p>Extremely versatile for strength and stability training.</p>
-</a>
-
-</section>
+</div>
+</div>
 
 </div>
+
+<script>
+
+/* MOBILE CLICK TO OPEN OVERLAY */
+
+document.querySelectorAll(".product-card").forEach(card=>{
+card.addEventListener("click",()=>{
+card.classList.toggle("active");
+});
+});
+
+</script>
+
 </body>
 </html>
