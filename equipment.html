@@ -106,6 +106,35 @@ header p {
   transition:transform .25s ease;
 }
 
+.product.has-image {
+  background-size: cover;
+  background-position: center;
+}
+
+.product.img-adjustable {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Adjustable%20Dumbbells%202.png?raw=true");
+}
+
+.product.img-iron {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Iron%20Dumbbell.png?raw=true");
+}
+
+.product.img-barbell {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Barbell%202.png?raw=true");
+}
+
+.product.img-ez {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/EZ%20Bar.png?raw=true");
+}
+
+.product.img-plates1 {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Olympic%20Plates.png?raw=true");
+}
+
+.product.img-plates2 {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Olympic%20Plates%202.png?raw=true");
+}
+
 .product:hover {
   transform:translateY(-4px);
 }
@@ -114,17 +143,48 @@ header p {
 .product-hover {
   position:absolute;
   inset:0;
-  background:#1B1F23;
-  padding:24px;
-  opacity:0;
-  transition:.25s;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding:24px 24px 10px;
+  opacity:1;
+  transition: background .25s ease, backdrop-filter .25s ease;
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
+  justify-content:flex-end;
+  gap:12px;
 }
 
 .product:hover .product-hover {
+  background: rgba(15, 17, 19, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  justify-content:space-between;
+}
+
+.product-hover .brand-name {
+  opacity:0;
+  transform: translateY(4px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.product:hover .product-hover .brand-name {
   opacity:1;
+  transform: translateY(0);
+}
+
+.product-hover .amazon-btn {
+  position:absolute;
+  left:24px;
+  bottom:10px;
+  opacity:0;
+  pointer-events:none;
+  transition: opacity .2s ease;
+}
+
+.product:hover .product-hover .amazon-btn {
+  opacity:1;
+  pointer-events:auto;
 }
 
 .brand-name {
@@ -185,7 +245,7 @@ footer {
 <h2>Dumbbells & Barbells</h2>
 <div class="product-grid">
 
-<div class="product">
+<div class="product has-image img-adjustable">
   <div class="product-hover">
     <div>
       <div class="brand-name">Yes4All</div>
@@ -195,7 +255,7 @@ footer {
   </div>
 </div>
 
-<div class="product">
+<div class="product has-image img-iron">
   <div class="product-hover">
     <div>
       <div class="brand-name">Amazon Basics</div>
@@ -205,7 +265,7 @@ footer {
   </div>
 </div>
 
-<div class="product">
+<div class="product has-image img-barbell">
   <div class="product-hover">
     <div>
       <div class="brand-name">RITFIT</div>
@@ -215,7 +275,7 @@ footer {
   </div>
 </div>
 
-<div class="product">
+<div class="product has-image img-ez">
   <div class="product-hover">
     <div>
       <div class="brand-name">DILANL</div>
@@ -225,7 +285,7 @@ footer {
   </div>
 </div>
 
-<div class="product">
+<div class="product has-image img-plates1">
   <div class="product-hover">
     <div>
       <div class="brand-name">RitFit</div>
@@ -235,7 +295,7 @@ footer {
   </div>
 </div>
 
-<div class="product">
+<div class="product has-image img-plates2">
   <div class="product-hover">
     <div>
       <div class="brand-name">Amazon Basics</div>
