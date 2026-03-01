@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>Nutrition | Trenesis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nutrition – Trenesis</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: Roboto, sans-serif;
       background: #0F1113;
@@ -22,42 +23,153 @@
       max-width: 1200px;
       margin: 0 auto;
     }
+
     .brand {
       display: flex;
       align-items: center;
       gap: 14px;
     }
+
     .brand img { height: 40px; }
+
     .brand span {
       font-family: Inter, sans-serif;
       font-weight: 700;
       letter-spacing: 2px;
       font-size: 15px;
     }
+
     .nav-links a {
       margin-left: 32px;
       font-size: 14px;
       color: #B5B5B5;
     }
+
     .nav-links a.active {
       color: #FFFFFF;
       font-weight: 600;
     }
 
-    main {
+    .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 80px 48px;
+      padding: 0 48px;
     }
-    h1 {
+
+    header {
+      padding: 100px 0 80px;
+      max-width: 720px;
+    }
+
+    header h1 {
       font-family: Inter, sans-serif;
-      font-size: 32px;
+      font-size: 34px;
+      margin-bottom: 16px;
     }
-    p {
-      margin-top: 16px;
+
+    header p {
       font-size: 18px;
       color: #B5B5B5;
-      max-width: 600px;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin: 80px 0 32px;
+    }
+
+    .section-header h2 {
+      font-family: Inter, sans-serif;
+      font-size: 24px;
+      white-space: nowrap;
+    }
+
+    .line {
+      height: 1px;
+      background: #2A2D30;
+      flex: 1;
+    }
+
+    .grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .nutrition-grid {
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    }
+
+    .pdf-card {
+      background: #15181D;
+      border-radius: 6px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .pdf-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px rgba(0,0,0,0.45);
+    }
+
+    .highlight {
+      box-shadow: 0 0 0 2px #3A628A, 0 0 28px rgba(58,98,138,0.55);
+    }
+
+    .pdf-card h3 {
+      font-family: Inter, sans-serif;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .pdf-card p {
+      font-size: 15px;
+      color: #B5B5B5;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .pdf-card a {
+      align-self: flex-start;
+      padding: 12px 22px;
+      background: #2E4F6F;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .pdf-card a:hover {
+      background: #3A628A;
+    }
+
+    footer {
+      margin: 0 0 56px;
+      text-align: center;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+    }
+
+    .socials img {
+      height: 36px;
+      opacity: 0.85;
+    }
+
+    .socials img:hover {
+      opacity: 1;
+    }
+
+    .footer-divider {
+      margin: 44px 0 14px;
     }
   </style>
 </head>
@@ -76,10 +188,63 @@
   </div>
 </nav>
 
-<main>
-  <h1>Nutrition</h1>
-  <p>Clear, practical nutrition guidance — no extremes, no myths.</p>
-</main>
+<div class="container">
+  <header>
+    <h1>Nutrition</h1>
+    <p>Training is only one part of the equation.</p>
+    <p>Without proper nutrition, the body cannot adapt, recover, or progress.</p>
+    <p>
+      The solution is not perfection or extreme dieting. It is clarity and consistency.
+      Our nutrition guides break down the fundamentals so your training efforts
+      translate into measurable, sustainable results.
+    </p>
+  </header>
+
+  <div class="section-header">
+    <h2>Nutrition Guides</h2>
+    <div class="line"></div>
+  </div>
+
+  <section class="grid nutrition-grid">
+    <div class="pdf-card" id="nutrition-basics">
+      <div>
+        <h3>Nutrition Basics</h3>
+        <p>XXXX...</p>
+      </div>
+      <a href="pdfs/nutrition-basics.pdf" target="_blank">Open PDF</a>
+    </div>
+
+    <div class="pdf-card" id="meal-planning">
+      <div>
+        <h3>Meal Planning</h3>
+        <p>XXXX...</p>
+      </div>
+      <a href="pdfs/meal-planning.pdf" target="_blank">Open PDF</a>
+    </div>
+  </section>
+
+  <div class="line footer-divider"></div>
+
+  <footer>
+    <div class="socials">
+      <a href="https://www.instagram.com/trenesisgym/" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true"></a>
+      <a href="https://www.tiktok.com/@trenesis.gym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/TikTok%20Logo.png?raw=true"></a>
+      <a href="https://www.youtube.com/@TrenesisGym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Shorts%20Logo.png?raw=true"></a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const hash = window.location.hash.replace('#','');
+  if (hash) {
+    const el = document.getElementById(hash);
+    if (el) {
+      el.classList.add('highlight');
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => el.classList.remove('highlight'), 3000);
+    }
+  }
+</script>
 
 </body>
 </html>
