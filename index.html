@@ -217,6 +217,18 @@
     .newsletter button:hover {
       background: #3A628A;
     }
+    .newsletter-status {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #B5B5B5;
+      min-height: 20px;
+    }
+    .newsletter-status.success {
+      color: #6FD99B;
+    }
+    .newsletter-status.error {
+      color: #FF8F8F;
+    }
     .socials {
       display: flex;
       justify-content: center;
@@ -279,7 +291,8 @@
 <footer>
   <div class="section-header center"><div class="line"></div><h2>Join Our Community</h2><div class="line"></div></div>
   <p class="newsletter-text">Get the latest tips and updates.</p>
-  <div class="newsletter"><input type="email" placeholder="Enter your email here"><button>Subscribe</button></div>
+  <div class="newsletter"><input id="newsletter-email" type="email" placeholder="Enter your email here"><button id="newsletter-submit" type="button">Subscribe</button></div>
+  <p id="newsletter-status" class="newsletter-status" aria-live="polite"></p>
   <div class="socials">
     <a href="https://www.instagram.com/trenesisgym/" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true"></a>
     <a href="https://www.tiktok.com/@trenesis.gym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/TikTok%20Logo.png?raw=true"></a>
@@ -287,5 +300,57 @@
   </div>
 </footer>
 </div>
+
+<script>
+  const SUBSCRIBE_API_URL = "https://trenesis-backend.onrender.com/api/subscribe";
+
+  const emailInput = document.getElementById("newsletter-email");
+  const submitButton = document.getElementById("newsletter-submit");
+  const statusEl = document.getElementById("newsletter-status");
+
+  const setStatus = (message, type = "") => {
+    statusEl.textContent = message;
+    statusEl.className = ["newsletter-status", type].filter(Boolean).join(" ");
+  };
+
+  const subscribe = async () => {
+    const email = emailInput.value.trim();
+
+    if (!email) {
+      setStatus("Please enter an email address.", "error");
+      return;
+    }
+
+    submitButton.disabled = true;
+    setStatus("Subscribing...");
+
+    try {
+      const response = await fetch(SUBSCRIBE_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+
+      const payload = await response.json().catch(() => ({}));
+
+      if (!response.ok || payload.ok === false) {
+        throw new Error(payload.error || "Subscription failed.");
+      }
+
+      setStatus("You are subscribed.", "success");
+      emailInput.value = "";
+    } catch (error) {
+      setStatus(error.message || "Subscription failed.", "error");
+    } finally {
+      submitButton.disabled = false;
+    }
+  };
+
+  submitButton.addEventListener("click", subscribe);
+  emailInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") subscribe();
+  });
+</script>
+
 </body>
 </html>
