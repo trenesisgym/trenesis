@@ -245,10 +245,41 @@ header p {
 }
 
 /* FOOTER */
+.line {
+  height: 1px;
+  background: #2A2D30;
+  flex: 1;
+}
+
 footer {
-  margin:120px 0 60px;
-  font-size:13px;
-  color:#888;
+  margin: 0 0 56px;
+  text-align: center;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+
+.socials img {
+  height: 36px;
+  opacity: 0.85;
+}
+
+.socials img:hover {
+  opacity: 1;
+}
+
+.footer-divider {
+  margin: 44px 0 14px;
+}
+
+.footer-disclosure {
+  margin: 0;
+  text-align: left;
+  font-size: 13px;
+  color: #888;
 }
 
 </style>
@@ -458,8 +489,16 @@ footer {
 </div>
 </section>
 
+<p class="footer-disclosure">Disclosure: As an Amazon Associate we earn from qualifying purchases.</p>
+
+<div class="line footer-divider"></div>
+
 <footer>
-Disclosure: As an Amazon Associate we earn from qualifying purchases.
+  <div class="socials">
+    <a href="https://www.instagram.com/trenesisgym/" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true"></a>
+    <a href="https://www.tiktok.com/@trenesis.gym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/TikTok%20Logo.png?raw=true"></a>
+    <a href="https://www.youtube.com/@TrenesisGym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Shorts%20Logo.png?raw=true"></a>
+  </div>
 </footer>
 
 </div>
