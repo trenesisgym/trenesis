@@ -66,6 +66,44 @@ header {
   max-width:720px;
 }
 
+  /* BACK BUTTON */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 600;
+  color: #B5B5B5;
+  border: 1px solid #2A2D30;
+  border-radius: 6px;
+  padding: 8px 14px;
+  margin-bottom: 36px;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.back-btn svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  transition: transform .2s ease;
+}
+
+.back-btn:hover {
+  color: #FFFFFF;
+  border-color: #4A4D50;
+  background: #1A1D20;
+}
+
+.back-btn:hover svg {
+  transform: translateX(-3px);
+}
+  
 header h1 {
   font-family:Inter;
   font-size:34px;
