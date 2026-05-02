@@ -65,7 +65,7 @@ header {
   padding:100px 0 80px;
   max-width:720px;
 }
-  
+
 /* BACK BUTTON */
 .back-btn {
   display: inline-flex;
@@ -103,7 +103,7 @@ header {
 .back-btn:hover svg {
   transform: translateX(-3px);
 }
-  
+
 header h1 {
   font-family:Inter;
   font-size:34px;
@@ -126,22 +126,23 @@ header p {
   margin-bottom:28px;
 }
 
-/* GRID */
+/* GRID — fixed 2 columns */
 .product-grid {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap:24px;
 }
 
+/* CARD */
 .product {
   position:relative;
   background:#15181B;
   border-radius:10px;
-  padding:28px;
-  aspect-ratio:16/9;
-  cursor:pointer;
   overflow:hidden;
+  cursor:pointer;
   transition:transform .25s ease;
+  display:flex;
+  flex-direction:column;
 }
 
 .product.has-image {
@@ -152,59 +153,45 @@ header p {
 .product.img-adjustable {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Adjustable%20Dumbbells%202.png?raw=true");
 }
-
 .product.img-iron {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Dumbbells2.png?raw=true");
 }
-
 .product.img-barbell {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Barbell%202.png?raw=true");
 }
-
 .product.img-ez {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/EZ%20Bar.png?raw=true");
 }
-
 .product.img-plates1 {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Olympic%20Plates.png?raw=true");
 }
-
 .product.img-plates2 {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Olympic%20Plates%204.png?raw=true");
 }
-
 .product.img-flat-bench {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Flat%20Bench.png?raw=true");
 }
-
 .product.img-adjust-bench {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Adjustable%20Bench.png?raw=true");
 }
-
 .product.img-adjust-bench-3 {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Adjustable%20Bench%203.png?raw=true");
 }
-
 .product.img-kettlebell {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Kettlebell.png?raw=true");
 }
-
 .product.img-adjust-kettlebell {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Adjustable%20Kettlebell.png?raw=true");
 }
-
 .product.img-kettle-gryp {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Kettle%20Gryp.png?raw=true");
 }
-
 .product.img-pullup-hook {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Pullup%20Bar.png?raw=true");
 }
-
 .product.img-pullup-press {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Pullup%20Bar%202.png?raw=true");
 }
-
 .product.img-dip-bar {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Dip%20Bar%202.png?raw=true");
 }
@@ -213,64 +200,32 @@ header p {
   transform:translateY(-4px);
 }
 
-/* HOVER PANEL */
+/* IMAGE AREA — fixed height, hover reveals button */
+.product-image-area {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
 .product-hover {
-  position:absolute;
-  inset:0;
+  position: absolute;
+  inset: 0;
   background: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  padding:24px 24px 10px;
-  opacity:1;
+  padding: 20px;
+  opacity: 1;
   transition: background .25s ease, backdrop-filter .25s ease;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  gap:12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .product:hover .product-hover {
   background: rgba(15, 17, 19, 0.55);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  justify-content:space-between;
-}
-
-.product-hover .brand-name {
-  opacity:0;
-  transform: translateY(4px);
-  transition: opacity .2s ease, transform .2s ease;
-}
-
-.product:hover .product-hover .brand-name {
-  opacity:1;
-  transform: translateY(0);
-}
-
-.product-hover .amazon-btn {
-  position:absolute;
-  left:24px;
-  bottom:10px;
-  opacity:0;
-  pointer-events:none;
-  transition: opacity .2s ease;
-}
-
-.product:hover .product-hover .amazon-btn {
-  opacity:1;
-  pointer-events:auto;
-}
-
-.brand-name {
-  font-size:13px;
-  color:#B5B5B5;
-  margin-bottom:8px;
-}
-
-.product-name {
-  font-family:Inter;
-  font-weight:600;
-  margin-bottom:8px;
 }
 
 .amazon-btn {
@@ -280,6 +235,49 @@ header p {
   border-radius:6px;
   font-size:14px;
   width:max-content;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.product:hover .amazon-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* TEXT AREA — always visible below image */
+.product-info {
+  padding: 20px 24px 24px;
+  background: #15181B;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.brand-name {
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: Inter;
+  font-weight: 600;
+}
+
+.product-name {
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 16px;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+}
+
+.product-desc {
+  font-size: 14px;
+  color: #B5B5B5;
+  line-height: 1.55;
 }
 
 /* FOOTER */
@@ -354,65 +352,83 @@ footer {
 <h2>Dumbbells & Barbells</h2>
 <div class="product-grid">
 
-<div class="product has-image img-adjustable">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-adjustable">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/46NULM4" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">Yes4All</div>
       <div class="product-name">Adjustable Dumbbell Set</div>
+      <div class="product-desc">A space-efficient all-in-one solution. Replaces an entire rack and adjusts quickly — ideal for home gym setups.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/46NULM4" target="_blank">View on Amazon</a>
   </div>
-</div>
 
-<div class="product has-image img-iron">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-iron">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4cdXtOF" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">Fitvids</div>
       <div class="product-name">Hex Dumbbells</div>
+      <div class="product-desc">Classic hex design with a rubber coating that protects floors and stays quiet. Durable, no-nonsense, built to last.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/4cdXtOF" target="_blank">View on Amazon</a>
   </div>
-</div>
 
-<div class="product has-image img-barbell">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-barbell">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/3Mwjv4z" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">RITFIT</div>
       <div class="product-name">Olympic Barbell</div>
+      <div class="product-desc">A solid Olympic bar for squats, deadlifts, and bench press. Good knurling and smooth spin at an accessible price point.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/3Mwjv4z" target="_blank">View on Amazon</a>
   </div>
-</div>
 
-<div class="product has-image img-ez">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-ez">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4pqk3aq" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">DILANL</div>
       <div class="product-name">EZ Curl Bar</div>
+      <div class="product-desc">The angled grip reduces wrist strain during curls and tricep work. A worthwhile addition once the basics are covered.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/4pqk3aq" target="_blank">View on Amazon</a>
   </div>
-</div>
 
-<div class="product has-image img-plates2">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-plates2">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4qOcwSI" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">CAP</div>
       <div class="product-name">Olympic Plate</div>
+      <div class="product-desc">Standard cast iron plates at a fair price. Buy individual plates to build out your set at your own pace.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/4qOcwSI" target="_blank">View on Amazon</a>
   </div>
-</div>
 
-<div class="product has-image img-plates1">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-plates1">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4ozmbv9" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">RitFit</div>
       <div class="product-name">Weight Plates Set</div>
+      <div class="product-desc">A convenient starter bundle if you're building a barbell setup from scratch. Good value for the variety of weights included.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/4ozmbv9" target="_blank">View on Amazon</a>
   </div>
-</div>
 
 </div>
 </section>
@@ -422,35 +438,44 @@ footer {
 <h2>Benches</h2>
 <div class="product-grid">
 
-<div class="product has-image img-flat-bench">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-flat-bench">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/48BxpcD" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">Amazon Basics</div>
       <div class="product-name">Flat Weight Bench</div>
+      <div class="product-desc">Sturdy and minimal. Does exactly what a flat bench needs to do — no frills, no wobble, and easy to store.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/48BxpcD" target="_blank">View on Amazon</a>
   </div>
-</div>
 
-<div class="product has-image img-adjust-bench">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-adjust-bench">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4a2kkep" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">BARWING</div>
       <div class="product-name">Adjustable Weight Bench</div>
+      <div class="product-desc">Multiple incline angles open up a wider range of pressing and rowing exercises. A smart upgrade if you want more versatility.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/4a2kkep" target="_blank">View on Amazon</a>
   </div>
-</div>
 
-<div class="product has-image img-adjust-bench-3">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-adjust-bench-3">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4toAxlN" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">YOLEO</div>
       <div class="product-name">Adjustable Training Bench</div>
+      <div class="product-desc">A compact adjustable bench that folds flat for storage. Good option for smaller spaces without sacrificing functionality.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/4toAxlN" target="_blank">View on Amazon</a>
   </div>
-</div>
 
 </div>
 </section>
@@ -460,35 +485,44 @@ footer {
 <h2>Kettlebells</h2>
 <div class="product-grid">
 
-<div class="product has-image img-kettlebell">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-kettlebell">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4pLj9Fg" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">Amazon Basics</div>
       <div class="product-name">Cast Iron Kettlebell</div>
+      <div class="product-desc">Simple cast iron with a flat base so it won't roll. Pick the weight that matches your current level and build from there.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/4pLj9Fg" target="_blank">View on Amazon</a>
   </div>
-</div>
 
-<div class="product has-image img-adjust-kettlebell">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-adjust-kettlebell">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/48EOqmr" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">APEX</div>
       <div class="product-name">Adjustable Kettlebell</div>
+      <div class="product-desc">Changes weight with a dial, replacing multiple fixed kettlebells. The most space-efficient option if you train at home.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/48EOqmr" target="_blank">View on Amazon</a>
   </div>
-</div>
 
-<div class="product has-image img-kettle-gryp">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-kettle-gryp">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4492OBV" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">Kettle Gryp</div>
       <div class="product-name">Kettle Gryp Converter</div>
+      <div class="product-desc">Clips onto any dumbbell and turns it into a kettlebell. A clever, affordable solution if you already have dumbbells.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/4492OBV" target="_blank">View on Amazon</a>
   </div>
-</div>
 
 </div>
 </section>
@@ -498,35 +532,44 @@ footer {
 <h2>Calisthenics Equipment</h2>
 <div class="product-grid">
 
-<div class="product has-image img-pullup-hook">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-pullup-hook">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4oIQwaX" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">Ally Peaks</div>
       <div class="product-name">Doorframe Pull‑Up Bar (Hook)</div>
+      <div class="product-desc">Hooks over the door frame without drilling. Quick to install and remove — solid choice for pull-ups, chin-ups, and hanging work.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/4oIQwaX" target="_blank">View on Amazon</a>
   </div>
-</div>
 
-<div class="product has-image img-pullup-press">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-pullup-press">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/3MsutYM" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">BouPower</div>
       <div class="product-name">Doorframe Pull-Up Bar (Pressure Mount)</div>
+      <div class="product-desc">Uses pressure to mount without hooks or hardware — leaves no marks on the door frame. A cleaner install for everyday use.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/3MsutYM" target="_blank">View on Amazon</a>
   </div>
-</div>
 
-<div class="product has-image img-dip-bar">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-dip-bar">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4kPl9uU" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">YOLEO</div>
       <div class="product-name">Dip Station</div>
+      <div class="product-desc">Freestanding and stable. Unlocks dips, L-sits, and knee raises — foundational movements for upper body and core strength.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/4kPl9uU" target="_blank">View on Amazon</a>
   </div>
-</div>
 
 </div>
 </section>
