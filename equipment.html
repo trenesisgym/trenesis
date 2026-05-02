@@ -8,6 +8,12 @@
 
 <style>
 
+:root {
+  --product-image-height: 300px;   /* max height of the image box — it will shrink proportionally before hitting this */
+  --product-image-size: 110%;      /* image height as % of the box — above 100% crops slightly, below 100% creates room to reposition */
+  --product-image-position-y: -50%; /* vertical position within box — 0% = top, 100% = bottom */
+}
+
 * { box-sizing:border-box; margin:0; padding:0; }
 
 body {
@@ -145,54 +151,49 @@ header p {
   flex-direction:column;
 }
 
-.product.has-image {
-  background-size: cover;
-  background-position: center;
-}
-
-.product.img-adjustable {
+.product.img-adjustable .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Adjustable%20Dumbbells%202.png?raw=true");
 }
-.product.img-iron {
+.product.img-iron .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Dumbbells2.png?raw=true");
 }
-.product.img-barbell {
+.product.img-barbell .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Barbell%202.png?raw=true");
 }
-.product.img-ez {
+.product.img-ez .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/EZ%20Bar.png?raw=true");
 }
-.product.img-plates1 {
+.product.img-plates1 .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Olympic%20Plates.png?raw=true");
 }
-.product.img-plates2 {
+.product.img-plates2 .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Olympic%20Plates%204.png?raw=true");
 }
-.product.img-flat-bench {
+.product.img-flat-bench .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Flat%20Bench.png?raw=true");
 }
-.product.img-adjust-bench {
+.product.img-adjust-bench .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Adjustable%20Bench.png?raw=true");
 }
-.product.img-adjust-bench-3 {
+.product.img-adjust-bench-3 .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Adjustable%20Bench%203.png?raw=true");
 }
-.product.img-kettlebell {
+.product.img-kettlebell .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Kettlebell.png?raw=true");
 }
-.product.img-adjust-kettlebell {
+.product.img-adjust-kettlebell .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Adjustable%20Kettlebell.png?raw=true");
 }
-.product.img-kettle-gryp {
+.product.img-kettle-gryp .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Kettle%20Gryp.png?raw=true");
 }
-.product.img-pullup-hook {
+.product.img-pullup-hook .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Pullup%20Bar.png?raw=true");
 }
-.product.img-pullup-press {
+.product.img-pullup-press .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Pullup%20Bar%202.png?raw=true");
 }
-.product.img-dip-bar {
+.product.img-dip-bar .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Dip%20Bar%202.png?raw=true");
 }
 
@@ -204,7 +205,12 @@ header p {
 .product-image-area {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
+  max-height: var(--product-image-height);
+  background-size: auto var(--product-image-size);
+  background-repeat: no-repeat;
+  background-position: center var(--product-image-position-y);
+  background-color: #15181B;
   overflow: hidden;
 }
 
