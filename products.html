@@ -70,13 +70,12 @@
     /* GRID */
     .category-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-      gap: 32px;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
       margin-top: 60px;
     }
 
     .category-card {
-      aspect-ratio: 16 / 9;
       border-radius: 10px;
       padding: 32px;
       display: flex;
@@ -104,6 +103,23 @@
       box-shadow: 0 18px 40px rgba(0,0,0,0.55);
     }
 
+    /* Equipment: full width, 32:9 */
+    .equipment {
+      grid-column: 1 / -1;
+      aspect-ratio: 32 / 9;
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Equipment.png?raw=true");
+    }
+
+    /* Supplements & Accessories: half width, 16:9 */
+    .supplements {
+      aspect-ratio: 16 / 9;
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Supps.png?raw=true");
+    }
+    .accessories {
+      aspect-ratio: 16 / 9;
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Accessories.png?raw=true");
+    }
+
     .category-content {
       position: relative;
       z-index: 2;
@@ -120,11 +136,6 @@
       color: #CFCFCF;
     }
 
-    /* TEMP IMAGE PLACEHOLDERS */
-    .equipment { background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Equipment.png?raw=true"); }
-    .supplements { background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Supps.png?raw=true"); }
-    .apparel { background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Apparel.png?raw=true"); }
-    .accessories { background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Accessories.png?raw=true"); }
     .line {
       height: 1px;
       background: #2A2D30;
@@ -174,8 +185,7 @@
 <div class="container">
   <header>
     <h1>Products</h1>
-      <p>The right products won’t replace training — but they can support it.</p>
-      <p>Here you’ll find a structured overview of equipment, supplements, apparel, and accessories chosen for durability, usefulness, and long-term training.</p>
+    <p>The right products won't replace training — but they can support it. Everything here is chosen to complement what's in the guides.</p>
   </header>
 
   <section class="category-grid">
@@ -190,13 +200,6 @@
       <div class="category-content">
         <h2>Supplements</h2>
         <p>Evidence‑based supplements that actually work.</p>
-      </div>
-    </a>
-
-    <a href="apparel.html" class="category-card apparel">
-      <div class="category-content">
-        <h2>Apparel</h2>
-        <p>Functional clothing built for training.</p>
       </div>
     </a>
 
