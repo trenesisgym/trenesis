@@ -8,12 +8,26 @@
 
 <style>
 
+:root {
+  --product-image-height: 300px;
+  --product-image-size: 110%;
+  --product-image-position-y: -50%;
+}
+
 * { box-sizing:border-box; margin:0; padding:0; }
+
+html { scroll-behavior: smooth; }
 
 body {
   font-family: Roboto, sans-serif;
   background:#0F1113;
   color:#E5E5E5;
+}
+
+.product-desc a {
+  color: #2F4F70;
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 a { text-decoration:none; color:inherit; }
@@ -63,9 +77,10 @@ nav {
 /* HEADER */
 header {
   padding:100px 0 80px;
+  max-width:720px;
 }
 
-  /* BACK BUTTON */
+/* BACK BUTTON */
 .back-btn {
   display: inline-flex;
   align-items: center;
@@ -102,7 +117,7 @@ header {
 .back-btn:hover svg {
   transform: translateX(-3px);
 }
-  
+
 header h1 {
   font-family:Inter;
   font-size:34px;
@@ -125,54 +140,35 @@ header p {
   margin-bottom:28px;
 }
 
-/* GRID */
+/* GRID — fixed 2 columns */
 .product-grid {
   display:grid;
-  grid-template-columns:repeat(3,minmax(260px,1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap:24px;
 }
 
-@media (max-width: 980px) {
-  .product-grid {
-    grid-template-columns:repeat(2,minmax(260px,1fr));
-  }
-}
-
-@media (max-width: 620px) {
-  .product-grid {
-    grid-template-columns:1fr;
-  }
-}
-
+/* CARD */
 .product {
   position:relative;
   background:#15181B;
   border-radius:10px;
-  padding:28px;
-  aspect-ratio:16/9;
-  cursor:pointer;
   overflow:hidden;
+  cursor:pointer;
   transition:transform .25s ease;
+  display:flex;
+  flex-direction:column;
 }
 
-.product.has-image {
-  background-size: cover;
-  background-position: center;
-}
-
-.product.img-shaker {
+.product.img-shaker .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Shaker.png?raw=true");
 }
-
-.product.img-shaker-2 {
+.product.img-shaker-2 .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Shaker2.png?raw=true");
 }
-
-.product.img-lifting-straps {
+.product.img-lifting-straps .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Straps.png?raw=true");
 }
-
-.product.img-grip {
+.product.img-grip .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Grip.png?raw=true");
 }
 
@@ -180,64 +176,37 @@ header p {
   transform:translateY(-4px);
 }
 
-/* HOVER PANEL */
+/* IMAGE AREA */
+.product-image-area {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: var(--product-image-height);
+  background-size: auto var(--product-image-size);
+  background-repeat: no-repeat;
+  background-position: center var(--product-image-position-y);
+  background-color: #15181B;
+  overflow: hidden;
+}
+
 .product-hover {
-  position:absolute;
-  inset:0;
+  position: absolute;
+  inset: 0;
   background: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  padding:24px 24px 10px;
-  opacity:1;
+  padding: 20px;
+  opacity: 1;
   transition: background .25s ease, backdrop-filter .25s ease;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  gap:12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .product:hover .product-hover {
   background: rgba(15, 17, 19, 0.55);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  justify-content:space-between;
-}
-
-.product-hover .brand-name {
-  opacity:0;
-  transform: translateY(4px);
-  transition: opacity .2s ease, transform .2s ease;
-}
-
-.product:hover .product-hover .brand-name {
-  opacity:1;
-  transform: translateY(0);
-}
-
-.product-hover .amazon-btn {
-  position:absolute;
-  left:24px;
-  bottom:10px;
-  opacity:0;
-  pointer-events:none;
-  transition: opacity .2s ease;
-}
-
-.product:hover .product-hover .amazon-btn {
-  opacity:1;
-  pointer-events:auto;
-}
-
-.brand-name {
-  font-size:13px;
-  color:#B5B5B5;
-  margin-bottom:8px;
-}
-
-.product-name {
-  font-family:Inter;
-  font-weight:600;
-  margin-bottom:8px;
 }
 
 .amazon-btn {
@@ -247,6 +216,48 @@ header p {
   border-radius:6px;
   font-size:14px;
   width:max-content;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.product:hover .amazon-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* TEXT AREA */
+.product-info {
+  padding: 20px 24px 24px;
+  background: #15181B;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.brand-name {
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 0.08em;
+  font-family: Inter;
+  font-weight: 600;
+}
+
+.product-name {
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 16px;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+}
+
+.product-desc {
+  font-size: 14px;
+  color: #B5B5B5;
+  line-height: 1.55;
 }
 
 /* FOOTER */
@@ -313,66 +324,81 @@ footer {
     Back to Products
   </a>
   <h1>Accessories</h1>
-  <p>Practical accessories that make training more consistent and convenient.</p>
+  <p>Practical accessories that make training more consistent and convenient — small additions that add up over time.</p>
 </header>
 
+<!-- SHAKERS -->
 <section class="category">
 <h2>Shakers</h2>
 <div class="product-grid">
 
-<div class="product has-image img-shaker">
-  <div class="product-hover">
-    <div>
-      <div class="brand-name">Blender Bottle</div>
-      <div class="product-name">Stainless Steel Shaker</div>
+  <div class="product has-image img-shaker">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4cj2R31" target="_blank">View on Amazon</a>
+      </div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/4cj2R31" target="_blank">View on Amazon</a>
+    <div class="product-info">
+      <div class="brand-name">BlenderBottle</div>
+      <div class="product-name">Stainless Steel Shaker</div>
+      <div class="product-desc">For mixing protein shakes and supplements on the go. Our premium pick — includes a mixing ball and is built to last.</div>
+    </div>
   </div>
-</div>
 
-<div class="product has-image img-shaker-2">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-shaker-2">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4rOTBso" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">BlenderBottle</div>
       <div class="product-name">Shaker Bottle</div>
+      <div class="product-desc">A more affordable alternative to our premium shaker, while still delivering smooth mixes for protein shakes and supplements.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/4rOTBso" target="_blank">View on Amazon</a>
   </div>
-</div>
 
 </div>
 </section>
 
+<!-- LIFTING STRAPS -->
 <section class="category">
 <h2>Lifting Straps</h2>
 <div class="product-grid">
 
-<div class="product has-image img-lifting-straps">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-lifting-straps">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/3ZY4zzo" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">Gymreapers</div>
       <div class="product-name">Lifting Wrist Straps</div>
+      <div class="product-desc">When your grip gives out before your target muscle does, straps let you keep going. Useful on heavy deadlifts, rows, pulldowns, and more.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/3ZY4zzo" target="_blank">View on Amazon</a>
   </div>
-</div>
 
 </div>
 </section>
 
+<!-- GRIP -->
 <section class="category">
 <h2>Grip</h2>
 <div class="product-grid">
 
-<div class="product has-image img-grip">
-  <div class="product-hover">
-    <div>
+  <div class="product has-image img-grip">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/3PlLxka" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
       <div class="brand-name">AIXPI</div>
       <div class="product-name">Grip Strength Trainer</div>
+      <div class="product-desc">A simple tool for strengthening your grip and forearms.</div>
     </div>
-    <a class="amazon-btn" href="https://amzn.to/3PlLxka" target="_blank">View on Amazon</a>
   </div>
-</div>
 
 </div>
 </section>
