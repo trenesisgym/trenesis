@@ -167,6 +167,9 @@ header p {
 .product.img-creatine .product-image-area {
   background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Creatine.png?raw=true");
 }
+.product.img-orgain .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Protein3.png?raw=true");
+}
 
 .product:hover {
   transform:translateY(-4px);
@@ -295,6 +298,93 @@ footer {
   color: #888;
 }
 
+/* CAROUSEL */
+.carousel-nav {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .2s ease;
+  background: linear-gradient(to right, rgba(15,17,19,0.7), transparent);
+}
+
+.carousel-nav.right {
+  right: 0; left: auto;
+  background: linear-gradient(to left, rgba(15,17,19,0.7), transparent);
+}
+
+.product:hover .carousel-nav {
+  opacity: 1;
+}
+
+.carousel-nav svg {
+  width: 18px;
+  height: 18px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.6));
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 10;
+}
+
+.carousel-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  transition: background .2s ease, transform .2s ease;
+  cursor: pointer;
+}
+
+.carousel-dot.active {
+  background: #fff;
+  transform: scale(1.3);
+}
+
+.product-image-area.slide-left {
+  animation: slideLeft .32s cubic-bezier(.4,0,.2,1);
+}
+
+.product-image-area.slide-right {
+  animation: slideRight .32s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes slideLeft {
+  from { opacity: 1; transform: translateX(0); }
+  25%  { opacity: 0; transform: translateX(-18px); }
+  26%  { opacity: 0; transform: translateX(18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideRight {
+  from { opacity: 1; transform: translateX(0); }
+  25%  { opacity: 0; transform: translateX(18px); }
+  26%  { opacity: 0; transform: translateX(-18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.product:has(.carousel-nav:hover) .product-hover {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
 </style>
 </head>
 
@@ -321,7 +411,7 @@ footer {
     Back to Products
   </a>
   <h1>Supplements</h1>
-  <p>Evidence-based supplements selected for effectiveness, quality, and real training support. Nothing trendy — just what actually works.</p>
+  <p>Evidence-based supplements selected for effectiveness, quality, and real training support. Vegan-friendly options are also included. If a product isn't available in your country or is out of stock, some cards have alternatives you can cycle through.</p>
 </header>
 
 <!-- PROTEIN POWDER -->
@@ -342,14 +432,17 @@ footer {
     </div>
   </div>
 
-  <div class="product has-image img-vegan-protein">
+  <div class="product has-image img-orgain">
+    <script type="application/json" class="alternatives-data">[
+      { "brand": "EarthChimp", "imgClass": "img-vegan-protein", "amazonUrl": "https://amzn.to/3MVykOm" }
+    ]</script>
     <div class="product-image-area">
       <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/3MVykOm" target="_blank">View on Amazon</a>
+        <a class="amazon-btn" href="https://amzn.to/4wBLzpA" target="_blank">View on Amazon</a>
       </div>
     </div>
     <div class="product-info">
-      <div class="brand-name">EarthChimp</div>
+      <div class="brand-name">Orgain</div>
       <div class="product-name">Vegan Protein Powder</div>
       <div class="product-desc">Same purpose as whey, without the dairy. A solid option if you're plant-based or just prefer to avoid animal products.</div>
     </div>
@@ -392,5 +485,81 @@ footer {
 </footer>
 
 </div>
+<script>
+(function () {
+  document.querySelectorAll('.alternatives-data').forEach(scriptEl => {
+    let alternatives;
+    try { alternatives = JSON.parse(scriptEl.textContent); } catch (e) { return; }
+    if (!alternatives || alternatives.length === 0) return;
+
+    const card = scriptEl.closest('.product');
+    const imageArea = card.querySelector('.product-image-area');
+    const amazonBtn = card.querySelector('.amazon-btn');
+    const brandEl = card.querySelector('.brand-name');
+
+    const primaryImgClass = Array.from(card.classList).find(c => c.startsWith('img-'));
+    const primaryBrand = brandEl.textContent;
+    const primaryUrl = amazonBtn.getAttribute('href');
+
+    const slides = [
+      { imgClass: primaryImgClass, brand: primaryBrand, amazonUrl: primaryUrl },
+      ...alternatives
+    ];
+
+    let current = 0;
+
+    function applySlide(idx, dir) {
+      const slide = slides[idx];
+      slides.forEach(s => card.classList.remove(s.imgClass));
+      imageArea.classList.remove('slide-left', 'slide-right');
+      void imageArea.offsetWidth;
+      imageArea.classList.add(dir === 1 ? 'slide-left' : 'slide-right');
+      card.classList.add(slide.imgClass);
+      brandEl.textContent = slide.brand;
+      amazonBtn.setAttribute('href', slide.amazonUrl);
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+
+    const leftNav = document.createElement('div');
+    leftNav.className = 'carousel-nav left';
+    leftNav.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>';
+
+    const rightNav = document.createElement('div');
+    rightNav.className = 'carousel-nav right';
+    rightNav.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>';
+
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'carousel-dots';
+    const dots = slides.map((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', e => {
+        e.stopPropagation();
+        const dir = i >= current ? 1 : -1;
+        current = i;
+        applySlide(current, dir);
+      });
+      dotsContainer.appendChild(dot);
+      return dot;
+    });
+
+    leftNav.addEventListener('click', e => {
+      e.preventDefault(); e.stopPropagation();
+      current = (current - 1 + slides.length) % slides.length;
+      applySlide(current, -1);
+    });
+
+    rightNav.addEventListener('click', e => {
+      e.preventDefault(); e.stopPropagation();
+      current = (current + 1) % slides.length;
+      applySlide(current, 1);
+    });
+
+    imageArea.appendChild(leftNav);
+    imageArea.appendChild(rightNav);
+    imageArea.appendChild(dotsContainer);
+  });
+})();
+</script>
 </body>
 </html>
