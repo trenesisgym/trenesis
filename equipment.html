@@ -471,9 +471,22 @@ footer {
 .mobile-menu a.active { color: #FFFFFF; font-weight: 600; }
 .mobile-menu.open { display: flex; }
 
-/* Mobile Amazon button — always visible on touch devices */
+/* Amazon button: hover on desktop, always-visible on touch */
 .amazon-btn-mobile {
   display: none;
+}
+body.touch .amazon-btn { display: none !important; }
+body.touch .amazon-btn-mobile {
+  display: block;
+  background: #FFFFFF;
+  color: #000;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 12px;
+  width: 100%;
 }
 
 @media (max-width: 767px) {
@@ -492,19 +505,7 @@ footer {
   .product-desc { font-size: 13px; }
 
   /* Hide hover button, show always-on mobile button */
-  .amazon-btn { display: none !important; }
-  .amazon-btn-mobile {
-    display: block;
-    background: #FFFFFF;
-    color: #000;
-    padding: 10px 14px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
-    margin-top: 12px;
-    width: 100%;
-  }
+
   .back-btn { margin-bottom: 24px; }
 }
 
@@ -889,6 +890,11 @@ hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('open', open);
   hamburger.setAttribute('aria-expanded', open);
 });
+
+// Apply touch class to body on any touch device (covers all orientations)
+if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+  document.body.classList.add('touch');
+}
 
 // Inject mobile Amazon buttons into every product card
 document.querySelectorAll('.product').forEach(card => {
