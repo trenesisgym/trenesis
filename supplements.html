@@ -440,19 +440,7 @@ footer {
   .product-info { padding: 16px 18px 18px; }
   .product-name { font-size: 15px; }
   .product-desc { font-size: 13px; }
-  .amazon-btn { display: none !important; }
-  .amazon-btn-mobile {
-    display: block;
-    background: #FFFFFF;
-    color: #000;
-    padding: 10px 14px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
-    margin-top: 12px;
-    width: 100%;
-  }
+
   .back-btn { margin-bottom: 24px; }
 }
 
@@ -650,6 +638,11 @@ hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('open', open);
   hamburger.setAttribute('aria-expanded', open);
 });
+
+// Apply touch class to body on any touch device (covers all orientations)
+if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+  document.body.classList.add('touch');
+}
 
 document.querySelectorAll('.product').forEach(card => {
   const desktopBtn = card.querySelector('.amazon-btn');
