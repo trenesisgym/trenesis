@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Supplements | Trenesis</title>
+<title>Accessories | Trenesis</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
@@ -77,6 +77,7 @@ nav {
 /* HEADER */
 header {
   padding:100px 0 80px;
+  max-width:720px;
 }
 
 /* BACK BUTTON */
@@ -158,17 +159,20 @@ header p {
   flex-direction:column;
 }
 
-.product.img-gold-standard .product-image-area {
-  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Protein.png?raw=true");
+.product.img-shaker .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Shaker.png?raw=true");
 }
-.product.img-vegan-protein .product-image-area {
-  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Protein2.png?raw=true");
+.product.img-shaker-2 .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Shaker2.png?raw=true");
 }
-.product.img-creatine .product-image-area {
-  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Creatine.png?raw=true");
+.product.img-lifting-straps .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Straps.png?raw=true");
 }
-.product.img-orgain .product-image-area {
-  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Protein3.png?raw=true");
+.product.img-grip .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Grip.png?raw=true");
+}
+.product.img-grip2 .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Grip2.png?raw=true");
 }
 
 .product:hover {
@@ -206,6 +210,12 @@ header p {
   background: rgba(15, 17, 19, 0.55);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+}
+
+.product:has(.carousel-nav:hover) .product-hover {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .amazon-btn {
@@ -298,93 +308,6 @@ footer {
   color: #888;
 }
 
-/* CAROUSEL */
-.carousel-nav {
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity .2s ease;
-  background: linear-gradient(to right, rgba(15,17,19,0.7), transparent);
-}
-
-.carousel-nav.right {
-  right: 0; left: auto;
-  background: linear-gradient(to left, rgba(15,17,19,0.7), transparent);
-}
-
-.product:hover .carousel-nav {
-  opacity: 1;
-}
-
-.carousel-nav svg {
-  width: 18px;
-  height: 18px;
-  stroke: #fff;
-  fill: none;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.6));
-}
-
-.carousel-dots {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 5px;
-  z-index: 10;
-}
-
-.carousel-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.35);
-  transition: background .2s ease, transform .2s ease;
-  cursor: pointer;
-}
-
-.carousel-dot.active {
-  background: #fff;
-  transform: scale(1.3);
-}
-
-.product-image-area.slide-left {
-  animation: slideLeft .32s cubic-bezier(.4,0,.2,1);
-}
-
-.product-image-area.slide-right {
-  animation: slideRight .32s cubic-bezier(.4,0,.2,1);
-}
-
-@keyframes slideLeft {
-  from { opacity: 1; transform: translateX(0); }
-  25%  { opacity: 0; transform: translateX(-18px); }
-  26%  { opacity: 0; transform: translateX(18px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes slideRight {
-  from { opacity: 1; transform: translateX(0); }
-  25%  { opacity: 0; transform: translateX(18px); }
-  26%  { opacity: 0; transform: translateX(-18px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-.product:has(.carousel-nav:hover) .product-hover {
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
 /* ── MOBILE NAV ── */
 .hamburger {
   display: none;
@@ -440,19 +363,7 @@ footer {
   .product-info { padding: 16px 18px 18px; }
   .product-name { font-size: 15px; }
   .product-desc { font-size: 13px; }
-  .amazon-btn { display: none !important; }
-  .amazon-btn-mobile {
-    display: block;
-    background: #FFFFFF;
-    color: #000;
-    padding: 10px 14px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
-    margin-top: 12px;
-    width: 100%;
-  }
+
   .back-btn { margin-bottom: 24px; }
 }
 
@@ -490,62 +401,83 @@ footer {
     <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
     Back to Products
   </a>
-  <h1>Supplements</h1>
-  <p>Evidence-based supplements selected for effectiveness, quality, and real training support. Vegan-friendly options are also included. If a product isn't available in your country or is out of stock, some cards have alternatives you can cycle through.</p>
+  <h1>Accessories</h1>
+  <p>Practical accessories that make training more consistent and convenient — small additions that add up over time.</p>
 </header>
 
-<!-- PROTEIN POWDER -->
+<!-- SHAKERS -->
 <section class="category">
-<h2>Protein Powder</h2>
+<h2>Shakers</h2>
 <div class="product-grid">
 
-  <div class="product has-image img-gold-standard">
+  <div class="product has-image img-shaker">
     <div class="product-image-area">
       <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/3OtKYEJ" target="_blank">View on Amazon</a>
+        <a class="amazon-btn" href="https://amzn.to/4cj2R31" target="_blank">View on Amazon</a>
       </div>
     </div>
     <div class="product-info">
-      <div class="brand-name">Optimum Nutrition</div>
-      <div class="product-name">Gold Standard Whey</div>
-      <div class="product-desc">The go-to supplement for hitting your daily protein targets. Mixes easily, comes in a wide range of flavors, and fits into any routine without much thought.</div>
+      <div class="brand-name">BlenderBottle</div>
+      <div class="product-name">Stainless Steel Shaker</div>
+      <div class="product-desc">For mixing protein shakes and supplements on the go. Our premium pick — includes a mixing ball and is built to last.</div>
     </div>
   </div>
 
-  <div class="product has-image img-orgain">
-    <script type="application/json" class="alternatives-data">[
-      { "brand": "EarthChimp", "imgClass": "img-vegan-protein", "amazonUrl": "https://amzn.to/3MVykOm" }
-    ]</script>
+  <div class="product has-image img-shaker-2">
     <div class="product-image-area">
       <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/4wBLzpA" target="_blank">View on Amazon</a>
+        <a class="amazon-btn" href="https://amzn.to/4rOTBso" target="_blank">View on Amazon</a>
       </div>
     </div>
     <div class="product-info">
-      <div class="brand-name">Orgain</div>
-      <div class="product-name">Vegan Protein Powder</div>
-      <div class="product-desc">Same purpose as whey, without the dairy. A solid option if you're plant-based or just prefer to avoid animal products.</div>
+      <div class="brand-name">BlenderBottle</div>
+      <div class="product-name">Shaker Bottle</div>
+      <div class="product-desc">A more affordable alternative to our premium shaker, while still delivering smooth mixes for protein shakes and supplements.</div>
     </div>
   </div>
 
 </div>
 </section>
 
-<!-- CREATINE -->
+<!-- LIFTING STRAPS -->
 <section class="category">
-<h2>Creatine</h2>
+<h2>Lifting Straps</h2>
 <div class="product-grid">
 
-  <div class="product has-image img-creatine">
+  <div class="product has-image img-lifting-straps">
     <div class="product-image-area">
       <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/40zpMQf" target="_blank">View on Amazon</a>
+        <a class="amazon-btn" href="https://amzn.to/3ZY4zzo" target="_blank">View on Amazon</a>
       </div>
     </div>
     <div class="product-info">
-      <div class="brand-name">Optimum Nutrition</div>
-      <div class="product-name">Creatine Monohydrate</div>
-      <div class="product-desc">The most researched supplement in sports science. Consistently shown to improve strength and power output — straightforward to take and worth adding if you're training seriously.</div>
+      <div class="brand-name">Gymreapers</div>
+      <div class="product-name">Lifting Wrist Straps</div>
+      <div class="product-desc">When your grip gives out before your target muscle does, straps let you keep going. Useful on heavy deadlifts, rows, pulldowns, and more.</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- GRIP -->
+<section class="category">
+<h2>Grip</h2>
+<div class="product-grid">
+
+  <div class="product has-image img-grip">
+    <script type="application/json" class="alternatives-data">[
+      { "brand": "NIYIKOW", "imgClass": "img-grip2", "amazonUrl": "https://amzn.to/4uOo9eE" }
+    ]</script>
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/3PlLxka" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="brand-name">AIXPI</div>
+      <div class="product-name">Grip Strength Trainer</div>
+      <div class="product-desc">A simple tool for strengthening your grip and forearms.</div>
     </div>
   </div>
 
@@ -565,6 +497,58 @@ footer {
 </footer>
 
 </div>
+<style>
+.carousel-nav {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .2s ease;
+  background: linear-gradient(to right, rgba(15,17,19,0.7), transparent);
+}
+.carousel-nav.right {
+  right: 0; left: auto;
+  background: linear-gradient(to left, rgba(15,17,19,0.7), transparent);
+}
+.product:hover .carousel-nav { opacity: 1; }
+.carousel-nav svg {
+  width: 18px; height: 18px;
+  stroke: #fff; fill: none;
+  stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.6));
+}
+.carousel-dots {
+  position: absolute; bottom: 10px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 5px; z-index: 10;
+}
+.carousel-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  transition: background .2s ease, transform .2s ease;
+  cursor: pointer;
+}
+.carousel-dot.active { background: #fff; transform: scale(1.3); }
+.product-image-area.slide-left { animation: slideLeft .32s cubic-bezier(.4,0,.2,1); }
+.product-image-area.slide-right { animation: slideRight .32s cubic-bezier(.4,0,.2,1); }
+@keyframes slideLeft {
+  from { opacity:1; transform:translateX(0); }
+  25%  { opacity:0; transform:translateX(-18px); }
+  26%  { opacity:0; transform:translateX(18px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+@keyframes slideRight {
+  from { opacity:1; transform:translateX(0); }
+  25%  { opacity:0; transform:translateX(18px); }
+  26%  { opacity:0; transform:translateX(-18px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+</style>
 <script>
 (function () {
   document.querySelectorAll('.alternatives-data').forEach(scriptEl => {
@@ -650,6 +634,11 @@ hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('open', open);
   hamburger.setAttribute('aria-expanded', open);
 });
+
+// Apply touch class to body on any touch device (covers all orientations)
+if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+  document.body.classList.add('touch');
+}
 
 document.querySelectorAll('.product').forEach(card => {
   const desktopBtn = card.querySelector('.amazon-btn');
