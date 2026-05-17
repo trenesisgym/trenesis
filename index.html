@@ -1,376 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Accessories | Trenesis</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Trenesis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Roboto, sans-serif;
+      background: #0F1113;
+      color: #E5E5E5;
+    }
+    a { text-decoration: none; color: inherit; }
 
-<style>
+    /* ── ANNOUNCEMENT BAR ── */
+    .announce {
+      background: #141618;
+      border-bottom: 1px solid #1f2225;
+      padding: 8px 48px;
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .announce-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      flex-shrink: 0;
+    }
+    .announce a { color: #aaa; text-decoration: underline; }
+    .announce a:hover { color: #fff; }
 
-:root {
-  --product-image-height: 300px;
-  --product-image-size: 110%;
-  --product-image-position-y: -50%;
-}
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { height: 40px; }
+    .brand span {
+      font-family: Inter, sans-serif;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 15px;
+    }
+    .nav-links a { margin-left: 32px; font-size: 14px; color: #B5B5B5; }
+    .nav-links a.active { color: #FFFFFF; font-weight: 600; }
 
-* { box-sizing:border-box; margin:0; padding:0; }
+    /* ── CONTAINER ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
 
-html { scroll-behavior: smooth; }
+    /* ── HERO ── */
+    header { padding: 100px 0 80px; }
+    header h1 {
+      font-family: Inter, sans-serif;
+      font-size: 32px;
+      max-width: 620px;
+    }
+    header p {
+      margin-top: 16px;
+      font-size: 18px;
+      max-width: 520px;
+      color: #B5B5B5;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 14px 28px;
+      background: #2E4F6F;
+      border-radius: 4px;
+      font-size: 15px;
+      color: #fff;
+    }
+    .btn:hover { background: #3A628A; }
 
-body {
-  font-family: Roboto, sans-serif;
-  background:#0F1113;
-  color:#E5E5E5;
-}
+    /* ── GOAL CARDS ── */
+    .section-label {
+      font-size: 11px;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      margin-bottom: 20px;
+    }
+    .goal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 80px;
+    }
+    .goal-card {
+      background: #141618;
+      border: 1px solid #222528;
+      border-radius: 10px;
+      padding: 24px 22px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+    .goal-card:hover { border-color: #3a3d42; transform: translateY(-3px); }
+    .goal-card.goal-products { border-color: #1e2535; }
+    .goal-card.goal-products:hover { border-color: #3a4565; }
+    .goal-icon {
+      width: 36px;
+      height: 36px;
+      background: #1f2225;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      flex-shrink: 0;
+    }
+    .goal-card.goal-products .goal-icon { background: #1a2030; }
+    .goal-card h3 {
+      font-family: Inter, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .goal-card p { font-size: 13px; color: #555; line-height: 1.6; flex: 1; margin-bottom: 20px; }
+    .goal-cta { font-size: 12px; color: #888; display: flex; align-items: center; gap: 5px; }
+    .goal-card.goal-products .goal-cta { color: #818cf8; }
 
-.product-desc a {
-  color: #2F4F70;
-  text-decoration: underline;
-  font-weight: bold;
-}
+    /* ── SECTION HEADER ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin: 0 0 32px;
+    }
+    .section-header.with-top-margin { margin-top: 80px; }
+    .section-header.center { justify-content: center; }
+    .section-header h2 {
+      font-family: Inter, sans-serif;
+      font-size: 24px;
+      white-space: nowrap;
+    }
+    .line { height: 1px; background: #2A2D30; flex: 1; }
 
-a { text-decoration:none; color:inherit; }
+    /* ── WIDE CARDS ── */
+    .grid { display: grid; gap: 24px; }
+    .wide-grid { grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); }
+    .wide-card {
+      aspect-ratio: 3 / 1;
+      border-radius: 6px;
+      padding: 28px;
+      display: flex;
+      align-items: flex-end;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .wide-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+    }
+    .wide-card h3 { font-family: Inter, sans-serif; font-size: 18px; margin-bottom: 6px; }
+    .wide-card p { font-size: 14px; color: #B5B5B5; }
+    .strength {
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Build%20Muscle%20Mass.png?raw=true");
+    }
+    .cardio {
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Cardio2.png?raw=true");
+    }
+    .macros {
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Macros3.png?raw=true");
+    }
+    .meal-planning {
+      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Meal%20Planning%202.png?raw=true");
+    }
 
-/* NAV */
-nav {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:24px 48px;
-  max-width:1200px;
-  margin:0 auto;
-}
+    /* ── FREE GUIDES ── */
+    .guides-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-bottom: 24px;
+    }
+    .guide-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: #141618;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s ease;
+    }
+    .guide-row:first-child { border-radius: 8px 8px 3px 3px; }
+    .guide-row:last-child  { border-radius: 3px 3px 8px 8px; }
+    .guide-row:hover { background: #191c1f; }
+    .guide-row-left { display: flex; align-items: center; gap: 14px; }
+    .guide-row-left svg { flex-shrink: 0; opacity: 0.5; }
+    .guide-row-title {
+      font-family: Inter, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .guide-row-meta { font-size: 12px; color: #555; }
+    .guide-open {
+      font-size: 12px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .guide-row:hover .guide-open { color: #aaa; }
 
-.brand {
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
+    /* ── MOBILE NAV ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #E5E5E5;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: #141618;
+      border-top: 1px solid #1f2225;
+      padding: 16px 20px;
+      gap: 4px;
+    }
+    .mobile-menu a {
+      font-size: 15px;
+      color: #B5B5B5;
+      padding: 10px 0;
+      border-bottom: 1px solid #1f2225;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a.active { color: #FFFFFF; font-weight: 600; }
+    .mobile-menu.open { display: flex; }
 
-.brand img { height:40px; }
+    @media (max-width: 767px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      nav { padding: 18px 20px; }
+      .announce { padding: 8px 20px; }
+      .container { padding: 0 20px; }
+      header { padding: 60px 0 48px; }
+      header h1 { font-size: 26px; }
+      header p { font-size: 16px; }
 
-.brand span {
-  font-family:Inter;
-  font-weight:700;
-  letter-spacing:2px;
-  font-size:15px;
-}
+      /* Goal cards — single column */
+      .goal-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 56px;
+      }
 
-.nav-links a {
-  margin-left:32px;
-  font-size:14px;
-  color:#B5B5B5;
-}
+      /* Prevent horizontal overflow */
+      body { overflow-x: hidden; }
+      .wide-grid { grid-template-columns: 1fr; }
+      .wide-card {
+        aspect-ratio: 16 / 9;
+        min-width: 0;
+        background-position: right center;
+      }
+      .section-header { margin: 56px 0 24px; }
+      .section-header.with-top-margin { margin-top: 56px; }
+    }
 
-.nav-links a.active {
-  color:#FFFFFF;
-  font-weight:600;
-}
-
-.container {
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 48px;
-}
-
-/* HEADER */
-header {
-  padding:100px 0 80px;
-  max-width:720px;
-}
-
-/* BACK BUTTON */
-.back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: Inter;
-  font-size: 13px;
-  font-weight: 600;
-  color: #B5B5B5;
-  border: 1px solid #2A2D30;
-  border-radius: 6px;
-  padding: 8px 14px;
-  margin-bottom: 36px;
-  transition: color .2s ease, border-color .2s ease, background .2s ease;
-}
-
-.back-btn svg {
-  width: 14px;
-  height: 14px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  flex-shrink: 0;
-  transition: transform .2s ease;
-}
-
-.back-btn:hover {
-  color: #FFFFFF;
-  border-color: #4A4D50;
-  background: #1A1D20;
-}
-
-.back-btn:hover svg {
-  transform: translateX(-3px);
-}
-
-header h1 {
-  font-family:Inter;
-  font-size:34px;
-  margin-bottom:16px;
-}
-
-header p {
-  font-size:18px;
-  color:#B5B5B5;
-  line-height:1.6;
-}
-
-/* CATEGORY */
-.category {
-  margin-bottom:80px;
-}
-
-.category h2 {
-  font-family:Inter;
-  margin-bottom:28px;
-}
-
-/* GRID — fixed 2 columns */
-.product-grid {
-  display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap:24px;
-}
-
-/* CARD */
-.product {
-  position:relative;
-  background:#15181B;
-  border-radius:10px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:transform .25s ease;
-  display:flex;
-  flex-direction:column;
-}
-
-.product.img-shaker .product-image-area {
-  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Shaker.png?raw=true");
-}
-.product.img-shaker-2 .product-image-area {
-  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Shaker2.png?raw=true");
-}
-.product.img-lifting-straps .product-image-area {
-  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Straps.png?raw=true");
-}
-.product.img-grip .product-image-area {
-  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Grip.png?raw=true");
-}
-.product.img-grip2 .product-image-area {
-  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Grip2.png?raw=true");
-}
-
-.product:hover {
-  transform:translateY(-4px);
-}
-
-/* IMAGE AREA */
-.product-image-area {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  max-height: var(--product-image-height);
-  background-size: auto var(--product-image-size);
-  background-repeat: no-repeat;
-  background-position: center var(--product-image-position-y);
-  background-color: #15181B;
-  overflow: hidden;
-}
-
-.product-hover {
-  position: absolute;
-  inset: 0;
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  padding: 20px;
-  opacity: 1;
-  transition: background .25s ease, backdrop-filter .25s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.product:hover .product-hover {
-  background: rgba(15, 17, 19, 0.55);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.product:has(.carousel-nav:hover) .product-hover {
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
-.amazon-btn {
-  background:#FFFFFF;
-  color:#000;
-  padding:10px 14px;
-  border-radius:6px;
-  font-size:14px;
-  width:max-content;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(4px);
-  transition: opacity .2s ease, transform .2s ease;
-}
-
-.product:hover .amazon-btn {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-/* TEXT AREA */
-.product-info {
-  padding: 20px 24px 24px;
-  background: #15181B;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.brand-name {
-  font-size: 12px;
-  color: #888;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-family: Inter;
-  font-weight: 600;
-}
-
-.product-name {
-  font-family: Inter;
-  font-weight: 600;
-  font-size: 16px;
-  color: #FFFFFF;
-  margin-bottom: 4px;
-}
-
-.product-desc {
-  font-size: 14px;
-  color: #B5B5B5;
-  line-height: 1.55;
-}
-
-/* FOOTER */
-.line {
-  height: 1px;
-  background: #2A2D30;
-  flex: 1;
-}
-
-footer {
-  margin: 0 0 56px;
-  text-align: center;
-}
-
-.socials {
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-}
-
-.socials img {
-  height: 36px;
-  opacity: 0.85;
-}
-
-.socials img:hover {
-  opacity: 1;
-}
-
-.footer-divider {
-  margin: 44px 0 14px;
-}
-
-.footer-disclosure {
-  margin: 0;
-  text-align: left;
-  font-size: 13px;
-  color: #888;
-}
-
-/* ── MOBILE NAV ── */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  padding: 4px;
-  background: none;
-  border: none;
-}
-.hamburger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: #E5E5E5;
-  border-radius: 2px;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.mobile-menu {
-  display: none;
-  flex-direction: column;
-  background: #141618;
-  border-top: 1px solid #1f2225;
-  padding: 16px 20px;
-  gap: 4px;
-}
-.mobile-menu a {
-  font-size: 15px;
-  color: #B5B5B5;
-  padding: 10px 0;
-  border-bottom: 1px solid #1f2225;
-}
-.mobile-menu a:last-child { border-bottom: none; }
-.mobile-menu a.active { color: #FFFFFF; font-weight: 600; }
-.mobile-menu.open { display: flex; }
-
-.amazon-btn-mobile { display: none; }
-
-@media (max-width: 767px) {
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  nav { padding: 18px 20px; }
-  .container { padding: 0 20px; }
-  body { overflow-x: hidden; }
-  header { padding: 60px 0 40px; }
-  header h1 { font-size: 26px; }
-  header p { font-size: 16px; }
-  .product-grid { grid-template-columns: 1fr; }
-  .category { margin-bottom: 56px; }
-  .product-info { padding: 16px 18px 18px; }
-  .product-name { font-size: 15px; }
-  .product-desc { font-size: 13px; }
-
-  .back-btn { margin-bottom: 24px; }
-}
-
-</style>
+    /* ── FOOTER ── */
+    footer { margin: 0 0 56px; text-align: center; }
+    .newsletter-text { color: #B5B5B5; margin-bottom: 24px; font-size: 15px; }
+    .newsletter {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .newsletter input {
+      padding: 14px 16px;
+      width: 260px;
+      background: #15181d;
+      border: 1px solid #2A2D30;
+      color: #fff;
+      border-radius: 4px;
+    }
+    .newsletter button {
+      padding: 14px 24px;
+      background: #2E4F6F;
+      border: none;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: Inter, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .newsletter button:hover { background: #3A628A; }
+    .newsletter-status { margin-top: 10px; font-size: 14px; color: #B5B5B5; min-height: 20px; }
+    .newsletter-status.success { color: #6FD99B; }
+    .newsletter-status.error   { color: #FF8F8F; }
+    .socials { display: flex; justify-content: center; gap: 28px; }
+    .socials img { height: 36px; opacity: 0.85; }
+    .socials img:hover { opacity: 1; }
+    .footer-divider { margin: 44px 0 14px; }
+  </style>
 </head>
 
 <body>
+
+<div class="announce">
+  <div class="announce-dot"></div>
+  4 free PDF guides now available — <a href="#guides">download here</a>
+</div>
 
 <nav>
   <a href="index.html" class="brand">
@@ -378,278 +345,236 @@ footer {
     <span>TRENESIS</span>
   </a>
   <div class="nav-links">
-    <a href="index.html">Home</a>
+    <a href="index.html" class="active">Home</a>
     <a href="training.html">Training</a>
     <a href="nutrition.html">Nutrition</a>
-    <a href="products.html" class="active">Products</a>
+    <a href="products.html">Products</a>
   </div>
   <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
-  <a href="index.html">Home</a>
+  <a href="index.html" class="active">Home</a>
   <a href="training.html">Training</a>
   <a href="nutrition.html">Nutrition</a>
-  <a href="products.html" class="active">Products</a>
+  <a href="products.html">Products</a>
 </div>
 
 <div class="container">
 
-<header>
-  <a class="back-btn" href="https://trenesisgym.github.io/trenesis/products.html">
-    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-    Back to Products
-  </a>
-  <h1>Accessories</h1>
-  <p>Practical accessories that make training more consistent and convenient — small additions that add up over time.</p>
-</header>
+  <!-- HERO -->
+  <header>
+    <h1>Focus on what actually works.</h1>
+    <p>Training, nutrition &amp; performance — no bullshit, just results.</p>
+    <a href="#start" class="btn">Get Started</a>
+  </header>
 
-<!-- SHAKERS -->
-<section class="category">
-<h2>Shakers</h2>
-<div class="product-grid">
+  <!-- GOAL CARDS -->
+  <div id="start" class="section-label">What are you here for?</div>
+  <div class="goal-grid">
 
-  <div class="product has-image img-shaker">
-    <div class="product-image-area">
-      <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/4cj2R31" target="_blank">View on Amazon</a>
+    <a class="goal-card" href="training.html">
+      <div class="goal-icon">
+        <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Biceps.png?raw=true" width="27" height="27" style="object-fit:contain;">
       </div>
-    </div>
-    <div class="product-info">
-      <div class="brand-name">BlenderBottle</div>
-      <div class="product-name">Stainless Steel Shaker</div>
-      <div class="product-desc">For mixing protein shakes and supplements on the go. Our premium pick — includes a mixing ball and is built to last.</div>
-    </div>
+      <h3>Train harder</h3>
+      <p>Strength training and cardio fundamentals that actually work — progressive overload, exercise selection, recovery.</p>
+      <span class="goal-cta">Start here <span>→</span></span>
+    </a>
+
+    <a class="goal-card" href="nutrition.html">
+      <div class="goal-icon">
+        <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Apple.png?raw=true" width="27" height="27" style="object-fit:contain;">
+      </div>
+      <h3>Eat smarter</h3>
+      <p>Understand macros, calories &amp; what to actually eat to support your training and goals.</p>
+      <span class="goal-cta">Start here <span>→</span></span>
+    </a>
+
+    <a class="goal-card goal-products" href="products.html">
+      <div class="goal-icon">
+        <svg width="17" height="17" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+      </div>
+      <h3>Get equipped</h3>
+      <p>Equipment, supplements &amp; accessories — only what's actually worth buying.</p>
+      <span class="goal-cta">Browse products <span>↗</span></span>
+    </a>
+
   </div>
 
-  <div class="product has-image img-shaker-2">
-    <div class="product-image-area">
-      <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/4rOTBso" target="_blank">View on Amazon</a>
+  <!-- TRAINING -->
+  <div class="section-header"><h2>Training</h2><div class="line"></div></div>
+  <section id="training" class="grid wide-grid">
+    <a href="training.html#strength" class="wide-card strength"><div><h3>Strength Training</h3><p>Build strength with proven fundamentals.</p></div></a>
+    <a href="training.html#cardio" class="wide-card cardio"><div><h3>Cardio</h3><p>Improve endurance and overall health.</p></div></a>
+  </section>
+
+  <!-- NUTRITION -->
+  <div class="section-header with-top-margin"><h2>Nutrition</h2><div class="line"></div></div>
+  <section class="grid wide-grid">
+    <a href="nutrition.html#nutrition-basics" class="wide-card macros"><div><h3>Macronutrients</h3><p>Protein, carbs &amp; fats explained.</p></div></a>
+    <a href="nutrition.html#meal-planning" class="wide-card meal-planning"><div><h3>Meal Planning</h3><p>Practical nutrition you can stick to.</p></div></a>
+  </section>
+
+  <!-- FREE GUIDES -->
+  <div class="section-header with-top-margin" id="guides"><h2>Free Guides</h2><div class="line"></div></div>
+  <div class="guides-list">
+
+    <a class="guide-row" href="https://trenesisgym.github.io/trenesis/pdfs/strength-training.pdf" target="_blank">
+      <div class="guide-row-left">
+        <svg width="16" height="16" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+        <div>
+          <div class="guide-row-title">Strength Training</div>
+          <div class="guide-row-meta">PDF · Free</div>
+        </div>
       </div>
-    </div>
-    <div class="product-info">
-      <div class="brand-name">BlenderBottle</div>
-      <div class="product-name">Shaker Bottle</div>
-      <div class="product-desc">A more affordable alternative to our premium shaker, while still delivering smooth mixes for protein shakes and supplements.</div>
-    </div>
+      <span class="guide-open">Open
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </span>
+    </a>
+
+    <a class="guide-row" href="https://trenesisgym.github.io/trenesis/pdfs/cardio.pdf" target="_blank">
+      <div class="guide-row-left">
+        <svg width="16" height="16" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+        <div>
+          <div class="guide-row-title">Cardio</div>
+          <div class="guide-row-meta">PDF · Free</div>
+        </div>
+      </div>
+      <span class="guide-open">Open
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </span>
+    </a>
+
+    <a class="guide-row" href="https://trenesisgym.github.io/trenesis/pdfs/nutrition-basics.pdf" target="_blank">
+      <div class="guide-row-left">
+        <svg width="16" height="16" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+        <div>
+          <div class="guide-row-title">Nutrition Basics</div>
+          <div class="guide-row-meta">PDF · Free</div>
+        </div>
+      </div>
+      <span class="guide-open">Open
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </span>
+    </a>
+
+    <a class="guide-row" href="https://trenesisgym.github.io/trenesis/pdfs/meal-planning.pdf" target="_blank">
+      <div class="guide-row-left">
+        <svg width="16" height="16" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+        <div>
+          <div class="guide-row-title">Meal Planning</div>
+          <div class="guide-row-meta">PDF · Free</div>
+        </div>
+      </div>
+      <span class="guide-open">Open
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </span>
+    </a>
+
   </div>
+
+  <!-- NEWSLETTER -->
+  <div class="section-header center with-top-margin">
+    <div class="line"></div>
+    <h2>Join Our Community</h2>
+    <div class="line"></div>
+  </div>
+  <footer>
+    <p class="newsletter-text">Get the latest tips and updates.</p>
+    <div class="newsletter">
+      <input id="newsletter-email" type="email" placeholder="Enter your email here">
+      <button id="newsletter-submit" type="button">Subscribe</button>
+    </div>
+    <p id="newsletter-status" class="newsletter-status" aria-live="polite"></p>
+    <div class="line footer-divider"></div>
+    <div class="socials">
+      <a href="https://www.instagram.com/trenesisgym/" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true"></a>
+      <a href="https://www.tiktok.com/@trenesis.gym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/TikTok%20Logo.png?raw=true"></a>
+      <a href="https://www.youtube.com/@TrenesisGym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Shorts%20Logo.png?raw=true"></a>
+    </div>
+  </footer>
 
 </div>
-</section>
 
-<!-- LIFTING STRAPS -->
-<section class="category">
-<h2>Lifting Straps</h2>
-<div class="product-grid">
-
-  <div class="product has-image img-lifting-straps">
-    <div class="product-image-area">
-      <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/3ZY4zzo" target="_blank">View on Amazon</a>
-      </div>
-    </div>
-    <div class="product-info">
-      <div class="brand-name">Gymreapers</div>
-      <div class="product-name">Lifting Wrist Straps</div>
-      <div class="product-desc">When your grip gives out before your target muscle does, straps let you keep going. Useful on heavy deadlifts, rows, pulldowns, and more.</div>
-    </div>
-  </div>
-
-</div>
-</section>
-
-<!-- GRIP -->
-<section class="category">
-<h2>Grip</h2>
-<div class="product-grid">
-
-  <div class="product has-image img-grip">
-    <script type="application/json" class="alternatives-data">[
-      { "brand": "NIYIKOW", "imgClass": "img-grip2", "amazonUrl": "https://amzn.to/4uOo9eE" }
-    ]</script>
-    <div class="product-image-area">
-      <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/3PlLxka" target="_blank">View on Amazon</a>
-      </div>
-    </div>
-    <div class="product-info">
-      <div class="brand-name">AIXPI</div>
-      <div class="product-name">Grip Strength Trainer</div>
-      <div class="product-desc">A simple tool for strengthening your grip and forearms.</div>
-    </div>
-  </div>
-
-</div>
-</section>
-
-<p class="footer-disclosure">Disclosure: As an Amazon Associate we earn from qualifying purchases.</p>
-
-<div class="line footer-divider"></div>
-
-<footer>
-  <div class="socials">
-    <a href="https://www.instagram.com/trenesisgym/" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true"></a>
-    <a href="https://www.tiktok.com/@trenesis.gym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/TikTok%20Logo.png?raw=true"></a>
-    <a href="https://www.youtube.com/@TrenesisGym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Shorts%20Logo.png?raw=true"></a>
-  </div>
-</footer>
-
-</div>
-<style>
-.carousel-nav {
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity .2s ease;
-  background: linear-gradient(to right, rgba(15,17,19,0.7), transparent);
-}
-.carousel-nav.right {
-  right: 0; left: auto;
-  background: linear-gradient(to left, rgba(15,17,19,0.7), transparent);
-}
-.product:hover .carousel-nav { opacity: 1; }
-.carousel-nav svg {
-  width: 18px; height: 18px;
-  stroke: #fff; fill: none;
-  stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.6));
-}
-.carousel-dots {
-  position: absolute; bottom: 10px; left: 50%;
-  transform: translateX(-50%);
-  display: flex; gap: 5px; z-index: 10;
-}
-.carousel-dot {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: rgba(255,255,255,0.35);
-  transition: background .2s ease, transform .2s ease;
-  cursor: pointer;
-}
-.carousel-dot.active { background: #fff; transform: scale(1.3); }
-.product-image-area.slide-left { animation: slideLeft .32s cubic-bezier(.4,0,.2,1); }
-.product-image-area.slide-right { animation: slideRight .32s cubic-bezier(.4,0,.2,1); }
-@keyframes slideLeft {
-  from { opacity:1; transform:translateX(0); }
-  25%  { opacity:0; transform:translateX(-18px); }
-  26%  { opacity:0; transform:translateX(18px); }
-  to   { opacity:1; transform:translateX(0); }
-}
-@keyframes slideRight {
-  from { opacity:1; transform:translateX(0); }
-  25%  { opacity:0; transform:translateX(18px); }
-  26%  { opacity:0; transform:translateX(-18px); }
-  to   { opacity:1; transform:translateX(0); }
-}
-</style>
 <script>
-(function () {
-  document.querySelectorAll('.alternatives-data').forEach(scriptEl => {
-    let alternatives;
-    try { alternatives = JSON.parse(scriptEl.textContent); } catch (e) { return; }
-    if (!alternatives || alternatives.length === 0) return;
+  const SUBSCRIBE_API_URL = "https://trenesis-backend.onrender.com/api/subscribe";
+  const emailInput = document.getElementById("newsletter-email");
+  const submitButton = document.getElementById("newsletter-submit");
+  const statusEl = document.getElementById("newsletter-status");
 
-    const card = scriptEl.closest('.product');
-    const imageArea = card.querySelector('.product-image-area');
-    const amazonBtn = card.querySelector('.amazon-btn');
-    const brandEl = card.querySelector('.brand-name');
+  const setStatus = (message, type = "") => {
+    statusEl.textContent = message;
+    statusEl.className = ["newsletter-status", type].filter(Boolean).join(" ");
+  };
 
-    const primaryImgClass = Array.from(card.classList).find(c => c.startsWith('img-'));
-    const primaryBrand = brandEl.textContent;
-    const primaryUrl = amazonBtn.getAttribute('href');
-
-    const slides = [
-      { imgClass: primaryImgClass, brand: primaryBrand, amazonUrl: primaryUrl },
-      ...alternatives
-    ];
-
-    let current = 0;
-
-    function applySlide(idx, dir) {
-      const slide = slides[idx];
-      slides.forEach(s => card.classList.remove(s.imgClass));
-      imageArea.classList.remove('slide-left', 'slide-right');
-      void imageArea.offsetWidth;
-      imageArea.classList.add(dir === 1 ? 'slide-left' : 'slide-right');
-      card.classList.add(slide.imgClass);
-      brandEl.textContent = slide.brand;
-      amazonBtn.setAttribute('href', slide.amazonUrl);
-      const mobileBtnEl = card.querySelector('.amazon-btn-mobile');
-      if (mobileBtnEl) mobileBtnEl.href = slide.amazonUrl;
-      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-    }
-
-    const leftNav = document.createElement('div');
-    leftNav.className = 'carousel-nav left';
-    leftNav.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>';
-
-    const rightNav = document.createElement('div');
-    rightNav.className = 'carousel-nav right';
-    rightNav.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>';
-
-    const dotsContainer = document.createElement('div');
-    dotsContainer.className = 'carousel-dots';
-    const dots = slides.map((_, i) => {
-      const dot = document.createElement('div');
-      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', e => {
-        e.stopPropagation();
-        const dir = i >= current ? 1 : -1;
-        current = i;
-        applySlide(current, dir);
+  const subscribe = async () => {
+    const email = emailInput.value.trim();
+    if (!email) { setStatus("Please enter an email address.", "error"); return; }
+    submitButton.disabled = true;
+    setStatus("Subscribing...");
+    try {
+      const response = await fetch(SUBSCRIBE_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
       });
-      dotsContainer.appendChild(dot);
-      return dot;
-    });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || payload.ok === false) throw new Error(payload.error || "Subscription failed.");
+      setStatus("You are subscribed.", "success");
+      emailInput.value = "";
+    } catch (error) {
+      setStatus(error.message || "Subscription failed.", "error");
+    } finally {
+      submitButton.disabled = false;
+    }
+  };
 
-    leftNav.addEventListener('click', e => {
-      e.preventDefault(); e.stopPropagation();
-      current = (current - 1 + slides.length) % slides.length;
-      applySlide(current, -1);
-    });
+  submitButton.addEventListener("click", subscribe);
+  emailInput.addEventListener("keydown", (e) => { if (e.key === "Enter") subscribe(); });
 
-    rightNav.addEventListener('click', e => {
-      e.preventDefault(); e.stopPropagation();
-      current = (current + 1) % slides.length;
-      applySlide(current, 1);
-    });
-
-    imageArea.appendChild(leftNav);
-    imageArea.appendChild(rightNav);
-    imageArea.appendChild(dotsContainer);
+  // Hamburger menu
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
   });
-})();
-
-const hamburger = document.querySelector('.hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-hamburger.addEventListener('click', () => {
-  const open = mobileMenu.classList.toggle('open');
-  hamburger.classList.toggle('open', open);
-  hamburger.setAttribute('aria-expanded', open);
-});
-
-// Apply touch class to body on any touch device (covers all orientations)
-if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
-  document.body.classList.add('touch');
-}
-
-document.querySelectorAll('.product').forEach(card => {
-  const desktopBtn = card.querySelector('.amazon-btn');
-  if (!desktopBtn) return;
-  const mobileBtn = document.createElement('a');
-  mobileBtn.className = 'amazon-btn-mobile';
-  mobileBtn.href = desktopBtn.href;
-  mobileBtn.target = '_blank';
-  mobileBtn.textContent = 'View on Amazon';
-  card.querySelector('.product-info').appendChild(mobileBtn);
-});
 </script>
+
 </body>
 </html>
