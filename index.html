@@ -402,7 +402,7 @@
       </div>
       <h3>Get equipped</h3>
       <p>Equipment, supplements &amp; accessories — only what's actually worth buying.</p>
-      <span class="goal-cta">Browse products <span>→</span></span>
+      <span class="goal-cta">Browse products <span>↗</span></span>
     </a>
 
   </div>
@@ -507,19 +507,7 @@
 
   </div>
 
-  <!-- NEWSLETTER -->
-  <div class="section-header center with-top-margin">
-    <div class="line"></div>
-    <h2>Join Our Community</h2>
-    <div class="line"></div>
-  </div>
   <footer>
-    <p class="newsletter-text">Get the latest tips and updates.</p>
-    <div class="newsletter">
-      <input id="newsletter-email" type="email" placeholder="Enter your email here">
-      <button id="newsletter-submit" type="button">Subscribe</button>
-    </div>
-    <p id="newsletter-status" class="newsletter-status" aria-live="polite"></p>
     <div class="line footer-divider"></div>
     <div class="socials">
       <a href="https://www.instagram.com/trenesisgym/" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true"></a>
@@ -531,41 +519,6 @@
 </div>
 
 <script>
-  const SUBSCRIBE_API_URL = "https://trenesis-backend.onrender.com/api/subscribe";
-  const emailInput = document.getElementById("newsletter-email");
-  const submitButton = document.getElementById("newsletter-submit");
-  const statusEl = document.getElementById("newsletter-status");
-
-  const setStatus = (message, type = "") => {
-    statusEl.textContent = message;
-    statusEl.className = ["newsletter-status", type].filter(Boolean).join(" ");
-  };
-
-  const subscribe = async () => {
-    const email = emailInput.value.trim();
-    if (!email) { setStatus("Please enter an email address.", "error"); return; }
-    submitButton.disabled = true;
-    setStatus("Subscribing...");
-    try {
-      const response = await fetch(SUBSCRIBE_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email })
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok || payload.ok === false) throw new Error(payload.error || "Subscription failed.");
-      setStatus("You are subscribed.", "success");
-      emailInput.value = "";
-    } catch (error) {
-      setStatus(error.message || "Subscription failed.", "error");
-    } finally {
-      submitButton.disabled = false;
-    }
-  };
-
-  submitButton.addEventListener("click", subscribe);
-  emailInput.addEventListener("keydown", (e) => { if (e.key === "Enter") subscribe(); });
-
   // Hamburger menu
   const hamburger = document.querySelector('.hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
