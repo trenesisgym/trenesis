@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Supplements | Trenesis</title>
+<title>Equipment | Trenesis</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 
 :root {
-  --product-image-height: 300px;
-  --product-image-size: 110%;
-  --product-image-position-y: -50%;
+  --product-image-height: 300px;   /* max height of the image box — it will shrink proportionally before hitting this */
+  --product-image-size: 110%;      /* image height as % of the box — above 100% crops slightly, below 100% creates room to reposition */
+  --product-image-position-y: -50%; /* vertical position within box — 0% = top, 100% = bottom */
 }
 
 * { box-sizing:border-box; margin:0; padding:0; }
@@ -158,24 +158,66 @@ header p {
   flex-direction:column;
 }
 
-.product.img-gold-standard .product-image-area {
-  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Protein.png?raw=true");
+.product.img-adjustable .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Adjustable%20Dumbbells%202.png?raw=true");
 }
-.product.img-vegan-protein .product-image-area {
-  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Protein2.png?raw=true");
+.product.img-iron .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Dumbbells2.png?raw=true");
 }
-.product.img-creatine .product-image-area {
-  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Creatine.png?raw=true");
+.product.img-barbell .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Barbell%202.png?raw=true");
 }
-.product.img-orgain .product-image-area {
-  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Protein3.png?raw=true");
+.product.img-ez .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/EZ%20Bar.png?raw=true");
+}
+.product.img-plates1 .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Olympic%20Plates.png?raw=true");
+}
+.product.img-plates2 .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Olympic%20Plates%204.png?raw=true");
+}
+.product.img-flat-bench .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Flat%20Bench.png?raw=true");
+}
+.product.img-adjust-bench .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Adjustable%20Bench.png?raw=true");
+}
+.product.img-adjust-bench-3 .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Adjustable%20Bench%203.png?raw=true");
+}
+.product.img-kettlebell .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Kettlebell.png?raw=true");
+}
+.product.img-kettlebell2 .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Kettlebell%202.png?raw=true");
+}
+.product.img-adjust-kettlebell .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Adjustable%20Kettlebell.png?raw=true");
+}
+.product.img-kettle-gryp .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Kettle%20Gryp.png?raw=true");
+}
+.product.img-pullup-hook .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Pullup%20Bar.png?raw=true");
+}
+.product.img-pullup-press .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Pullup%20Bar%202.png?raw=true");
+}
+.product.img-dip-bar .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Dip%20Bar%202.png?raw=true");
+}
+.product.img-barbell3 .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Barbell%203.png?raw=true");
+}
+.product.img-flat-bench2 .product-image-area {
+  background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Flat%20Bench%202.png?raw=true");
 }
 
 .product:hover {
   transform:translateY(-4px);
 }
 
-/* IMAGE AREA */
+/* IMAGE AREA — fixed height, hover reveals button */
 .product-image-area {
   position: relative;
   width: 100%;
@@ -208,6 +250,12 @@ header p {
   -webkit-backdrop-filter: blur(6px);
 }
 
+.product:has(.carousel-nav:hover) .product-hover {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
 .amazon-btn {
   background:#FFFFFF;
   color:#000;
@@ -227,7 +275,93 @@ header p {
   transform: translateY(0);
 }
 
-/* TEXT AREA */
+/* CAROUSEL */
+.carousel-nav {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .2s ease;
+  background: linear-gradient(to right, rgba(15,17,19,0.7), transparent);
+}
+
+.carousel-nav.right {
+  right: 0; left: auto;
+  background: linear-gradient(to left, rgba(15,17,19,0.7), transparent);
+}
+
+.product:hover .carousel-nav {
+  opacity: 1;
+}
+
+.carousel-nav svg {
+  width: 18px;
+  height: 18px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.6));
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 10;
+}
+
+.carousel-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  transition: background .2s ease, transform .2s ease;
+  cursor: pointer;
+}
+
+.carousel-dot.active {
+  background: #fff;
+  transform: scale(1.3);
+}
+
+/* Slide transition for image area bg */
+.product-image-area {
+  transition: background-image 0s;
+}
+
+.product-image-area.slide-left {
+  animation: slideLeft .32s cubic-bezier(.4,0,.2,1);
+}
+
+.product-image-area.slide-right {
+  animation: slideRight .32s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes slideLeft {
+  from { opacity: 1; transform: translateX(0); }
+  25%  { opacity: 0; transform: translateX(-18px); }
+  26%  { opacity: 0; transform: translateX(18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideRight {
+  from { opacity: 1; transform: translateX(0); }
+  25%  { opacity: 0; transform: translateX(18px); }
+  26%  { opacity: 0; transform: translateX(-18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* TEXT AREA — always visible below image */
 .product-info {
   padding: 20px 24px 24px;
   background: #15181B;
@@ -298,91 +432,35 @@ footer {
   color: #888;
 }
 
-/* CAROUSEL */
-.carousel-nav {
+/* Always-visible carousel arrows on touch devices */
+body.touch .carousel-nav {
+  opacity: 1 !important;
+}
+
+/* Alternative product badge */
+.alt-badge {
   position: absolute;
-  top: 0; bottom: 0;
-  width: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  cursor: pointer;
+  top: 12px;
+  right: 12px;
+  z-index: 20;
+  background: rgba(15, 17, 19, 0.75);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #B5B5B5;
+  font-family: Inter, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   opacity: 0;
-  transition: opacity .2s ease;
-  background: linear-gradient(to right, rgba(15,17,19,0.7), transparent);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
 }
-
-.carousel-nav.right {
-  right: 0; left: auto;
-  background: linear-gradient(to left, rgba(15,17,19,0.7), transparent);
-}
-
-.product:hover .carousel-nav {
+.alt-badge.visible {
   opacity: 1;
-}
-
-.carousel-nav svg {
-  width: 18px;
-  height: 18px;
-  stroke: #fff;
-  fill: none;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.6));
-}
-
-.carousel-dots {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 5px;
-  z-index: 10;
-}
-
-.carousel-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.35);
-  transition: background .2s ease, transform .2s ease;
-  cursor: pointer;
-}
-
-.carousel-dot.active {
-  background: #fff;
-  transform: scale(1.3);
-}
-
-.product-image-area.slide-left {
-  animation: slideLeft .32s cubic-bezier(.4,0,.2,1);
-}
-
-.product-image-area.slide-right {
-  animation: slideRight .32s cubic-bezier(.4,0,.2,1);
-}
-
-@keyframes slideLeft {
-  from { opacity: 1; transform: translateX(0); }
-  25%  { opacity: 0; transform: translateX(-18px); }
-  26%  { opacity: 0; transform: translateX(18px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes slideRight {
-  from { opacity: 1; transform: translateX(0); }
-  25%  { opacity: 0; transform: translateX(18px); }
-  26%  { opacity: 0; transform: translateX(-18px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-.product:has(.carousel-nav:hover) .product-hover {
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
 }
 
 /* ── MOBILE NAV ── */
@@ -424,7 +502,10 @@ footer {
 .mobile-menu a.active { color: #FFFFFF; font-weight: 600; }
 .mobile-menu.open { display: flex; }
 
-.amazon-btn-mobile { display: none; }
+/* Amazon button: hover on desktop, always-visible on touch */
+.amazon-btn-mobile {
+  display: none;
+}
 body.touch .amazon-btn { display: none !important; }
 body.touch .amazon-btn-mobile {
   display: block;
@@ -453,6 +534,8 @@ body.touch .amazon-btn-mobile {
   .product-info { padding: 16px 18px 18px; }
   .product-name { font-size: 15px; }
   .product-desc { font-size: 13px; }
+
+  /* Hide hover button, show always-on mobile button */
 
   .back-btn { margin-bottom: 24px; }
 }
@@ -491,62 +574,220 @@ body.touch .amazon-btn-mobile {
     <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
     Back to Products
   </a>
-  <h1>Supplements</h1>
-  <p>Evidence-based supplements selected for effectiveness, quality, and real training support. Vegan-friendly options are also included. If a product isn't available in your country or is out of stock, some cards have alternatives you can cycle through.</p>
+  <h1>Equipment</h1>
+  <p>A curated list of training gear worth considering — you don't need all of it, just whatever fits your setup. If a product isn't available in your country or is out of stock, some cards have alternatives you can cycle through.</p>
 </header>
 
-<!-- PROTEIN POWDER -->
+<!-- DUMBBELLS & BARBELLS -->
 <section class="category">
-<h2>Protein Powder</h2>
+<h2>Dumbbells & Barbells</h2>
 <div class="product-grid">
 
-  <div class="product has-image img-gold-standard">
+  <div class="product has-image img-adjustable">
     <div class="product-image-area">
       <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/3OtKYEJ" target="_blank">View on Amazon</a>
+        <a class="amazon-btn" href="https://amzn.to/4eoUm7e" target="_blank">View on Amazon</a>
       </div>
     </div>
     <div class="product-info">
-      <div class="brand-name">Optimum Nutrition</div>
-      <div class="product-name">Gold Standard Whey</div>
-      <div class="product-desc">The go-to supplement for hitting your daily protein targets. Mixes easily, comes in a wide range of flavors, and fits into any routine without much thought.</div>
+      <div class="brand-name">Yes4All</div>
+      <div class="product-name">Adjustable Dumbbell Set</div>
+      <div class="product-desc">If you train at home and only want one piece of equipment, this is it. One set that covers everything. Pairs perfectly with a <a href="#benches">bench</a> for a complete home workout setup.</div>
     </div>
   </div>
 
-  <div class="product has-image img-orgain">
-    <script type="application/json" class="alternatives-data">[
-      { "brand": "EarthChimp", "imgClass": "img-vegan-protein", "amazonUrl": "https://amzn.to/3MVykOm" }
-    ]</script>
+  <div class="product has-image img-iron">
     <div class="product-image-area">
       <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/4wBLzpA" target="_blank">View on Amazon</a>
+        <a class="amazon-btn" href="https://amzn.to/4eV6gpp" target="_blank">View on Amazon</a>
       </div>
     </div>
     <div class="product-info">
-      <div class="brand-name">Orgain</div>
-      <div class="product-name">Vegan Protein Powder</div>
-      <div class="product-desc">Same purpose as whey, without the dairy. A solid option if you're plant-based or just prefer to avoid animal products.</div>
+      <div class="brand-name">Fitvids</div>
+      <div class="product-name">Hex Dumbbells</div>
+      <div class="product-desc">Pick your weight and go — no adjusting, no screwing parts together. Simple and straightforward.</div>
+    </div>
+  </div>
+
+  <div class="product has-image img-barbell">
+    <script type="application/json" class="alternatives-data">[
+      { "brand": "VEVOR", "imgClass": "img-barbell3", "amazonUrl": "https://amzn.to/3QEJ9WK" }
+    ]</script>
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4xFxOqj" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="brand-name">RITFIT</div>
+      <div class="product-name">Olympic Barbell</div>
+      <div class="product-desc">The most versatile piece of equipment you can own. Squats, deadlifts, bench press, rows — a barbell covers it all.</div>
+    </div>
+  </div>
+
+  <div class="product has-image img-ez">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4gDFAuu" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="brand-name">DILANL</div>
+      <div class="product-name">EZ Curl Bar</div>
+      <div class="product-desc">The curved grip can help take stress off your wrists during curls and tricep work. A small difference that matters a lot over time.</div>
+    </div>
+  </div>
+
+  <div class="product has-image img-plates2">
+    <!-- alternatives: brand, image class (img-*), amazon link -->
+    <script type="application/json" class="alternatives-data">[
+      { "brand": "RitFit", "imgClass": "img-plates1", "amazonUrl": "https://amzn.to/4eBDdG7" }
+    ]</script>
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/3QsMSa3" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="brand-name">CAP</div>
+      <div class="product-name">Olympic Plate</div>
+      <div class="product-desc">Essential for any barbell setup. They allow you to progressively increase resistance, which is key for getting stronger over time.</div>
     </div>
   </div>
 
 </div>
 </section>
 
-<!-- CREATINE -->
-<section class="category">
-<h2>Creatine</h2>
+<!-- BENCHES -->
+<section id="benches" class="category"><h2>Benches</h2>
 <div class="product-grid">
 
-  <div class="product has-image img-creatine">
+  <div class="product has-image img-flat-bench">
+    <script type="application/json" class="alternatives-data">[
+      { "brand": "PASYOU", "imgClass": "img-flat-bench2", "amazonUrl": "https://amzn.to/4gy8QTx" }
+    ]</script>
     <div class="product-image-area">
       <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/40zpMQf" target="_blank">View on Amazon</a>
+        <a class="amazon-btn" href="https://amzn.to/4oIPUnl" target="_blank">View on Amazon</a>
       </div>
     </div>
     <div class="product-info">
-      <div class="brand-name">Optimum Nutrition</div>
-      <div class="product-name">Creatine Monohydrate</div>
-      <div class="product-desc">The most researched supplement in sports science. Consistently shown to improve strength and power output — straightforward to take and worth adding if you're training seriously.</div>
+      <div class="brand-name">Amazon Basics</div>
+      <div class="product-name">Flat Weight Bench</div>
+      <div class="product-desc">Stable, simple, and one of the more affordable options out there. Does everything a flat bench needs to do.</div>
+    </div>
+  </div>
+
+  <div class="product has-image img-adjust-bench">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4xMIfIO" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="brand-name">BARWING</div>
+      <div class="product-name">Adjustable Weight Bench</div>
+      <div class="product-desc">With multiple incline positions, one bench covers a much wider range of exercises. Our premium pick.</div>
+    </div>
+  </div>
+
+  <div class="product has-image img-adjust-bench-3">
+    <script type="application/json" class="alternatives-data">[
+      { "brand": "YOLEO (Alternative Link)", "imgClass": "img-adjust-bench-3", "amazonUrl": "https://amzn.to/3Qe02rp" }
+    ]</script>
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4oFaR2h" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="brand-name">YOLEO</div>
+      <div class="product-name">Adjustable Training Bench</div>
+      <div class="product-desc">Same adjustable concept as the BARWING, but at a lower price point if you want to spend less.</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- KETTLEBELLS -->
+<section class="category">
+<h2>Kettlebells</h2>
+<div class="product-grid">
+
+  <div class="product has-image img-kettlebell">
+    <script type="application/json" class="alternatives-data">[
+      { "brand": "Yes4All", "imgClass": "img-kettlebell2", "amazonUrl": "https://amzn.to/44rc0B6" }
+    ]</script>
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4evW6eZ" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="brand-name">Amazon Basics</div>
+      <div class="product-name">Kettlebell</div>
+      <div class="product-desc">Kettlebells are one of the most versatile tools in training — swings, goblet squats, cleans, carries. Pick a weight that challenges you.</div>
+    </div>
+  </div>
+
+  <div class="product has-image img-kettle-gryp">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4fUCulL" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="brand-name">Kettle Gryp</div>
+      <div class="product-name">Kettle Gryp Converter</div>
+      <div class="product-desc">Clips onto any dumbbell and turns it into a kettlebell. A clever, affordable solution if you already have dumbbells.</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- CALISTHENICS EQUIPMENT -->
+<section class="category">
+<h2>Calisthenics Equipment</h2>
+<div class="product-grid">
+
+  <div class="product has-image img-pullup-hook">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4eUmejw" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="brand-name">Ally Peaks</div>
+      <div class="product-name">Doorframe Pull‑Up Bar (Hook)</div>
+      <div class="product-desc">The most effective way to train your back at home without any weights. Works best on door frames with a standard trim.</div>
+    </div>
+  </div>
+
+  <div class="product has-image img-pullup-press">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4eoUvHO" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="brand-name">BouPower</div>
+      <div class="product-name">Doorframe Pull-Up Bar (Pressure Mount)</div>
+      <div class="product-desc">Same idea — back training without weights. Works better on doors where the hook-style doesn't sit right.</div>
+    </div>
+  </div>
+
+  <div class="product has-image img-dip-bar">
+    <div class="product-image-area">
+      <div class="product-hover">
+        <a class="amazon-btn" href="https://amzn.to/4oF5NLt" target="_blank">View on Amazon</a>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="brand-name">YOLEO</div>
+      <div class="product-name">Dip Station</div>
+      <div class="product-desc">Dips, L-sits, knee raises — a dip station unlocks a solid range of upper body and core work without any weights.</div>
     </div>
   </div>
 
@@ -568,6 +809,21 @@ body.touch .amazon-btn-mobile {
 </div>
 <script>
 (function () {
+  // Extract image URL for a given imgClass from the CSS rules
+  function getImageUrl(imgClass) {
+    for (const sheet of document.styleSheets) {
+      try {
+        for (const rule of sheet.cssRules) {
+          if (rule.selectorText && rule.selectorText.includes('.' + imgClass)) {
+            const match = rule.style.backgroundImage.match(/url\(["']?([^"')]+)["']?\)/);
+            if (match) return match[1];
+          }
+        }
+      } catch (e) {}
+    }
+    return null;
+  }
+
   document.querySelectorAll('.alternatives-data').forEach(scriptEl => {
     let alternatives;
     try { alternatives = JSON.parse(scriptEl.textContent); } catch (e) { return; }
@@ -575,9 +831,12 @@ body.touch .amazon-btn-mobile {
 
     const card = scriptEl.closest('.product');
     const imageArea = card.querySelector('.product-image-area');
+    const hover = card.querySelector('.product-hover');
     const amazonBtn = card.querySelector('.amazon-btn');
     const brandEl = card.querySelector('.brand-name');
 
+    // Build slides array: [primary, ...alternatives]
+    // Get primary values from existing card
     const primaryImgClass = Array.from(card.classList).find(c => c.startsWith('img-'));
     const primaryBrand = brandEl.textContent;
     const primaryUrl = amazonBtn.getAttribute('href');
@@ -589,28 +848,47 @@ body.touch .amazon-btn-mobile {
 
     let current = 0;
 
+    // Create alt badge
+    const altBadge = document.createElement('div');
+    altBadge.className = 'alt-badge';
+    altBadge.textContent = 'Alternative';
+    imageArea.appendChild(altBadge);
+
     function applySlide(idx, dir) {
       const slide = slides[idx];
+
+      // Swap image class on card
       slides.forEach(s => card.classList.remove(s.imgClass));
+      
+      // Animate
       imageArea.classList.remove('slide-left', 'slide-right');
-      void imageArea.offsetWidth;
+      void imageArea.offsetWidth; // reflow
       imageArea.classList.add(dir === 1 ? 'slide-left' : 'slide-right');
+
       card.classList.add(slide.imgClass);
       brandEl.textContent = slide.brand;
       amazonBtn.setAttribute('href', slide.amazonUrl);
       const mobileBtnEl = card.querySelector('.amazon-btn-mobile');
       if (mobileBtnEl) mobileBtnEl.href = slide.amazonUrl;
+
+      // Show/hide alt badge
+      altBadge.classList.toggle('visible', idx !== 0);
+
+      // Update dots
       dots.forEach((d, i) => d.classList.toggle('active', i === idx));
     }
 
+    // Create left arrow
     const leftNav = document.createElement('div');
     leftNav.className = 'carousel-nav left';
     leftNav.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>';
 
+    // Create right arrow
     const rightNav = document.createElement('div');
     rightNav.className = 'carousel-nav right';
     rightNav.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>';
 
+    // Create dots
     const dotsContainer = document.createElement('div');
     dotsContainer.className = 'carousel-dots';
     const dots = slides.map((_, i) => {
@@ -644,6 +922,7 @@ body.touch .amazon-btn-mobile {
   });
 })();
 
+// Hamburger menu
 const hamburger = document.querySelector('.hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 hamburger.addEventListener('click', () => {
@@ -657,6 +936,7 @@ if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
   document.body.classList.add('touch');
 }
 
+// Inject mobile Amazon buttons into every product card
 document.querySelectorAll('.product').forEach(card => {
   const desktopBtn = card.querySelector('.amazon-btn');
   if (!desktopBtn) return;
