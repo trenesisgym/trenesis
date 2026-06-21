@@ -426,7 +426,7 @@ body.touch .amazon-btn-mobile {
   <div class="product has-image img-shaker">
     <div class="product-image-area">
       <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/4cj2R31" target="_blank">View on Amazon</a>
+        <a class="amazon-btn" href="https://amzn.to/4oFDBIh" target="_blank">View on Amazon</a>
       </div>
     </div>
     <div class="product-info">
@@ -439,7 +439,7 @@ body.touch .amazon-btn-mobile {
   <div class="product has-image img-shaker-2">
     <div class="product-image-area">
       <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/4rOTBso" target="_blank">View on Amazon</a>
+        <a class="amazon-btn" href="https://amzn.to/4gyIYqB" target="_blank">View on Amazon</a>
       </div>
     </div>
     <div class="product-info">
@@ -460,7 +460,7 @@ body.touch .amazon-btn-mobile {
   <div class="product has-image img-lifting-straps">
     <div class="product-image-area">
       <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/3ZY4zzo" target="_blank">View on Amazon</a>
+        <a class="amazon-btn" href="https://amzn.to/4oBEXDK" target="_blank">View on Amazon</a>
       </div>
     </div>
     <div class="product-info">
@@ -480,11 +480,11 @@ body.touch .amazon-btn-mobile {
 
   <div class="product has-image img-grip">
     <script type="application/json" class="alternatives-data">[
-      { "brand": "NIYIKOW", "imgClass": "img-grip2", "amazonUrl": "https://amzn.to/4uOo9eE" }
+      { "brand": "NIYIKOW", "imgClass": "img-grip2", "amazonUrl": "https://amzn.to/4oD5aBQ" }
     ]</script>
     <div class="product-image-area">
       <div class="product-hover">
-        <a class="amazon-btn" href="https://amzn.to/3PlLxka" target="_blank">View on Amazon</a>
+        <a class="amazon-btn" href="https://amzn.to/3SgSTXX" target="_blank">View on Amazon</a>
       </div>
     </div>
     <div class="product-info">
@@ -511,6 +511,37 @@ body.touch .amazon-btn-mobile {
 
 </div>
 <style>
+/* Always-visible carousel arrows on touch devices */
+body.touch .carousel-nav {
+  opacity: 1 !important;
+}
+
+/* Alternative product badge */
+.alt-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 20;
+  background: rgba(15, 17, 19, 0.75);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #B5B5B5;
+  font-family: Inter, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.alt-badge.visible {
+  opacity: 1;
+}
+
 .carousel-nav {
   position: absolute;
   top: 0; bottom: 0;
@@ -585,6 +616,12 @@ body.touch .amazon-btn-mobile {
 
     let current = 0;
 
+    // Create alt badge
+    const altBadge = document.createElement('div');
+    altBadge.className = 'alt-badge';
+    altBadge.textContent = 'Alternative';
+    imageArea.appendChild(altBadge);
+
     function applySlide(idx, dir) {
       const slide = slides[idx];
       slides.forEach(s => card.classList.remove(s.imgClass));
@@ -596,6 +633,8 @@ body.touch .amazon-btn-mobile {
       amazonBtn.setAttribute('href', slide.amazonUrl);
       const mobileBtnEl = card.querySelector('.amazon-btn-mobile');
       if (mobileBtnEl) mobileBtnEl.href = slide.amazonUrl;
+      // Show/hide alt badge
+      altBadge.classList.toggle('visible', idx !== 0);
       dots.forEach((d, i) => d.classList.toggle('active', i === idx));
     }
 
