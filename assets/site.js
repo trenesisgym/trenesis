@@ -23,6 +23,32 @@
     desktop.addEventListener('change', () => setOpen(false));
   }
   document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
+  // Restore the guide highlight when arriving from a homepage guide tile.
+  function highlightGuide(card) {
+    if (!card) return;
+    clearTimeout(card._highlightTimeout);
+    card.classList.remove('highlight');
+    void card.offsetWidth;
+    card.classList.add('highlight');
+    card._highlightTimeout = setTimeout(() => card.classList.remove('highlight'), 1800);
+  }
+  function highlightHashGuide() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return; }
+    const card = document.getElementById(id);
+    if (card?.matches('.pdf-card')) highlightGuide(card);
+  }
+  highlightHashGuide();
+  window.addEventListener('hashchange', highlightHashGuide);
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a');
+    if (!link) return;
+    if (/\.pdf(?:[?#]|$)/i.test(link.getAttribute('href') || '')) {
+      highlightGuide(link.closest('.pdf-card, .guide-row'));
+    } else if (link.hash && link.pathname === location.pathname) {
+      highlightHashGuide();
+    }
+  });
   const select = document.querySelector('#country');
   if (!select) return;
   select.disabled = false;

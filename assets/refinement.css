@@ -12,3 +12,6 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid #9cc
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 
 .coming-soon-header{padding:70px 0 30px;max-width:760px}.coming-soon-header h1{margin-bottom:28px}.coming-soon-header .coming-soon-label{font-family:Inter,Arial,sans-serif;font-size:23px;color:#e5e5e5;font-weight:600;margin:0 0 16px}.coming-soon-header p{font-size:17px;color:#b5b5b5;line-height:1.65;margin:0 0 12px}.coming-soon-link{display:inline-block;margin-top:18px;padding:12px 22px;background:#2e4f6f;color:white;border-radius:4px;font-size:15px}.coming-soon-link:hover{background:#3a628a;color:white}@media(max-width:767px){.coming-soon-header{padding:42px 0 20px}.coming-soon-header p{font-size:16px}}
+
+/* Brief feedback for PDF guide cards, including anchor arrivals. */
+.pdf-card.highlight,.guide-row.highlight{box-shadow:0 0 0 2px #3a628a,0 0 28px rgba(58,98,138,.55);transition:box-shadow .25s ease}
