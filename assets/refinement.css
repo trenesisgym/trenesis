@@ -15,3 +15,13 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid #9cc
 
 /* Brief feedback for PDF guide cards, including anchor arrivals. */
 .pdf-card.highlight,.guide-row.highlight{box-shadow:0 0 0 2px #3a628a,0 0 28px rgba(58,98,138,.55);transition:box-shadow .25s ease}
+
+/* Compact country control, with the native accessible menu retained. */
+.country-picker{flex-shrink:0}
+.country-picker label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.country-picker select{appearance:none;-webkit-appearance:none;width:142px;max-width:142px;min-height:42px;padding:10px 34px 10px 13px;border:1px solid #30363c;border-radius:10px;background-color:#171b1f;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%2399a7b5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;color:#e4e8ec;font-size:13px;font-weight:500;line-height:20px;box-shadow:0 1px 2px #0002;transition:border-color .18s,background-color .18s,box-shadow .18s}
+.country-picker select:hover{background-color:#1c2228;border-color:#52677a}
+.country-picker select:focus-visible{outline:2px solid #739cc5;outline-offset:3px;border-color:#739cc5;box-shadow:0 0 0 4px #3a628a20}
+@media(max-width:800px){.country-picker select{width:132px;max-width:132px;padding-left:10px;font-size:12px}.site-header .nav-wrap{column-gap:10px}}
+@media(max-width:380px){.country-picker select{width:119px;max-width:119px;padding-right:27px;background-position:right 7px center}.site-header .nav-wrap{width:calc(100% - 28px);column-gap:7px}}
+@media(prefers-reduced-motion:reduce){.country-picker select{transition:none}}
