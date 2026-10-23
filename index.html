@@ -30,7 +30,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #4ade80;
+      background: #739cc5;
       flex-shrink: 0;
     }
     .announce a { color: #aaa; text-decoration: underline; }
@@ -330,38 +330,18 @@
     .socials img:hover { opacity: 1; }
     .footer-divider { margin: 44px 0 14px; }
   </style>
-</head>
+<link rel="stylesheet" href="assets/refinement.css"><script defer src="assets/catalogs.js"></script><script defer src="assets/site.js"></script></head>
 
-<body>
+<body><a class="skip" href="#main">Skip to content</a>
 
 <div class="announce">
   <div class="announce-dot"></div>
   4 free PDF guides now available — <a href="#guides">download here</a>
 </div>
 
-<nav>
-  <a href="index.html" class="brand">
-    <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
-    <span>TRENESIS</span>
-  </a>
-  <div class="nav-links">
-    <a href="index.html" class="active">Home</a>
-    <a href="training.html">Training</a>
-    <a href="nutrition.html">Nutrition</a>
-    <a href="products.html">Products</a>
-  </div>
-  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu" id="mobile-menu">
-  <a href="index.html" class="active">Home</a>
-  <a href="training.html">Training</a>
-  <a href="nutrition.html">Nutrition</a>
-  <a href="products.html">Products</a>
-</div>
+<header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html" aria-label="Trenesis home"><img src="https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Trenesis%20Logo%20Circle.png" alt="" width="40" height="40"><span>TRENESIS</span></a><button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu <span aria-hidden="true">☰</span></button><nav id="navigation" aria-label="Main navigation"><a href="index.html" aria-current="page">Home</a><a href="training.html">Training</a><a href="nutrition.html">Nutrition</a><a href="products.html">Products</a></nav><div class="country-picker"><label for="country">Country</label><select disabled id="country" aria-describedby="country-hint"><option value="GLOBAL">🌐 Other</option><option value="US">🇺🇸 USA</option><option value="IN">🇮🇳 India</option><option value="DE">🇩🇪 Germany</option><option value="GB">🇬🇧 UK</option><option value="FR">🇫🇷 France</option><option value="CA">🇨🇦 Canada</option><option value="IT">🇮🇹 Italy</option><option value="ES">🇪🇸 Spain</option><option value="AU">🇦🇺 Australia</option><option value="BE">🇧🇪 Belgium</option><option value="BR">🇧🇷 Brazil</option><option value="EG">🇪🇬 Egypt</option><option value="IE">🇮🇪 Ireland</option><option value="JP">🇯🇵 Japan</option><option value="MX">🇲🇽 Mexico</option><option value="NL">🇳🇱 Netherlands</option><option value="PL">🇵🇱 Poland</option><option value="SA">🇸🇦 Saudi Arabia</option><option value="SG">🇸🇬 Singapore</option><option value="SE">🇸🇪 Sweden</option><option value="TR">🇹🇷 Turkey</option><option value="AE">🇦🇪 UAE</option></select><span id="country-hint" class="sr-only">Select your country. Your choice is remembered on this device.</span></div></div></header>
 
-<div class="container">
+<main id="main" class="container" tabindex="-1">
 
   <!-- HERO -->
   <header>
@@ -376,7 +356,7 @@
 
     <a class="goal-card" href="training.html">
       <div class="goal-icon">
-        <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Biceps.png?raw=true" width="27" height="27" style="object-fit:contain;">
+        <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Biceps.png?raw=true" width="27" height="27" style="object-fit:contain;" alt="">
       </div>
       <h3>Train harder</h3>
       <p>Strength training and cardio fundamentals that actually work — progressive overload, exercise selection, recovery.</p>
@@ -385,7 +365,7 @@
 
     <a class="goal-card" href="nutrition.html">
       <div class="goal-icon">
-        <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Apple.png?raw=true" width="27" height="27" style="object-fit:contain;">
+        <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Apple.png?raw=true" width="27" height="27" style="object-fit:contain;" alt="">
       </div>
       <h3>Eat smarter</h3>
       <p>Understand macros, calories &amp; what to actually eat to support your training and goals.</p>
@@ -401,8 +381,8 @@
         </svg>
       </div>
       <h3>Get equipped</h3>
-      <p>Equipment, supplements &amp; accessories — only what's actually worth buying.</p>
-      <span class="goal-cta">Browse products <span>→</span></span>
+      <p>Practical advice on equipment, supplements &amp; accessories to support your training.</p>
+      <span class="goal-cta">Read recommendations <span>→</span></span>
     </a>
 
   </div>
@@ -425,7 +405,7 @@
   <div class="section-header with-top-margin" id="guides"><h2>Free Guides</h2><div class="line"></div></div>
   <div class="guides-list">
 
-    <a class="guide-row" href="https://trenesisgym.github.io/trenesis/pdfs/strength-training.pdf" target="_blank">
+    <a class="guide-row" href="pdfs/strength-training.pdf" target="_blank" rel="noopener noreferrer">
       <div class="guide-row-left">
         <svg width="16" height="16" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
@@ -445,7 +425,7 @@
       </span>
     </a>
 
-    <a class="guide-row" href="https://trenesisgym.github.io/trenesis/pdfs/cardio.pdf" target="_blank">
+    <a class="guide-row" href="pdfs/cardio.pdf" target="_blank" rel="noopener noreferrer">
       <div class="guide-row-left">
         <svg width="16" height="16" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
@@ -465,7 +445,7 @@
       </span>
     </a>
 
-    <a class="guide-row" href="https://trenesisgym.github.io/trenesis/pdfs/nutrition-basics.pdf" target="_blank">
+    <a class="guide-row" href="pdfs/nutrition-basics.pdf" target="_blank" rel="noopener noreferrer">
       <div class="guide-row-left">
         <svg width="16" height="16" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
@@ -485,7 +465,7 @@
       </span>
     </a>
 
-    <a class="guide-row" href="https://trenesisgym.github.io/trenesis/pdfs/meal-planning.pdf" target="_blank">
+    <a class="guide-row" href="pdfs/meal-planning.pdf" target="_blank" rel="noopener noreferrer">
       <div class="guide-row-left">
         <svg width="16" height="16" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
@@ -510,24 +490,15 @@
   <footer>
     <div class="line footer-divider"></div>
     <div class="socials">
-      <a href="https://www.instagram.com/trenesisgym/" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true"></a>
-      <a href="https://www.tiktok.com/@trenesis.gym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/TikTok%20Logo.png?raw=true"></a>
-      <a href="https://www.youtube.com/@TrenesisGym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Shorts%20Logo.png?raw=true"></a>
+      <a aria-label="Instagram" href="https://www.instagram.com/trenesisgym/" target="_blank" rel="noopener noreferrer"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true" alt=""></a>
+      <a aria-label="TikTok" href="https://www.tiktok.com/@trenesis.gym" target="_blank" rel="noopener noreferrer"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/TikTok%20Logo.png?raw=true" alt=""></a>
+      <a aria-label="YouTube" href="https://www.youtube.com/@TrenesisGym" target="_blank" rel="noopener noreferrer"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Shorts%20Logo.png?raw=true" alt=""></a>
     </div>
   </footer>
 
-</div>
+</main>
 
-<script>
-  // Hamburger menu
-  const hamburger = document.querySelector('.hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  hamburger.addEventListener('click', () => {
-    const open = mobileMenu.classList.toggle('open');
-    hamburger.classList.toggle('open', open);
-    hamburger.setAttribute('aria-expanded', open);
-  });
-</script>
+
 
 </body>
 </html>

@@ -226,32 +226,12 @@
       margin: 44px 0 14px;
     }
   </style>
-</head>
-<body>
+<link rel="stylesheet" href="assets/refinement.css"><script defer src="assets/catalogs.js"></script><script defer src="assets/site.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
 
-<nav>
-  <a href="index.html" class="brand">
-    <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Trenesis%20Logo%20Circle.png?raw=true">
-    <span>TRENESIS</span>
-  </a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="training.html" class="active">Training</a>
-    <a href="nutrition.html">Nutrition</a>
-    <a href="products.html">Products</a>
-  </div>
-  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu" id="mobile-menu">
-  <a href="index.html">Home</a>
-  <a href="training.html" class="active">Training</a>
-  <a href="nutrition.html">Nutrition</a>
-  <a href="products.html">Products</a>
-</div>
+<header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html" aria-label="Trenesis home"><img src="https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Trenesis%20Logo%20Circle.png" alt="" width="40" height="40"><span>TRENESIS</span></a><button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu <span aria-hidden="true">☰</span></button><nav id="navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="training.html" aria-current="page">Training</a><a href="nutrition.html">Nutrition</a><a href="products.html">Products</a></nav><div class="country-picker"><label for="country">Country</label><select disabled id="country" aria-describedby="country-hint"><option value="GLOBAL">🌐 Other</option><option value="US">🇺🇸 USA</option><option value="IN">🇮🇳 India</option><option value="DE">🇩🇪 Germany</option><option value="GB">🇬🇧 UK</option><option value="FR">🇫🇷 France</option><option value="CA">🇨🇦 Canada</option><option value="IT">🇮🇹 Italy</option><option value="ES">🇪🇸 Spain</option><option value="AU">🇦🇺 Australia</option><option value="BE">🇧🇪 Belgium</option><option value="BR">🇧🇷 Brazil</option><option value="EG">🇪🇬 Egypt</option><option value="IE">🇮🇪 Ireland</option><option value="JP">🇯🇵 Japan</option><option value="MX">🇲🇽 Mexico</option><option value="NL">🇳🇱 Netherlands</option><option value="PL">🇵🇱 Poland</option><option value="SA">🇸🇦 Saudi Arabia</option><option value="SG">🇸🇬 Singapore</option><option value="SE">🇸🇪 Sweden</option><option value="TR">🇹🇷 Turkey</option><option value="AE">🇦🇪 UAE</option></select><span id="country-hint" class="sr-only">Select your country. Your choice is remembered on this device.</span></div></div></header>
 
-<div class="container">
+<main id="main" class="container" tabindex="-1">
   <header>
     <h1>Training</h1>
     <p>Training isn’t about finding the perfect program.</p>
@@ -279,7 +259,7 @@
           explained clearly and without fitness industry bullshit.
         </p>
       </div>
-      <a href="pdfs/strength-training.pdf" target="_blank">Open PDF</a>
+      <a href="pdfs/strength-training.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
     </div>
 
     <!-- CARDIO -->
@@ -287,43 +267,26 @@
       <div>
         <h3>Cardio</h3>
         <p>
-          Cardio doesn’t make you skinny.
+          Understand how cardio fits into your training.
           When used correctly, it improves health, recovery, and gym performance.
           Learn how to use cardio to support strength, conditioning, and long‑term progress — without killing your gains.
         </p>
       </div>
-      <a href="pdfs/cardio.pdf" target="_blank">Open PDF</a>
+      <a href="pdfs/cardio.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
     </div>
   </section>
 
   <div class="line footer-divider"></div>
 
   <footer><div class="socials">
-      <a href="https://www.instagram.com/trenesisgym/" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true"></a>
-      <a href="https://www.tiktok.com/@trenesis.gym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/TikTok%20Logo.png?raw=true"></a>
-      <a href="https://www.youtube.com/@TrenesisGym" target="_blank"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Shorts%20Logo.png?raw=true"></a>
+      <a aria-label="Instagram" href="https://www.instagram.com/trenesisgym/" target="_blank" rel="noopener noreferrer"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true" alt=""></a>
+      <a aria-label="TikTok" href="https://www.tiktok.com/@trenesis.gym" target="_blank" rel="noopener noreferrer"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/TikTok%20Logo.png?raw=true" alt=""></a>
+      <a aria-label="YouTube" href="https://www.youtube.com/@TrenesisGym" target="_blank" rel="noopener noreferrer"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Shorts%20Logo.png?raw=true" alt=""></a>
     </div>
   </footer>
-</div>
+</main>
 
-<script>
-  const hash = window.location.hash.replace('#','');
-  if (hash) {
-    const el = document.getElementById(hash);
-    if (el) {
-      el.classList.add('highlight');
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      setTimeout(() => el.classList.remove('highlight'), 3000);
-    }
-  }
-  const hamburger = document.querySelector('.hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  hamburger.addEventListener('click', () => {
-    const open = mobileMenu.classList.toggle('open');
-    hamburger.classList.toggle('open', open);
-    hamburger.setAttribute('aria-expanded', open);
-  });
-</script>
+
 
 </body>
 </html>
