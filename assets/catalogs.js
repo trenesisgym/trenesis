@@ -496,7 +496,7 @@ window.TRENESIS_MARKETS = {
       },
       {
         "name": "Olympic Barbell",
-        "brand": "Chase Fitness",
+        "brand": "Modern Fitness",
         "reason": "An Olympic barbell for a home strength setup. Check the bar length and sleeve diameter against your rack and plates.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/51kfNgZ9KjL._AC_SL1500_.jpg",
