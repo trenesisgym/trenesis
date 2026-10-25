@@ -11,7 +11,8 @@ window.TRENESIS_MARKETS = {
         "group": "Dumbbells & Barbells",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Adjustable%20Dumbbells%202.png",
         "asin": "B0CMXZWJ5R",
-        "url": "https://www.amazon.com/dp/B0CMXZWJ5R?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B0CMXZWJ5R?tag=trenesisgym-20",
+        "guideSection": "dumbbells"
       },
       {
         "name": "Hex Dumbbells",
@@ -20,7 +21,8 @@ window.TRENESIS_MARKETS = {
         "group": "Dumbbells & Barbells",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Dumbbells2.png",
         "asin": "B088BB6TW4",
-        "url": "https://www.amazon.com/dp/B088BB6TW4?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B088BB6TW4?tag=trenesisgym-20",
+        "guideSection": "dumbbells"
       },
       {
         "name": "Olympic Barbell",
@@ -29,7 +31,8 @@ window.TRENESIS_MARKETS = {
         "group": "Dumbbells & Barbells",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Barbell%202.png",
         "asin": "B086KVLBXR",
-        "url": "https://www.amazon.com/dp/B086KVLBXR?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B086KVLBXR?tag=trenesisgym-20",
+        "guideSection": "barbells"
       },
       {
         "name": "EZ Curl Bar",
@@ -38,7 +41,8 @@ window.TRENESIS_MARKETS = {
         "group": "Dumbbells & Barbells",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/EZ%20Bar.png",
         "asin": "B0D91CPG5Z",
-        "url": "https://www.amazon.com/dp/B0D91CPG5Z?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B0D91CPG5Z?tag=trenesisgym-20",
+        "guideSection": "barbells"
       },
       {
         "name": "Olympic Plate",
@@ -47,7 +51,8 @@ window.TRENESIS_MARKETS = {
         "group": "Dumbbells & Barbells",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Olympic%20Plates%204.png",
         "asin": "B0CP6JSHF1",
-        "url": "https://www.amazon.com/dp/B0CP6JSHF1?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B0CP6JSHF1?tag=trenesisgym-20",
+        "guideSection": "barbells"
       },
       {
         "name": "Flat Weight Bench",
@@ -56,7 +61,8 @@ window.TRENESIS_MARKETS = {
         "group": "Benches",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Flat%20Bench.png",
         "asin": "B072Z1WN4S",
-        "url": "https://www.amazon.com/dp/B072Z1WN4S?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B072Z1WN4S?tag=trenesisgym-20",
+        "guideSection": "benches"
       },
       {
         "name": "Adjustable Weight Bench",
@@ -65,7 +71,8 @@ window.TRENESIS_MARKETS = {
         "group": "Benches",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Adjustable%20Bench.png",
         "asin": "B07WDHNKKB",
-        "url": "https://www.amazon.com/dp/B07WDHNKKB?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B07WDHNKKB?tag=trenesisgym-20",
+        "guideSection": "benches"
       },
       {
         "name": "Adjustable Training Bench",
@@ -74,7 +81,8 @@ window.TRENESIS_MARKETS = {
         "group": "Benches",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Adjustable%20Bench%203.png",
         "asin": "B099JZT1WR",
-        "url": "https://www.amazon.com/dp/B099JZT1WR?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B099JZT1WR?tag=trenesisgym-20",
+        "guideSection": "benches"
       },
       {
         "name": "Kettlebell",
@@ -83,7 +91,8 @@ window.TRENESIS_MARKETS = {
         "group": "Kettlebells",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Kettlebell.png",
         "asin": "B0731FZN5J",
-        "url": "https://www.amazon.com/dp/B0731FZN5J?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B0731FZN5J?tag=trenesisgym-20",
+        "guideSection": "kettlebells"
       },
       {
         "name": "Kettle Gryp Converter",
@@ -92,7 +101,8 @@ window.TRENESIS_MARKETS = {
         "group": "Kettlebells",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Kettle%20Gryp.png",
         "asin": "B09WZN4FD2",
-        "url": "https://www.amazon.com/dp/B09WZN4FD2?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B09WZN4FD2?tag=trenesisgym-20",
+        "guideSection": "kettlebells"
       },
       {
         "name": "Doorframe Pull‑Up Bar (Hook)",
@@ -101,7 +111,8 @@ window.TRENESIS_MARKETS = {
         "group": "Calisthenics Equipment",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Pullup%20Bar.png",
         "asin": "B08MY13HYC",
-        "url": "https://www.amazon.com/dp/B08MY13HYC?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B08MY13HYC?tag=trenesisgym-20",
+        "guideSection": "calisthenics"
       },
       {
         "name": "Doorframe Pull-Up Bar (Pressure Mount)",
@@ -110,7 +121,8 @@ window.TRENESIS_MARKETS = {
         "group": "Calisthenics Equipment",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Pullup%20Bar%202.png",
         "asin": "B0BBLHKR76",
-        "url": "https://www.amazon.com/dp/B0BBLHKR76?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B0BBLHKR76?tag=trenesisgym-20",
+        "guideSection": "calisthenics"
       },
       {
         "name": "Dip Station",
@@ -119,7 +131,8 @@ window.TRENESIS_MARKETS = {
         "group": "Calisthenics Equipment",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Dip%20Bar%202.png",
         "asin": "B07XJ46FPN",
-        "url": "https://www.amazon.com/dp/B07XJ46FPN?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B07XJ46FPN?tag=trenesisgym-20",
+        "guideSection": "calisthenics"
       }
     ],
     "supplements": [
@@ -130,7 +143,8 @@ window.TRENESIS_MARKETS = {
         "group": "Protein Powder",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Protein.png",
         "asin": "B000GISU1M",
-        "url": "https://www.amazon.com/dp/B000GISU1M?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B000GISU1M?tag=trenesisgym-20",
+        "guideSection": "protein"
       },
       {
         "name": "Vegan Protein Powder",
@@ -139,7 +153,8 @@ window.TRENESIS_MARKETS = {
         "group": "Protein Powder",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Protein3.png",
         "asin": "B00J074W94",
-        "url": "https://www.amazon.com/dp/B00J074W94?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B00J074W94?tag=trenesisgym-20",
+        "guideSection": "protein"
       },
       {
         "name": "Creatine Monohydrate",
@@ -148,7 +163,8 @@ window.TRENESIS_MARKETS = {
         "group": "Creatine",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Creatine.png",
         "asin": "B002DYIZEE",
-        "url": "https://www.amazon.com/dp/B002DYIZEE?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B002DYIZEE?tag=trenesisgym-20",
+        "guideSection": "creatine"
       }
     ],
     "accessories": [
@@ -159,7 +175,8 @@ window.TRENESIS_MARKETS = {
         "group": "Shakers",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Shaker.png",
         "asin": "B084PVQGH1",
-        "url": "https://www.amazon.com/dp/B084PVQGH1?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B084PVQGH1?tag=trenesisgym-20",
+        "guideSection": "shakers"
       },
       {
         "name": "Shaker Bottle",
@@ -168,7 +185,8 @@ window.TRENESIS_MARKETS = {
         "group": "Shakers",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Shaker2.png",
         "asin": "B07TK681SZ",
-        "url": "https://www.amazon.com/dp/B07TK681SZ?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B07TK681SZ?tag=trenesisgym-20",
+        "guideSection": "shakers"
       },
       {
         "name": "Lifting Wrist Straps",
@@ -177,7 +195,8 @@ window.TRENESIS_MARKETS = {
         "group": "Lifting Straps",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Straps.png",
         "asin": "B07BB3VQ42",
-        "url": "https://www.amazon.com/dp/B07BB3VQ42?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B07BB3VQ42?tag=trenesisgym-20",
+        "guideSection": "straps"
       },
       {
         "name": "Grip Strength Trainer",
@@ -186,7 +205,8 @@ window.TRENESIS_MARKETS = {
         "group": "Grip",
         "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Grip.png",
         "asin": "B095N7DNRH",
-        "url": "https://www.amazon.com/dp/B095N7DNRH?tag=trenesisgym-20"
+        "url": "https://www.amazon.com/dp/B095N7DNRH?tag=trenesisgym-20",
+        "guideSection": "grip"
       }
     ]
   },
@@ -209,7 +229,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/71qry6ryktL._AC_SL1500_.jpg",
         "asin": "B09BCLTHQ4",
         "url": "https://www.amazon.de/dp/B09BCLTHQ4?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "dumbbells"
       },
       {
         "name": "Hex Dumbbells",
@@ -219,7 +240,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/71pkLlznXIS._AC_SL1500_.jpg",
         "asin": "B096569WH4",
         "url": "https://www.amazon.de/dp/B096569WH4?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "dumbbells"
       },
       {
         "name": "Olympic Barbell",
@@ -229,7 +251,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/5162ZIy+JAL._AC_SL1000_.jpg",
         "asin": "B0CTLZNJ9L",
         "url": "https://www.amazon.de/dp/B0CTLZNJ9L?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "barbells"
       },
       {
         "name": "EZ Curl Bar",
@@ -239,7 +262,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/514qvP2yAPL._AC_SL1500_.jpg",
         "asin": "B0DL58CGQP",
         "url": "https://www.amazon.de/dp/B0DL58CGQP?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "barbells"
       },
       {
         "name": "Olympic Plate",
@@ -249,7 +273,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/71P14x1liZL._AC_SL1500_.jpg",
         "asin": "B0B3QRCR3Z",
         "url": "https://www.amazon.de/dp/B0B3QRCR3Z?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "barbells"
       },
       {
         "name": "Flat Weight Bench",
@@ -259,7 +284,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/61jxBmEbBtL._AC_SL1500_.jpg",
         "asin": "B0C9TFRW3G",
         "url": "https://www.amazon.de/dp/B0C9TFRW3G?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "benches"
       },
       {
         "name": "Adjustable Weight Bench",
@@ -269,7 +295,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/71q0WLjRrAL._AC_SL1500_.jpg",
         "asin": "B07DNYSJ8W",
         "url": "https://www.amazon.de/dp/B07DNYSJ8W?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "benches"
       },
       {
         "name": "Adjustable Training Bench",
@@ -279,7 +306,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/61n0RzoOOsL._AC_SL1500_.jpg",
         "asin": "B0DGX9TP6H",
         "url": "https://www.amazon.de/dp/B0DGX9TP6H?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "benches"
       },
       {
         "name": "Kettlebell",
@@ -289,7 +317,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/614JPXrKBeL._AC_SL1500_.jpg",
         "asin": "B0BJLMCGGY",
         "url": "https://www.amazon.de/dp/B0BJLMCGGY?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "kettlebells"
       },
       {
         "name": "Dumbbell-to-Kettlebell Converter",
@@ -299,7 +328,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/51QrUrMSStL._AC_SL1500_.jpg",
         "asin": "B0DGFSPR77",
         "url": "https://www.amazon.de/dp/B0DGFSPR77?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "kettlebells"
       },
       {
         "name": "Doorframe Pull‑Up Bar (Hook)",
@@ -309,7 +339,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/717DLwwCPgL._AC_SL1500_.jpg",
         "asin": "B07V3863WC",
         "url": "https://www.amazon.de/dp/B07V3863WC?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "calisthenics"
       },
       {
         "name": "Doorframe Pull-Up Bar (Pressure Mount)",
@@ -319,7 +350,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/61J1BcTQ5dL._AC_SL1500_.jpg",
         "asin": "B0C88MN138",
         "url": "https://www.amazon.de/dp/B0C88MN138?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "calisthenics"
       },
       {
         "name": "Dip Station",
@@ -329,7 +361,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/61Nap3Mm2nL._AC_SL1500_.jpg",
         "asin": "B09P5FCR99",
         "url": "https://www.amazon.de/dp/B09P5FCR99?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "calisthenics"
       }
     ],
     "supplements": [
@@ -341,7 +374,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/71YWIHMAE9L._AC_SL1500_.jpg",
         "asin": "B0057DVWYI",
         "url": "https://www.amazon.de/dp/B0057DVWYI?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "protein"
       },
       {
         "name": "Vegan Protein Powder",
@@ -351,7 +385,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/61IBF32Y4CL._AC_SL1080_.jpg",
         "asin": "B07GR9YY6X",
         "url": "https://www.amazon.de/dp/B07GR9YY6X?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "protein"
       },
       {
         "name": "Creatine Monohydrate",
@@ -361,7 +396,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/71iSweZzP9L._AC_SL1500_.jpg",
         "asin": "B0DX7DZKKS",
         "url": "https://www.amazon.de/dp/B0DX7DZKKS?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "creatine"
       }
     ],
     "accessories": [
@@ -373,7 +409,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/61R0isAh0wL._AC_SL1500_.jpg",
         "asin": "B0BDLLCWL8",
         "url": "https://www.amazon.de/dp/B0BDLLCWL8?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "shakers"
       },
       {
         "name": "Shaker Bottle",
@@ -383,7 +420,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/51an3j7TU0L._AC_SL1500_.jpg",
         "asin": "B01LSM3GAE",
         "url": "https://www.amazon.de/dp/B01LSM3GAE?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "shakers"
       },
       {
         "name": "Lifting Wrist Straps",
@@ -393,7 +431,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/81P-YfWCq0L._AC_SL1500_.jpg",
         "asin": "B01N6NLP5B",
         "url": "https://www.amazon.de/dp/B01N6NLP5B?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "straps"
       },
       {
         "name": "Adjustable Grip Trainers (Pair)",
@@ -403,7 +442,8 @@ window.TRENESIS_MARKETS = {
         "image": "https://m.media-amazon.com/images/I/71GeS-cehtL._AC_SL1500_.jpg",
         "asin": "B0C2349S9M",
         "url": "https://www.amazon.de/dp/B0C2349S9M?tag=trenesisgym-21",
-        "imageStyle": "catalog-photo"
+        "imageStyle": "catalog-photo",
+        "guideSection": "grip"
       }
     ]
   },
