@@ -97,7 +97,7 @@
         list.append(section);
       }
       const article = document.createElement('article');
-      article.className = 'product';
+      article.className = pick.imageStyle === 'catalog-photo' ? 'product catalog-photo' : 'product';
       const media = document.createElement('a');
       media.className = 'product-image-area';
       media.href = pick.url;
