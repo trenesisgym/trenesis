@@ -1,4 +1,5 @@
 // Separate country catalogs; retailer links use the active local Associates ID.
+// Use original retailer/manufacturer photos with their original backgrounds.
 window.TRENESIS_MARKETS = {
   "US": {
     "name": "United States",
@@ -9,130 +10,143 @@ window.TRENESIS_MARKETS = {
         "brand": "Yes4All",
         "reason": "A compact set for presses, rows and curls. Add a bench when you need more exercise options.",
         "group": "Dumbbells & Barbells",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Adjustable%20Dumbbells%202.png",
+        "image": "https://m.media-amazon.com/images/I/81czF-CuhmL._AC_SL1500_.jpg",
         "asin": "B0CMXZWJ5R",
         "url": "https://www.amazon.com/dp/B0CMXZWJ5R?tag=trenesisgym-20",
-        "guideSection": "dumbbells"
+        "guideSection": "dumbbells",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Hex Dumbbells",
         "brand": "Fitvids",
         "reason": "Fixed hex dumbbells for quick transitions between exercises. Choose the weight that suits your routine.",
         "group": "Dumbbells & Barbells",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Dumbbells2.png",
+        "image": "https://m.media-amazon.com/images/I/81+UhGnNhqL._AC_SL1500_.jpg",
         "asin": "B088BB6TW4",
         "url": "https://www.amazon.com/dp/B088BB6TW4?tag=trenesisgym-20",
-        "guideSection": "dumbbells"
+        "guideSection": "dumbbells",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Olympic Barbell",
         "brand": "RITFIT",
         "reason": "An Olympic barbell for a home strength setup. Check the bar length and sleeve diameter against your rack and plates.",
         "group": "Dumbbells & Barbells",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Barbell%202.png",
+        "image": "https://m.media-amazon.com/images/I/51rY3IMqIZL._AC_SL1500_.jpg",
         "asin": "B086KVLBXR",
         "url": "https://www.amazon.com/dp/B086KVLBXR?tag=trenesisgym-20",
-        "guideSection": "barbells"
+        "guideSection": "barbells",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "EZ Curl Bar",
         "brand": "DILANL",
         "reason": "A curved bar for curls and triceps exercises. Check its sleeve diameter before choosing plates.",
         "group": "Dumbbells & Barbells",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/EZ%20Bar.png",
-        "asin": "B0D91CPG5Z",
-        "url": "https://www.amazon.com/dp/B0D91CPG5Z?tag=trenesisgym-20",
-        "guideSection": "barbells"
+        "image": "https://m.media-amazon.com/images/I/61ClyK1duKL._AC_SL1500_.jpg",
+        "asin": "B0D91DJCK9",
+        "url": "https://www.amazon.com/dp/B0D91DJCK9?tag=trenesisgym-20",
+        "guideSection": "barbells",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Olympic Plate",
         "brand": "CAP",
         "reason": "Plates for gradually adding resistance to an Olympic barbell. Check the selected weight and whether the listing is for one plate or a pair.",
         "group": "Dumbbells & Barbells",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Olympic%20Plates%204.png",
+        "image": "https://m.media-amazon.com/images/I/71rf7AfoJQL._AC_SL1500_.jpg",
         "asin": "B0CP6JSHF1",
         "url": "https://www.amazon.com/dp/B0CP6JSHF1?tag=trenesisgym-20",
-        "guideSection": "barbells"
+        "guideSection": "barbells",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Flat Weight Bench",
         "brand": "Amazon Basics",
         "reason": "A straightforward flat bench for dumbbell presses and seated exercises. Check the total load limit before buying.",
         "group": "Benches",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Flat%20Bench.png",
+        "image": "https://m.media-amazon.com/images/I/611cJ5LuVvL._AC_SL1500_.jpg",
         "asin": "B072Z1WN4S",
         "url": "https://www.amazon.com/dp/B072Z1WN4S?tag=trenesisgym-20",
-        "guideSection": "benches"
+        "guideSection": "benches",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Adjustable Weight Bench",
         "brand": "BARWING",
         "reason": "An adjustable bench for flat and incline exercises. Check its footprint and the combined user-and-weight limit.",
         "group": "Benches",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Adjustable%20Bench.png",
+        "image": "https://m.media-amazon.com/images/I/715y0pdLulL._AC_SL1500_.jpg",
         "asin": "B07WDHNKKB",
         "url": "https://www.amazon.com/dp/B07WDHNKKB?tag=trenesisgym-20",
-        "guideSection": "benches"
+        "guideSection": "benches",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Adjustable Training Bench",
         "brand": "YOLEO",
         "reason": "A folding adjustable bench for a home setup. Check the backrest dimensions and supported positions.",
         "group": "Benches",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Adjustable%20Bench%203.png",
+        "image": "https://m.media-amazon.com/images/I/81HNx-zVV0L._AC_SL1500_.jpg",
         "asin": "B099JZT1WR",
         "url": "https://www.amazon.com/dp/B099JZT1WR?tag=trenesisgym-20",
-        "guideSection": "benches"
+        "guideSection": "benches",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Kettlebell",
         "brand": "Amazon Basics",
         "reason": "A fixed-weight kettlebell for swings, goblet squats and carries. Choose the weight before checkout.",
         "group": "Kettlebells",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Kettlebell.png",
+        "image": "https://m.media-amazon.com/images/I/81uATNTxVeL._AC_SL1500_.jpg",
         "asin": "B0731FZN5J",
         "url": "https://www.amazon.com/dp/B0731FZN5J?tag=trenesisgym-20",
-        "guideSection": "kettlebells"
+        "guideSection": "kettlebells",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Kettle Gryp Converter",
         "brand": "Kettle Gryp",
         "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip. Check the manufacturer’s handle-size and weight limits.",
         "group": "Kettlebells",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Kettle%20Gryp.png",
+        "image": "https://m.media-amazon.com/images/I/91fW5OUNDeL._AC_SL1500_.jpg",
         "asin": "B09WZN4FD2",
         "url": "https://www.amazon.com/dp/B09WZN4FD2?tag=trenesisgym-20",
-        "guideSection": "kettlebells"
+        "guideSection": "kettlebells",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Doorframe Pull‑Up Bar (Hook)",
         "brand": "Ally Peaks",
         "reason": "A hook-style pull-up bar for compatible doorframes. Measure your frame and follow the installation instructions.",
         "group": "Calisthenics Equipment",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Pullup%20Bar.png",
+        "image": "https://m.media-amazon.com/images/I/619ozwh22nS._AC_SL1500_.jpg",
         "asin": "B08MY13HYC",
         "url": "https://www.amazon.com/dp/B08MY13HYC?tag=trenesisgym-20",
-        "guideSection": "calisthenics"
+        "guideSection": "calisthenics",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Doorframe Pull-Up Bar (Pressure Mount)",
         "brand": "BouPower",
         "reason": "A pressure-mounted pull-up bar for compatible doorways. Check mounting requirements and secure it as instructed.",
         "group": "Calisthenics Equipment",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Pullup%20Bar%202.png",
+        "image": "https://m.media-amazon.com/images/I/51zX1Iyzv4L._AC_SL1001_.jpg",
         "asin": "B0BBLHKR76",
         "url": "https://www.amazon.com/dp/B0BBLHKR76?tag=trenesisgym-20",
-        "guideSection": "calisthenics"
+        "guideSection": "calisthenics",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Dip Station",
         "brand": "YOLEO",
         "reason": "A pair of dip bars for dips, supported holds and knee raises. Allow enough floor space around the station.",
         "group": "Calisthenics Equipment",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Dip%20Bar%202.png",
+        "image": "https://m.media-amazon.com/images/I/61SFd6BXGiL._AC_SL1500_.jpg",
         "asin": "B07XJ46FPN",
         "url": "https://www.amazon.com/dp/B07XJ46FPN?tag=trenesisgym-20",
-        "guideSection": "calisthenics"
+        "guideSection": "calisthenics",
+        "imageStyle": "catalog-photo"
       }
     ],
     "supplements": [
@@ -141,30 +155,33 @@ window.TRENESIS_MARKETS = {
         "brand": "Optimum Nutrition",
         "reason": "A whey protein option when you want a convenient addition to meals. Choose your flavour and pack size on the product page.",
         "group": "Protein Powder",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Protein.png",
+        "image": "https://m.media-amazon.com/images/I/71UwaEaQBXL._AC_SL1500_.jpg",
         "asin": "B000GISU1M",
         "url": "https://www.amazon.com/dp/B000GISU1M?tag=trenesisgym-20",
-        "guideSection": "protein"
+        "guideSection": "protein",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Vegan Protein Powder",
         "brand": "Orgain",
         "reason": "A plant-based protein option for people who prefer to avoid dairy. Check the ingredient and allergen list.",
         "group": "Protein Powder",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Protein3.png",
+        "image": "https://m.media-amazon.com/images/I/81X4jJRbBBL._AC_SL1500_.jpg",
         "asin": "B00J074W94",
         "url": "https://www.amazon.com/dp/B00J074W94?tag=trenesisgym-20",
-        "guideSection": "protein"
+        "guideSection": "protein",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Creatine Monohydrate",
         "brand": "Optimum Nutrition",
         "reason": "Unflavoured creatine monohydrate powder. Follow the product label and check the selected pack size.",
         "group": "Creatine",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Creatine.png",
+        "image": "https://m.media-amazon.com/images/I/712VrHndy5L._AC_SL1500_.jpg",
         "asin": "B002DYIZEE",
         "url": "https://www.amazon.com/dp/B002DYIZEE?tag=trenesisgym-20",
-        "guideSection": "creatine"
+        "guideSection": "creatine",
+        "imageStyle": "catalog-photo"
       }
     ],
     "accessories": [
@@ -173,40 +190,44 @@ window.TRENESIS_MARKETS = {
         "brand": "BlenderBottle",
         "reason": "An insulated stainless-steel shaker for mixing drinks on the go. Check the capacity and cleaning instructions.",
         "group": "Shakers",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Shaker.png",
+        "image": "https://m.media-amazon.com/images/I/51hppQxNyWL._AC_SL1050_.jpg",
         "asin": "B084PVQGH1",
         "url": "https://www.amazon.com/dp/B084PVQGH1?tag=trenesisgym-20",
-        "guideSection": "shakers"
+        "guideSection": "shakers",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Shaker Bottle",
         "brand": "BlenderBottle",
         "reason": "A classic shaker with a mixing ball for protein drinks. Check the selected size and colour.",
         "group": "Shakers",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Shaker2.png",
+        "image": "https://m.media-amazon.com/images/I/51Vz9OQZFzL._AC_SL1500_.jpg",
         "asin": "B07TK681SZ",
         "url": "https://www.amazon.com/dp/B07TK681SZ?tag=trenesisgym-20",
-        "guideSection": "shakers"
+        "guideSection": "shakers",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Lifting Wrist Straps",
         "brand": "Gymreapers",
         "reason": "Lifting straps for pulling exercises when grip is the limiting factor. Practise the wrap before using heavier loads.",
         "group": "Lifting Straps",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Straps.png",
+        "image": "https://m.media-amazon.com/images/I/61+UlXddzxL._AC_SL1000_.jpg",
         "asin": "B07BB3VQ42",
         "url": "https://www.amazon.com/dp/B07BB3VQ42?tag=trenesisgym-20",
-        "guideSection": "straps"
+        "guideSection": "straps",
+        "imageStyle": "catalog-photo"
       },
       {
         "name": "Grip Strength Trainer",
         "brand": "AIXPI",
         "reason": "An adjustable hand gripper for dedicated grip practice. Choose resistance you can control through the full movement.",
         "group": "Grip",
-        "image": "https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Grip.png",
+        "image": "https://m.media-amazon.com/images/I/71CuGJL+HiS._AC_SL1500_.jpg",
         "asin": "B095N7DNRH",
         "url": "https://www.amazon.com/dp/B095N7DNRH?tag=trenesisgym-20",
-        "guideSection": "grip"
+        "guideSection": "grip",
+        "imageStyle": "catalog-photo"
       }
     ]
   },
