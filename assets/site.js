@@ -76,24 +76,49 @@
     if (!title || !detail || !list) return;
     const code = valid(select.value) ? select.value : 'GLOBAL';
     const market = markets[code];
-    const picks = category === 'all' ? [] : (market[category] || []);
+    const picks = category === 'all' ? ['equipment', 'supplements', 'accessories'].flatMap(c => market[c] || []) : (market[category] || []);
     list.replaceChildren();
-    title.textContent = code === 'GLOBAL' ? 'Country-specific product recommendations are being updated.' : picks.length ? `Recommendations for ${market.name}` : `Product recommendations for ${market.name} are being updated.`;
-    detail.textContent = '';
-    if (picks.length) {
-      detail.textContent = 'Read why each item is included and consider the trade-off. No retailer links are live.';
-      for (const pick of picks) {
-        const article = document.createElement('article');
-        article.className = 'source-note';
-        const name = document.createElement('h2');
-        name.textContent = pick.name;
-        const reason = document.createElement('p');
-        reason.textContent = pick.reason;
-        const tradeoff = document.createElement('p');
-        tradeoff.textContent = `Trade-off: ${pick.tradeoff}`;
-        article.append(name, reason, tradeoff);
-        list.append(article);
+    title.textContent = picks.length ? `Product picks for ${market.name}` : code === 'GLOBAL' ? 'Choose your country to see local product picks.' : `Product picks for ${market.name} are coming soon.`;
+    detail.textContent = picks.length ? category === 'all' ? `${picks.length} picks across equipment, supplements and accessories. Explore a category below.` : 'Check the current price, options and delivery on Amazon. Affiliate links may earn us a commission at no extra cost to you.' : 'Our USA and Germany catalogs are available now. You can still explore the buying advice and free guides.';
+    document.querySelectorAll('.affiliate-disclosure').forEach(el => { el.hidden = !picks.length; });
+    if (category === 'all') return;
+    let group;
+    let grid;
+    for (const pick of picks) {
+      if (pick.group !== group) {
+        group = pick.group;
+        const section = document.createElement('section');
+        section.className = 'product-category';
+        const heading = document.createElement('h2');
+        heading.textContent = group;
+        grid = document.createElement('div');
+        grid.className = 'product-grid';
+        section.append(heading, grid);
+        list.append(section);
       }
+      const article = document.createElement('article');
+      article.className = 'product';
+      const media = document.createElement('a');
+      media.className = 'product-image-area';
+      media.href = pick.url;
+      media.target = '_blank';
+      media.rel = 'sponsored noopener';
+      media.setAttribute('aria-label', `${pick.brand} ${pick.name} on Amazon (affiliate link, opens a new tab)`);
+      const image = document.createElement('img');
+      image.src = pick.image;
+      image.alt = `${pick.brand} ${pick.name}`;
+      image.width = 1280; image.height = 720; image.loading = 'lazy';
+      media.append(image);
+      const info = document.createElement('div'); info.className = 'product-info';
+      const brand = document.createElement('p'); brand.className = 'brand-name'; brand.textContent = pick.brand;
+      const name = document.createElement('h3'); name.className = 'product-name'; name.textContent = pick.name;
+      const reason = document.createElement('p'); reason.className = 'product-desc'; reason.textContent = pick.reason;
+      info.append(brand, name, reason);
+      if (pick.variantNote) { const note = document.createElement('p'); note.className = 'variant-note'; note.textContent = pick.variantNote; info.append(note); }
+      const link = document.createElement('a'); link.className = 'amazon-btn'; link.href = pick.url;
+      link.target = '_blank'; link.rel = 'sponsored noopener'; link.textContent = code === 'DE' ? 'View on Amazon.de ↗' : 'View on Amazon.com ↗';
+      const label = document.createElement('span'); label.className = 'affiliate-label'; label.textContent = 'Affiliate link';
+      info.append(link, label); article.append(media, info); grid.append(article);
     }
   }
   render();
