@@ -80,7 +80,7 @@
     list.replaceChildren();
     document.querySelectorAll('.inline-picks').forEach(el => el.remove());
     title.textContent = picks.length ? `Examples for ${market.name}` : code === 'GLOBAL' ? 'Choose your country to see local product examples.' : `Product examples for ${market.name} are coming soon.`;
-    detail.textContent = picks.length ? category === 'all' ? 'Start with a buying guide. Relevant product examples follow each recommendation.' : 'Product examples appear alongside the advice below. Check current options and delivery on Amazon.' : 'The buying advice is available for everyone. Local product examples are currently available for the USA and Germany.';
+    detail.textContent = picks.length ? category === 'all' ? 'Start with a buying guide. Relevant product examples follow each recommendation.' : 'Product examples appear alongside the advice below. Check current options and delivery on Amazon.' : 'The buying advice is available for everyone. Choose an available country catalog to explore local product examples.';
     document.querySelectorAll('.affiliate-disclosure').forEach(el => { el.hidden = !picks.length; });
     if (category === 'all') return;
     const sections = new Map();
@@ -120,7 +120,7 @@
       info.append(brand, name, reason);
       if (pick.variantNote) { const note = document.createElement('p'); note.className = 'variant-note'; note.textContent = pick.variantNote; info.append(note); }
       const link = document.createElement('a'); link.className = 'amazon-btn'; link.href = pick.url;
-      link.target = '_blank'; link.rel = 'sponsored noopener'; link.textContent = code === 'DE' ? 'Details at Amazon.de ↗' : 'Details at Amazon.com ↗';
+      link.target = '_blank'; link.rel = 'sponsored noopener'; link.textContent = `Details at ${new URL(pick.url).hostname.replace('www.', '')} ↗`;
       const label = document.createElement('span'); label.className = 'affiliate-label'; label.textContent = 'Affiliate link';
       info.append(link, label); article.append(media, info); examples.append(article);
     }
