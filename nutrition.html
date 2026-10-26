@@ -226,7 +226,17 @@
       .pdf-card p { font-size: 14px; }
     }
   </style>
-<link rel="stylesheet" href="assets/refinement.css?v=20261025-local-markets"><script defer src="assets/catalogs.js?v=20261025-local-markets"></script><script defer src="assets/site.js?v=20261025-local-markets"></script></head>
+<link rel="stylesheet" href="assets/refinement.css?v=20261026-fresh-content"><script defer src="assets/catalogs.js?v=20261026-fresh-content"></script><script defer src="assets/site.js?v=20261026-fresh-content"></script><script>
+// Revalidate future visits without interrupting the page being read.
+if ('serviceWorker' in navigator && window.isSecureContext) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register(new URL('sw.js', document.baseURI), {
+      updateViaCache: 'none'
+    }).catch(() => { /* The website also works without service workers. */ });
+  }, { once: true });
+}
+</script>
+</head>
 <body><a class="skip" href="#main">Skip to content</a>
 
 <header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html" aria-label="Trenesis home"><img src="https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Trenesis%20Logo%20Circle.png" alt="" width="40" height="40"><span>TRENESIS</span></a><button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu <span aria-hidden="true">☰</span></button><nav id="navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="training.html">Training</a><a href="nutrition.html" aria-current="page">Nutrition</a><a href="products.html">Products</a></nav><div class="country-picker"><label for="country">Country</label><select disabled id="country" aria-describedby="country-hint"><option value="GLOBAL">🌐 Other</option><option value="US">🇺🇸 USA</option><option value="IN">🇮🇳 India</option><option value="DE">🇩🇪 Germany</option><option value="GB">🇬🇧 UK</option><option value="FR">🇫🇷 France</option><option value="CA">🇨🇦 Canada</option><option value="AU">🇦🇺 Australia</option><option value="IT">🇮🇹 Italy</option><option value="ES">🇪🇸 Spain</option></select><span id="country-hint" class="sr-only">Select your country. Your choice is remembered on this device.</span></div></div></header>

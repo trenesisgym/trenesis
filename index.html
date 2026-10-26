@@ -330,7 +330,17 @@
     .socials img:hover { opacity: 1; }
     .footer-divider { margin: 44px 0 14px; }
   </style>
-<link rel="stylesheet" href="assets/refinement.css?v=20261025-local-markets"><script defer src="assets/catalogs.js?v=20261025-local-markets"></script><script defer src="assets/site.js?v=20261025-local-markets"></script></head>
+<link rel="stylesheet" href="assets/refinement.css?v=20261026-fresh-content"><script defer src="assets/catalogs.js?v=20261026-fresh-content"></script><script defer src="assets/site.js?v=20261026-fresh-content"></script><script>
+// Revalidate future visits without interrupting the page being read.
+if ('serviceWorker' in navigator && window.isSecureContext) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register(new URL('sw.js', document.baseURI), {
+      updateViaCache: 'none'
+    }).catch(() => { /* The website also works without service workers. */ });
+  }, { once: true });
+}
+</script>
+</head>
 
 <body><a class="skip" href="#main">Skip to content</a>
 
