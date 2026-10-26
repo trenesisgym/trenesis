@@ -19,7 +19,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Hex Dumbbells",
         "brand": "CAP",
-        "reason": "Fixed hex dumbbells for quick transitions between exercises. Choose the weight that suits your routine.",
+        "reason": "Fixed hex dumbbells for quick transitions between exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/81MmP51BrpL._AC_UL320_.jpg",
         "asin": "B0D8RM94QJ",
@@ -30,7 +30,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Olympic Barbell",
         "brand": "CAP",
-        "reason": "An Olympic barbell for a home strength setup. Check the bar length and sleeve diameter against your rack and plates.",
+        "reason": "An Olympic barbell for a home strength setup.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/61p-jII4z8L._AC_UL320_.jpg",
         "asin": "B0BFZFJDSH",
@@ -41,7 +41,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "EZ Curl Bar",
         "brand": "CAP",
-        "reason": "A curved bar for curls and triceps exercises. Check its sleeve diameter before choosing plates.",
+        "reason": "A curved bar for curls and triceps exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/71ZxUiVIfYL._AC_UL320_.jpg",
         "asin": "B0BFBVZ8M7",
@@ -52,7 +52,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Olympic Plate",
         "brand": "CAP",
-        "reason": "Plates for gradually adding resistance to an Olympic barbell. Check the selected weight and whether the listing is for one plate or a pair.",
+        "reason": "Plates for gradually adding resistance to an Olympic barbell.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/71hOy-IzDXL._AC_UL320_.jpg",
         "asin": "B0CLFQ5GG4",
@@ -63,7 +63,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Flat Weight Bench",
         "brand": "Marcy",
-        "reason": "A straightforward flat bench for dumbbell presses and seated exercises. Check the total load limit before buying.",
+        "reason": "A straightforward flat bench for dumbbell presses and seated exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/71Q6hdT4O5L._AC_UL320_.jpg",
         "asin": "B00G44X9D6",
@@ -74,7 +74,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Weight Bench",
         "brand": "FLYBIRD",
-        "reason": "An adjustable bench for flat and incline exercises. Check its footprint and the combined user-and-weight limit.",
+        "reason": "An adjustable bench for flat and incline exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/71q0WLjRrAL._AC_UL320_.jpg",
         "asin": "B07DNYSJ8W",
@@ -85,7 +85,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Training Bench",
         "brand": "NICEPEOPLE",
-        "reason": "A folding adjustable bench for a home setup. Check the backrest dimensions and supported positions.",
+        "reason": "A folding adjustable bench for a home setup.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/719zG2ZrQzL._AC_UL320_.jpg",
         "asin": "B0CTMKNWF7",
@@ -96,7 +96,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Kettlebell",
         "brand": "Amazon Basics",
-        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries. Choose the weight before checkout.",
+        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/71BU2P5yYzL._AC_UL320_.jpg",
         "asin": "B0731DWW5K",
@@ -107,7 +107,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Kettle Gryp Converter",
         "brand": "Kettle Gryp",
-        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip. Check the manufacturer’s handle-size and weight limits.",
+        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/91fW5OUNDeL._AC_UL320_.jpg",
         "asin": "B09WZN4FD2",
@@ -118,7 +118,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull‑Up Bar (Hook)",
         "brand": "AmazeFan",
-        "reason": "A hook-style pull-up bar for compatible doorframes. Measure your frame and follow the installation instructions.",
+        "reason": "A hook-style pull-up bar for compatible doorframes.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/71RE8expAlL._AC_UL320_.jpg",
         "asin": "B07KCS7G8G",
@@ -129,7 +129,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull-Up Bar (Pressure Mount)",
         "brand": "Sportneer",
-        "reason": "A pressure-mounted pull-up bar for compatible doorways. Check mounting requirements and secure it as instructed.",
+        "reason": "A pressure-mounted pull-up bar for compatible doorways.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/61jjTiTLmsL._AC_UL320_.jpg",
         "asin": "B0DD37TYC2",
@@ -140,7 +140,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Dip Station",
         "brand": "Sportsroyals",
-        "reason": "A pair of dip bars for dips, supported holds and knee raises. Allow enough floor space around the station.",
+        "reason": "A pair of dip bars for dips, supported holds and knee raises.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/61erk5lUIYL._AC_UL320_.jpg",
         "asin": "B0D91SLKJ8",
@@ -153,7 +153,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Gold Standard Whey — Vanilla Ice Cream",
         "brand": "Optimum Nutrition",
-        "reason": "A 2 lb vanilla whey protein powder. Check the milk ingredients and serving information against your dietary preferences.",
+        "reason": "A 2 lb vanilla whey protein powder.",
         "group": "Protein Powder",
         "image": "https://m.media-amazon.com/images/I/71dfm5dwtwL._AC_UL320_.jpg",
         "asin": "B000GISTZ4",
@@ -164,7 +164,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Organic Plant Protein — Vanilla Bean",
         "brand": "Orgain",
-        "reason": "A vanilla plant-protein blend for people who prefer a dairy-free shake. Check the full ingredient list and selected size.",
+        "reason": "A vanilla plant-protein blend for people who prefer a dairy-free shake.",
         "group": "Protein Powder",
         "image": "https://m.media-amazon.com/images/I/711eSL4VeVL._AC_UL320_.jpg",
         "asin": "B00J074W7Q",
@@ -175,7 +175,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Creatine Monohydrate",
         "brand": "Naked Nutrition",
-        "reason": "A 500 g pack of unflavoured creatine monohydrate without additional flavourings. Follow the product label.",
+        "reason": "A 500 g pack of unflavoured creatine monohydrate without additional flavourings.",
         "group": "Creatine",
         "image": "https://m.media-amazon.com/images/I/61KUI1GErsL._AC_UL320_.jpg",
         "asin": "B0B9YMNYWK",
@@ -188,7 +188,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Stainless Steel Shaker",
         "brand": "BlenderBottle",
-        "reason": "A 24 oz stainless-steel shaker with a flip lid and mixing ball. Check the cleaning instructions before washing.",
+        "reason": "A 24 oz stainless-steel shaker with a flip lid and mixing ball.",
         "group": "Shakers",
         "image": "https://m.media-amazon.com/images/I/51hppQxNyWL._AC_UL320_.jpg",
         "asin": "B084PVQGH1",
@@ -256,7 +256,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Hex Dumbbells",
         "brand": "HOMCOM",
-        "reason": "Fixed hex dumbbells for quick transitions between exercises. Choose the weight that suits your routine.",
+        "reason": "Fixed hex dumbbells for quick transitions between exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/81mICfTtnKL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0FQ4QH2FW",
@@ -267,7 +267,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Olympic Barbell",
         "brand": "HQ Germany",
-        "reason": "A compact 170 cm bar with 50 mm sleeves for Olympic plates. Check the distance between your rack supports before choosing this shorter bar.",
+        "reason": "A compact 170 cm bar with 50 mm sleeves for Olympic plates.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/81LsM3ee9WL._AC_SX679_.jpg",
         "asin": "B0FM423RBT",
@@ -278,7 +278,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "EZ Curl Bar",
         "brand": "POWER-XTREME",
-        "reason": "A curved bar for curls and triceps exercises. Check its sleeve diameter before choosing plates.",
+        "reason": "A curved bar for curls and triceps exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/31Sb4xRddxL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B001EZWN8C",
@@ -300,7 +300,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Flat Weight Bench",
         "brand": "FLYBIRD",
-        "reason": "A straightforward flat bench for dumbbell presses and seated exercises. Check the total load limit before buying.",
+        "reason": "A straightforward flat bench for dumbbell presses and seated exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/71DIN6v-MAL._AC_SX679_.jpg",
         "asin": "B09ZP9TMW6",
@@ -311,7 +311,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Weight Bench",
         "brand": "YOLEO",
-        "reason": "An adjustable bench for flat and incline exercises. Check its footprint and the combined user-and-weight limit.",
+        "reason": "An adjustable bench for flat and incline exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/81GBn0uijGL._AC_SX679_.jpg",
         "asin": "B08JLYFX3Q",
@@ -322,7 +322,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Training Bench",
         "brand": "JOROTO",
-        "reason": "A folding adjustable bench for a home setup. Check the backrest dimensions and supported positions.",
+        "reason": "A folding adjustable bench for a home setup.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/71QAQHcTEVL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B09V282W3K",
@@ -333,7 +333,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Kettlebell",
         "brand": "Yes4All",
-        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries. Choose the weight before checkout.",
+        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/71hXoDHErPL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B06XRXJ95X",
@@ -344,7 +344,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Dumbbell-to-Kettlebell Converter",
         "brand": "TAVIEW",
-        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip. Check the manufacturer’s handle-size and weight limits.",
+        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/514Qa5hU6WL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B07W7HRHN3",
@@ -355,7 +355,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull‑Up Bar (Hook)",
         "brand": "NEOLYMP",
-        "reason": "A hook-style pull-up bar for compatible doorframes. Measure your frame and follow the installation instructions.",
+        "reason": "A hook-style pull-up bar for compatible doorframes.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/71BBHeB-EzL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0G3XYGJLP",
@@ -366,7 +366,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull-Up Bar (Pressure Mount)",
         "brand": "RHINOSPORT",
-        "reason": "A pressure-mounted pull-up bar for compatible doorways. Check mounting requirements and secure it as instructed.",
+        "reason": "A pressure-mounted pull-up bar for compatible doorways.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/61DmSafuRiL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0CRKFR8DQ",
@@ -377,7 +377,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Dip Station",
         "brand": "Sportsroyals",
-        "reason": "A pair of dip bars for dips, supported holds and knee raises. Allow enough floor space around the station.",
+        "reason": "A pair of dip bars for dips, supported holds and knee raises.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/612+-YPdXLL._AC_SX679_.jpg",
         "asin": "B0G1TF9BHQ",
@@ -401,7 +401,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Organic Vegan Protein — Natural",
         "brand": "Sunday Natural",
-        "reason": "An unflavoured 1 kg plant-protein blend without added sweeteners. Check the full ingredient and allergen list.",
+        "reason": "An unflavoured 1 kg plant-protein blend without added sweeteners.",
         "group": "Protein Powder",
         "image": "https://m.media-amazon.com/images/I/71CDh+Lw3rL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0GM1JG3GC",
@@ -412,7 +412,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Creatine Monohydrate",
         "brand": "natural elements",
-        "reason": "A 500 g pack of unflavoured creatine monohydrate. Follow the product label and check the selected pack size.",
+        "reason": "A 500 g pack of unflavoured creatine monohydrate.",
         "group": "Creatine",
         "image": "https://m.media-amazon.com/images/I/71zaaBi17fL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0863QGX3P",
@@ -425,7 +425,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Stainless Steel Shaker",
         "brand": "ShakeNext",
-        "reason": "A stainless-steel shaker with a mixing ball and 700 ml measuring scale. Check the stated washing-temperature limit before cleaning.",
+        "reason": "A stainless-steel shaker with a mixing ball and 700 ml measuring scale.",
         "group": "Shakers",
         "image": "https://m.media-amazon.com/images/I/51JvTsdFs-L._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0D2G13QDP",
@@ -458,7 +458,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Grip Trainers (Pair)",
         "brand": "NIYIKOW",
-        "reason": "An adjustable hand gripper for dedicated grip practice. Choose resistance you can control through the full movement.",
+        "reason": "An adjustable hand gripper for dedicated grip practice.",
         "group": "Grip",
         "image": "https://m.media-amazon.com/images/I/71kJCs-yIDL._AC_SX679_.jpg",
         "asin": "B092M58WVY",
@@ -486,7 +486,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Hex Dumbbells",
         "brand": "HOMCOM",
-        "reason": "Fixed hex dumbbells for quick transitions between exercises. Choose the weight that suits your routine.",
+        "reason": "Fixed hex dumbbells for quick transitions between exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/71OIWJZIXXL._AC_UL320_.jpg",
         "asin": "B01F85YU66",
@@ -497,7 +497,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Olympic Barbell",
         "brand": "Chase Fitness",
-        "reason": "An Olympic barbell for a home strength setup. Check the bar length and sleeve diameter against your rack and plates.",
+        "reason": "An Olympic barbell for a home strength setup.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/51vRq0A8J+L._AC_UL320_.jpg",
         "asin": "B0CN3DYT8T",
@@ -508,7 +508,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "EZ Curl Bar",
         "brand": "LAVVON",
-        "reason": "A curved bar for curls and triceps exercises. Check its sleeve diameter before choosing plates.",
+        "reason": "A curved bar for curls and triceps exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/61yOzGchGRL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0CY4GX63H",
@@ -519,7 +519,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Olympic Plate",
         "brand": "GYM MASTER",
-        "reason": "Plates for gradually adding resistance to an Olympic barbell. Check the selected weight and whether the listing is for one plate or a pair.",
+        "reason": "Plates for gradually adding resistance to an Olympic barbell.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/91Ki5K4Ug5L._AC_UL320_.jpg",
         "asin": "B08G57TWN7",
@@ -530,7 +530,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Flat Weight Bench",
         "brand": "Panana",
-        "reason": "A straightforward flat bench for dumbbell presses and seated exercises. Check the total load limit before buying.",
+        "reason": "A straightforward flat bench for dumbbell presses and seated exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/71JKPDZqYaL._AC_UL320_.jpg",
         "asin": "B0D14Q26MB",
@@ -541,7 +541,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Weight Bench",
         "brand": "YOLEO",
-        "reason": "An adjustable bench for flat and incline exercises. Check its footprint and the combined user-and-weight limit.",
+        "reason": "An adjustable bench for flat and incline exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/81pu4FK5uSL._AC_UL320_.jpg",
         "asin": "B08HGJDTC8",
@@ -552,7 +552,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Training Bench",
         "brand": "FitinOne",
-        "reason": "A folding adjustable bench for a home setup. Check the backrest dimensions and supported positions.",
+        "reason": "A folding adjustable bench for a home setup.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/61ZLk49DcfL._AC_UL320_.jpg",
         "asin": "B0CJRGLKQL",
@@ -563,7 +563,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Kettlebell",
         "brand": "NORTHERN",
-        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries. Choose the weight before checkout.",
+        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/51nMA7vCBCL._AC_UL320_.jpg",
         "asin": "B096SK5MJ9",
@@ -574,7 +574,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Dumbbell-to-Kettlebell Converter",
         "brand": "Perfeclan",
-        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip. Check the manufacturer’s handle-size and weight limits.",
+        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/51OkGClrzKL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B08NCX6ZN8",
@@ -585,7 +585,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull‑Up Bar (Hook)",
         "brand": "HAKENO",
-        "reason": "A hook-style pull-up bar for compatible doorframes. Measure your frame and follow the installation instructions.",
+        "reason": "A hook-style pull-up bar for compatible doorframes.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/711Q-JgCw7L._AC_SX300_SY300_QL70_ML2_.jpg",
         "asin": "B0CQQ33ZHL",
@@ -596,7 +596,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull-Up Bar (Pressure Mount)",
         "brand": "Sportneer",
-        "reason": "A pressure-mounted pull-up bar for compatible doorways. Check mounting requirements and secure it as instructed.",
+        "reason": "A pressure-mounted pull-up bar for compatible doorways.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/61gFT3yR0FL._AC_UL320_.jpg",
         "asin": "B09JC86WNK",
@@ -607,7 +607,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Dip Station",
         "brand": "Sportsroyals",
-        "reason": "A pair of dip bars for dips, supported holds and knee raises. Allow enough floor space around the station.",
+        "reason": "A pair of dip bars for dips, supported holds and knee raises.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/61+b7Ygs0kL._AC_UL320_.jpg",
         "asin": "B0G1TF9BHQ",
@@ -631,7 +631,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Vegan Pea Protein — Chocolate Silk",
         "brand": "Protein Works",
-        "reason": "A 1 kg chocolate pea-protein powder for a dairy-free option. Check the ingredient and allergen list.",
+        "reason": "A 1 kg chocolate pea-protein powder for a dairy-free option.",
         "group": "Protein Powder",
         "image": "https://m.media-amazon.com/images/I/71XrjtZWknL._AC_UL320_.jpg",
         "asin": "B07ZCHFQZY",
@@ -642,7 +642,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Creatine Monohydrate",
         "brand": "Bulk",
-        "reason": "A 500 g pack of unflavoured creatine monohydrate. Follow the product label and check the selected size.",
+        "reason": "A 500 g pack of unflavoured creatine monohydrate.",
         "group": "Creatine",
         "image": "https://m.media-amazon.com/images/I/61uTYXdSbHL._AC_UL320_.jpg",
         "asin": "B00SP2ZKW8",
@@ -655,7 +655,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Stainless Steel Shaker",
         "brand": "Bulk × PROMiXX",
-        "reason": "A 700 ml stainless-steel shaker with a removable agitator and silicone sleeve. Check the cleaning instructions before washing.",
+        "reason": "A 700 ml stainless-steel shaker with a removable agitator and silicone sleeve.",
         "group": "Shakers",
         "image": "https://m.media-amazon.com/images/I/51A1EJ-DfsL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0FSS7VRRX",
@@ -688,7 +688,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Grip Trainer",
         "brand": "GRIFEMA",
-        "reason": "An adjustable 5–60 kg hand gripper with a repetition counter. Choose a resistance you can control comfortably.",
+        "reason": "An adjustable 5–60 kg hand gripper with a repetition counter.",
         "group": "Grip",
         "image": "https://m.media-amazon.com/images/I/61CMx+aQqYL._AC_UL320_.jpg",
         "asin": "B0CPSG7CZX",
@@ -716,7 +716,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Hex Dumbbells",
         "brand": "Amazon Basics",
-        "reason": "Fixed hex dumbbells for quick transitions between exercises. Choose the weight that suits your routine.",
+        "reason": "Fixed hex dumbbells for quick transitions between exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/61d2WW+ZZPL._AC_UL320_.jpg",
         "asin": "B0DMDNLJH9",
@@ -727,7 +727,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Olympic Barbell",
         "brand": "Diamond",
-        "reason": "A compact 180 cm bar with 50 mm sleeves. Check the usable grip length against your rack before choosing this shorter bar.",
+        "reason": "A compact 180 cm bar with 50 mm sleeves.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/51XL5F3XOpL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0CWB1WXPY",
@@ -738,7 +738,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "EZ Curl Bar",
         "brand": "Gorilla Sports",
-        "reason": "A curved bar for curls and triceps exercises. Check its sleeve diameter before choosing plates.",
+        "reason": "A curved bar for curls and triceps exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/51OW9otaGOL._AC_UL320_.jpg",
         "asin": "B0BGJVPGL6",
@@ -760,7 +760,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Flat Weight Bench",
         "brand": "FLYBIRD",
-        "reason": "A straightforward flat bench for dumbbell presses and seated exercises. Check the total load limit before buying.",
+        "reason": "A straightforward flat bench for dumbbell presses and seated exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/81OoEdrQ+7L._AC_UL320_.jpg",
         "asin": "B09ZP9TMW6",
@@ -771,7 +771,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Weight Bench",
         "brand": "YOLEO",
-        "reason": "An adjustable bench for flat and incline exercises. Check its footprint and the combined user-and-weight limit.",
+        "reason": "An adjustable bench for flat and incline exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/81pu4FK5uSL._AC_UL320_.jpg",
         "asin": "B08GLYDMSF",
@@ -782,7 +782,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Training Bench",
         "brand": "Amazon Basics",
-        "reason": "A folding adjustable bench for a home setup. Check the backrest dimensions and supported positions.",
+        "reason": "A folding adjustable bench for a home setup.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/61ioOndBfjL._AC_UL320_.jpg",
         "asin": "B0DPHXXW29",
@@ -793,7 +793,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Kettlebell",
         "brand": "Athlyt",
-        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries. Choose the weight before checkout.",
+        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/81dwSp1VMxL._AC_UL320_.jpg",
         "asin": "B0BWNQ3GT8",
@@ -804,7 +804,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Dumbbell-to-Kettlebell Converter",
         "brand": "Perfeclan",
-        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip. Check the manufacturer’s handle-size and weight limits.",
+        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/51OkGClrzKL._AC_UL320_.jpg",
         "asin": "B08NCX6ZN8",
@@ -815,7 +815,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull‑Up Bar (Hook)",
         "brand": "DH FitLife",
-        "reason": "A hook-style pull-up bar for compatible doorframes. Measure your frame and follow the installation instructions.",
+        "reason": "A hook-style pull-up bar for compatible doorframes.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/71H+tRisItL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0FBGYC851",
@@ -826,7 +826,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull-Up Bar (Pressure Mount)",
         "brand": "Eric Flag",
-        "reason": "A pressure-mounted pull-up bar for compatible doorways. Check mounting requirements and secure it as instructed.",
+        "reason": "A pressure-mounted pull-up bar for compatible doorways.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/51WV4kNK-RL._AC_UL320_.jpg",
         "asin": "B0H84HF1WL",
@@ -837,7 +837,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Dip Station",
         "brand": "Sportsroyals",
-        "reason": "A pair of dip bars for dips, supported holds and knee raises. Allow enough floor space around the station.",
+        "reason": "A pair of dip bars for dips, supported holds and knee raises.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/61+b7Ygs0kL._AC_UL320_.jpg",
         "asin": "B0G1TF9BHQ",
@@ -850,7 +850,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Pure Whey Protein — Chocolate",
         "brand": "Bulk",
-        "reason": "A 1 kg chocolate whey concentrate. Check the milk ingredients and serving information before choosing it.",
+        "reason": "A 1 kg chocolate whey concentrate.",
         "group": "Protein Powder",
         "image": "https://m.media-amazon.com/images/I/61--LkblsJL._AC_UL320_.jpg",
         "asin": "B00HF630Z4",
@@ -861,7 +861,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Vegan Protein — Chocolate",
         "brand": "Nature Diet",
-        "reason": "A 900 g chocolate pea-and-hemp protein blend. Check the ingredient and allergen list against your preferences.",
+        "reason": "A 900 g chocolate pea-and-hemp protein blend.",
         "group": "Protein Powder",
         "image": "https://m.media-amazon.com/images/I/61DKpaMDD3L._AC_UL320_.jpg",
         "asin": "B0F1DF74GZ",
@@ -872,7 +872,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Creatine Monohydrate",
         "brand": "Optimum Nutrition",
-        "reason": "A 634 g pack of unflavoured creatine monohydrate. Follow the product label and check the selected size.",
+        "reason": "A 634 g pack of unflavoured creatine monohydrate.",
         "group": "Creatine",
         "image": "https://m.media-amazon.com/images/I/71hIHA1K7QL._AC_UL320_.jpg",
         "asin": "B00T7L20EC",
@@ -885,7 +885,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Stainless Steel Shaker",
         "brand": "Bulk × PROMiXX",
-        "reason": "A 700 ml stainless-steel shaker with a removable agitator and silicone sleeve. Check the cleaning instructions before washing.",
+        "reason": "A 700 ml stainless-steel shaker with a removable agitator and silicone sleeve.",
         "group": "Shakers",
         "image": "https://m.media-amazon.com/images/I/51A1EJ-DfsL._AC_UL320_.jpg",
         "asin": "B0FSS7VRRX",
@@ -918,7 +918,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Grip Trainer",
         "brand": "NIYIKOW",
-        "reason": "An adjustable 10–60 kg hand gripper. Choose resistance you can control through the full movement.",
+        "reason": "An adjustable 10–60 kg hand gripper.",
         "group": "Grip",
         "image": "https://m.media-amazon.com/images/I/71s7FsXjUWL._AC_UL320_.jpg",
         "asin": "B0838G23M1",
@@ -946,7 +946,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Hex Dumbbells",
         "brand": "CAP",
-        "reason": "Fixed hex dumbbells for quick transitions between exercises. Choose the weight that suits your routine.",
+        "reason": "Fixed hex dumbbells for quick transitions between exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/81QeMo5Z2EL._AC_UL320_.jpg",
         "asin": "B0D8RTHJDX",
@@ -957,7 +957,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Olympic Barbell",
         "brand": "CAP",
-        "reason": "A 7 ft Olympic bar for a home strength setup. Check your rack dimensions and use compatible 2-inch plates.",
+        "reason": "A 7 ft Olympic bar for a home strength setup.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/61p-jII4z8L._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0BFZFJDSH",
@@ -968,7 +968,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "EZ Curl Bar",
         "brand": "CAP",
-        "reason": "A curved bar for curls and triceps exercises. Check its sleeve diameter before choosing plates.",
+        "reason": "A curved bar for curls and triceps exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/71ZxUiVIfYL._AC_UL320_.jpg",
         "asin": "B0BFBVZ8M7",
@@ -979,7 +979,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Olympic Plates",
         "brand": "LIONSCOOL",
-        "reason": "Olympic plates for adding resistance gradually. Choose the weight you need and check whether the selected offer contains one plate or a pair.",
+        "reason": "Olympic plates for adding resistance gradually.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/61pHLmyWk7L._AC_UL320_.jpg",
         "asin": "B0BTPKLLQB",
@@ -990,7 +990,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Flat Weight Bench",
         "brand": "Amazon Basics",
-        "reason": "A straightforward flat bench for dumbbell presses and seated exercises. Check the total load limit before buying.",
+        "reason": "A straightforward flat bench for dumbbell presses and seated exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/611cJ5LuVvL._AC_UL320_.jpg",
         "asin": "B072Z1WN4S",
@@ -1001,7 +1001,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Weight Bench",
         "brand": "YOLEO",
-        "reason": "An adjustable bench for flat and incline exercises. Check its footprint and the combined user-and-weight limit.",
+        "reason": "An adjustable bench for flat and incline exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/81HNx-zVV0L._AC_UL320_.jpg",
         "asin": "B099JZT1WR",
@@ -1012,7 +1012,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Training Bench",
         "brand": "Teclor",
-        "reason": "A folding adjustable bench for a home setup. Check the backrest dimensions and supported positions.",
+        "reason": "A folding adjustable bench for a home setup.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/61DAUIhQ8UL._AC_UL320_.jpg",
         "asin": "B0BG32ZGKF",
@@ -1023,7 +1023,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Kettlebell",
         "brand": "Yes4All",
-        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries. Choose the weight before checkout.",
+        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/71GxfTSeuIL._AC_UL320_.jpg",
         "asin": "B06XRCKFZH",
@@ -1034,7 +1034,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Dumbbell-to-Kettlebell Converter",
         "brand": "Manwetye",
-        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip. Check the manufacturer’s handle-size and weight limits.",
+        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/61i-6-GRw-L._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0BQRW8KQM",
@@ -1045,7 +1045,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull‑Up Bar (Hook)",
         "brand": "Ally Peaks",
-        "reason": "A hook-style pull-up bar for compatible doorframes. Measure your frame and follow the installation instructions.",
+        "reason": "A hook-style pull-up bar for compatible doorframes.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/619ozwh22nS._AC_UL320_.jpg",
         "asin": "B08MY13HYC",
@@ -1056,7 +1056,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull-Up Bar (Pressure Mount)",
         "brand": "Sportneer",
-        "reason": "A pressure-mounted pull-up bar for compatible doorways. Check mounting requirements and secure it as instructed.",
+        "reason": "A pressure-mounted pull-up bar for compatible doorways.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/61gFT3yR0FL._AC_UL320_.jpg",
         "asin": "B09JC86WNK",
@@ -1067,7 +1067,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Dip Station",
         "brand": "YOLEO",
-        "reason": "A pair of dip bars for dips, supported holds and knee raises. Allow enough floor space around the station.",
+        "reason": "A pair of dip bars for dips, supported holds and knee raises.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/61SFd6BXGiL._AC_UL320_.jpg",
         "asin": "B07XJ46FPN",
@@ -1102,7 +1102,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Creatine Monohydrate",
         "brand": "Organika",
-        "reason": "Plain creatine monohydrate powder without a flavoured pre-workout blend. Follow the serving instructions on the pack.",
+        "reason": "Plain creatine monohydrate powder without a flavoured pre-workout blend.",
         "group": "Creatine",
         "image": "https://m.media-amazon.com/images/I/71c2EWf1f+L._AC_UL320_.jpg",
         "asin": "B0DCXQVJX2",
@@ -1115,7 +1115,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Stainless Steel Shaker",
         "brand": "BlenderBottle",
-        "reason": "A reusable stainless steel shaker for mixing protein drinks. Check the capacity and cleaning instructions for the selected bottle.",
+        "reason": "A reusable stainless steel shaker for mixing protein drinks.",
         "group": "Shakers",
         "image": "https://m.media-amazon.com/images/I/51g1orcq27L._AC_UL320_.jpg",
         "asin": "B09ZXGY91X",
@@ -1158,13 +1158,6 @@ window.TRENESIS_MARKETS = {
       }
     ]
   },
-  "AU": {
-    "name": "Australia",
-    "currency": "AUD",
-    "equipment": [],
-    "supplements": [],
-    "accessories": []
-  },
   "IT": {
     "name": "Italy",
     "currency": "EUR",
@@ -1172,7 +1165,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Dumbbell Set",
         "brand": "BRAINGAIN",
-        "reason": "A pair of adjustable dumbbells for changing resistance without storing a full rack of fixed weights. Choose the weight range that suits your training.",
+        "reason": "A pair of adjustable dumbbells for changing resistance without storing a full rack of fixed weights.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/41MVQPEBo5L._AC_UL320_.jpg",
         "asin": "B0D96Y9W8Y",
@@ -1183,7 +1176,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Hex Dumbbells",
         "brand": "HOMCOM",
-        "reason": "Fixed hex dumbbells for quick transitions between exercises. Choose the weight that suits your routine.",
+        "reason": "Fixed hex dumbbells for quick transitions between exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/71OIWJZIXXL._AC_UL320_.jpg",
         "asin": "B0CR6FJSWY",
@@ -1194,7 +1187,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Olympic Barbell",
         "brand": "Diamond",
-        "reason": "A 220 cm Olympic bar for a home strength setup. Check your rack dimensions and use compatible 50 mm plates.",
+        "reason": "A 220 cm Olympic bar for a home strength setup.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/512tGVzFopL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0CWB2BDX5",
@@ -1205,7 +1198,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "EZ Curl Bar",
         "brand": "Diamond",
-        "reason": "A curved bar for curls and triceps exercises. Check its sleeve diameter before choosing plates.",
+        "reason": "A curved bar for curls and triceps exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/61ifC+oEY-L._AC_UL320_.jpg",
         "asin": "B0DXKX536B",
@@ -1216,7 +1209,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Olympic Plates",
         "brand": "FFitness",
-        "reason": "Olympic plates for adding resistance gradually. Choose the weight you need and check whether the selected offer contains one plate or a pair.",
+        "reason": "Olympic plates for adding resistance gradually.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/51pTLQLucrL._AC_UL320_.jpg",
         "asin": "B0BL76M689",
@@ -1227,7 +1220,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Flat Weight Bench",
         "brand": "Marcy",
-        "reason": "A straightforward flat bench for dumbbell presses and seated exercises. Check the total load limit before buying.",
+        "reason": "A straightforward flat bench for dumbbell presses and seated exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/61tIYqkFEeL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0752M98QB",
@@ -1238,7 +1231,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Weight Bench",
         "brand": "YOLEO",
-        "reason": "An adjustable bench for flat and incline exercises. Check its footprint and the combined user-and-weight limit.",
+        "reason": "An adjustable bench for flat and incline exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/81GBn0uijGL._AC_UL320_.jpg",
         "asin": "B08JLYFX3Q",
@@ -1249,7 +1242,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Training Bench",
         "brand": "PASYOU",
-        "reason": "A folding adjustable bench for a home setup. Check the backrest dimensions and supported positions.",
+        "reason": "A folding adjustable bench for a home setup.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/61KdqY6rFeL._AC_UL320_.jpg",
         "asin": "B07S7NRZL4",
@@ -1260,7 +1253,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Kettlebell",
         "brand": "unycos",
-        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries. Choose the weight before checkout.",
+        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/71FmKDwuGiL._AC_UL320_.jpg",
         "asin": "B0BSX7R31K",
@@ -1271,7 +1264,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Dumbbell-to-Kettlebell Converter",
         "brand": "TAVIEW",
-        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip. Check the manufacturer’s handle-size and weight limits.",
+        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/514Qa5hU6WL._AC_UL320_.jpg",
         "asin": "B07W7HRHN3",
@@ -1282,7 +1275,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull‑Up Bar (Hook)",
         "brand": "DH FitLife",
-        "reason": "A hook-style pull-up bar for compatible doorframes. Measure your frame and follow the installation instructions.",
+        "reason": "A hook-style pull-up bar for compatible doorframes.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/71qAyJm32uL._AC_UL320_.jpg",
         "asin": "B0CLPG7VQG",
@@ -1293,7 +1286,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull-Up Bar (Pressure Mount)",
         "brand": "Sportneer",
-        "reason": "A pressure-mounted pull-up bar for compatible doorways. Check mounting requirements and secure it as instructed.",
+        "reason": "A pressure-mounted pull-up bar for compatible doorways.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/61gFT3yR0FL._AC_UL320_.jpg",
         "asin": "B09JC86WNK",
@@ -1304,7 +1297,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Dip Station",
         "brand": "Yaheetech",
-        "reason": "A pair of dip bars for dips, supported holds and knee raises. Allow enough floor space around the station.",
+        "reason": "A pair of dip bars for dips, supported holds and knee raises.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/512whM6lmzL._AC_UL320_.jpg",
         "asin": "B09L81CZ9X",
@@ -1317,7 +1310,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Pure Whey Protein",
         "brand": "Bulk",
-        "reason": "A whey concentrate for a convenient protein shake. Choose a flavour you enjoy and check the ingredients for milk and other allergens.",
+        "reason": "A whey concentrate for a convenient protein shake.",
         "group": "Protein Powder",
         "image": "https://m.media-amazon.com/images/I/61orSEHh4HL._AC_UL320_.jpg",
         "asin": "B00HF63AYA",
@@ -1328,7 +1321,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Vegan Protein",
         "brand": "Bulk",
-        "reason": "A plant-based protein powder for a dairy-free shake. Check the ingredients and choose a flavour that works for you.",
+        "reason": "A plant-based protein powder for a dairy-free shake.",
         "group": "Protein Powder",
         "image": "https://m.media-amazon.com/images/I/71fQDzEdIGL._AC_UL320_.jpg",
         "asin": "B0CQRNC7WN",
@@ -1339,7 +1332,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Creatine Monohydrate",
         "brand": "Bandini",
-        "reason": "Plain creatine monohydrate powder without a flavoured pre-workout blend. Follow the serving instructions on the pack.",
+        "reason": "Plain creatine monohydrate powder without a flavoured pre-workout blend.",
         "group": "Creatine",
         "image": "https://m.media-amazon.com/images/I/51lgDhPlIxL._AC_UL320_.jpg",
         "asin": "B0GFDB62R1",
@@ -1352,7 +1345,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Stainless Steel Shaker",
         "brand": "GymBeam",
-        "reason": "A reusable stainless steel shaker for mixing protein drinks. Check the capacity and cleaning instructions for the selected bottle.",
+        "reason": "A reusable stainless steel shaker for mixing protein drinks.",
         "group": "Shakers",
         "image": "https://m.media-amazon.com/images/I/41iZZ9PrhiL._AC_UL320_.jpg",
         "asin": "B0CYLTRGNP",
@@ -1402,7 +1395,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Dumbbell Set",
         "brand": "SONGMICS",
-        "reason": "A pair of adjustable dumbbells for changing resistance without storing a full rack of fixed weights. Choose the weight range that suits your training.",
+        "reason": "A pair of adjustable dumbbells for changing resistance without storing a full rack of fixed weights.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/710Wr9wezSL._AC_UL320_.jpg",
         "asin": "B0GX93Z2PB",
@@ -1413,7 +1406,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Hex Dumbbells",
         "brand": "Amazon Basics",
-        "reason": "Fixed hex dumbbells for quick transitions between exercises. Choose the weight that suits your routine.",
+        "reason": "Fixed hex dumbbells for quick transitions between exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/71wq-phoZmL._AC_UL320_.jpg",
         "asin": "B0DMD4G5XH",
@@ -1424,7 +1417,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Olympic Barbell",
         "brand": "ManiBoom",
-        "reason": "A 220 cm Olympic bar for a home strength setup. Check your rack dimensions and use compatible 50 mm plates.",
+        "reason": "A 220 cm Olympic bar for a home strength setup.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/61ivVFkkjaL._AC_UL320_.jpg",
         "asin": "B0DFR55RP4",
@@ -1435,7 +1428,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "EZ Curl Bar",
         "brand": "ManiBoom",
-        "reason": "A curved bar for curls and triceps exercises. Check its sleeve diameter before choosing plates.",
+        "reason": "A curved bar for curls and triceps exercises.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/71m1xhczIHL._AC_SY300_SX300_QL70_ML2_.jpg",
         "asin": "B0FFJFG43J",
@@ -1446,7 +1439,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Olympic Plates",
         "brand": "ManiBoom",
-        "reason": "Olympic plates for adding resistance gradually. Choose the weight you need and check whether the selected offer contains one plate or a pair.",
+        "reason": "Olympic plates for adding resistance gradually.",
         "group": "Dumbbells & Barbells",
         "image": "https://m.media-amazon.com/images/I/614Hf4AD54L._AC_UL320_.jpg",
         "asin": "B0GFDM7BJ2",
@@ -1457,7 +1450,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Flat Weight Bench",
         "brand": "PASYOU",
-        "reason": "A straightforward flat bench for dumbbell presses and seated exercises. Check the total load limit before buying.",
+        "reason": "A straightforward flat bench for dumbbell presses and seated exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/61jxBmEbBtL._AC_UL320_.jpg",
         "asin": "B0C9TFRW3G",
@@ -1468,7 +1461,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Weight Bench",
         "brand": "YOLEO",
-        "reason": "An adjustable bench for flat and incline exercises. Check its footprint and the combined user-and-weight limit.",
+        "reason": "An adjustable bench for flat and incline exercises.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/71c-zmsrR5L._AC_UL320_.jpg",
         "asin": "B09V8BNQSZ",
@@ -1479,7 +1472,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Adjustable Training Bench",
         "brand": "Mobiclinic",
-        "reason": "A folding adjustable bench for a home setup. Check the backrest dimensions and supported positions.",
+        "reason": "A folding adjustable bench for a home setup.",
         "group": "Benches",
         "image": "https://m.media-amazon.com/images/I/51+TZ+MdQkL._AC_UL320_.jpg",
         "asin": "B0CLRYN7BX",
@@ -1490,7 +1483,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Kettlebell",
         "brand": "unycos",
-        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries. Choose the weight before checkout.",
+        "reason": "A fixed-weight kettlebell for swings, goblet squats and carries.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/71FmKDwuGiL._AC_UL320_.jpg",
         "asin": "B0BSX7R31K",
@@ -1501,7 +1494,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Dumbbell-to-Kettlebell Converter",
         "brand": "TAVIEW",
-        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip. Check the manufacturer’s handle-size and weight limits.",
+        "reason": "A handle that converts compatible dumbbells into a kettlebell-style grip.",
         "group": "Kettlebells",
         "image": "https://m.media-amazon.com/images/I/514Qa5hU6WL._AC_UL320_.jpg",
         "asin": "B07W7HRHN3",
@@ -1512,7 +1505,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull‑Up Bar (Hook)",
         "brand": "DH FitLife",
-        "reason": "A hook-style pull-up bar for compatible doorframes. Measure your frame and follow the installation instructions.",
+        "reason": "A hook-style pull-up bar for compatible doorframes.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/71iLLkeyuBL._AC_UL320_.jpg",
         "asin": "B09D9RFMX8",
@@ -1523,7 +1516,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Doorframe Pull-Up Bar (Pressure Mount)",
         "brand": "ManiBoom",
-        "reason": "A pressure-mounted pull-up bar for compatible doorways. Check mounting requirements and secure it as instructed.",
+        "reason": "A pressure-mounted pull-up bar for compatible doorways.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/71d7Gi0ARsL._AC_UL320_.jpg",
         "asin": "B0DSLM2YFL",
@@ -1534,7 +1527,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Dip Station",
         "brand": "Sportsroyals",
-        "reason": "A pair of dip bars for dips, supported holds and knee raises. Allow enough floor space around the station.",
+        "reason": "A pair of dip bars for dips, supported holds and knee raises.",
         "group": "Calisthenics Equipment",
         "image": "https://m.media-amazon.com/images/I/61+b7Ygs0kL._AC_UL320_.jpg",
         "asin": "B0G1TF9BHQ",
@@ -1547,7 +1540,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Pure Whey Protein",
         "brand": "Bulk",
-        "reason": "A whey concentrate for a convenient protein shake. Choose a flavour you enjoy and check the ingredients for milk and other allergens.",
+        "reason": "A whey concentrate for a convenient protein shake.",
         "group": "Protein Powder",
         "image": "https://m.media-amazon.com/images/I/61--LkblsJL._AC_UL320_.jpg",
         "asin": "B00HF630Z4",
@@ -1558,7 +1551,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Vegan Protein",
         "brand": "HSN",
-        "reason": "A plant-based protein powder for a dairy-free shake. Check the ingredients and choose a flavour that works for you.",
+        "reason": "A plant-based protein powder for a dairy-free shake.",
         "group": "Protein Powder",
         "image": "https://m.media-amazon.com/images/I/614IGWqSHsL._AC_UL320_.jpg",
         "asin": "B076THLHW4",
@@ -1569,7 +1562,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Creatine Monohydrate",
         "brand": "HSN",
-        "reason": "Plain creatine monohydrate powder without a flavoured pre-workout blend. Follow the serving instructions on the pack.",
+        "reason": "Plain creatine monohydrate powder without a flavoured pre-workout blend.",
         "group": "Creatine",
         "image": "https://m.media-amazon.com/images/I/71y9DjRIz4L._AC_UL320_.jpg",
         "asin": "B071W264LM",
@@ -1582,7 +1575,7 @@ window.TRENESIS_MARKETS = {
       {
         "name": "Stainless Steel Shaker",
         "brand": "HSN",
-        "reason": "A reusable stainless steel shaker for mixing protein drinks. Check the capacity and cleaning instructions for the selected bottle.",
+        "reason": "A reusable stainless steel shaker for mixing protein drinks.",
         "group": "Shakers",
         "image": "https://m.media-amazon.com/images/I/51tTbtT5dIL._AC_UL320_.jpg",
         "asin": "B0CC9V39MJ",

@@ -80,7 +80,8 @@
     list.replaceChildren();
     document.querySelectorAll('.inline-picks').forEach(el => el.remove());
     title.textContent = picks.length ? `Examples for ${market.name}` : code === 'GLOBAL' ? 'Choose your country to see local product examples.' : `Product examples for ${market.name} are coming soon.`;
-    detail.textContent = picks.length ? category === 'all' ? 'Start with a buying guide. Relevant product examples follow each recommendation.' : 'Product examples appear alongside the advice below. Check current options and delivery on Amazon.' : 'The buying advice is available for everyone. Choose an available country catalog to explore local product examples.';
+    detail.hidden = picks.length > 0;
+    detail.textContent = picks.length ? '' : 'Choose another country to see available product recommendations.';
     document.querySelectorAll('.affiliate-disclosure').forEach(el => { el.hidden = !picks.length; });
     if (category === 'all') return;
     const sections = new Map();
