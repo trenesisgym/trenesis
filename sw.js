@@ -1,4 +1,4 @@
-// Revalidate pages and code on every visit, like Sortle's no-cache policy.
+// Revalidate pages and code on every visit so returning visitors get the latest version.
 // Scope stays inside this site, including /trenesis/ on GitHub Pages.
 'use strict';
 self.addEventListener('install', event => event.waitUntil(self.skipWaiting()));
