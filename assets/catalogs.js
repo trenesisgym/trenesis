@@ -231,13 +231,6 @@ window.TRENESIS_MARKETS = {
       }
     ]
   },
-  "IN": {
-    "name": "India",
-    "currency": "INR",
-    "equipment": [],
-    "supplements": [],
-    "accessories": []
-  },
   "DE": {
     "name": "Germany",
     "currency": "EUR",

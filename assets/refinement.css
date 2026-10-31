@@ -47,3 +47,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid #9cc
 .product-info .affiliate-label{display:inline;margin-left:10px;color:#818b95;font-size:10px;white-space:nowrap}
 .variant-note{font-size:12px;color:#999fa5;margin:0 0 10px}
 @media(max-width:480px){.inline-picks .product{grid-template-columns:84px minmax(0,1fr);gap:16px;padding:20px 0}.product-image-area{width:84px;height:84px}.product-info .product-name{font-size:15px}.product-info .product-desc{font-size:13px}.product-info .affiliate-label{display:block;margin:5px 0 0}}
+
+/* Footer links on the main pages. */
+.footer-mini{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 24px;margin-top:22px;font-size:13px}
+.footer-mini a{color:#b5b5b5}.footer-mini a:hover{color:#fff}

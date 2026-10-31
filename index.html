@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Trenesis</title>
+  <title>Trenesis | No-nonsense training & nutrition guides</title><meta name="description" content="Free, evidence-based guides to strength training, cardio and nutrition, plus honest equipment and supplement picks. No fluff, just what works."><meta name="theme-color" content="#0F1113"><link rel="canonical" href="https://trenesisgym.github.io/trenesis/"><meta property="og:type" content="website"><meta property="og:site_name" content="Trenesis"><meta property="og:title" content="Trenesis | No-nonsense training & nutrition guides"><meta property="og:description" content="Free, evidence-based guides to strength training, cardio and nutrition, plus honest equipment and supplement picks. No fluff, just what works."><meta property="og:url" content="https://trenesisgym.github.io/trenesis/"><meta property="og:image" content="https://trenesisgym.github.io/trenesis/assets/img/share.jpg"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="assets/img/favicon.png"><link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -35,16 +35,6 @@
     }
     .announce a { color: #aaa; text-decoration: underline; }
     .announce a:hover { color: #fff; }
-
-    /* ── NAV ── */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 48px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
     .brand { display: flex; align-items: center; gap: 14px; }
     .brand img { height: 40px; }
     .brand span {
@@ -53,8 +43,6 @@
       letter-spacing: 2px;
       font-size: 15px;
     }
-    .nav-links a { margin-left: 32px; font-size: 14px; color: #B5B5B5; }
-    .nav-links a.active { color: #FFFFFF; font-weight: 600; }
 
     /* ── CONTAINER ── */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
@@ -171,16 +159,16 @@
     .wide-card h3 { font-family: Inter, sans-serif; font-size: 18px; margin-bottom: 6px; }
     .wide-card p { font-size: 14px; color: #B5B5B5; }
     .strength {
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Build%20Muscle%20Mass.png?raw=true");
+      background-image: url("assets/img/strength.webp");
     }
     .cardio {
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Cardio2.png?raw=true");
+      background-image: url("assets/img/cardio.webp");
     }
     .macros {
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Macros3.png?raw=true");
+      background-image: url("assets/img/macros.webp");
     }
     .meal-planning {
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Meal%20Planning%202.png?raw=true");
+      background-image: url("assets/img/meal-planning.webp");
     }
 
     /* ── FREE GUIDES ── */
@@ -224,49 +212,7 @@
     }
     .guide-row:hover .guide-open { color: #aaa; }
 
-    /* ── MOBILE NAV ── */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none;
-    }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: #E5E5E5;
-      border-radius: 2px;
-      transition: transform 0.25s ease, opacity 0.25s ease;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      background: #141618;
-      border-top: 1px solid #1f2225;
-      padding: 16px 20px;
-      gap: 4px;
-    }
-    .mobile-menu a {
-      font-size: 15px;
-      color: #B5B5B5;
-      padding: 10px 0;
-      border-bottom: 1px solid #1f2225;
-    }
-    .mobile-menu a:last-child { border-bottom: none; }
-    .mobile-menu a.active { color: #FFFFFF; font-weight: 600; }
-    .mobile-menu.open { display: flex; }
-
     @media (max-width: 767px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      nav { padding: 18px 20px; }
       .announce { padding: 8px 20px; }
       .container { padding: 0 20px; }
       header { padding: 60px 0 48px; }
@@ -294,43 +240,12 @@
 
     /* ── FOOTER ── */
     footer { margin: 0 0 56px; text-align: center; }
-    .newsletter-text { color: #B5B5B5; margin-bottom: 24px; font-size: 15px; }
-    .newsletter {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-    }
-    .newsletter input {
-      padding: 14px 16px;
-      width: 260px;
-      background: #15181d;
-      border: 1px solid #2A2D30;
-      color: #fff;
-      border-radius: 4px;
-    }
-    .newsletter button {
-      padding: 14px 24px;
-      background: #2E4F6F;
-      border: none;
-      color: #fff;
-      border-radius: 4px;
-      cursor: pointer;
-      font-family: Inter, sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .newsletter button:hover { background: #3A628A; }
-    .newsletter-status { margin-top: 10px; font-size: 14px; color: #B5B5B5; min-height: 20px; }
-    .newsletter-status.success { color: #6FD99B; }
-    .newsletter-status.error   { color: #FF8F8F; }
     .socials { display: flex; justify-content: center; gap: 28px; }
     .socials img { height: 36px; opacity: 0.85; }
     .socials img:hover { opacity: 1; }
     .footer-divider { margin: 44px 0 14px; }
   </style>
-<link rel="stylesheet" href="assets/refinement.css?v=20261026-cleaner-copy"><script defer src="assets/catalogs.js?v=20261026-cleaner-copy"></script><script defer src="assets/site.js?v=20261026-cleaner-copy"></script><script>
+<link rel="stylesheet" href="assets/refinement.css?v=20261031-relaunch"><script defer src="assets/catalogs.js?v=20261031-relaunch"></script><script defer src="assets/site.js?v=20261031-relaunch"></script><script>
 // Revalidate future visits without interrupting the page being read.
 if ('serviceWorker' in navigator && window.isSecureContext) {
   window.addEventListener('load', () => {
@@ -349,7 +264,7 @@ if ('serviceWorker' in navigator && window.isSecureContext) {
   4 free PDF guides now available — <a href="#guides">download here</a>
 </div>
 
-<header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html" aria-label="Trenesis home"><img src="https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Trenesis%20Logo%20Circle.png" alt="" width="40" height="40"><span>TRENESIS</span></a><button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu <span aria-hidden="true">☰</span></button><nav id="navigation" aria-label="Main navigation"><a href="index.html" aria-current="page">Home</a><a href="training.html">Training</a><a href="nutrition.html">Nutrition</a><a href="products.html">Products</a></nav><div class="country-picker"><label for="country">Country</label><select disabled id="country" aria-describedby="country-hint"><option value="GLOBAL">🌐 Other</option><option value="US">🇺🇸 USA</option><option value="IN">🇮🇳 India</option><option value="DE">🇩🇪 Germany</option><option value="GB">🇬🇧 UK</option><option value="FR">🇫🇷 France</option><option value="CA">🇨🇦 Canada</option><option value="IT">🇮🇹 Italy</option><option value="ES">🇪🇸 Spain</option></select><span id="country-hint" class="sr-only">Select your country. Your choice is remembered on this device.</span></div></div></header>
+<header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html" aria-label="Trenesis home"><img src="assets/img/logo.webp" alt="" width="40" height="40"><span>TRENESIS</span></a><button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu <span aria-hidden="true">☰</span></button><nav id="navigation" aria-label="Main navigation"><a href="index.html" aria-current="page">Home</a><a href="training.html">Training</a><a href="nutrition.html">Nutrition</a><a href="products.html">Products</a></nav><div class="country-picker"><label for="country">Country</label><select disabled id="country" aria-describedby="country-hint"><option value="GLOBAL">🌐 Other</option><option value="US">🇺🇸 USA</option><option value="DE">🇩🇪 Germany</option><option value="GB">🇬🇧 UK</option><option value="FR">🇫🇷 France</option><option value="CA">🇨🇦 Canada</option><option value="IT">🇮🇹 Italy</option><option value="ES">🇪🇸 Spain</option></select><span id="country-hint" class="sr-only">Select your country. Your choice is remembered on this device.</span></div></div></header>
 
 <main id="main" class="container" tabindex="-1">
 
@@ -366,7 +281,7 @@ if ('serviceWorker' in navigator && window.isSecureContext) {
 
     <a class="goal-card" href="training.html">
       <div class="goal-icon">
-        <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Biceps.png?raw=true" width="27" height="27" style="object-fit:contain;" alt="">
+        <img src="assets/img/icon-biceps.webp" width="27" height="27" style="object-fit:contain;" alt="">
       </div>
       <h3>Train harder</h3>
       <p>Strength training and cardio fundamentals that actually work — progressive overload, exercise selection, recovery.</p>
@@ -375,7 +290,7 @@ if ('serviceWorker' in navigator && window.isSecureContext) {
 
     <a class="goal-card" href="nutrition.html">
       <div class="goal-icon">
-        <img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Apple.png?raw=true" width="27" height="27" style="object-fit:contain;" alt="">
+        <img src="assets/img/icon-apple.webp" width="27" height="27" style="object-fit:contain;" alt="">
       </div>
       <h3>Eat smarter</h3>
       <p>Understand macros, calories &amp; what to actually eat to support your training and goals.</p>
@@ -400,15 +315,15 @@ if ('serviceWorker' in navigator && window.isSecureContext) {
   <!-- TRAINING -->
   <div class="section-header"><h2>Training</h2><div class="line"></div></div>
   <section id="training" class="grid wide-grid">
-    <a href="training.html#strength" class="wide-card strength"><div><h3>Strength Training</h3><p>Build strength with proven fundamentals.</p></div></a>
-    <a href="training.html#cardio" class="wide-card cardio"><div><h3>Cardio</h3><p>Improve endurance and overall health.</p></div></a>
+    <a href="strength-training-basics.html" class="wide-card strength"><div><h3>Strength Training</h3><p>Build strength with proven fundamentals.</p></div></a>
+    <a href="cardio-for-lifters.html" class="wide-card cardio"><div><h3>Cardio</h3><p>Improve endurance and overall health.</p></div></a>
   </section>
 
   <!-- NUTRITION -->
   <div class="section-header with-top-margin"><h2>Nutrition</h2><div class="line"></div></div>
   <section class="grid wide-grid">
-    <a href="nutrition.html#nutrition-basics" class="wide-card macros"><div><h3>Macronutrients</h3><p>Protein, carbs &amp; fats explained.</p></div></a>
-    <a href="nutrition.html#meal-planning" class="wide-card meal-planning"><div><h3>Meal Planning</h3><p>Practical nutrition you can stick to.</p></div></a>
+    <a href="carbs-and-fats.html" class="wide-card macros"><div><h3>Macronutrients</h3><p>Protein, carbs &amp; fats explained.</p></div></a>
+    <a href="meal-planning-basics.html" class="wide-card meal-planning"><div><h3>Meal Planning</h3><p>Practical nutrition you can stick to.</p></div></a>
   </section>
 
   <!-- FREE GUIDES -->
@@ -500,10 +415,10 @@ if ('serviceWorker' in navigator && window.isSecureContext) {
   <footer>
     <div class="line footer-divider"></div>
     <div class="socials">
-      <a aria-label="Instagram" href="https://www.instagram.com/trenesisgym/" target="_blank" rel="noopener noreferrer"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true" alt=""></a>
-      <a aria-label="TikTok" href="https://www.tiktok.com/@trenesis.gym" target="_blank" rel="noopener noreferrer"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/TikTok%20Logo.png?raw=true" alt=""></a>
-      <a aria-label="YouTube" href="https://www.youtube.com/@TrenesisGym" target="_blank" rel="noopener noreferrer"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Shorts%20Logo.png?raw=true" alt=""></a>
-    </div>
+      <a aria-label="Instagram" href="https://www.instagram.com/trenesisgym/" target="_blank" rel="noopener noreferrer"><img src="assets/img/instagram.webp" alt=""></a>
+      <a aria-label="TikTok" href="https://www.tiktok.com/@trenesis.gym" target="_blank" rel="noopener noreferrer"><img src="assets/img/tiktok.webp" alt=""></a>
+      <a aria-label="YouTube" href="https://www.youtube.com/@TrenesisGym" target="_blank" rel="noopener noreferrer"><img src="assets/img/youtube-shorts.webp" alt=""></a>
+    </div><nav class="footer-mini" aria-label="Footer"><a href="articles.html">Articles</a><a href="about.html">About</a><a href="privacy.html">Privacy</a></nav>
   </footer>
 
 </main>

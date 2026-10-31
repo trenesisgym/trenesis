@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://trenesisgym.github.io/trenesis/sitemap.xml
