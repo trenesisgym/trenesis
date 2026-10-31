@@ -24,6 +24,9 @@ import sys
 
 import markdown
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import template_parts as T
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = 'https://trenesisgym.github.io/trenesis/'
 VERSION = '20261031-redesign'
@@ -64,7 +67,7 @@ def head(title, desc, path, og_type='website', extra=''):
         '<link rel="icon" href="assets/img/favicon.png"><link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">'
         '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
         '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">'
-        f'<link rel="stylesheet" href="assets/styles.css?v={VERSION}">{extra}'
+        f'<link rel="stylesheet" href="assets/styles.css?v={VERSION}">{extra}{T.FORM_SCRIPT}'
         f'<script defer src="assets/site.js?v={VERSION}"></script>'
         "<script>if('serviceWorker' in navigator&&window.isSecureContext){addEventListener('load',()=>{navigator.serviceWorker.register(new URL('sw.js',document.baseURI),{updateViaCache:'none'}).catch(()=>{})},{once:true})}</script>"
         '</head>'
@@ -72,7 +75,7 @@ def head(title, desc, path, og_type='website', extra=''):
 
 
 def header(current, country=False):
-    items = [('Training', 'training.html'), ('Nutrition', 'nutrition.html'), ('Articles', 'articles.html'), ('Gear', 'products.html'), ('About', 'about.html')]
+    items = [('Training', 'training.html'), ('Nutrition', 'nutrition.html'), ('Articles', 'articles.html'), ('Gear', 'products.html'), ('Program', 'program.html'), ('About', 'about.html')]
     here = ' aria-current="page"'
     links = ''.join(f'<a href="{href}"{here if name == current else ""}>{name}</a>' for name, href in items)
     picker = ''
@@ -86,7 +89,7 @@ def header(current, country=False):
         '<a class="brand" href="index.html" aria-label="Trenesis home"><img src="assets/img/logo.webp" alt="" width="38" height="38"><span>TRENESIS</span></a>'
         f'<nav id="navigation" aria-label="Main navigation">{links}</nav>{picker}'
         '<button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu</button>'
-        '</div></header>'
+        '</div></header>' + T.BANNER
     )
 
 
@@ -97,9 +100,9 @@ def footer():
         '<div class="footer-about"><a class="brand" href="index.html"><img src="assets/img/logo.webp" alt="" width="38" height="38"><span>TRENESIS</span></a>'
         '<p>Free, evidence-based guides to training and nutrition. No hype, just what works.</p></div>'
         '<div class="footer-col"><h2>Learn</h2><ul><li><a href="training.html">Training</a></li><li><a href="nutrition.html">Nutrition</a></li>'
-        '<li><a href="articles.html">All articles</a></li><li><a href="index.html#guides">Free PDF guides</a></li></ul></div>'
+        '<li><a href="articles.html">All articles</a></li><li><a href="home-gym-on-a-budget.html">Home gym on a budget</a></li><li><a href="index.html#guides">Free guides</a></li></ul></div>'
         '<div class="footer-col"><h2>Trenesis</h2><ul><li><a href="about.html">About</a></li><li><a href="products.html">Gear</a></li>'
-        '<li><a href="products.html#approach">How we pick gear</a></li><li><a href="privacy.html">Privacy</a></li></ul></div>'
+        '<li><a href="program.html">Beginner program</a></li><li><a href="work-with-us.html">Work with us</a></li><li><a href="privacy.html">Privacy</a></li></ul></div>'
         f'<div class="footer-col"><h2>Follow</h2><ul>{social}</ul></div></div>'
         f'<div class="footer-note"><span>© <span data-year>{UPDATED.year}</span> Trenesis</span>'
         '<span>Some gear links are affiliate links. We earn a small commission at no extra cost to you.</span></div>'
@@ -213,12 +216,11 @@ def build_home(arts):
         + topic('Training', 'strength.webp', 'Strength training and cardio: principles, programs and exercises.', ['strength', 'cardio'], 'training.html')
         + topic('Nutrition', 'macros.webp', 'Calories, protein and meal planning without the extremes.', ['nutrition', 'meal'], 'nutrition.html')
         + '</div></section>'
-        '<section class="section" id="guides" aria-labelledby="guides-title"><div class="section-head"><h2 id="guides-title">Free PDF guides</h2>'
-        '<p>Every article, collected into four printable guides.</p></div>'
-        f'<ul class="guide-list">{guides}</ul></section>'
+        + T.home_signup(GUIDES) + T.home_program() +
         '<section class="section" aria-labelledby="gear-title"><div class="section-head"><h2 id="gear-title">Gear that’s worth buying</h2>'
         '<p>Gear doesn’t build a physique, but the right pieces remove friction.</p></div>'
         f'<div class="gear">{gear_html}</div>'
+        '<p class="gear-more">Setting up at home? <a class="text-link" href="home-gym-on-a-budget.html">See complete home gyms at €50, €150 and €500</a></p>'
         '<p class="small-print">Product links are affiliate links, matched to the shops in your country.</p></section>'
         '</div>'
     )
@@ -233,13 +235,13 @@ def build_hub(arts, name):
                  '<p class="lead">Read these in order to train with structure, progress steadily and avoid the mistakes that keep most people stuck.</p>')
         groups = [('strength', 'Strength training', 'Start here if you’re new to lifting.'), ('cardio', 'Cardio', 'How to add cardio without hurting your strength gains.')]
         desc = 'Strength training and cardio fundamentals explained simply: progressive overload, programming, heart-rate zones and free PDF guides.'
-        box = pdf_box(['strength', 'cardio'], 'Prefer it all in one file?', 'Download the complete guides as printable PDFs, free.')
+        box = T.signup('Get the training guides as PDFs', 'The Strength Training and Cardio guides, printable and free. We’ll send them to your inbox.', id_='hub')
     else:
         intro = ('<p class="lead">Training is only half the equation. Without the right nutrition your body can’t adapt, recover or progress.</p>'
                  '<p class="lead">The answer isn’t perfection or extreme dieting. It’s getting a few numbers right and being consistent.</p>')
         groups = [('nutrition', 'Nutrition basics', 'Calories, protein and the other macros.'), ('meal', 'Meal planning', 'Turning your numbers into actual meals.')]
         desc = 'Calories, protein, macros and simple meal planning explained without the hype, with free PDF guides.'
-        box = pdf_box(['nutrition', 'meal'], 'Prefer it all in one file?', 'Download the complete guides as printable PDFs, free.')
+        box = T.signup('Get the nutrition guides as PDFs', 'The Nutrition Basics and Meal Planning guides, printable and free. We’ll send them to your inbox.', id_='hub')
     sections = ''.join(f'<section class="reading" aria-labelledby="g-{g}"><h2 id="g-{g}">{title}</h2><p>{sub}</p>{reading_list(in_guide(arts, g))}</section>'
                        for g, title, sub in groups)
     main = f'<div class="wrap"><header class="page-intro"><h1>{name}</h1>{intro}</header>{sections}{box}</div>'
@@ -259,6 +261,14 @@ def build_articles_index(arts):
                 'articles.html', 'Articles', main)
 
 
+def article_body_with_picks(a):
+    body = render_md(a['body'])
+    if a['slug'] in T.PICKS:
+        box = T.picks_box(a['slug'])
+        body = body.replace('<h2 id="sources">', box + '<h2 id="sources">', 1) if '<h2 id="sources">' in body else body + box
+    return f'<div class="article-body">{body}</div>'
+
+
 def build_article(a, arts):
     g = GUIDES[a['guide']]
     jsonld = ('<script type="application/ld+json">' + json.dumps({
@@ -270,8 +280,8 @@ def build_article(a, arts):
         f'<header class="article-head"><p class="kicker">{g["group"]}</p><h1>{esc(a["title"])}</h1>'
         f'<p class="article-lead">{esc(a["description"])}</p>'
         f'<p class="article-meta"><span>{a["minutes"]} min read</span><span>Updated {UPDATED.strftime("%B %Y")}</span></p></header>'
-        f'<div class="article-body">{render_md(a["body"])}</div>'
-        + pdf_box([a['guide']], f'Get the full {g["name"]}', f'All chapters in one {g["pages"]}-page PDF, free to download and print.')
+        + article_body_with_picks(a)
+        + T.signup(f'Get the full {g["name"]}', f'All chapters in one {g["pages"]}-page PDF, sent to your inbox. Free.', button='Send me the guide', id_='article')
         + '<p class="disclaimer">This article is general education, not medical advice. If you have an injury or a health condition, '
           'check with a doctor or physiotherapist before changing your training or diet.</p>'
         f'<section class="related" aria-labelledby="related-title"><h2 id="related-title">Keep reading</h2>{reading_list([arts[r] for r in a["related"]], numbered=False)}</section>'
@@ -334,6 +344,9 @@ def main():
     for f in sorted((ROOT / 'content' / 'pages').glob('*.md')):
         slug, html_ = build_simple(f)
         out[f'{slug}.html'] = html_
+    out['program.html'] = page('The Trenesis Beginner Program | Trenesis', 'An 8-week, 3-day full-body program for beginners, for the gym or at home.', 'program.html', 'Program', T.program_page())
+    out['home-gym-on-a-budget.html'] = page('A home gym on a budget | Trenesis', 'Three home gym setups at around €50, €150 and €500 that cover everything a beginner needs.', 'home-gym-on-a-budget.html', 'Gear', T.budget_page())
+    out['work-with-us.html'] = page('Work with us | Trenesis', 'How brands can work with Trenesis, and what we will and won’t do.', 'work-with-us.html', '', T.partner_page())
     for name, text in out.items():
         (ROOT / name).write_text(text, encoding='utf-8')
     (ROOT / 'sitemap.xml').write_text(sitemap(), encoding='utf-8')
