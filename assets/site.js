@@ -79,7 +79,7 @@
     const picks = category === 'all' ? ['equipment', 'supplements', 'accessories'].flatMap(c => market[c] || []) : (market[category] || []);
     list.replaceChildren();
     document.querySelectorAll('.inline-picks').forEach(el => el.remove());
-    title.textContent = picks.length ? `Examples for ${market.name}` : code === 'GLOBAL' ? 'Choose your country to see local product examples.' : `Product examples for ${market.name} are coming soon.`;
+    title.textContent = picks.length ? (category === 'all' ? `Showing picks for ${market.name} inside each guide below.` : `Examples for ${market.name}`) : code === 'GLOBAL' ? 'Choose your country to see local product examples.' : `Product examples for ${market.name} are coming soon.`;
     detail.hidden = picks.length > 0;
     detail.textContent = picks.length ? '' : 'Choose another country to see available product recommendations.';
     document.querySelectorAll('.affiliate-disclosure').forEach(el => { el.hidden = !picks.length; });
