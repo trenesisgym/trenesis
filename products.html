@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Products — Coming soon | Trenesis</title>
+  <title>Product recommendations | Trenesis</title><meta name="description" content="Honest picks for home-gym equipment, supplements and accessories, matched to the shops in your country."><meta name="theme-color" content="#0F1113"><link rel="canonical" href="https://trenesisgym.github.io/trenesis/products.html"><meta property="og:type" content="website"><meta property="og:site_name" content="Trenesis"><meta property="og:title" content="Product recommendations | Trenesis"><meta property="og:description" content="Honest picks for home-gym equipment, supplements and accessories, matched to the shops in your country."><meta property="og:url" content="https://trenesisgym.github.io/trenesis/products.html"><meta property="og:image" content="https://trenesisgym.github.io/trenesis/assets/img/share.jpg"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="assets/img/favicon.png"><link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -13,16 +13,6 @@
       color: #E5E5E5;
     }
     a { text-decoration: none; color: inherit; }
-
-    /* NAV */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 48px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
     .brand {
       display: flex;
       align-items: center;
@@ -34,15 +24,6 @@
       font-weight: 700;
       letter-spacing: 2px;
       font-size: 15px;
-    }
-    .nav-links a {
-      margin-left: 32px;
-      font-size: 14px;
-      color: #B5B5B5;
-    }
-    .nav-links a.active {
-      color: #FFFFFF;
-      font-weight: 600;
     }
 
     .container {
@@ -106,17 +87,17 @@
     .equipment {
       grid-column: 1 / -1;
       aspect-ratio: 32 / 9;
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Equipment.png?raw=true");
+      background-image: url("assets/img/equipment.webp");
     }
 
     /* Supplements & Accessories: half width, 16:9 */
     .supplements {
       aspect-ratio: 16 / 9;
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Supps.png?raw=true");
+      background-image: url("assets/img/supplements.webp");
     }
     .accessories {
       aspect-ratio: 16 / 9;
-      background-image: url("https://github.com/trenesisgym/trenesis-assets/blob/main/Accessories.png?raw=true");
+      background-image: url("assets/img/accessories.webp");
     }
 
     .category-content {
@@ -165,49 +146,7 @@
       margin: 44px 0 14px;
     }
 
-    /* ── MOBILE NAV ── */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none;
-    }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: #E5E5E5;
-      border-radius: 2px;
-      transition: transform 0.25s ease, opacity 0.25s ease;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      background: #141618;
-      border-top: 1px solid #1f2225;
-      padding: 16px 20px;
-      gap: 4px;
-    }
-    .mobile-menu a {
-      font-size: 15px;
-      color: #B5B5B5;
-      padding: 10px 0;
-      border-bottom: 1px solid #1f2225;
-    }
-    .mobile-menu a:last-child { border-bottom: none; }
-    .mobile-menu a.active { color: #FFFFFF; font-weight: 600; }
-    .mobile-menu.open { display: flex; }
-
     @media (max-width: 767px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      nav { padding: 18px 20px; }
       .container { padding: 0 20px; }
       body { overflow-x: hidden; }
       header { padding: 60px 0 48px; }
@@ -231,7 +170,7 @@
       .category-content p { font-size: 13px; }
     }
   </style>
-<link rel="stylesheet" href="assets/refinement.css?v=20261026-cleaner-copy"><script defer src="assets/catalogs.js?v=20261026-cleaner-copy"></script><script defer src="assets/site.js?v=20261026-cleaner-copy"></script><script>
+<link rel="stylesheet" href="assets/refinement.css?v=20261031-relaunch"><script defer src="assets/catalogs.js?v=20261031-relaunch"></script><script defer src="assets/site.js?v=20261031-relaunch"></script><script>
 // Revalidate future visits without interrupting the page being read.
 if ('serviceWorker' in navigator && window.isSecureContext) {
   window.addEventListener('load', () => {
@@ -244,11 +183,11 @@ if ('serviceWorker' in navigator && window.isSecureContext) {
 </head>
 <body><a class="skip" href="#main">Skip to content</a>
 
-<header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html" aria-label="Trenesis home"><img src="https://raw.githubusercontent.com/trenesisgym/trenesis-assets/main/Trenesis%20Logo%20Circle.png" alt="" width="40" height="40"><span>TRENESIS</span></a><button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu <span aria-hidden="true">☰</span></button><nav id="navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="training.html">Training</a><a href="nutrition.html">Nutrition</a><a href="products.html" aria-current="page">Products</a></nav><div class="country-picker"><label for="country">Country</label><select disabled id="country" aria-describedby="country-hint"><option value="GLOBAL">🌐 Other</option><option value="US">🇺🇸 USA</option><option value="IN">🇮🇳 India</option><option value="DE">🇩🇪 Germany</option><option value="GB">🇬🇧 UK</option><option value="FR">🇫🇷 France</option><option value="CA">🇨🇦 Canada</option><option value="IT">🇮🇹 Italy</option><option value="ES">🇪🇸 Spain</option></select><span id="country-hint" class="sr-only">Select your country. Your choice is remembered on this device.</span></div></div></header>
+<header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html" aria-label="Trenesis home"><img src="assets/img/logo.webp" alt="" width="40" height="40"><span>TRENESIS</span></a><button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu <span aria-hidden="true">☰</span></button><nav id="navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="training.html">Training</a><a href="nutrition.html">Nutrition</a><a href="products.html" aria-current="page">Products</a></nav><div class="country-picker"><label for="country">Country</label><select disabled id="country" aria-describedby="country-hint"><option value="GLOBAL">🌐 Other</option><option value="US">🇺🇸 USA</option><option value="DE">🇩🇪 Germany</option><option value="GB">🇬🇧 UK</option><option value="FR">🇫🇷 France</option><option value="CA">🇨🇦 Canada</option><option value="IT">🇮🇹 Italy</option><option value="ES">🇪🇸 Spain</option></select><span id="country-hint" class="sr-only">Select your country. Your choice is remembered on this device.</span></div></div></header>
 
 <main id="main" class="container" tabindex="-1">
 <header class="coming-soon-header"><h1>Product Recommendations</h1><p>Equipment, supplements and small essentials for your training. Choose your country to see local picks.</p></header>
-<section class="market-status" data-category="all" aria-label="Local recommendations"><p id="market-title">Choose USA or Germany to browse our product picks.</p><p id="market-detail" role="status" aria-live="polite"></p><div id="local-picks"></div></section>
+<section class="market-status" data-category="all" aria-label="Local recommendations"><p id="market-title">Choose your country to see local picks.</p><p id="market-detail" role="status" aria-live="polite"></p><div id="local-picks"></div></section>
   <section class="category-grid">
     <a href="equipment.html" class="category-card equipment">
       <div class="category-content">
@@ -272,10 +211,10 @@ if ('serviceWorker' in navigator && window.isSecureContext) {
     </a>
   </section><section id="approach" class="editorial-note"><h2>How we choose</h2><p>Practical options selected for different training setups, local availability and value.</p><p class="affiliate-disclosure">As an Amazon Associate we earn from qualifying purchases — at no extra cost to you.</p></section><div class="line footer-divider"></div><footer>
     <div class="socials">
-      <a aria-label="Instagram" href="https://www.instagram.com/trenesisgym/" target="_blank" rel="noopener noreferrer"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Instagram%20Logo.png?raw=true" alt=""></a>
-      <a aria-label="TikTok" href="https://www.tiktok.com/@trenesis.gym" target="_blank" rel="noopener noreferrer"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/TikTok%20Logo.png?raw=true" alt=""></a>
-      <a aria-label="YouTube" href="https://www.youtube.com/@TrenesisGym" target="_blank" rel="noopener noreferrer"><img src="https://github.com/trenesisgym/trenesis-assets/blob/main/Shorts%20Logo.png?raw=true" alt=""></a>
-    </div>
+      <a aria-label="Instagram" href="https://www.instagram.com/trenesisgym/" target="_blank" rel="noopener noreferrer"><img src="assets/img/instagram.webp" alt=""></a>
+      <a aria-label="TikTok" href="https://www.tiktok.com/@trenesis.gym" target="_blank" rel="noopener noreferrer"><img src="assets/img/tiktok.webp" alt=""></a>
+      <a aria-label="YouTube" href="https://www.youtube.com/@TrenesisGym" target="_blank" rel="noopener noreferrer"><img src="assets/img/youtube-shorts.webp" alt=""></a>
+    </div><nav class="footer-mini" aria-label="Footer"><a href="articles.html">Articles</a><a href="about.html">About</a><a href="privacy.html">Privacy</a></nav>
   </footer></main>
 
 
