@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Build the article pages from content/articles/*.md.
+"""Build the article pages from content/articles/*.md and the About and
+Privacy pages from content/pages/*.md.
 
 Usage (from the repository root):
     pip install markdown
@@ -164,6 +165,22 @@ def inject_list(page, arts, guides):
     s = s.replace('<link rel="stylesheet" href="assets/refinement.css', f'<link rel="stylesheet" href="assets/article.css?v={VERSION}"><link rel="stylesheet" href="assets/refinement.css', 1) if 'article.css' not in s else s
     p.write_text(s, encoding='utf-8')
 
+PAGES = ROOT / 'content' / 'pages'
+
+def simple_pages():
+    """about.md and privacy.md: same look as articles, no PDF box or related list.
+    Text in [[double brackets]] is shown highlighted as a gap still to fill in."""
+    for f in sorted(PAGES.glob('*.md')):
+        m = re.match(r'---\n(.*?)\n---\n(.*)', f.read_text(encoding='utf-8'), re.S)
+        meta = dict(line.split(': ', 1) for line in m.group(1).splitlines() if line.strip())
+        body = render_body(m.group(2))
+        body = re.sub(r'\[\[(.*?)\]\]', r'<mark class="todo">\1</mark>', body)
+        page = (head(f'{meta["title"]} | Trenesis', meta['description'], f'{meta["slug"]}.html') + '<body>' + header('') +
+                '<main id="main" tabindex="-1"><article class="article wrap">'
+                f'<header class="article-head"><p class="eyebrow">{meta["eyebrow"]}</p><h1>{esc(meta["title"])}</h1></header>'
+                f'<div class="article-body">{body}</div></article></main>' + FOOTER + '</body></html>\n')
+        (ROOT / f'{meta["slug"]}.html').write_text(page, encoding='utf-8')
+
 def sitemap(arts):
     pages = ['', 'training.html', 'nutrition.html', 'articles.html', 'products.html', 'equipment.html', 'supplements.html',
              'accessories.html', 'about.html'] + [f'{s}.html' for s in ORDER]
@@ -177,6 +194,7 @@ def main():
     (ROOT / 'articles.html').write_text(index_page(arts), encoding='utf-8')
     inject_list('training.html', arts, ['strength', 'cardio'])
     inject_list('nutrition.html', arts, ['nutrition', 'meal'])
+    simple_pages()
     sitemap(arts)
     print(f'built {len(arts)} articles, articles.html, sitemap.xml')
 

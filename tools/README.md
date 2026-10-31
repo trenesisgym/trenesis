@@ -1,7 +1,7 @@
 # Articles
 
 The article pages (`strength-training-basics.html` and the others), `articles.html`,
-the "Read online" lists on `training.html` and `nutrition.html`, and `sitemap.xml`
+the About and Privacy pages (from `content/pages/`), the "Read online" lists on `training.html` and `nutrition.html`, and `sitemap.xml`
 are generated from the Markdown files in `content/articles/`.
 
 To change or add an article:

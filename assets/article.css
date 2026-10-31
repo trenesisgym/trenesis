@@ -66,3 +66,5 @@
   .article-body th,.article-body td{padding:10px 12px}
 }
 @media(prefers-reduced-motion:reduce){.article-card{transition:none}}
+/* Gaps in draft pages that still need real details. */
+mark.todo{background:#3b3115;color:#ffd98a;border-radius:3px;padding:1px 5px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
