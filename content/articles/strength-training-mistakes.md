@@ -16,7 +16,7 @@ If you don't write it down, you won't know whether you're improving. Log every s
 
 ### 2. Ego lifting
 
-Using more weight than you can control takes tension off the target muscle, raises injury risk and trains your ego instead of your body. A controlled 80 kg squat beats a sloppy 120 kg quarter squat.
+Using more weight than you can control takes tension off the target muscle, raises injury risk and trains your ego instead of your body. A controlled 80 kg (175 lb) squat beats a sloppy 120 kg (265 lb) quarter squat.
 
 ### 3. Program hopping
 

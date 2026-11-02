@@ -23,3 +23,17 @@ generated `.html` files directly: the next build overwrites them.
 
 To add an article: copy an existing `.md` file, change its header, and add its slug to
 `ORDER` in `tools/build_site.py` (that list sets the reading order).
+
+## Link-preview images
+
+Each article has its own preview image in `assets/img/og/`, used when the link is shared
+on Instagram, WhatsApp, TikTok and so on. After adding an article, run
+`node tools/make_share_images.js` (needs Node and `npm i playwright`), then rebuild.
+Articles without an image fall back to `assets/img/share.jpg`.
+
+## Calculator
+
+`calculator.html` comes from `tools/calculator.py`. Its numbers follow the articles:
+maintenance = bodyweight x 28-40 kcal/kg by activity, fat loss 10-20% below that,
+muscle gain +200-300 kcal, protein 1.6-2.2 g/kg. It never shows a fat-loss target
+when someone's BMI is under 18.5.

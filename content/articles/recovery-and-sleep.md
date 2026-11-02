@@ -17,7 +17,7 @@ During deep sleep your body releases growth hormone, repairs muscle and lets you
 - Aim for 7–9 hours, and prioritise sleep after heavy training days.
 - Keep a consistent bedtime and wake-up time, including weekends where you can.
 - Put screens away 30–60 minutes before bed; they make it harder to fall asleep.
-- Keep your bedroom cool. Around 17–19 °C works well for most people.
+- Keep your bedroom cool. Around 17–19 °C (63–66 °F) works well for most people.
 - If you struggle to fall asleep, avoid training within 2 hours of bedtime.
 - Go easy on alcohol: even small amounts make sleep lighter and more broken.
 

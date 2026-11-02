@@ -24,7 +24,7 @@ Creatine is the most-studied supplement in sports science and one of the very fe
 
 - **Dose:** 3–5 g a day. No loading phase needed.
 - **Timing:** whenever suits you; it doesn't change the result.
-- **Expect** 1–2 kg of extra bodyweight in the first weeks. That's water stored in your muscles, not fat.
+- **Expect** 1–2 kg (2–4 lb) of extra bodyweight in the first weeks. That's water stored in your muscles, not fat.
 - **Benefits:** a few more reps at a given weight, better recovery between sets and, over time, more strength and muscle.
 - **Buy** plain creatine monohydrate. It's the cheapest and the best-researched form; ignore pricey variants.
 

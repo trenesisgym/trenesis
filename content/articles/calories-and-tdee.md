@@ -22,18 +22,18 @@ A calorie is just a unit of energy. Everything you eat provides some; everything
 
 TDEE (total daily energy expenditure) is the total number of calories you burn in a day, including exercise. A rough starting point:
 
-| Activity level | Daily calories (estimate) |
-| --- | --- |
-| Mostly sitting, little exercise | Bodyweight (kg) × 28–31 |
-| Moderately active (3–4 sessions a week) | Bodyweight (kg) × 32–35 |
-| Very active (5+ sessions a week) | Bodyweight (kg) × 36–40 |
+| Activity level | Using kilograms | Using pounds |
+| --- | --- | --- |
+| Mostly sitting, little exercise | Bodyweight (kg) × 28–31 | Bodyweight (lb) × 13–14 |
+| Moderately active (3–4 sessions a week) | Bodyweight (kg) × 32–35 | Bodyweight (lb) × 14.5–16 |
+| Very active (5+ sessions a week) | Bodyweight (kg) × 36–40 | Bodyweight (lb) × 16.5–18 |
 
-Example: a moderately active 70 kg person lands around 2,240–2,450 kcal a day. You can also use an online TDEE calculator.
+Example: a moderately active 70 kg (155 lb) person lands around 2,240–2,450 kcal a day. Or let our [calorie and protein calculator](calculator.html) do the maths for you.
 
 These numbers are estimates. The best way to fine-tune them is to track what you eat and your bodyweight for 2–3 weeks: if your average weight is stable, you've found your maintenance.
 
 > **Key insight**
-> A deficit or surplus of about 500 kcal a day changes your weight by roughly 0.5 kg a week. Start conservatively: aggressive cuts cost muscle, aggressive surpluses mostly add fat.
+> A deficit or surplus of about 500 kcal a day changes your weight by roughly 0.5 kg (about 1 lb) a week. Start conservatively: aggressive cuts cost muscle, aggressive surpluses mostly add fat.
 
 ## Do you need to bulk?
 

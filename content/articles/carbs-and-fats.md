@@ -23,9 +23,9 @@ Favour unsaturated fats (olive oil, avocado, nuts, seeds and fatty fish) and kee
 | Step | What to do |
 | --- | --- |
 | 1. Calories | Set them for your goal: deficit, maintenance or surplus ([how to](calories-and-tdee.html)). |
-| 2. Protein | 1.6–2.2 g per kg of bodyweight per day ([why](how-much-protein.html)). |
-| 3. Carbs | At least 3–5 g per kg of bodyweight if you train regularly. |
-| 4. Fat | Fill the remaining calories; usually about 0.6–1 g per kg of bodyweight. |
+| 2. Protein | 1.6–2.2 g per kg of bodyweight per day, or 0.7–1 g per lb ([why](how-much-protein.html)). |
+| 3. Carbs | At least 3–5 g per kg (1.4–2.3 g per lb) of bodyweight if you train regularly. |
+| 4. Fat | Fill the remaining calories; usually about 0.6–1 g per kg (0.3–0.45 g per lb) of bodyweight. |
 
 ## Questions everyone asks
 
