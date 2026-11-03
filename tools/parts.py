@@ -95,6 +95,7 @@ FINDER = r'''
   <a class="btn" id="fr-link" href="#">Open the plan</a>
   <h3>Then read</h3>
   <ol class="finder-next" id="fr-next"></ol>
+  <p class="finder-saved">Saved: you’ll find this list under <strong>Your plan</strong> in the corner of every page, with a tick next to everything you’ve read.</p>
 </section>
 </div>
 <script>
@@ -133,11 +134,11 @@ FINDER = r'''
       plan = A.full; why = 'Two full-body workouts, three days a week, with every set and rep written out. The best place to start' + (days === '4' ? '; use your 4th day for easy cardio.' : '.');
     }
     if (place === 'gym' && level === 'new') next.push(A.first);
-    if (place !== 'gym') next.push(A.short);
     next.push(A.calc);
     if (goal === 'muscle') next.push(A.protein);
     if (goal === 'fat') next.push(A.fatloss);
     if (goal === 'fit' || days === '4') next.push(A.cardio);
+    if (place !== 'gym') next.push(A.short);
     if (level === 'new') next.push(A.basics); else next.push(A.exercises);
     document.getElementById('fr-title').textContent = plan[0];
     document.getElementById('fr-why').textContent = why;
@@ -145,6 +146,10 @@ FINDER = r'''
     var ol = document.getElementById('fr-next'); ol.replaceChildren();
     next.slice(0, 4).forEach(function (n) { var li = document.createElement('li'), a = document.createElement('a'); a.href = n[1]; a.textContent = n[0]; a.className = 'text-link'; li.append(a); ol.append(li); });
     box.hidden = false;
+    // Save the result so site.js can show "Your plan" on every page.
+    var steps = [{ title: plan[0], href: plan[1] }].concat(next.slice(0, 4).map(function (n) { return { title: n[0], href: n[1] }; }));
+    try { localStorage.setItem('trenesis.plan.v1', JSON.stringify({ created: Date.now(), steps: steps, done: [] })); } catch (err) {}
+    document.dispatchEvent(new CustomEvent('trenesis:plan'));
     box.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
   });
 })();
@@ -219,6 +224,7 @@ CSS = '''
 .finder-result > p:not(.kicker) { color: var(--muted); margin-bottom: 20px; }
 .finder-result h3 { font-size: 16px; color: var(--muted); margin: 28px 0 8px; }
 .finder-next { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+.finder-saved { margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line-soft); color: var(--muted); font-size: 14px; }
 .start { max-width: 520px; padding-top: 40px; }
 .start-head { text-align: center; }
 .start-head img { margin: 0 auto 14px; border-radius: 50%; }
