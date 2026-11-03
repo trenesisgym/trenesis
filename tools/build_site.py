@@ -29,7 +29,7 @@ import calculator
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = 'https://trenesisgym.github.io/trenesis/'
-VERSION = '20261031-redesign'
+VERSION = '20261103-calc-promo'
 UPDATED = datetime.date(2026, 10, 31)
 
 GUIDES = {

@@ -141,3 +141,55 @@
     render();
   });
 })();
+
+// Calculator suggestion: a small card in the corner, once per visit, after the reader
+// has scrolled halfway or spent 20 seconds on the page. Closing it hides it for 14 days;
+// opening the calculator hides it for 30 days. Never shown on the calculator itself.
+(() => {
+  'use strict';
+  const page = location.pathname.split('/').pop() || 'index.html';
+  if (['calculator.html', 'privacy.html'].includes(page)) return;
+  const KEY = 'trenesis.calc-promo.v1', DAY = 864e5;
+  let store = null;
+  try { store = window.localStorage; sessionStorage.getItem(KEY); } catch (_) { return; }
+  try {
+    const until = Number(store.getItem(KEY) || 0);
+    if (until > Date.now() || sessionStorage.getItem(KEY)) return;
+  } catch (_) { return; }
+  const remember = days => { try { store.setItem(KEY, String(Date.now() + days * DAY)); } catch (_) {} };
+
+  function show() {
+    if (document.querySelector('.calc-promo')) return;
+    try { sessionStorage.setItem(KEY, '1'); } catch (_) {}
+    const box = document.createElement('aside');
+    box.className = 'calc-promo';
+    box.setAttribute('aria-label', 'Calculator suggestion');
+    box.innerHTML =
+      '<button class="calc-promo-close" type="button" aria-label="Close">×</button>' +
+      '<p class="calc-promo-title">How much should you eat?</p>' +
+      '<p class="calc-promo-text">Get your daily calories and protein in 30 seconds, in kg or lb.</p>' +
+      '<a class="btn calc-promo-btn" href="calculator.html">Open the calculator</a>';
+    const close = () => {
+      box.classList.remove('is-in');
+      setTimeout(() => box.remove(), 250);
+    };
+    box.querySelector('.calc-promo-close').addEventListener('click', () => { remember(14); close(); });
+    box.querySelector('.calc-promo-btn').addEventListener('click', () => remember(30));
+    box.addEventListener('keydown', e => { if (e.key === 'Escape') { remember(14); close(); } });
+    document.body.append(box);
+    requestAnimationFrame(() => requestAnimationFrame(() => box.classList.add('is-in')));
+  }
+
+  let timer = setTimeout(trigger, 20000);
+  function onScroll() {
+    const doc = document.documentElement;
+    const seen = (window.scrollY + window.innerHeight) / doc.scrollHeight;
+    if (seen > 0.5) trigger();
+  }
+  function trigger() {
+    clearTimeout(timer);
+    window.removeEventListener('scroll', onScroll);
+    show();
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
