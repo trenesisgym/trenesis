@@ -2,6 +2,7 @@
 slug: strength-training-basics
 title: Strength training basics: the 5 principles that actually matter
 description: Why strength training is worth your time, and the five principles behind every program that works: progressive overload, specificity, recovery, consistency and technique.
+takeaways: Strength training improves muscle, bones, metabolic and mental health. | Five principles: progressive overload, specificity, recovery, consistency and technique. | Consistency beats everything; supplements matter least.
 section: Training
 guide: strength
 related: how-to-build-a-workout-program, best-exercises-for-each-muscle, strength-training-mistakes

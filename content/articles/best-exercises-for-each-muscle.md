@@ -2,6 +2,7 @@
 slug: best-exercises-for-each-muscle
 title: The best exercises for each muscle (with form tips)
 description: A simple menu of proven gym exercises for chest, back, arms, shoulders, abs and legs, with short notes on when to pick each one.
+takeaways: Pick one or two exercises per muscle and get stronger at them; you don’t need dozens. | Machines are great for beginners: stable, easy to learn and just as good for muscle. | A few form cues, like rounding your spine on crunches, matter more than the exact exercise.
 section: Training
 guide: strength
 related: how-to-build-a-workout-program, strength-training-basics, strength-training-mistakes

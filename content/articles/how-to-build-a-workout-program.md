@@ -2,6 +2,7 @@
 slug: how-to-build-a-workout-program
 title: How to build a workout program: sets, reps and the 3 splits that work
 description: The handful of variables every program is built from (frequency, volume, effort, reps and rest) and three proven weekly splits: full body, upper/lower and torso/limbs.
+takeaways: Train each muscle 2–3 times a week for about 10–15 hard sets. | Anywhere from 5 to 30 reps builds muscle if you take sets close to failure. | Full body, upper/lower and torso/limbs all work; pick the one that fits your week.
 section: Training
 guide: strength
 related: strength-training-basics, best-exercises-for-each-muscle, recovery-and-sleep

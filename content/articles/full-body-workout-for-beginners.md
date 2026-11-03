@@ -2,6 +2,7 @@
 slug: full-body-workout-for-beginners
 title: Full-body workout for beginners: a free 3-day plan
 description: A complete beginner gym plan: two full-body workouts, three days a week, with sets, reps, rest times, home alternatives and a simple rule for adding weight.
+takeaways: Three full-body workouts a week, alternating Workout A and B, with a rest day in between. | Stop each set 1–2 reps before failure, and add weight once you hit 12 reps on every set. | Run it for 8–12 weeks before moving to an upper/lower split.
 section: Training
 guide: strength
 related: first-week-at-the-gym, how-to-build-a-workout-program, best-exercises-for-each-muscle

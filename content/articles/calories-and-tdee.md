@@ -2,6 +2,7 @@
 slug: calories-and-tdee
 title: Calories and TDEE: how to find out how much you should eat
 description: Energy balance in plain language, a quick way to estimate your daily calorie needs (TDEE), and why you don't need a big bulk to build muscle.
+takeaways: Your weight goes up, down or stays the same depending on calories in versus calories out. | Estimate your maintenance at about 28–40 kcal per kg of bodyweight (13–18 per lb), depending on activity. | To build muscle eat about 200–300 kcal above maintenance; to lose fat, about 300–500 below.
 section: Nutrition
 guide: nutrition
 related: how-much-protein, carbs-and-fats, meal-planning-basics

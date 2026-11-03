@@ -2,6 +2,7 @@
 slug: cardio-plans
 title: 3 cardio plans for beginners and lifters (with sample weeks)
 description: Three ready-made weekly cardio plans, from a 3-day base builder to a 5-day performance week, plus common mistakes and whether cardio kills muscle gains.
+takeaways: Start with three 30-minute easy sessions a week and build from there. | Keep about 80% of your cardio easy and 20% hard. | 3–4 easy sessions a week won’t hurt your muscle gains; lift first if you do both on one day.
 section: Training
 guide: cardio
 related: heart-rate-zones, cardio-for-lifters, how-to-build-a-workout-program

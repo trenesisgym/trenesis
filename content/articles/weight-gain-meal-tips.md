@@ -2,6 +2,7 @@
 slug: weight-gain-meal-tips
 title: How to gain weight when you're never hungry: meal tips and example days
 description: Easy ways to eat a small calorie surplus when you struggle to gain weight, example 3,000 kcal days for meat-eaters and plant-based eaters, and a protein source table.
+takeaways: Drinking your calories, for example a milk and peanut butter shake, is the easiest way to eat more. | Keep the surplus small: about 200–300 kcal a day, or roughly 0.25 kg a week. | Spread food over 4–5 meals and add calorie-dense extras like nuts and olive oil.
 section: Nutrition
 guide: meal
 related: meal-planning-basics, how-much-protein, calories-and-tdee

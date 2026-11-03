@@ -2,6 +2,7 @@
 slug: strength-training-mistakes
 title: 6 beginner gym mistakes (and answers to the questions everyone asks)
 description: The mistakes that keep most beginners stuck, from ego lifting to program hopping, plus straight answers on soreness, results timelines and training to failure.
+takeaways: Track every session, lift with control and stick with one program for 8–12 weeks. | Balance pushing and pulling, and do proper warm-up sets. | Soreness isn’t a sign of progress; getting stronger is.
 section: Training
 guide: strength
 related: strength-training-basics, how-to-build-a-workout-program, cardio-for-lifters

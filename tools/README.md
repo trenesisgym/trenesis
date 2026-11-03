@@ -37,3 +37,10 @@ Articles without an image fall back to `assets/img/share.jpg`.
 maintenance = bodyweight x 28-40 kcal/kg by activity, fat loss 10-20% below that,
 muscle gain +200-300 kcal, protein 1.6-2.2 g/kg. It never shows a fat-loss target
 when someone's BMI is under 18.5.
+
+## Plan finder, start page, 404 and article extras
+
+`tools/parts.py` holds the plan finder (`find-your-plan.html`), the link-in-bio page
+(`start.html`, for Instagram and TikTok bios), the 404 page, and the article extras:
+key takeaways (the `takeaways:` line in each article's header, three points split by ` | `),
+table of contents, breadcrumbs, author box and the plan/calculator boxes.

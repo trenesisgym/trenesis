@@ -2,6 +2,7 @@
 slug: how-much-protein
 title: How much protein do you need to build muscle?
 description: How much protein active people actually need per kilogram of bodyweight, whether timing matters, and the myths about protein and your kidneys.
+takeaways: Aim for about 1.6–2.2 g of protein per kg of bodyweight a day (0.7–1 g per lb). | Total daily protein matters far more than timing. | Higher protein intakes are safe for people with healthy kidneys.
 section: Nutrition
 guide: nutrition
 related: calories-and-tdee, carbs-and-fats, weight-gain-meal-tips
