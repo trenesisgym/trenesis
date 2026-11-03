@@ -10,7 +10,7 @@ Trenesis is a free resource for people who want to train and eat in a way that a
 
 We're Volodymyr and Linus: one of us trains in Rotterdam, the other in San Francisco. When we started, we wasted months on random programs, conflicting advice and supplements we didn't need.
 
-Trenesis is the guide we wish we'd had: the fundamentals that actually work, explained simply, for anyone starting out, wherever they train. That's also why the site works on both sides of the ocean, with kilograms and pounds, and product picks for the shops in your country.
+Trenesis is the guide we wish we'd had: the fundamentals that actually work, explained simply, for anyone starting out, wherever they train. That's also why our product picks cover the shops in your country, on both sides of the ocean.
 
 ## How we write
 
