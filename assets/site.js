@@ -254,7 +254,8 @@
         undo.textContent = 'Mark as unread';
         undo.addEventListener('click', unread);
         state.append(t, undo);
-      } else if (seen(cur) >= 2 && cur.at > 0.1 && cur.at < 0.95 && progressNow() < cur.at - 0.1) {
+      } else {
+        if (seen(cur) >= 2 && cur.at > 0.1 && cur.at < 0.95 && progressNow() < cur.at - 0.1) {
         const go = document.createElement('button');
         go.type = 'button';
         go.className = 'read-continue';
@@ -265,6 +266,15 @@
           go.remove();
         });
         state.append(go);
+        }
+        if (seen(cur) >= 1) {
+          const reset = document.createElement('button');
+          reset.type = 'button';
+          reset.className = 'read-undo';
+          reset.textContent = 'Reset progress';
+          reset.addEventListener('click', unread);
+          state.append(reset);
+        }
       }
     }
     function unread() {
@@ -305,6 +315,7 @@
     setInterval(() => {
       if (cur.r || paused) return;
       const active = document.visibilityState === 'visible' && Date.now() - lastActive < 45000 && bodyOnScreen();
+      const hadProgress = seen(cur) >= 1;
       if (active) {
         cur.t = (cur.t || 0) + 1;
         // credit every part of the text that is currently on screen
@@ -315,6 +326,7 @@
         }
         dirty = true;
       }
+      if (!hadProgress && seen(cur) >= 1) drawState();
       if (seen(cur) >= PARTS - 1 && cur.t >= needed) { finish(); return; }
       if (dirty && ++ticks % 5 === 0) { put(cur); dirty = false; badges(); }
     }, 1000);
@@ -456,3 +468,4 @@
   document.addEventListener('trenesis:read', () => render(!!root && root.classList.contains('is-open')));
   window.addEventListener('pageshow', e => { if (e.persisted) render(false); });
 })();
+
