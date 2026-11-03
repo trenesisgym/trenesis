@@ -8,7 +8,7 @@ def esc(s):
 
 
 AUTHORS = 'Volodymyr and Linus'
-PRINTABLE = {'full-body-workout-for-beginners', 'home-workout-plan', 'cardio-plans'}
+PRINTABLE = {'full-body-workout-for-beginners', 'cardio-plans', 'dumbbell-workout-at-home', 'bodyweight-workout-plan', 'short-home-workouts', 'intermediate-home-workout'}
 
 
 def breadcrumbs(base, hub, hub_page, title):
@@ -104,7 +104,11 @@ FINDER = r'''
   var A = {
     full: ['The free 3-day full-body plan', 'full-body-workout-for-beginners.html'],
     split: ['An upper/lower split, 4 days a week', 'how-to-build-a-workout-program.html'],
-    home: ['The home workout plan', 'home-workout-plan.html'],
+    home: ['All home workout plans', 'home-workout-plan.html'],
+    bodyweight: ['The bodyweight plan with 3 levels', 'bodyweight-workout-plan.html'],
+    dumbbell: ['The 3-day dumbbell plan', 'dumbbell-workout-at-home.html'],
+    homeSplit: ['The 4-day intermediate home plan', 'intermediate-home-workout.html'],
+    short: ['20-minute workouts for busy weeks', 'short-home-workouts.html'],
     first: ['Your first week at the gym', 'first-week-at-the-gym.html'],
     basics: ['The 5 principles that actually matter', 'strength-training-basics.html'],
     calc: ['Work out your calories and protein', 'calculator.html'],
@@ -117,15 +121,19 @@ FINDER = r'''
   f.addEventListener('submit', function (e) {
     e.preventDefault();
     var place = v('place'), level = v('level'), days = v('days'), goal = v('goal'), plan, why, next = [];
-    if (place !== 'gym') {
-      plan = A.home;
-      why = place === 'none' ? 'Three days a week with your bodyweight, plus how to keep making it harder without weights.' : 'Three days a week with dumbbells, covering every muscle.';
+    if (place === 'none') {
+      plan = A.bodyweight; why = 'Three days a week with your bodyweight. Every movement has 3 levels, so it keeps getting harder as you get stronger.';
+    } else if (place === 'dumbbells' && level === 'some' && days === '4') {
+      plan = A.homeSplit; why = 'With some experience and 4 days a week, an upper/lower split with dumbbells, a bench and a pull-up bar gives each muscle more work.';
+    } else if (place === 'dumbbells') {
+      plan = A.dumbbell; why = 'Two full-body dumbbell workouts, three days a week, with a floor version of every bench exercise.';
     } else if (level === 'some' && days === '4') {
       plan = A.split; why = 'With some experience and 4 days a week, an upper/lower split gives each muscle more work and enough recovery.';
     } else {
       plan = A.full; why = 'Two full-body workouts, three days a week, with every set and rep written out. The best place to start' + (days === '4' ? '; use your 4th day for easy cardio.' : '.');
     }
     if (place === 'gym' && level === 'new') next.push(A.first);
+    if (place !== 'gym') next.push(A.short);
     next.push(A.calc);
     if (goal === 'muscle') next.push(A.protein);
     if (goal === 'fat') next.push(A.fatloss);

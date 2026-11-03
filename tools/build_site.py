@@ -30,11 +30,12 @@ import parts
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = 'https://trenesisgym.github.io/trenesis/'
-VERSION = '20261103-upgrades'
+VERSION = '20261103-home'
 UPDATED = datetime.date(2026, 10, 31)
 
 GUIDES = {
     'strength': {'name': 'Strength Training Guide', 'pdf': 'pdfs/strength-training.pdf', 'pages': 12, 'hub': 'Training', 'group': 'Strength training'},
+    'home': {'name': 'Strength Training Guide', 'pdf': 'pdfs/strength-training.pdf', 'pages': 12, 'hub': 'Training', 'group': 'Home training'},
     'cardio': {'name': 'Cardio Training Guide', 'pdf': 'pdfs/cardio.pdf', 'pages': 9, 'hub': 'Training', 'group': 'Cardio'},
     'nutrition': {'name': 'Nutrition Basics Guide', 'pdf': 'pdfs/nutrition-basics.pdf', 'pages': 9, 'hub': 'Nutrition', 'group': 'Nutrition basics'},
     'meal': {'name': 'Meal Planning Guide', 'pdf': 'pdfs/meal-planning.pdf', 'pages': 11, 'hub': 'Nutrition', 'group': 'Meal planning'},
@@ -43,7 +44,8 @@ HUB_PAGE = {'Training': 'training.html', 'Nutrition': 'nutrition.html'}
 # Reading order. A new article must be added here.
 ORDER = [
     'first-week-at-the-gym', 'strength-training-basics', 'full-body-workout-for-beginners', 'how-to-build-a-workout-program',
-    'best-exercises-for-each-muscle', 'home-workout-plan', 'recovery-and-sleep', 'strength-training-mistakes',
+    'best-exercises-for-each-muscle', 'recovery-and-sleep', 'strength-training-mistakes',
+    'home-workout-plan', 'bodyweight-workout-plan', 'dumbbell-workout-at-home', 'short-home-workouts', 'intermediate-home-workout',
     'cardio-for-lifters', 'heart-rate-zones', 'cardio-plans',
     'calories-and-tdee', 'how-much-protein', 'carbs-and-fats', 'supplements-that-work',
     'meal-planning-basics', 'fat-loss-meal-tips', 'weight-gain-meal-tips',
@@ -216,7 +218,7 @@ def build_home(arts):
         '<p>Three steps, in this order, get you from zero to a plan.</p></div>'
         f'<ol class="path">{steps_html}</ol></section>'
         '<section class="section" aria-labelledby="learn"><div class="section-head"><h2 id="learn">Learn the fundamentals</h2></div><div class="topics">'
-        + topic('Training', 'strength.webp', 'Strength training and cardio: principles, programs and exercises.', ['strength', 'cardio'], 'training.html')
+        + topic('Training', 'strength.webp', 'Strength training and cardio: principles, programs and exercises.', ['strength', 'home', 'cardio'], 'training.html')
         + topic('Nutrition', 'macros.webp', 'Calories, protein and meal planning without the extremes.', ['nutrition', 'meal'], 'nutrition.html')
         + '</div></section>'
         '<section class="section" id="guides" aria-labelledby="guides-title"><div class="section-head"><h2 id="guides-title">Free PDF guides</h2>'
@@ -237,7 +239,7 @@ def build_hub(arts, name):
     if name == 'Training':
         intro = ('<p class="lead">Training isn’t about finding the perfect program. It’s about understanding the fundamentals and applying them consistently over time.</p>'
                  '<p class="lead">Read these in order to train with structure, progress steadily and avoid the mistakes that keep most people stuck.</p>')
-        groups = [('strength', 'Strength training', 'Start here if you’re new to lifting.'), ('cardio', 'Cardio', 'How to add cardio without hurting your strength gains.')]
+        groups = [('strength', 'Strength training', 'Start here if you’re new to lifting.'), ('home', 'Home training', 'No gym? Plans for no equipment, dumbbells, busy weeks and experienced lifters.'), ('cardio', 'Cardio', 'How to add cardio without hurting your strength gains.')]
         desc = 'Strength training and cardio fundamentals explained simply: progressive overload, programming, heart-rate zones and free PDF guides.'
         box = pdf_box(['strength', 'cardio'], 'Prefer it all in one file?', 'Download the complete guides as printable PDFs, free.')
     else:

@@ -1,28 +1,30 @@
 ---
 slug: home-workout-plan
-title: Home workout plan: no equipment or just dumbbells
-description: A 3-day home workout plan that trains every muscle with your bodyweight, or with a pair of dumbbells, plus how to keep progressing without a gym.
-takeaways: You can build muscle at home with your bodyweight or a pair of dumbbells. | Train 3 days a week, 3 sets per exercise, close to failure. | Make exercises harder over time with more reps, harder variations, slower reps or one side at a time.
+title: Home workouts: pick the right plan for you
+description: Four home workout plans for every situation: no equipment, a pair of dumbbells, short sessions for busy weeks and a 4-day plan for experienced lifters. Plus the rules that make home training work.
+takeaways: You can build muscle at home; the rules are the same as in a gym. | Pick a plan by your equipment and experience: bodyweight, dumbbells, 20-minute sessions or a 4-day split. | Keep making it harder: more reps, harder variations, slower reps or one side at a time.
 section: Training
-guide: strength
-related: full-body-workout-for-beginners, strength-training-basics, best-exercises-for-each-muscle
+guide: home
+related: bodyweight-workout-plan, dumbbell-workout-at-home, intermediate-home-workout
 ---
-You can build muscle and strength at home. The rules are the same as in a gym: train each muscle a few times a week, take sets close to failure, and make them harder over time.
+You can build muscle and strength at home. The rules are the same as in a gym: train each muscle a few times a week, take sets close to failure, and make them harder over time. What changes is how you make them harder.
 
-## The plan: 3 days a week
+## Pick your plan
 
-Do the workout below on three non-consecutive days, for example Monday, Wednesday and Friday. Do 3 sets of each exercise and rest 1–2 minutes between sets.
-
-| Muscle | No equipment | With dumbbells |
+| Your situation | Plan | Days a week |
 | --- | --- | --- |
-| Legs | Split squats or Bulgarian split squats, 8–15 reps per leg | Goblet squats, 8–15 reps |
-| Chest and triceps | Push-ups (hands on a bench or the floor), as many good reps as you can | Floor press or dumbbell bench press, 8–12 reps |
-| Back | Towel rows in a doorway, or a pull-up bar if you have one | One-arm dumbbell rows, 8–12 reps per arm |
-| Hamstrings and glutes | Single-leg glute bridges, 10–20 reps per leg | Romanian deadlifts, 8–12 reps |
-| Shoulders | Pike push-ups, 6–12 reps | Lateral raises, 10–15 reps |
-| Core | Plank, 20–60 seconds | Crunches or dead bugs, 10–15 reps |
+| No equipment at all | [Bodyweight plan with 3 levels](bodyweight-workout-plan.html) | 3 |
+| A pair of dumbbells, new to training | [3-day dumbbell plan](dumbbell-workout-at-home.html) | 3 |
+| 6+ months of training, dumbbells, bench and pull-up bar | [4-day intermediate home plan](intermediate-home-workout.html) | 4 |
+| A busy week: exams, travel, no time | [20-minute home workouts](short-home-workouts.html) | 2 |
 
-Only use a doorway or a table for rows if it's sturdy enough to hold your full weight, and test it carefully first.
+Still not sure? Our [plan finder](find-your-plan.html) asks 4 quick questions and picks one for you.
+
+## The rules that make home training work
+
+1. **Train each muscle 2–3 times a week.** All four plans do this for you.
+2. **Finish sets close to failure.** Stop when you could do about 1–2 more good reps.
+3. **Write everything down.** Exercise, level or weight, and reps. Beat it a little next time.
 
 ## How to keep progressing without heavier weights
 
@@ -40,7 +42,7 @@ When an exercise gets easy, make it harder in one of these ways:
 
 A pull-up bar and a pair of adjustable dumbbells cover most of what you'll need for a long time. Our [equipment guide](equipment.html) explains what to look for and shows picks for your country.
 
-Want a gym version of this plan? See our [full-body workout for beginners](full-body-workout-for-beginners.html).
+Prefer the gym? See our [full-body workout for beginners](full-body-workout-for-beginners.html).
 
 ## Sources
 
