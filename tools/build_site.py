@@ -24,6 +24,9 @@ import sys
 
 import markdown
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import calculator
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = 'https://trenesisgym.github.io/trenesis/'
 VERSION = '20261031-redesign'
@@ -38,7 +41,8 @@ GUIDES = {
 HUB_PAGE = {'Training': 'training.html', 'Nutrition': 'nutrition.html'}
 # Reading order. A new article must be added here.
 ORDER = [
-    'strength-training-basics', 'how-to-build-a-workout-program', 'best-exercises-for-each-muscle', 'recovery-and-sleep', 'strength-training-mistakes',
+    'first-week-at-the-gym', 'strength-training-basics', 'full-body-workout-for-beginners', 'how-to-build-a-workout-program',
+    'best-exercises-for-each-muscle', 'home-workout-plan', 'recovery-and-sleep', 'strength-training-mistakes',
     'cardio-for-lifters', 'heart-rate-zones', 'cardio-plans',
     'calories-and-tdee', 'how-much-protein', 'carbs-and-fats', 'supplements-that-work',
     'meal-planning-basics', 'fat-loss-meal-tips', 'weight-gain-meal-tips',
@@ -72,7 +76,7 @@ def head(title, desc, path, og_type='website', extra=''):
 
 
 def header(current, country=False):
-    items = [('Training', 'training.html'), ('Nutrition', 'nutrition.html'), ('Articles', 'articles.html'), ('Gear', 'products.html'), ('About', 'about.html')]
+    items = [('Training', 'training.html'), ('Nutrition', 'nutrition.html'), ('Articles', 'articles.html'), ('Calculator', 'calculator.html'), ('Gear', 'products.html'), ('About', 'about.html')]
     here = ' aria-current="page"'
     links = ''.join(f'<a href="{href}"{here if name == current else ""}>{name}</a>' for name, href in items)
     picker = ''
@@ -177,8 +181,8 @@ def build_home(arts):
     ladder_html = ''.join(f'<li><a href="{href}"><span class="term">{t}</span><span class="why">{why}</span></a></li>' for t, why, href in ladder)
     steps = [
         ('Learn the five principles', 'What actually makes you stronger, and what doesn’t matter yet.', 'strength-training-basics.html'),
-        ('Pick a program that fits your week', 'Full body, upper/lower or torso/limbs, with sets and reps.', 'how-to-build-a-workout-program.html'),
-        ('Set your calories and protein', 'Two numbers that decide whether you build muscle or lose fat.', 'calories-and-tdee.html'),
+        ('Follow a free 3-day plan', 'Two full-body workouts with every set and rep written out, for the gym or at home.', 'full-body-workout-for-beginners.html'),
+        ('Work out your calories and protein', 'Two numbers that decide whether you build muscle or lose fat. The calculator does the maths.', 'calculator.html'),
     ]
     steps_html = ''.join(f'<li><a href="{href}"><h3>{t}</h3><p>{d}</p></a></li>' for t, d, href in steps)
 
@@ -186,7 +190,7 @@ def build_home(arts):
         items = [a for g in guides for a in in_guide(arts, g)][:4]
         links = ''.join(f'<li><a href="{a["slug"]}.html"><span>{esc(a["title"].split(":")[0])}</span><span>{a["minutes"]} min</span></a></li>' for a in items)
         total = sum(len(in_guide(arts, g)) for g in guides)
-        return (f'<article class="topic"><a class="topic-art" href="{href}" style="background-image:url(assets/img/{img})" aria-hidden="true" tabindex="-1"></a>'
+        return (f'<article class="topic"><div class="topic-art" style="background-image:url(assets/img/{img})"></div>'
                 f'<div class="topic-body"><h3><a href="{href}">{name}</a></h3><p>{text}</p><ul class="topic-links">{links}</ul>'
                 f'<a class="text-link" href="{href}">All {total} {name.lower()} articles</a></div></article>')
 
@@ -207,7 +211,7 @@ def build_home(arts):
         f'<div class="ladder-wrap"><p class="ladder-caption">What matters most, in order</p><ol class="ladder">{ladder_html}</ol>'
         '<p class="ladder-note">Most people obsess over the bottom of this list and neglect the top.</p></div></section>'
         '<section class="section" aria-labelledby="new-here"><div class="section-head"><h2 id="new-here">New to the gym? Start here</h2>'
-        '<p>Three short reads, in this order, get you from zero to a plan.</p></div>'
+        '<p>Three steps, in this order, get you from zero to a plan.</p></div>'
         f'<ol class="path">{steps_html}</ol></section>'
         '<section class="section" aria-labelledby="learn"><div class="section-head"><h2 id="learn">Learn the fundamentals</h2></div><div class="topics">'
         + topic('Training', 'strength.webp', 'Strength training and cardio: principles, programs and exercises.', ['strength', 'cardio'], 'training.html')
@@ -277,7 +281,10 @@ def build_article(a, arts):
         f'<section class="related" aria-labelledby="related-title"><h2 id="related-title">Keep reading</h2>{reading_list([arts[r] for r in a["related"]], numbered=False)}</section>'
         '</article></div>'
     )
-    return page(f'{a["title"]} | Trenesis', a['description'], f'{a["slug"]}.html', g['hub'], main, 'article', jsonld)
+    out = page(f'{a["title"]} | Trenesis', a['description'], f'{a["slug"]}.html', g['hub'], main, 'article', jsonld)
+    if (ROOT / 'assets' / 'img' / 'og' / f'{a["slug"]}.jpg').exists():  # made by tools/make_share_images.js
+        out = out.replace(f'{BASE}assets/img/share.jpg', f'{BASE}assets/img/og/{a["slug"]}.jpg')
+    return out
 
 
 def build_simple(md_file):
@@ -318,7 +325,7 @@ def build_gear(name):
 
 def sitemap():
     pages = ['index.html', 'training.html', 'nutrition.html', 'articles.html', 'products.html', 'equipment.html', 'supplements.html',
-             'accessories.html', 'about.html'] + [f'{s}.html' for s in ORDER]
+             'accessories.html', 'about.html', 'calculator.html'] + [f'{s}.html' for s in ORDER]
     urls = ''.join(f'<url><loc>{BASE}{"" if p == "index.html" else p}</loc><lastmod>{UPDATED.isoformat()}</lastmod></url>' for p in pages)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n'
 
@@ -334,6 +341,9 @@ def main():
     for f in sorted((ROOT / 'content' / 'pages').glob('*.md')):
         slug, html_ = build_simple(f)
         out[f'{slug}.html'] = html_
+    out['calculator.html'] = page('Calorie and protein calculator | Trenesis',
+        'Work out your daily calories and protein for fat loss, maintenance or muscle gain, in kilograms or pounds.',
+        'calculator.html', 'Calculator', calculator.MAIN)
     for name, text in out.items():
         (ROOT / name).write_text(text, encoding='utf-8')
     (ROOT / 'sitemap.xml').write_text(sitemap(), encoding='utf-8')

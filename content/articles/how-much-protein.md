@@ -18,14 +18,16 @@ Unlike carbs and fat, your body has no real protein store. That's why a steady i
 
 The commonly quoted 0.8 g per kg of bodyweight is a minimum to avoid deficiency, not a target for building muscle. For people who train, it's usually too low.
 
-**Aim for about 1.6–2.2 g per kg of bodyweight per day.**
+**Aim for about 1.6–2.2 g per kg of bodyweight per day (0.7–1 g per lb).**
 
 | Bodyweight | Daily protein target |
 | --- | --- |
-| 60 kg | about 95–130 g |
-| 70 kg | about 110–155 g |
-| 80 kg | about 130–175 g |
-| 90 kg | about 145–200 g |
+| 60 kg (132 lb) | about 95–130 g |
+| 70 kg (154 lb) | about 110–155 g |
+| 80 kg (176 lb) | about 130–175 g |
+| 90 kg (198 lb) | about 145–200 g |
+
+Your own number: try the [calorie and protein calculator](calculator.html).
 
 The lower end of the range already gets you most of the benefit; going higher is useful in a calorie deficit, where protein also helps you keep muscle.
 

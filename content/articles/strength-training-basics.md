@@ -20,7 +20,7 @@ Resistance training does far more than build muscle:
 - **Healthy ageing.** Grip strength and leg power are among the best predictors of staying independent as you age.
 
 > **Reality check**
-> Each kilogram of muscle burns roughly 13 extra kcal a day at rest. That's real but small: lifting helps fat loss mainly through better body composition, not a turbo-charged metabolism.
+> Each kilogram of muscle burns roughly 13 extra kcal a day at rest (about 6 kcal per pound). That's real but small: lifting helps fat loss mainly through better body composition, not a turbo-charged metabolism.
 
 ## The 5 core principles
 

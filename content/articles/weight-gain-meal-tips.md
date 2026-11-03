@@ -24,7 +24,7 @@ You don't need much more food, just denser additions: a drizzle of olive oil, a 
 
 ## 4. Don't overdo it
 
-"More is better" doesn't apply here. A big surplus mostly adds fat, not faster muscle; your body can only build muscle so fast. Keep the surplus to about 200–300 kcal a day, which works out to roughly 0.25 kg a week, or about 1 kg a month.
+"More is better" doesn't apply here. A big surplus mostly adds fat, not faster muscle; your body can only build muscle so fast. Keep the surplus to about 200–300 kcal a day, which works out to roughly 0.25 kg (about half a pound) a week, or about 1 kg (2 lb) a month.
 
 ## 5. Spread meals across the day
 
