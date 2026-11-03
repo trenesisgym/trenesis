@@ -2,6 +2,7 @@
 slug: first-week-at-the-gym
 title: Your first week at the gym: a no-stress beginner guide
 description: What to bring, what to do in your first sessions, the unwritten gym rules, and what you can safely ignore when you're just starting out.
+takeaways: Walk in with a plan and start lighter than you think. | Machines are a great place to start, and nobody is watching you as closely as you think. | Your only goal in month one is to show up three times a week.
 section: Training
 guide: strength
 related: full-body-workout-for-beginners, strength-training-basics, strength-training-mistakes

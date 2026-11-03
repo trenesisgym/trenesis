@@ -2,6 +2,7 @@
 slug: fat-loss-meal-tips
 title: Fat loss without starving: 5 meal tips and example days
 description: Practical ways to stay in a calorie deficit without feeling miserable, simple food swaps, and example fat-loss days for meat-eaters and plant-based eaters.
+takeaways: Protein at every meal is the easiest way to stay full in a calorie deficit. | Simple swaps, like whole fruit instead of juice, cut calories without cutting food. | Think in weekly averages: one bigger day doesn’t ruin your progress.
 section: Nutrition
 guide: meal
 related: meal-planning-basics, how-much-protein, calories-and-tdee

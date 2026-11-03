@@ -88,6 +88,33 @@
     detail.textContent = picks.length ? '' : 'The buying advice on this page applies wherever you live.';
     document.querySelectorAll('.affiliate-disclosure').forEach(el => { el.hidden = !picks.length; });
     if (category === 'all') return;
+    // Quick picks: the first pick for each section, so readers see an answer before the details.
+    if (picks.length) {
+      const firsts = [];
+      for (const pick of picks) if (!firsts.some(p => p.guideSection === pick.guideSection)) firsts.push(pick);
+      const order = id => { const el = document.getElementById(id); return el ? [...document.querySelectorAll('.advice-row')].indexOf(el) : 99; };
+      firsts.sort((x, y) => order(x.guideSection) - order(y.guideSection));
+      const wrap = document.createElement('div');
+      wrap.className = 'quick-picks';
+      const h = document.createElement('h2');
+      h.textContent = `Quick picks for ${market.name}`;
+      const ul = document.createElement('ul');
+      for (const pick of firsts) {
+        const section = document.getElementById(pick.guideSection);
+        const label = section?.querySelector('h2')?.textContent || pick.group;
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${pick.guideSection}`;
+        const k = document.createElement('span'); k.className = 'qp-cat'; k.textContent = label;
+        const n = document.createElement('span'); n.className = 'qp-name'; n.textContent = `${pick.brand} ${pick.name}`;
+        a.append(k, n); li.append(a); ul.append(li);
+      }
+      const note = document.createElement('p');
+      note.className = 'qp-note';
+      note.textContent = 'Tap a pick to jump to what to look for and more options.';
+      wrap.append(h, ul, note);
+      list.append(wrap);
+    }
     const sections = new Map();
     for (const pick of picks) {
       const guide = document.getElementById(pick.guideSection);

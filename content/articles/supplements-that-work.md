@@ -2,6 +2,7 @@
 slug: supplements-that-work
 title: Supplements that actually work for lifting: protein powder and creatine
 description: Why most supplements aren't worth your money, and the two with solid evidence for people who lift: protein powder and creatine monohydrate, including dose and timing.
+takeaways: Most supplements aren’t worth your money; protein powder and creatine are the exceptions. | Creatine monohydrate: 3–5 g a day, any time, no loading phase needed. | Protein powder is just convenient protein, not a magic ingredient.
 section: Nutrition
 guide: nutrition
 related: how-much-protein, calories-and-tdee, fat-loss-meal-tips

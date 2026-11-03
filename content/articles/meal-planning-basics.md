@@ -2,6 +2,7 @@
 slug: meal-planning-basics
 title: Meal planning for the gym, made simple
 description: What meal planning really means (it's just thinking ahead), how to plan around your calorie and protein targets, how many meals to eat, and an easy weekly meal-prep routine.
+takeaways: Meal planning just means deciding roughly what you’ll eat in advance. | Hit two numbers: your calories and your protein. Everything else is secondary. | Prepping only your lunches for the week already removes most bad choices.
 section: Nutrition
 guide: meal
 related: fat-loss-meal-tips, weight-gain-meal-tips, calories-and-tdee

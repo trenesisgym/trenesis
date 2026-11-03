@@ -2,6 +2,7 @@
 slug: recovery-and-sleep
 title: Recovery and sleep: where your gains are actually made
 description: Why sleep and recovery decide how fast you progress, a simple sleep checklist, and what to do on rest days.
+takeaways: You get stronger while you recover, not during the workout. | Aim for 7–9 hours of sleep, at consistent times, in a cool room. | If you’re stuck, check your sleep and stress before changing your program.
 section: Training
 guide: strength
 related: strength-training-basics, how-to-build-a-workout-program, strength-training-mistakes

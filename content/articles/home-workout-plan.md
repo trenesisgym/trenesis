@@ -2,6 +2,7 @@
 slug: home-workout-plan
 title: Home workout plan: no equipment or just dumbbells
 description: A 3-day home workout plan that trains every muscle with your bodyweight, or with a pair of dumbbells, plus how to keep progressing without a gym.
+takeaways: You can build muscle at home with your bodyweight or a pair of dumbbells. | Train 3 days a week, 3 sets per exercise, close to failure. | Make exercises harder over time with more reps, harder variations, slower reps or one side at a time.
 section: Training
 guide: strength
 related: full-body-workout-for-beginners, strength-training-basics, best-exercises-for-each-muscle

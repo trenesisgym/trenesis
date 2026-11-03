@@ -26,10 +26,11 @@ import markdown
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import calculator
+import parts
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = 'https://trenesisgym.github.io/trenesis/'
-VERSION = '20261103-calc-promo'
+VERSION = '20261103-upgrades'
 UPDATED = datetime.date(2026, 10, 31)
 
 GUIDES = {
@@ -127,6 +128,7 @@ def load_articles():
             sys.exit(f'{f.name}: missing header')
         meta = dict(line.split(': ', 1) for line in m.group(1).splitlines() if line.strip())
         meta['related'] = [r.strip() for r in meta.get('related', '').split(',') if r.strip()]
+        meta['takeaways'] = [t.strip() for t in meta.get('takeaways', '').split(' | ') if t.strip()]
         meta['body'] = m.group(2)
         meta['minutes'] = max(2, math.ceil(len(re.findall(r'\w+', m.group(2))) / 220))
         arts[meta['slug']] = meta
@@ -206,8 +208,8 @@ def build_home(arts):
         '<div class="wrap">'
         '<section class="hero"><div><h1>Focus on what actually works.</h1>'
         '<p class="hero-sub">Free, evidence-based guides to training and nutrition, for people who’d rather lift than wade through fitness hype.</p>'
-        '<div class="hero-actions"><a class="btn" href="strength-training-basics.html">Start with the basics</a>'
-        '<a class="btn btn-quiet" href="#guides">Get the free guides</a></div></div>'
+        '<div class="hero-actions"><a class="btn" href="find-your-plan.html">Find your plan in 4 questions</a><a class="btn btn-quiet" href="strength-training-basics.html">Start with the basics</a>'
+        '</div></div>'
         f'<div class="ladder-wrap"><p class="ladder-caption">What matters most, in order</p><ol class="ladder">{ladder_html}</ol>'
         '<p class="ladder-note">Most people obsess over the bottom of this list and neglect the top.</p></div></section>'
         '<section class="section" aria-labelledby="new-here"><div class="section-head"><h2 id="new-here">New to the gym? Start here</h2>'
@@ -265,26 +267,41 @@ def build_articles_index(arts):
 
 def build_article(a, arts):
     g = GUIDES[a['guide']]
+    hub_page = HUB_PAGE[g['hub']]
     jsonld = ('<script type="application/ld+json">' + json.dumps({
         '@context': 'https://schema.org', '@type': 'Article', 'headline': a['title'], 'description': a['description'],
         'dateModified': UPDATED.isoformat(), 'mainEntityOfPage': f'{BASE}{a["slug"]}.html', 'image': f'{BASE}assets/img/share.jpg',
-        'author': {'@type': 'Organization', 'name': 'Trenesis'}, 'publisher': {'@type': 'Organization', 'name': 'Trenesis'}}, ensure_ascii=False) + '</script>')
+        'author': [{'@type': 'Person', 'name': 'Volodymyr'}, {'@type': 'Person', 'name': 'Linus'}],
+        'publisher': {'@type': 'Organization', 'name': 'Trenesis'}}, ensure_ascii=False) + '</script>')
+    crumbs, crumbs_ld = parts.breadcrumbs(BASE, g['hub'], hub_page, a['title'])
+    body = article_body_html(a)
+    nudge = parts.finder_callout() if g['hub'] == 'Training' else parts.calculator_callout()
     main = (
-        f'<div class="wrap"><article class="article"><a class="back" href="{HUB_PAGE[g["hub"]]}">{g["hub"]}</a>'
+        f'<div class="wrap"><article class="article">{crumbs}'
         f'<header class="article-head"><p class="kicker">{g["group"]}</p><h1>{esc(a["title"])}</h1>'
         f'<p class="article-lead">{esc(a["description"])}</p>'
-        f'<p class="article-meta"><span>{a["minutes"]} min read</span><span>Updated {UPDATED.strftime("%B %Y")}</span></p></header>'
-        f'<div class="article-body">{render_md(a["body"])}</div>'
+        f'<p class="article-meta"><span>By <a href="about.html">{parts.AUTHORS}</a></span><span>{a["minutes"]} min read</span>'
+        f'<span>Updated {UPDATED.strftime("%B %Y")}</span></p></header>'
+        + (parts.takeaways_box(a['takeaways']) if a['takeaways'] else '')
+        + (parts.print_button() if a['slug'] in parts.PRINTABLE else '')
+        + parts.toc(body)
+        + f'<div class="article-body">{body}</div>'
+        + nudge
         + pdf_box([a['guide']], f'Get the full {g["name"]}', f'All chapters in one {g["pages"]}-page PDF, free to download and print.')
+        + parts.author_box()
         + '<p class="disclaimer">This article is general education, not medical advice. If you have an injury or a health condition, '
           'check with a doctor or physiotherapist before changing your training or diet.</p>'
         f'<section class="related" aria-labelledby="related-title"><h2 id="related-title">Keep reading</h2>{reading_list([arts[r] for r in a["related"]], numbered=False)}</section>'
         '</article></div>'
     )
-    out = page(f'{a["title"]} | Trenesis', a['description'], f'{a["slug"]}.html', g['hub'], main, 'article', jsonld)
+    out = page(f'{a["title"]} | Trenesis', a['description'], f'{a["slug"]}.html', g['hub'], main, 'article', jsonld + crumbs_ld)
     if (ROOT / 'assets' / 'img' / 'og' / f'{a["slug"]}.jpg').exists():  # made by tools/make_share_images.js
         out = out.replace(f'{BASE}assets/img/share.jpg', f'{BASE}assets/img/og/{a["slug"]}.jpg')
     return out
+
+
+def article_body_html(a):
+    return render_md(a['body'])
 
 
 def build_simple(md_file):
@@ -325,7 +342,7 @@ def build_gear(name):
 
 def sitemap():
     pages = ['index.html', 'training.html', 'nutrition.html', 'articles.html', 'products.html', 'equipment.html', 'supplements.html',
-             'accessories.html', 'about.html', 'calculator.html'] + [f'{s}.html' for s in ORDER]
+             'accessories.html', 'about.html', 'calculator.html', 'find-your-plan.html'] + [f'{s}.html' for s in ORDER]
     urls = ''.join(f'<url><loc>{BASE}{"" if p == "index.html" else p}</loc><lastmod>{UPDATED.isoformat()}</lastmod></url>' for p in pages)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n'
 
@@ -344,6 +361,12 @@ def main():
     out['calculator.html'] = page('Calorie and protein calculator | Trenesis',
         'Work out your daily calories and protein for fat loss, maintenance or muscle gain, in kilograms or pounds.',
         'calculator.html', 'Calculator', calculator.MAIN)
+    out['find-your-plan.html'] = page('Find your plan | Trenesis', 'Answer 4 quick questions and get the training plan, articles and calorie targets that fit you.',
+        'find-your-plan.html', '', parts.FINDER)
+    out['start.html'] = page('Start here | Trenesis', 'Trenesis: free beginner plans, a calorie and protein calculator and no-hype guides.',
+        'start.html', '', parts.START, extra='<meta name="robots" content="noindex">')
+    lost = page('Page not found | Trenesis', 'This page doesn’t exist.', '404.html', '', parts.NOT_FOUND, extra='<meta name="robots" content="noindex">')
+    out['404.html'] = lost.replace('<meta charset="utf-8">', '<meta charset="utf-8">' + parts.BASE_SCRIPT, 1)
     for name, text in out.items():
         (ROOT / name).write_text(text, encoding='utf-8')
     (ROOT / 'sitemap.xml').write_text(sitemap(), encoding='utf-8')

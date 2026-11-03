@@ -2,6 +2,7 @@
 slug: cardio-for-lifters
 title: Why cardio matters (even if you only care about lifting)
 description: What cardio actually does for your health and your gym performance, and the five types of cardio workout explained: Zone 2, HIIT, tempo, long slow distance and active recovery.
+takeaways: Cardio improves heart health, recovery and how much work you can handle in the gym. | Easy Zone 2 cardio is the base; add intervals only once or twice a week. | Choose the type you enjoy; running, cycling and rowing build similar fitness.
 section: Training
 guide: cardio
 related: heart-rate-zones, cardio-plans, strength-training-basics

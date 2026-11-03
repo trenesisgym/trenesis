@@ -2,6 +2,7 @@
 slug: carbs-and-fats
 title: Carbs and fats: how to set up your macros in 4 steps
 description: What carbohydrates and fats do for training and health, a simple 4-step order for setting your macros, and straight answers on carbs, soy and rest-day eating.
+takeaways: Set calories first, then protein; carbs and fat fill the rest. | Carbs fuel hard training; fat is essential for hormones and vitamins. | Neither carbs nor soy are the enemy: total calories decide fat gain.
 section: Nutrition
 guide: nutrition
 related: calories-and-tdee, how-much-protein, meal-planning-basics

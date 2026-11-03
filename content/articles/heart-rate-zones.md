@@ -2,6 +2,7 @@
 slug: heart-rate-zones
 title: Heart rate zones explained (and the 80/20 rule)
 description: How to estimate your maximum heart rate, what each of the five training zones is for, and why most of your cardio should feel easy.
+takeaways: Estimate your max heart rate as 220 minus your age, then train in percentages of it. | Zone 2 means you can still hold a conversation; that’s where most cardio should be. | Avoid doing every session at a medium “grey zone” effort.
 section: Training
 guide: cardio
 related: cardio-for-lifters, cardio-plans, recovery-and-sleep
