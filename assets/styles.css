@@ -488,3 +488,21 @@ mark.todo { background: #3b3115; color: #ffd98a; border-radius: 3px; padding: 1p
   .plan-next .btn { width: 100%; }
 }
 @media print { .plan-dock, .plan-next { display: none !important; } }
+
+
+/* Reading progress (assets/site.js): bar on articles, "Read" badges in lists */
+.read-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 70; pointer-events: none; }
+.read-progress span { display: block; height: 100%; width: 0; background: var(--ice, #b6d7f4); }
+.read-badge { display: inline-block; margin-left: 10px; padding: 1px 8px; border-radius: 999px; font: 600 12px/1.6 var(--head, Inter, sans-serif); letter-spacing: .01em; white-space: nowrap; vertical-align: middle; }
+.read-badge.is-read { background: rgba(126, 200, 150, .14); color: #9fdcb2; border: 1px solid rgba(126, 200, 150, .45); }
+.read-badge.is-started { background: transparent; color: var(--faint); border: 1px solid #455361; }
+.read-badge.in-meta { margin-left: 8px; }
+.read-state { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.read-state .read-badge { margin-left: 0; }
+.read-undo, .read-continue { background: none; border: 0; padding: 6px 0; color: var(--muted); font: inherit; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.read-continue { color: var(--ice, #b6d7f4); }
+.read-undo:hover, .read-continue:hover { color: var(--text, #fff); }
+.read-done { display: flex; align-items: center; gap: 14px; margin: 28px 0 0; padding: 12px 16px; border: 1px solid rgba(126, 200, 150, .45); border-radius: 6px; color: #9fdcb2; font-weight: 600; font-size: 15px; }
+.read-done .read-undo { font-weight: 400; }
+@media (max-width: 640px) { .article-meta { flex-wrap: wrap; row-gap: 6px; } }
+@media print { .read-progress, .read-state, .read-done, .read-badge { display: none !important; } }

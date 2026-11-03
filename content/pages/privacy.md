@@ -15,6 +15,7 @@ Volodymyr and Linus, the people behind Trenesis. Contact: [trenesisgym@gmail.com
 ## What we store on your device
 
 - **Country choice.** If you pick a country for product recommendations, your browser saves that choice in local storage so the site remembers it. It never leaves your device and you can clear it any time in your browser settings.
+- **Your plan and reading progress.** If you take the plan quiz, the result is saved in your browser so the site can show your next step. As you read articles, the site also remembers how far you got and which ones you finished, so it can show "Read" next to them. This stays on your device, is never sent to us, and you can clear it any time in your browser settings.
 - **Offline cache.** A small service worker checks for updated pages so you always see the latest version. It doesn't track you.
 
 We don't set advertising or tracking cookies.
