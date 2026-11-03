@@ -51,3 +51,20 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid #9cc
 /* Footer links on the main pages. */
 .footer-mini{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 24px;margin-top:22px;font-size:13px}
 .footer-mini a{color:#b5b5b5}.footer-mini a:hover{color:#fff}
+/* Phone header: logo, country and menu on one row; menu on the right when there is no country picker. */
+.site-header .menu-toggle{margin-left:auto}
+.site-header .nav-wrap:has(.country-picker) .menu-toggle{margin-left:0}
+@media(max-width:800px){
+  .country-picker select{width:108px;max-width:108px;padding:10px 26px 10px 10px;background-position:right 8px center}
+  .menu-toggle span{display:none}
+  .menu-toggle{padding:8px 12px}
+}
+/* Bigger tap areas for small links on phones. */
+@media(max-width:800px){
+  .back{padding:8px 0}
+  .footer-links a{display:inline-block;padding:8px 0}
+  .site-footer .brand{padding:8px 0}
+  .product-info .amazon-btn{display:inline-block;padding:8px 0}
+  .announce a{display:inline-block;padding:6px 0}
+}
+@media(max-width:800px){.footer-mini a{display:inline-block;padding:8px 0}}
