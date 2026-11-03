@@ -4,3 +4,6 @@
 @media(max-width:800px){.home-intro{grid-template-columns:1fr;gap:26px;padding:40px 0 32px}.hero-image{height:190px}.home-intro h1{font-size:43px}.quick-start,.gear-strip{align-items:flex-start;flex-direction:column;gap:14px}.destination-grid{grid-template-columns:1fr;gap:8px}.destination-grid>a{padding:14px 0}.destination-grid .eyebrow{margin-bottom:6px}.compact-guides{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:10px}.section{padding-top:36px}.section-jumps{gap:8px}.section-jumps a{font-size:14px;padding:8px 10px}.beginner-start{padding:22px}.starter-links{flex-direction:column;gap:12px}.reading-list.unnumbered a{grid-template-columns:1fr}.reading-list.unnumbered .mins{grid-column:1;grid-row:auto}.reading-list.unnumbered p{grid-column:1}#navigation{font-size:16px}.hero-sub{font-size:17px}}
 
 .home-intro{display:block;max-width:850px;padding:64px 0 48px}.home-intro h1{max-width:720px}.home-intro .hero-sub{max-width:600px}
+
+/* Bigger tap area for small text links on phones (Claude, sync-linus) */
+.beginner-start>.text-link{display:inline-block;padding:10px 0}

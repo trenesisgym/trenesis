@@ -178,7 +178,7 @@ NOT_FOUND = '''
 <p class="lead">The link may be old or mistyped. These are the most useful places to go from here.</p></header>
 <ul class="start-links lost-links">
   <li><a class="btn" href="find-your-plan.html">Find your plan</a></li>
-  <li><a class="btn btn-quiet" href="articles.html">All articles</a></li>
+  <li><a class="btn btn-quiet" href="training.html">Training</a></li>
   <li><a class="btn btn-quiet" href="calculator.html">Calorie and protein calculator</a></li>
   <li><a class="btn btn-quiet" href="index.html">Homepage</a></li>
 </ul></div>

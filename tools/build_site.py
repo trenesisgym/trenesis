@@ -30,7 +30,7 @@ import parts
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = 'https://trenesisgym.github.io/trenesis/'
-VERSION = '20261103-home'
+VERSION = '20261103-navigation'
 UPDATED = datetime.date(2026, 10, 31)
 
 GUIDES = {
@@ -72,26 +72,20 @@ def head(title, desc, path, og_type='website', extra=''):
         '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
         '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">'
         f'<link rel="stylesheet" href="assets/styles.css?v={VERSION}">{extra}'
-        f'<script defer src="assets/site.js?v={VERSION}"></script>'
+        f'<script defer src="assets/site.js?v={VERSION}"></script><link rel="stylesheet" href="assets/revision.css?v={VERSION}">'
         "<script>if('serviceWorker' in navigator&&window.isSecureContext){addEventListener('load',()=>{navigator.serviceWorker.register(new URL('sw.js',document.baseURI),{updateViaCache:'none'}).catch(()=>{})},{once:true})}</script>"
         '</head>'
     )
 
 
-def header(current, country=False):
-    items = [('Training', 'training.html'), ('Nutrition', 'nutrition.html'), ('Articles', 'articles.html'), ('Calculator', 'calculator.html'), ('Gear', 'products.html'), ('About', 'about.html')]
+def header(current):
+    items = [('Home', 'index.html'), ('Training', 'training.html'), ('Nutrition', 'nutrition.html'), ('Calorie Calculator', 'calculator.html'), ('Gear', 'products.html'), ('About', 'about.html')]
     here = ' aria-current="page"'
     links = ''.join(f'<a href="{href}"{here if name == current else ""}>{name}</a>' for name, href in items)
-    picker = ''
-    if country:
-        opts = ''.join(f'<option value="{c}">{label}</option>' for c, label in COUNTRIES)
-        picker = ('<div class="country-picker"><label class="sr-only" for="country">Country</label>'
-                  f'<select disabled id="country" aria-describedby="country-hint">{opts}</select>'
-                  '<span id="country-hint" class="sr-only">Select your country. Your choice is remembered on this device.</span></div>')
     return (
         '<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="nav-wrap wrap">'
         '<a class="brand" href="index.html" aria-label="Trenesis home"><img src="assets/img/logo.webp" alt="" width="38" height="38"><span>TRENESIS</span></a>'
-        f'<nav id="navigation" aria-label="Main navigation">{links}</nav>{picker}'
+        f'<nav id="navigation" aria-label="Main navigation">{links}</nav>'
         '<button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu</button>'
         '</div></header>'
     )
@@ -104,7 +98,7 @@ def footer():
         '<div class="footer-about"><a class="brand" href="index.html"><img src="assets/img/logo.webp" alt="" width="38" height="38"><span>TRENESIS</span></a>'
         '<p>Free, evidence-based guides to training and nutrition. No hype, just what works.</p></div>'
         '<div class="footer-col"><h2>Learn</h2><ul><li><a href="training.html">Training</a></li><li><a href="nutrition.html">Nutrition</a></li>'
-        '<li><a href="articles.html">All articles</a></li><li><a href="index.html#guides">Free PDF guides</a></li></ul></div>'
+        '<li><a href="index.html#guides">Free PDF guides</a></li></ul></div>'
         '<div class="footer-col"><h2>Trenesis</h2><ul><li><a href="about.html">About</a></li><li><a href="products.html">Gear</a></li>'
         '<li><a href="products.html#approach">How we pick gear</a></li><li><a href="privacy.html">Privacy</a></li></ul></div>'
         f'<div class="footer-col"><h2>Follow</h2><ul>{social}</ul></div></div>'
@@ -114,10 +108,28 @@ def footer():
     )
 
 
+def country_picker():
+    opts = ''.join(f'<option value="{c}">{label}</option>' for c, label in COUNTRIES)
+    return ('<div class="local-market"><div class="country-picker"><label class="country-label" for="country">Country</label>'
+            f'<select disabled id="country" aria-describedby="country-hint">{opts}</select>'
+            '<span id="country-hint" class="sr-only">Select your country. Your choice is remembered on this device.</span></div></div>')
+
+
 def page(title, desc, path, current, main, og_type='website', extra='', country=False):
     if country:
         extra += f'<script defer src="assets/catalogs.js?v={VERSION}"></script>'
-    return head(title, desc, path, og_type, extra) + header(current, country) + f'<main id="main" tabindex="-1">{main}</main>' + footer()
+        # The country picker sits at the top of the "local picks" box on gear pages.
+        main = re.sub(r'(<section class="market-status"[^>]*>)', lambda m: m.group(1) + country_picker(), main, count=1)
+    return head(title, desc, path, og_type, extra) + header(current) + f'<main id="main" tabindex="-1">{main}</main>' + footer()
+
+
+def build_hand(name, current):
+    """Pages Linus designed by hand: content/hand/<name>.html holds the <main> content plus title/description comments."""
+    s = (ROOT / 'content' / 'hand' / f'{name}.html').read_text(encoding='utf-8')
+    title = html.unescape(re.search(r'<!-- title: (.*?) -->', s).group(1))
+    desc = html.unescape(re.search(r'<!-- description: (.*?) -->', s).group(1))
+    body = re.sub(r'<!-- (title|description): .*? -->\n', '', s).rstrip('\n')
+    return page(title, desc, f'{name}.html', current, body)
 
 
 # ---------------------------------------------------------------- content
@@ -173,99 +185,6 @@ def pdf_box(guides, heading, text):
 
 
 # ---------------------------------------------------------------- pages
-
-def build_home(arts):
-    ladder = [
-        ('Consistency', 'Show up every week, for months', 'strength-training-basics.html#4-consistency'),
-        ('Technique', 'Own the movement before adding weight', 'best-exercises-for-each-muscle.html'),
-        ('Progressive overload', 'Add reps or weight over time', 'strength-training-basics.html#1-progressive-overload'),
-        ('Program design', 'Pick a split you can stick to', 'how-to-build-a-workout-program.html'),
-        ('Supplements', 'Protein powder and creatine, that’s it', 'supplements-that-work.html'),
-    ]
-    ladder_html = ''.join(f'<li><a href="{href}"><span class="term">{t}</span><span class="why">{why}</span></a></li>' for t, why, href in ladder)
-    steps = [
-        ('Learn the five principles', 'What actually makes you stronger, and what doesn’t matter yet.', 'strength-training-basics.html'),
-        ('Follow a free 3-day plan', 'Two full-body workouts with every set and rep written out, for the gym or at home.', 'full-body-workout-for-beginners.html'),
-        ('Work out your calories and protein', 'Two numbers that decide whether you build muscle or lose fat. The calculator does the maths.', 'calculator.html'),
-    ]
-    steps_html = ''.join(f'<li><a href="{href}"><h3>{t}</h3><p>{d}</p></a></li>' for t, d, href in steps)
-
-    def topic(name, img, text, guides, href):
-        items = [a for g in guides for a in in_guide(arts, g)][:4]
-        links = ''.join(f'<li><a href="{a["slug"]}.html"><span>{esc(a["title"].split(":")[0])}</span><span>{a["minutes"]} min</span></a></li>' for a in items)
-        total = sum(len(in_guide(arts, g)) for g in guides)
-        return (f'<article class="topic"><div class="topic-art" style="background-image:url(assets/img/{img})"></div>'
-                f'<div class="topic-body"><h3><a href="{href}">{name}</a></h3><p>{text}</p><ul class="topic-links">{links}</ul>'
-                f'<a class="text-link" href="{href}">All {total} {name.lower()} articles</a></div></article>')
-
-    guides = ''.join(
-        f'<li><div><h3>{g["name"]}</h3><p>{g["pages"]}-page PDF, free</p></div>'
-        f'<a class="btn btn-quiet" href="{g["pdf"]}" target="_blank" rel="noopener noreferrer">Download PDF</a></li>' for g in GUIDES.values())
-    gear = [('equipment.html', 'equipment.webp', 'Equipment', 'Dumbbells, benches and bars for a home setup.'),
-            ('supplements.html', 'supplements.webp', 'Supplements', 'Protein powder and creatine, and what to look for.'),
-            ('accessories.html', 'accessories.webp', 'Accessories', 'Shakers, straps and grip trainers.')]
-    gear_html = ''.join(f'<a href="{h}"><img src="assets/img/{i}" alt="" loading="lazy" width="1024" height="576"><h3>{t}</h3><p>{d}</p></a>' for h, i, t, d in gear)
-
-    main = (
-        '<div class="wrap">'
-        '<section class="hero"><div><h1>Focus on what actually works.</h1>'
-        '<p class="hero-sub">Free, evidence-based guides to training and nutrition, for people who’d rather lift than wade through fitness hype.</p>'
-        '<div class="hero-actions"><a class="btn" href="find-your-plan.html">Find your plan in 4 questions</a><a class="btn btn-quiet" href="strength-training-basics.html">Start with the basics</a>'
-        '</div></div>'
-        f'<div class="ladder-wrap"><p class="ladder-caption">What matters most, in order</p><ol class="ladder">{ladder_html}</ol>'
-        '<p class="ladder-note">Most people obsess over the bottom of this list and neglect the top.</p></div></section>'
-        '<section class="section" aria-labelledby="new-here"><div class="section-head"><h2 id="new-here">New to the gym? Start here</h2>'
-        '<p>Three steps, in this order, get you from zero to a plan.</p></div>'
-        f'<ol class="path">{steps_html}</ol></section>'
-        '<section class="section" aria-labelledby="learn"><div class="section-head"><h2 id="learn">Learn the fundamentals</h2></div><div class="topics">'
-        + topic('Training', 'strength.webp', 'Strength training and cardio: principles, programs and exercises.', ['strength', 'home', 'cardio'], 'training.html')
-        + topic('Nutrition', 'macros.webp', 'Calories, protein and meal planning without the extremes.', ['nutrition', 'meal'], 'nutrition.html')
-        + '</div></section>'
-        '<section class="section" id="guides" aria-labelledby="guides-title"><div class="section-head"><h2 id="guides-title">Free PDF guides</h2>'
-        '<p>Every article, collected into four printable guides.</p></div>'
-        f'<ul class="guide-list">{guides}</ul></section>'
-        '<section class="section" aria-labelledby="gear-title"><div class="section-head"><h2 id="gear-title">Gear that’s worth buying</h2>'
-        '<p>Gear doesn’t build a physique, but the right pieces remove friction.</p></div>'
-        f'<div class="gear">{gear_html}</div>'
-        '<p class="small-print">Product links are affiliate links, matched to the shops in your country.</p></section>'
-        '</div>'
-    )
-    return page('Trenesis | No-nonsense training & nutrition guides',
-                'Free, evidence-based guides to strength training, cardio and nutrition, plus honest gear picks. No fluff, just what works.',
-                'index.html', '', main)
-
-
-def build_hub(arts, name):
-    if name == 'Training':
-        intro = ('<p class="lead">Training isn’t about finding the perfect program. It’s about understanding the fundamentals and applying them consistently over time.</p>'
-                 '<p class="lead">Read these in order to train with structure, progress steadily and avoid the mistakes that keep most people stuck.</p>')
-        groups = [('strength', 'Strength training', 'Start here if you’re new to lifting.'), ('home', 'Home training', 'No gym? Plans for no equipment, dumbbells, busy weeks and experienced lifters.'), ('cardio', 'Cardio', 'How to add cardio without hurting your strength gains.')]
-        desc = 'Strength training and cardio fundamentals explained simply: progressive overload, programming, heart-rate zones and free PDF guides.'
-        box = pdf_box(['strength', 'cardio'], 'Prefer it all in one file?', 'Download the complete guides as printable PDFs, free.')
-    else:
-        intro = ('<p class="lead">Training is only half the equation. Without the right nutrition your body can’t adapt, recover or progress.</p>'
-                 '<p class="lead">The answer isn’t perfection or extreme dieting. It’s getting a few numbers right and being consistent.</p>')
-        groups = [('nutrition', 'Nutrition basics', 'Calories, protein and the other macros.'), ('meal', 'Meal planning', 'Turning your numbers into actual meals.')]
-        desc = 'Calories, protein, macros and simple meal planning explained without the hype, with free PDF guides.'
-        box = pdf_box(['nutrition', 'meal'], 'Prefer it all in one file?', 'Download the complete guides as printable PDFs, free.')
-    sections = ''.join(f'<section class="reading" aria-labelledby="g-{g}"><h2 id="g-{g}">{title}</h2><p>{sub}</p>{reading_list(in_guide(arts, g))}</section>'
-                       for g, title, sub in groups)
-    main = f'<div class="wrap"><header class="page-intro"><h1>{name}</h1>{intro}</header>{sections}{box}</div>'
-    return page(f'{name} | Trenesis', desc, HUB_PAGE[name], name, main)
-
-
-def build_articles_index(arts):
-    parts = ''
-    for hub in ['Training', 'Nutrition']:
-        parts += f'<section class="reading" aria-labelledby="h-{hub.lower()}"><h2 id="h-{hub.lower()}">{hub}</h2><p></p>'
-        parts += reading_list([a for g, info in GUIDES.items() if info['hub'] == hub for a in in_guide(arts, g)], numbered=False) + '</section>'
-    parts = parts.replace('<p></p>', '')
-    main = ('<div class="wrap"><header class="page-intro"><h1>Articles</h1>'
-            '<p class="lead">Everything from our free guides, broken into short reads you can finish between sets.</p></header>'
-            f'{parts}</div>')
-    return page('Articles | Trenesis', 'Every Trenesis article in one place: strength training, cardio, nutrition and meal planning, explained simply.',
-                'articles.html', 'Articles', main)
-
 
 def build_article(a, arts):
     g = GUIDES[a['guide']]
@@ -343,7 +262,7 @@ def build_gear(name):
 
 
 def sitemap():
-    pages = ['index.html', 'training.html', 'nutrition.html', 'articles.html', 'products.html', 'equipment.html', 'supplements.html',
+    pages = ['index.html', 'training.html', 'nutrition.html', 'products.html', 'equipment.html', 'supplements.html',
              'accessories.html', 'about.html', 'calculator.html', 'find-your-plan.html'] + [f'{s}.html' for s in ORDER]
     urls = ''.join(f'<url><loc>{BASE}{"" if p == "index.html" else p}</loc><lastmod>{UPDATED.isoformat()}</lastmod></url>' for p in pages)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n'
@@ -351,8 +270,11 @@ def sitemap():
 
 def main():
     arts = load_articles()
-    out = {'index.html': build_home(arts), 'training.html': build_hub(arts, 'Training'), 'nutrition.html': build_hub(arts, 'Nutrition'),
-           'articles.html': build_articles_index(arts), 'products.html': build_gear_overview()}
+    # Homepage, Training and Nutrition are hand-designed (content/hand). articles.html now redirects to the homepage.
+    out = {'index.html': build_hand('index', 'Home'), 'training.html': build_hand('training', 'Training'),
+           'nutrition.html': build_hand('nutrition', 'Nutrition'),
+           'articles.html': (ROOT / 'content' / 'hand' / 'articles-redirect.html').read_text(encoding='utf-8'),
+           'products.html': build_gear_overview()}
     for name in ['equipment', 'supplements', 'accessories']:
         out[f'{name}.html'] = build_gear(name)
     for a in arts.values():
@@ -362,7 +284,7 @@ def main():
         out[f'{slug}.html'] = html_
     out['calculator.html'] = page('Calorie and protein calculator | Trenesis',
         'Work out your daily calories and protein for fat loss, maintenance or muscle gain, in kilograms or pounds.',
-        'calculator.html', 'Calculator', calculator.MAIN)
+        'calculator.html', 'Calorie Calculator', calculator.MAIN)
     out['find-your-plan.html'] = page('Find your plan | Trenesis', 'Answer 4 quick questions and get the training plan, articles and calorie targets that fit you.',
         'find-your-plan.html', '', parts.FINDER)
     out['start.html'] = page('Start here | Trenesis', 'Trenesis: free beginner plans, a calorie and protein calculator and no-hype guides.',
