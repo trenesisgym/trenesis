@@ -170,6 +170,168 @@
 })();
 
 
+// Reading progress: each article remembers, in this browser only, how far you got and
+// whether you finished it. The article text is split into 10 parts; a part counts as seen
+// once it has been on screen for a few seconds while you were active. An article only counts
+// as read when at least 9 of the 10 parts were seen AND you spent a realistic amount of active
+// time on it (about 40% of its reading time, between 20 seconds and 3 minutes). Opening a page,
+// scrolling straight to the bottom or leaving the tab open doesn't count.
+// Lists of articles across the site show "✓ Read" or "40% read" next to each link.
+(() => {
+  'use strict';
+  const KEY = 'trenesis.reading.v1';
+  const page = location.pathname.split('/').pop() || 'index.html';
+  const load = () => { try { const d = JSON.parse(localStorage.getItem(KEY) || '{}'); return d && typeof d === 'object' ? d : {}; } catch (_) { return {}; } };
+  const save = d => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (_) {} };
+  const fileOf = href => { try { const u = new URL(href, location.href); return u.origin === location.origin ? (u.pathname.split('/').pop() || 'index.html') : ''; } catch (_) { return ''; } };
+  const PARTS = 10, DWELL = 3;
+  const seen = e => (Array.isArray(e.s) ? e.s.filter(x => x >= DWELL).length : 0);
+  const announce = () => document.dispatchEvent(new CustomEvent('trenesis:read'));
+
+  // ---- badges next to article links (lists, cards, plan boxes)
+  const LINKS = '.reading-list a, .starter-links a, .quick-start a, a.text-link, .start-links a, .plan-next a';
+  function badges() {
+    const data = load();
+    document.querySelectorAll('.read-badge.in-list').forEach(b => b.remove());
+    document.querySelectorAll(LINKS).forEach(a => {
+      if (a.closest('.article-body')) return;
+      const e = data[fileOf(a.href)];
+      if (!e) return;
+      let label = '';
+      if (e.r) label = '✓ Read';
+      else if (seen(e) >= 2) label = Math.min(90, seen(e) * 100 / PARTS) + '% read';
+      if (!label) return;
+      const b = document.createElement('span');
+      b.className = 'read-badge in-list ' + (e.r ? 'is-read' : 'is-started');
+      b.textContent = label;
+      const slot = a.querySelector('.mins');
+      if (slot) { b.classList.add('in-meta'); slot.append(b); } else a.append(b);
+    });
+  }
+
+  // ---- tracking on article pages
+  const body = document.querySelector('.article .article-body');
+  const meta = document.querySelector('.article .article-meta');
+  if (body && meta) {
+    const words = (body.innerText || body.textContent || '').trim().split(/\s+/).length;
+    const needed = Math.max(20, Math.min(180, Math.round(words / 230 * 60 * 0.4)));
+    const fresh = () => ({ s: new Array(PARTS).fill(0), at: 0, t: 0, r: 0 });
+    const entry = () => { const e = load()[page]; if (!e || !Array.isArray(e.s) || e.s.length !== PARTS) return Object.assign(fresh(), e && e.r ? { r: e.r } : {}); return e; };
+    const put = e => { const d = load(); d[page] = e; save(d); };
+    let cur = entry();
+    let lastActive = Date.now();
+    let dirty = false;
+    let paused = false; // after "Mark as unread", don't re-mark during this visit
+
+    const bar = document.createElement('div');
+    bar.className = 'read-progress';
+    bar.setAttribute('aria-hidden', 'true');
+    bar.append(document.createElement('span'));
+    document.body.append(bar);
+
+    const state = document.createElement('span');
+    state.className = 'read-state';
+    meta.append(state);
+
+    function progressNow() {
+      const r = body.getBoundingClientRect();
+      if (r.height <= 0) return 0;
+      return Math.max(0, Math.min(1, (innerHeight - r.top) / r.height));
+    }
+    function bodyOnScreen() {
+      const r = body.getBoundingClientRect();
+      return r.top < innerHeight && r.bottom > 0;
+    }
+    function drawState() {
+      state.textContent = '';
+      if (cur.r) {
+        const t = document.createElement('span');
+        t.className = 'read-badge is-read';
+        t.textContent = '✓ Read';
+        const undo = document.createElement('button');
+        undo.type = 'button';
+        undo.className = 'read-undo';
+        undo.textContent = 'Mark as unread';
+        undo.addEventListener('click', unread);
+        state.append(t, undo);
+      } else if (seen(cur) >= 2 && cur.at > 0.1 && cur.at < 0.95 && progressNow() < cur.at - 0.1) {
+        const go = document.createElement('button');
+        go.type = 'button';
+        go.className = 'read-continue';
+        go.textContent = `Continue where you left off (${Math.round(cur.at * 100)}%) ↓`;
+        go.addEventListener('click', () => {
+          const r = body.getBoundingClientRect();
+          scrollTo({ top: scrollY + r.top + cur.at * r.height - innerHeight * 0.85, behavior: 'smooth' });
+          go.remove();
+        });
+        state.append(go);
+      }
+    }
+    function unread() {
+      const d = load(); delete d[page]; save(d);
+      paused = true;
+      cur = fresh();
+      document.querySelector('.read-done')?.remove();
+      drawState(); announce();
+    }
+    function finish() {
+      cur.r = Date.now();
+      put(cur);
+      drawState();
+      const note = document.createElement('p');
+      note.className = 'read-done';
+      note.setAttribute('role', 'status');
+      note.innerHTML = '<span>✓ Marked as read</span>';
+      const undo = document.createElement('button');
+      undo.type = 'button';
+      undo.className = 'read-undo';
+      undo.textContent = 'Undo';
+      undo.addEventListener('click', unread);
+      note.append(undo);
+      body.after(note);
+      announce();
+    }
+    function onScroll(e) {
+      const p = progressNow();
+      bar.firstChild.style.width = (p * 100).toFixed(1) + '%';
+      if (e && !cur.r && !paused) { cur.at = p; dirty = true; } // only real scrolling moves the "left off" point
+    }
+    ['scroll', 'pointermove', 'pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev =>
+      addEventListener(ev, () => { lastActive = Date.now(); }, { passive: true }));
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', onScroll, { passive: true });
+
+    let ticks = 0;
+    setInterval(() => {
+      if (cur.r || paused) return;
+      const active = document.visibilityState === 'visible' && Date.now() - lastActive < 45000 && bodyOnScreen();
+      if (active) {
+        cur.t = (cur.t || 0) + 1;
+        // credit every part of the text that is currently on screen
+        const r = body.getBoundingClientRect();
+        for (let i = 0; i < PARTS; i++) {
+          const mid = r.top + r.height * (i + 0.5) / PARTS;
+          if (mid > 0 && mid < innerHeight) cur.s[i] = Math.min(99, cur.s[i] + 1);
+        }
+        dirty = true;
+      }
+      if (seen(cur) >= PARTS - 1 && cur.t >= needed) { finish(); return; }
+      if (dirty && ++ticks % 5 === 0) { put(cur); dirty = false; badges(); }
+    }, 1000);
+    addEventListener('pagehide', () => { if (!cur.r && !paused && dirty) put(cur); });
+
+    onScroll();
+    drawState();
+  }
+
+  setTimeout(badges); // after the plan box below has been added
+  document.addEventListener('trenesis:read', () => setTimeout(badges));
+  document.addEventListener('trenesis:plan', () => setTimeout(badges));
+  addEventListener('storage', e => { if (e.key === KEY) badges(); });
+  addEventListener('pageshow', e => { if (e.persisted) badges(); });
+})();
+
+
 // "Your plan": the plan finder's result, saved in this browser and shown on every page.
 // A button in the corner opens the list (read pages get a tick); on a page that is part of
 // the plan, a box at the end points to the next step.
@@ -182,20 +344,27 @@
   const file = href => href.split('#')[0];
   let root = null;
 
+  // Articles only count once they've really been read (see the reading tracker above).
+  // Other plan pages, like the calculator, count once opened.
+  const isArticlePage = !!document.querySelector('.article .article-body') && !!document.querySelector('.article .article-meta');
+  const readMap = () => { try { return JSON.parse(localStorage.getItem('trenesis.reading.v1') || '{}') || {}; } catch (_) { return {}; } };
   function markVisited(plan) {
-    if (plan.steps.some(s => file(s.href) === page) && !plan.done.includes(page)) { plan.done.push(page); save(plan); }
+    if (isArticlePage) return;
+    if (plan.steps.some(s => file(s.href) === page) && !plan.visited.includes(page)) { plan.visited.push(page); save(plan); }
   }
-  function nextStep(plan) { return plan.steps.find(s => !plan.done.includes(file(s.href))); }
+  const isDoneFn = plan => { const read = readMap(); return f => !!(read[f] && read[f].r) || plan.visited.includes(f); };
+  function nextStep(plan, isDone) { return plan.steps.find(s => !isDone(file(s.href))); }
 
   function render(openNow) {
     const plan = load();
     root?.remove(); root = null;
     document.querySelector('.plan-next')?.remove();
     if (!plan || !Array.isArray(plan.steps) || !plan.steps.length) return;
-    if (!Array.isArray(plan.done)) plan.done = [];
+    if (!Array.isArray(plan.visited)) plan.visited = [];
     markVisited(plan);
-    const done = plan.steps.filter(s => plan.done.includes(file(s.href))).length;
-    const upNext = nextStep(plan);
+    const isDone = isDoneFn(plan);
+    const done = plan.steps.filter(s => isDone(file(s.href))).length;
+    const upNext = nextStep(plan, isDone);
 
     root = document.createElement('div');
     root.className = 'plan-dock';
@@ -217,24 +386,24 @@
     head.innerHTML = '<h2 tabindex="-1">Your plan</h2><button type="button" class="plan-close" aria-label="Close">×</button>';
     const intro = document.createElement('p');
     intro.className = 'plan-intro';
-    intro.textContent = upNext ? 'Work through these in order. Pages you’ve opened get a tick.' : 'You’ve read everything in your plan. Nice work: now keep training consistently.';
+    intro.textContent = upNext ? 'Work through these in order. Articles get a tick once you’ve read them to the end.' : 'You’ve read everything in your plan. Nice work: now keep training consistently.';
     const ol = document.createElement('ol');
     ol.className = 'plan-steps';
     plan.steps.forEach((s, i) => {
       const li = document.createElement('li');
-      const isDone = plan.done.includes(file(s.href));
-      li.className = isDone ? 'is-done' : (s === upNext ? 'is-next' : '');
+      const stepDone = isDone(file(s.href));
+      li.className = stepDone ? 'is-done' : (s === upNext ? 'is-next' : '');
       const a = document.createElement('a');
       a.href = s.href;
       const mark = document.createElement('span');
       mark.className = 'plan-mark';
       mark.setAttribute('aria-hidden', 'true');
-      mark.textContent = isDone ? '' : String(i + 1);
+      mark.textContent = stepDone ? '' : String(i + 1);
       const txt = document.createElement('span');
       txt.className = 'plan-title';
       txt.textContent = s.title;
       a.append(mark, txt);
-      if (isDone) { const sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = ' (read)'; a.append(sr); }
+      if (stepDone) { const sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = ' (read)'; a.append(sr); }
       if (s === upNext) { const tag = document.createElement('span'); tag.className = 'plan-tag'; tag.textContent = 'Next'; a.append(tag); }
       if (file(s.href) === page) a.setAttribute('aria-current', 'page');
       li.append(a); ol.append(li);
@@ -284,5 +453,6 @@
 
   render(false);
   document.addEventListener('trenesis:plan', () => render(false));
+  document.addEventListener('trenesis:read', () => render(!!root && root.classList.contains('is-open')));
   window.addEventListener('pageshow', e => { if (e.persisted) render(false); });
 })();
