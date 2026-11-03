@@ -63,15 +63,19 @@
   let saved = null;
   try { saved = localStorage.getItem(key); } catch (_) { /* browsing still works without storage */ }
   let suggested = null;
+  let nearest = false;
+  // Countries without their own catalog get the closest store we cover.
+  const NEAREST = { AT: 'DE', CH: 'DE', LU: 'DE', NL: 'DE', PL: 'DE', CZ: 'DE', DK: 'DE', SE: 'DE', NO: 'DE', FI: 'DE', BE: 'FR', IE: 'GB', PT: 'ES', MX: 'US', PR: 'US' };
   // A regional language preference is a hint, never a claim of physical location.
   for (const language of navigator.languages || [navigator.language]) {
     try {
       const region = new Intl.Locale(language).region;
       if (region && valid(region)) { suggested = region; break; }
+      if (region && valid(NEAREST[region])) { suggested = NEAREST[region]; nearest = true; break; }
     } catch (_) { /* malformed/unsupported locale */ }
   }
   select.value = valid(saved) ? saved : suggested || 'GLOBAL';
-  hint.textContent = valid(saved) ? 'Using your saved country. Change it anytime.' : suggested ? 'Suggested from your browser region. You can change it anytime.' : 'Choose your country; your preference stays on this device.';
+  hint.textContent = valid(saved) ? 'Using your saved country. Change it anytime.' : suggested ? (nearest ? 'The closest store we cover to your region. You can change it anytime.' : 'Suggested from your browser region. You can change it anytime.') : 'Choose your country; your preference stays on this device.';
   function render() {
     if (!title || !detail || !list) return;
     const code = valid(select.value) ? select.value : 'GLOBAL';
@@ -79,9 +83,9 @@
     const picks = category === 'all' ? ['equipment', 'supplements', 'accessories'].flatMap(c => market[c] || []) : (market[category] || []);
     list.replaceChildren();
     document.querySelectorAll('.inline-picks').forEach(el => el.remove());
-    title.textContent = picks.length ? (category === 'all' ? `Showing picks for ${market.name} inside each guide below.` : `Examples for ${market.name}`) : code === 'GLOBAL' ? 'Choose your country to see local product examples.' : `Product examples for ${market.name} are coming soon.`;
+    title.textContent = picks.length ? (category === 'all' ? `Showing picks for ${market.name} inside each guide below.` : `Examples for ${market.name}`) : code === 'GLOBAL' ? 'We don’t have picks for your country yet. Choose the closest country at the top of the page to see examples.' : `Product examples for ${market.name} are coming soon.`;
     detail.hidden = picks.length > 0;
-    detail.textContent = picks.length ? '' : 'Choose another country to see available product recommendations.';
+    detail.textContent = picks.length ? '' : 'The buying advice on this page applies wherever you live.';
     document.querySelectorAll('.affiliate-disclosure').forEach(el => { el.hidden = !picks.length; });
     if (category === 'all') return;
     const sections = new Map();
