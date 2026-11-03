@@ -176,6 +176,7 @@
   'use strict';
   const page = location.pathname.split('/').pop() || 'index.html';
   if (['calculator.html', 'privacy.html'].includes(page)) return;
+  try { if (localStorage.getItem('trenesis.plan.v1')) return; } catch (_) {}
   const KEY = 'trenesis.calc-promo.v1', DAY = 864e5;
   let store = null;
   try { store = window.localStorage; sessionStorage.getItem(KEY); } catch (_) { return; }
@@ -219,4 +220,122 @@
     show();
   }
   window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+
+// "Your plan": the plan finder's result, saved in this browser and shown on every page.
+// A button in the corner opens the list (read pages get a tick); on a page that is part of
+// the plan, a box at the end points to the next step.
+(() => {
+  'use strict';
+  const KEY = 'trenesis.plan.v1';
+  const page = location.pathname.split('/').pop() || 'index.html';
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (_) { return null; } };
+  const save = plan => { try { localStorage.setItem(KEY, JSON.stringify(plan)); } catch (_) {} };
+  const file = href => href.split('#')[0];
+  let root = null;
+
+  function markVisited(plan) {
+    if (plan.steps.some(s => file(s.href) === page) && !plan.done.includes(page)) { plan.done.push(page); save(plan); }
+  }
+  function nextStep(plan) { return plan.steps.find(s => !plan.done.includes(file(s.href))); }
+
+  function render(openNow) {
+    const plan = load();
+    root?.remove(); root = null;
+    document.querySelector('.plan-next')?.remove();
+    if (!plan || !Array.isArray(plan.steps) || !plan.steps.length) return;
+    if (!Array.isArray(plan.done)) plan.done = [];
+    markVisited(plan);
+    const done = plan.steps.filter(s => plan.done.includes(file(s.href))).length;
+    const upNext = nextStep(plan);
+
+    root = document.createElement('div');
+    root.className = 'plan-dock';
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'plan-toggle';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', 'plan-panel');
+    toggle.innerHTML = '<span class="plan-toggle-label">Your plan</span><span class="plan-toggle-count"></span>';
+    toggle.querySelector('.plan-toggle-count').textContent = `${done} of ${plan.steps.length} read`;
+
+    const panel = document.createElement('section');
+    panel.id = 'plan-panel';
+    panel.className = 'plan-panel';
+    panel.hidden = true;
+    panel.setAttribute('aria-label', 'Your plan');
+    const head = document.createElement('div');
+    head.className = 'plan-head';
+    head.innerHTML = '<h2 tabindex="-1">Your plan</h2><button type="button" class="plan-close" aria-label="Close">×</button>';
+    const intro = document.createElement('p');
+    intro.className = 'plan-intro';
+    intro.textContent = upNext ? 'Work through these in order. Pages you’ve opened get a tick.' : 'You’ve read everything in your plan. Nice work: now keep training consistently.';
+    const ol = document.createElement('ol');
+    ol.className = 'plan-steps';
+    plan.steps.forEach((s, i) => {
+      const li = document.createElement('li');
+      const isDone = plan.done.includes(file(s.href));
+      li.className = isDone ? 'is-done' : (s === upNext ? 'is-next' : '');
+      const a = document.createElement('a');
+      a.href = s.href;
+      const mark = document.createElement('span');
+      mark.className = 'plan-mark';
+      mark.setAttribute('aria-hidden', 'true');
+      mark.textContent = isDone ? '' : String(i + 1);
+      const txt = document.createElement('span');
+      txt.className = 'plan-title';
+      txt.textContent = s.title;
+      a.append(mark, txt);
+      if (isDone) { const sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = ' (read)'; a.append(sr); }
+      if (s === upNext) { const tag = document.createElement('span'); tag.className = 'plan-tag'; tag.textContent = 'Next'; a.append(tag); }
+      if (file(s.href) === page) a.setAttribute('aria-current', 'page');
+      li.append(a); ol.append(li);
+    });
+    const foot = document.createElement('div');
+    foot.className = 'plan-foot';
+    foot.innerHTML = '<a href="find-your-plan.html">Retake the quiz</a><button type="button" class="plan-remove">Remove plan</button>';
+    panel.append(head, intro, ol, foot);
+    root.append(panel, toggle);
+    document.body.append(root);
+
+    const setOpen = open => {
+      panel.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      root.classList.toggle('is-open', open);
+      if (open) panel.querySelector('h2').focus();
+    };
+    toggle.addEventListener('click', () => setOpen(panel.hidden));
+    head.querySelector('.plan-close').addEventListener('click', () => { setOpen(false); toggle.focus(); });
+    root.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { setOpen(false); toggle.focus(); } });
+    foot.querySelector('.plan-remove').addEventListener('click', () => {
+      try { localStorage.removeItem(KEY); } catch (_) {}
+      root.remove(); root = null; document.querySelector('.plan-next')?.remove();
+    });
+    if (openNow) setOpen(true);
+
+    // On a page that is part of the plan: point to the next unread step at the end of the content.
+    const here = plan.steps.findIndex(s => file(s.href) === page);
+    if (here !== -1 && upNext) {
+      const box = document.createElement('aside');
+      box.className = 'plan-next';
+      box.setAttribute('aria-label', 'Next in your plan');
+      const p = document.createElement('p');
+      p.className = 'plan-next-label';
+      p.textContent = `Next in your plan · step ${plan.steps.indexOf(upNext) + 1} of ${plan.steps.length}`;
+      const a = document.createElement('a');
+      a.className = 'btn';
+      a.href = upNext.href;
+      a.textContent = upNext.title;
+      box.append(p, a);
+      const anchor = document.querySelector('.article .nudge, .article .pdf-box, .calc, .finder-result');
+      if (anchor && anchor.closest('.calc, .finder-result')) anchor.after(box);
+      else if (anchor) anchor.before(box);
+      else document.querySelector('main')?.append(box);
+    }
+  }
+
+  render(false);
+  document.addEventListener('trenesis:plan', () => render(false));
+  window.addEventListener('pageshow', e => { if (e.persisted) render(false); });
 })();

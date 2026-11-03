@@ -448,3 +448,43 @@ mark.todo { background: #3b3115; color: #ffd98a; border-radius: 3px; padding: 1p
 .quick-picks a:hover .qp-name { color: var(--ice); }
 .qp-note { font-size: 13px; color: var(--faint); margin-top: 8px; }
 @media (max-width: 800px) { .quick-picks a { flex-direction: column; gap: 2px; } .qp-name { text-align: left; } .quick-picks { padding: 16px 18px; } }
+
+/* "Your plan" dock (added by site.js after the plan finder) */
+.plan-dock { position: fixed; right: 20px; bottom: 20px; z-index: 45; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.plan-toggle { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 10px 16px; border: 1px solid #3a5470; border-radius: 999px; background: #1b2733; color: #fff; font: 600 14px/1.2 var(--head); cursor: pointer; box-shadow: 0 8px 24px rgba(0, 0, 0, .45); }
+.plan-toggle:hover { background: #22303e; }
+.plan-toggle-count { color: var(--ice); font-weight: 500; }
+.plan-dock.is-open .plan-toggle { display: none; }
+.plan-panel { width: 360px; max-height: min(70vh, 560px); overflow: auto; padding: 18px 18px 14px; border: 1px solid #3a5470; border-radius: 12px; background: #171b1f; box-shadow: 0 16px 40px rgba(0, 0, 0, .55); }
+.plan-head { display: flex; align-items: center; justify-content: space-between; }
+.plan-head h2 { font-size: 18px; outline: none; }
+.plan-close { width: 40px; height: 40px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); font-size: 24px; line-height: 1; cursor: pointer; }
+.plan-close:hover { color: #fff; background: var(--panel-hover); }
+.plan-intro { color: var(--muted); font-size: 14px; margin: 2px 0 12px; }
+.plan-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.plan-steps a { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--text); font-size: 15px; line-height: 1.35; }
+.plan-steps a:hover { border-color: #4c5965; background: var(--panel); }
+.plan-steps a[aria-current="page"] { border-color: #4f7397; }
+.plan-mark { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; border: 1px solid #4c5965; font: 600 12px/1 var(--head); color: var(--muted); }
+.is-done .plan-mark { background: #2f6b4f; border-color: #2f6b4f; }
+.is-done .plan-mark::after { content: ""; width: 9px; height: 5px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: translateY(-1px) rotate(-45deg); }
+.is-done .plan-title { color: var(--muted); }
+.is-next a { border-color: #3a5470; background: #141b22; }
+.is-next .plan-mark { border-color: var(--ice); color: var(--ice); }
+.plan-title { flex: 1; }
+.plan-tag { flex-shrink: 0; font: 600 11px/1 var(--head); color: #0f1113; background: var(--ice); border-radius: 999px; padding: 4px 8px; }
+.plan-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; font-size: 13px; }
+.plan-foot a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; padding: 8px 0; }
+.plan-remove { border: 0; background: none; color: var(--faint); font-size: 13px; cursor: pointer; padding: 8px 0; text-decoration: underline; text-underline-offset: 3px; }
+.plan-remove:hover, .plan-foot a:hover { color: #fff; }
+.plan-next { margin: 36px 0; padding: 22px 24px; border: 1px solid #3a5470; border-left: 3px solid var(--ice); border-radius: 8px; background: #141b22; }
+.plan-next-label { color: var(--ice); font: 600 14px/1.4 var(--head); margin-bottom: 12px; }
+.finder-result + .plan-next { max-width: 640px; }
+@media (max-width: 800px) {
+  .plan-dock { right: 12px; left: 12px; bottom: 12px; align-items: stretch; }
+  .plan-toggle { align-self: flex-end; }
+  .plan-panel { width: auto; max-height: 75vh; }
+  .plan-next { padding: 20px; }
+  .plan-next .btn { width: 100%; }
+}
+@media print { .plan-dock, .plan-next { display: none !important; } }
