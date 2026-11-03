@@ -242,6 +242,7 @@
       const r = body.getBoundingClientRect();
       return r.top < innerHeight && r.bottom > 0;
     }
+    const hasProgress = () => cur.t > 0 || cur.at > 0 || cur.s.some(seconds => seconds > 0);
     function drawState() {
       state.textContent = '';
       if (cur.r) {
@@ -267,7 +268,7 @@
         });
         state.append(go);
         }
-        if (seen(cur) >= 1) {
+        if (hasProgress()) {
           const reset = document.createElement('button');
           reset.type = 'button';
           reset.className = 'read-undo';
@@ -304,7 +305,9 @@
     function onScroll(e) {
       const p = progressNow();
       bar.firstChild.style.width = (p * 100).toFixed(1) + '%';
+      const hadProgress = hasProgress();
       if (e && !cur.r && !paused) { cur.at = p; dirty = true; } // only real scrolling moves the "left off" point
+      if (!hadProgress && hasProgress()) drawState();
     }
     ['scroll', 'pointermove', 'pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev =>
       addEventListener(ev, () => { lastActive = Date.now(); }, { passive: true }));
@@ -315,7 +318,7 @@
     setInterval(() => {
       if (cur.r || paused) return;
       const active = document.visibilityState === 'visible' && Date.now() - lastActive < 45000 && bodyOnScreen();
-      const hadProgress = seen(cur) >= 1;
+      const hadProgress = hasProgress();
       if (active) {
         cur.t = (cur.t || 0) + 1;
         // credit every part of the text that is currently on screen
@@ -326,7 +329,7 @@
         }
         dirty = true;
       }
-      if (!hadProgress && seen(cur) >= 1) drawState();
+      if (!hadProgress && hasProgress()) drawState();
       if (seen(cur) >= PARTS - 1 && cur.t >= needed) { finish(); return; }
       if (dirty && ++ticks % 5 === 0) { put(cur); dirty = false; badges(); }
     }, 1000);
