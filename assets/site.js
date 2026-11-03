@@ -186,6 +186,7 @@
   const fileOf = href => { try { const u = new URL(href, location.href); return u.origin === location.origin ? (u.pathname.split('/').pop() || 'index.html') : ''; } catch (_) { return ''; } };
   const PARTS = 10, DWELL = 3;
   const seen = e => (Array.isArray(e.s) ? e.s.filter(x => x >= DWELL).length : 0);
+  const readLabel = e => e.r ? '✓ Read' : seen(e) >= 2 ? Math.min(90, seen(e) * 100 / PARTS) + '% read' : '';
   const announce = () => document.dispatchEvent(new CustomEvent('trenesis:read'));
 
   // ---- badges next to article links (lists, cards, plan boxes)
@@ -197,9 +198,7 @@
       if (a.closest('.article-body')) return;
       const e = data[fileOf(a.href)];
       if (!e) return;
-      let label = '';
-      if (e.r) label = '✓ Read';
-      else if (seen(e) >= 2) label = Math.min(90, seen(e) * 100 / PARTS) + '% read';
+      const label = readLabel(e);
       if (!label) return;
       const b = document.createElement('span');
       b.className = 'read-badge in-list ' + (e.r ? 'is-read' : 'is-started');
@@ -242,7 +241,6 @@
       const r = body.getBoundingClientRect();
       return r.top < innerHeight && r.bottom > 0;
     }
-    const hasProgress = () => cur.t > 0 || cur.at > 0 || cur.s.some(seconds => seconds > 0);
     function drawState() {
       state.textContent = '';
       if (cur.r) {
@@ -268,13 +266,16 @@
         });
         state.append(go);
         }
-        if (hasProgress()) {
+        if (readLabel(cur)) {
+          const progress = document.createElement('span');
+          progress.className = 'read-badge is-started';
+          progress.textContent = readLabel(cur);
           const reset = document.createElement('button');
           reset.type = 'button';
           reset.className = 'read-undo';
-          reset.textContent = 'Reset progress';
+          reset.textContent = 'Mark as unread';
           reset.addEventListener('click', unread);
-          state.append(reset);
+          state.append(progress, reset);
         }
       }
     }
@@ -305,9 +306,7 @@
     function onScroll(e) {
       const p = progressNow();
       bar.firstChild.style.width = (p * 100).toFixed(1) + '%';
-      const hadProgress = hasProgress();
       if (e && !cur.r && !paused) { cur.at = p; dirty = true; } // only real scrolling moves the "left off" point
-      if (!hadProgress && hasProgress()) drawState();
     }
     ['scroll', 'pointermove', 'pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev =>
       addEventListener(ev, () => { lastActive = Date.now(); }, { passive: true }));
@@ -318,7 +317,7 @@
     setInterval(() => {
       if (cur.r || paused) return;
       const active = document.visibilityState === 'visible' && Date.now() - lastActive < 45000 && bodyOnScreen();
-      const hadProgress = hasProgress();
+      const previousLabel = readLabel(cur);
       if (active) {
         cur.t = (cur.t || 0) + 1;
         // credit every part of the text that is currently on screen
@@ -329,8 +328,13 @@
         }
         dirty = true;
       }
-      if (!hadProgress && hasProgress()) drawState();
       if (seen(cur) >= PARTS - 1 && cur.t >= needed) { finish(); return; }
+      if (readLabel(cur) !== previousLabel) {
+        put(cur);
+        dirty = false;
+        drawState();
+        badges();
+      }
       if (dirty && ++ticks % 5 === 0) { put(cur); dirty = false; badges(); }
     }, 1000);
     addEventListener('pagehide', () => { if (!cur.r && !paused && dirty) put(cur); });
@@ -471,4 +475,5 @@
   document.addEventListener('trenesis:read', () => render(!!root && root.classList.contains('is-open')));
   window.addEventListener('pageshow', e => { if (e.persisted) render(false); });
 })();
+
 
