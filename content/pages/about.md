@@ -8,9 +8,9 @@ Trenesis is a free resource for people who want to train and eat in a way that a
 
 ## Who we are
 
-We're [[Name]] and [[Name]], [[one line about you, for example: two students in Rotterdam who have been lifting for X years]].
+We're Volodymyr and Linus: one of us trains in Rotterdam, the other in San Francisco. When we started, we wasted months on random programs, conflicting advice and supplements we didn't need.
 
-[[Two or three sentences in your own words: why you started Trenesis and who you want to help.]]
+Trenesis is the guide we wish we'd had: the fundamentals that actually work, explained simply, for anyone starting out, wherever they train. That's also why the site works on both sides of the ocean, with kilograms and pounds, and product picks for the shops in your country.
 
 ## How we write
 
@@ -22,8 +22,6 @@ We're [[Name]] and [[Name]], [[one line about you, for example: two students in 
 
 Some product pages contain affiliate links. As an Amazon Associate we earn from qualifying purchases, at no extra cost to you. Affiliate links are always labelled.
 
-[[Confirm before publishing: "We don't accept payment from brands to feature or rank their products."]]
-
 ## Contact
 
-Questions, corrections or collaboration ideas: [[contact email]]. You can also find us on [Instagram](https://www.instagram.com/trenesisgym/), [TikTok](https://www.tiktok.com/@trenesis.gym) and [YouTube](https://www.youtube.com/@TrenesisGym).
+Questions, corrections or collaboration ideas: [trenesisgym@gmail.com](mailto:trenesisgym@gmail.com). You can also find us on [Instagram](https://www.instagram.com/trenesisgym/), [TikTok](https://www.tiktok.com/@trenesis.gym) and [YouTube](https://www.youtube.com/@TrenesisGym).

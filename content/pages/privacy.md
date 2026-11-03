@@ -10,7 +10,7 @@ We keep data collection to a minimum. This page explains what happens when you u
 
 ## Who is responsible
 
-[[Names, or business name and address once registered with the KvK]]. Contact: [[contact email]].
+Volodymyr and Linus, the people behind Trenesis. Contact: [trenesisgym@gmail.com](mailto:trenesisgym@gmail.com).
 
 ## What we store on your device
 
@@ -28,12 +28,12 @@ We don't set advertising or tracking cookies.
 
 ## Email newsletter
 
-[[Add once the email tool is chosen: what we collect (email address, optionally first name), which provider stores it, that we only use it to send the guides and our newsletter, and that every email has an unsubscribe link.]]
+We don't run a newsletter yet. Before we start one, we'll update this page to explain what we collect, which service stores it and how to unsubscribe.
 
 ## Analytics
 
-[[Add once analytics is set up: which tool, that it's cookie-free and doesn't identify individual visitors.]]
+We don't use any analytics or visitor tracking yet. If we add it, we'll use a cookie-free tool that doesn't identify individual visitors, and we'll update this page first.
 
 ## Your rights
 
-Under the GDPR you can ask us to access, correct or delete personal data we hold about you, and object to how we use it. Email [[contact email]]. You also have the right to complain to the Dutch data protection authority, the [Autoriteit Persoonsgegevens](https://autoriteitpersoonsgegevens.nl/).
+Under the GDPR you can ask us to access, correct or delete personal data we hold about you, and object to how we use it. Email [trenesisgym@gmail.com](mailto:trenesisgym@gmail.com). You also have the right to complain to the Dutch data protection authority, the [Autoriteit Persoonsgegevens](https://autoriteitpersoonsgegevens.nl/).
