@@ -4,8 +4,8 @@
 const { chromium } = require('playwright');
 const fs = require('fs'), path = require('path');
 const root = path.resolve(__dirname, '..');
-const art = { strength: 'strength.webp', cardio: 'cardio.webp', nutrition: 'macros.webp', meal: 'meal-planning.webp' };
-const group = { strength: 'Strength training', cardio: 'Cardio', nutrition: 'Nutrition basics', meal: 'Meal planning' };
+const art = { home: 'equipment.webp', strength: 'strength.webp', cardio: 'cardio.webp', nutrition: 'macros.webp', meal: 'meal-planning.webp' };
+const group = { home: 'Home training', strength: 'Strength training', cardio: 'Cardio', nutrition: 'Nutrition basics', meal: 'Meal planning' };
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 (async () => {
   const b = await chromium.launch();
