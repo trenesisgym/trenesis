@@ -8,7 +8,7 @@ def esc(s):
 
 
 AUTHORS = 'Volodymyr and Linus'
-PRINTABLE = {'full-body-workout-for-beginners', 'cardio-plans', 'dumbbell-workout-at-home', 'bodyweight-workout-plan', 'short-home-workouts', 'intermediate-home-workout'}
+PRINTABLE = {'full-body-workout-for-beginners', 'upper-lower-workout-plan', 'cardio-plans', 'dumbbell-workout-at-home', 'bodyweight-workout-plan', 'short-home-workouts', 'intermediate-home-workout'}
 
 
 def breadcrumbs(base, hub, hub_page, title):
@@ -104,7 +104,7 @@ FINDER = r'''
   var f = document.getElementById('finder'), box = document.getElementById('finder-result');
   var A = {
     full: ['The free 3-day full-body plan', 'full-body-workout-for-beginners.html'],
-    split: ['An upper/lower split, 4 days a week', 'how-to-build-a-workout-program.html'],
+    split: ['The free 4-day upper/lower plan', 'upper-lower-workout-plan.html'],
     home: ['All home workout plans', 'home-workout-plan.html'],
     bodyweight: ['The bodyweight plan with 3 levels', 'bodyweight-workout-plan.html'],
     dumbbell: ['The 3-day dumbbell plan', 'dumbbell-workout-at-home.html'],
@@ -128,16 +128,19 @@ FINDER = r'''
       plan = A.homeSplit; why = 'With some experience and 4 days a week, an upper/lower split with dumbbells, a bench and a pull-up bar gives each muscle more work.';
     } else if (place === 'dumbbells') {
       plan = A.dumbbell; why = 'Two full-body dumbbell workouts, three days a week, with a floor version of every bench exercise.';
-    } else if (level === 'some' && days === '4') {
-      plan = A.split; why = 'With some experience and 4 days a week, an upper/lower split gives each muscle more work and enough recovery.';
+    } else if (days === '4') {
+      plan = A.split;
+      why = level === 'new'
+        ? 'Four workouts a week: two upper-body and two lower-body days. It has a gentler start for your first two weeks, so it works even if you’re new.'
+        : 'Four workouts a week: two upper-body and two lower-body days, so each muscle gets more work and enough recovery.';
     } else {
-      plan = A.full; why = 'Two full-body workouts, three days a week, with every set and rep written out. The best place to start' + (days === '4' ? '; use your 4th day for easy cardio.' : '.');
+      plan = A.full; why = 'Two full-body workouts, three days a week, with every set and rep written out. The best place to start.';
     }
     if (place === 'gym' && level === 'new') next.push(A.first);
     next.push(A.calc);
     if (goal === 'muscle') next.push(A.protein);
     if (goal === 'fat') next.push(A.fatloss);
-    if (goal === 'fit' || days === '4') next.push(A.cardio);
+    if (goal === 'fit' || (goal === 'fat' && days === '3')) next.push(A.cardio);
     if (place !== 'gym') next.push(A.short);
     if (level === 'new') next.push(A.basics); else next.push(A.exercises);
     document.getElementById('fr-title').textContent = plan[0];

@@ -41,7 +41,7 @@ Every session trains all major muscle groups, with rest days in between. Ideal i
 
 Two upper-body days (chest, back, shoulders, arms) and two lower-body days (quads, hamstrings, glutes, calves). Sessions stay shorter while each muscle still gets enough work and recovery.
 
-**How to set it up:** on upper days, pick one exercise each for chest, back, shoulders, biceps and triceps. On lower days, one each for quads, hamstrings, glutes and calves. Do 2–3 sets of each and alternate upper and lower days.
+**How to set it up:** on upper days, pick one exercise each for chest, back, shoulders, biceps and triceps. On lower days, one each for quads, hamstrings, glutes and calves. Do 2–3 sets of each and alternate upper and lower days. Want it written out? Use our free [4-day upper/lower plan](upper-lower-workout-plan.html).
 
 ### Option C: Torso/limbs (4 days a week)
 

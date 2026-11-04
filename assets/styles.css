@@ -506,3 +506,4 @@ mark.todo { background: #3b3115; color: #ffd98a; border-radius: 3px; padding: 1p
 .read-done .read-undo { font-weight: 400; }
 @media (max-width: 640px) { .article-meta { flex-wrap: wrap; row-gap: 6px; } }
 @media print { .read-progress, .read-state, .read-done, .read-badge { display: none !important; } }
+.finder-saved { margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line-soft); color: var(--muted); font-size: 14px; }
