@@ -108,7 +108,8 @@ FINDER = r'''
     home: ['All home workout plans', 'home-workout-plan.html'],
     bodyweight: ['The bodyweight plan with 3 levels', 'bodyweight-workout-plan.html'],
     dumbbell: ['The 3-day dumbbell plan', 'dumbbell-workout-at-home.html'],
-    homeSplit: ['The 4-day intermediate home plan', 'intermediate-home-workout.html'],
+    homeSplit: ['The 4-day home dumbbell plan', 'intermediate-home-workout.html'],
+    bodyweight4: ['The 4-day bodyweight plan', 'bodyweight-workout-plan.html#training-4-days-a-week'],
     short: ['20-minute workouts for busy weeks', 'short-home-workouts.html'],
     first: ['Your first week at the gym', 'first-week-at-the-gym.html'],
     basics: ['The 5 principles that actually matter', 'strength-training-basics.html'],
@@ -122,10 +123,15 @@ FINDER = r'''
   f.addEventListener('submit', function (e) {
     e.preventDefault();
     var place = v('place'), level = v('level'), days = v('days'), goal = v('goal'), plan, why, next = [];
-    if (place === 'none') {
+    if (place === 'none' && days === '4') {
+      plan = A.bodyweight4; why = 'Four days a week with your bodyweight: two upper-body and two lower-body days. Every movement has 3 levels, so it keeps getting harder as you get stronger.';
+    } else if (place === 'none') {
       plan = A.bodyweight; why = 'Three days a week with your bodyweight. Every movement has 3 levels, so it keeps getting harder as you get stronger.';
-    } else if (place === 'dumbbells' && level === 'some' && days === '4') {
-      plan = A.homeSplit; why = 'With some experience and 4 days a week, an upper/lower split with dumbbells, a bench and a pull-up bar gives each muscle more work.';
+    } else if (place === 'dumbbells' && days === '4') {
+      plan = A.homeSplit;
+      why = level === 'new'
+        ? 'Four dumbbell workouts a week: two upper-body and two lower-body days, with a gentler start for your first two weeks.'
+        : 'With some experience and 4 days a week, an upper/lower split with dumbbells gives each muscle more work.';
     } else if (place === 'dumbbells') {
       plan = A.dumbbell; why = 'Two full-body dumbbell workouts, three days a week, with a floor version of every bench exercise.';
     } else if (days === '4') {

@@ -30,7 +30,7 @@ import parts
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = 'https://trenesisgym.github.io/trenesis/'
-VERSION = '20261104-fourday'
+VERSION = '20261104-fourday2'
 UPDATED = datetime.date(2026, 10, 31)
 
 GUIDES = {

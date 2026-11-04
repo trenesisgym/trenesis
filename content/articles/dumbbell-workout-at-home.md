@@ -66,7 +66,7 @@ Every home trainee hits this point. Before you buy heavier dumbbells, make the s
 > **Key insight**
 > Getting the dumbbells into position safely matters as much as the exercise. For floor and bench presses, start seated with the dumbbells on your thighs and roll back with them.
 
-Run this plan for 8–12 weeks. After 6 months or more, move on to our [4-day intermediate home plan](intermediate-home-workout.html).
+Run this plan for 8–12 weeks, then move on to our [4-day home plan](intermediate-home-workout.html). Can you train four days a week already? You can start there now; it has a gentler start for beginners.
 
 ## Sources
 
