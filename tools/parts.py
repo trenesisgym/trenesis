@@ -60,6 +60,14 @@ def calculator_callout():
             '<a class="btn" href="calculator.html">Open the calculator</a></aside>')
 
 
+def program_callout():
+    return ('<aside class="nudge nudge-program" aria-label="12-Week Program"><div><p class="nudge-kicker">Coming soon</p>'
+            '<p class="nudge-title">Want all 12 weeks planned for you?</p>'
+            '<p>The 12-Week Program builds on this plan: progression for every week, a logbook that tells you when to add weight, '
+            'exercise videos and meal plans.</p></div>'
+            '<a class="btn" href="program.html">See the program</a></aside>')
+
+
 def print_button():
     return '<button class="btn btn-quiet print-btn" type="button" onclick="window.print()">Print this plan</button>'
 
@@ -95,6 +103,7 @@ FINDER = r'''
   <a class="btn" id="fr-link" href="#">Open the plan</a>
   <h3>Then read</h3>
   <ol class="finder-next" id="fr-next"></ol>
+  <p class="finder-program">Want the next 12 weeks planned out? <a href="program.html">See the 12-Week Program</a> (coming soon).</p>
   <p class="finder-saved">Saved: you’ll find this list under <strong>Your plan</strong> in the corner of every page, with a tick next to everything you’ve read.</p>
 </section>
 </div>

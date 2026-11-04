@@ -477,3 +477,44 @@
 })();
 
 
+
+
+// Program waitlist forms. Set data-endpoint on the form to the email provider's form URL
+// (for example a MailerLite embedded-form action) to switch them on. Until then they only explain.
+(() => {
+  'use strict';
+  document.querySelectorAll('.waitlist-form').forEach(form => {
+    const status = form.querySelector('.form-status');
+    const input = form.querySelector('input[type="email"]');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const email = (input.value || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        status.textContent = 'Please enter a valid email address.';
+        input.setAttribute('aria-invalid', 'true');
+        input.focus();
+        return;
+      }
+      input.removeAttribute('aria-invalid');
+      const endpoint = form.dataset.endpoint;
+      if (!endpoint) {
+        status.textContent = 'Preview: the waitlist isn’t connected yet, so nothing was sent.';
+        return;
+      }
+      const btn = form.querySelector('button');
+      btn.disabled = true;
+      try {
+        const body = new FormData();
+        body.append('fields[email]', email);
+        await fetch(endpoint, { method: 'POST', body, mode: 'no-cors' });
+        form.classList.add('is-done');
+        status.textContent = 'You’re on the list. Check your inbox to confirm your email.';
+        input.value = '';
+      } catch (_) {
+        status.textContent = 'Something went wrong. Please try again, or email trenesisgym@gmail.com.';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
+})();
