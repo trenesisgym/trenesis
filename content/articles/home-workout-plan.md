@@ -1,7 +1,7 @@
 ---
 slug: home-workout-plan
 title: Home workouts: pick the right plan for you
-description: Four home workout plans for every situation: no equipment, a pair of dumbbells, short sessions for busy weeks and a 4-day plan for experienced lifters. Plus the rules that make home training work.
+description: Four home workout plans for every situation: no equipment, a pair of dumbbells, short sessions for busy weeks and a 4-day plan. Plus the rules that make home training work.
 takeaways: You can build muscle at home; the rules are the same as in a gym. | Pick a plan by your equipment and experience: bodyweight, dumbbells, 20-minute sessions or a 4-day split. | Keep making it harder: more reps, harder variations, slower reps or one side at a time.
 section: Training
 guide: home
@@ -13,9 +13,9 @@ You can build muscle and strength at home. The rules are the same as in a gym: t
 
 | Your situation | Plan | Days a week |
 | --- | --- | --- |
-| No equipment at all | [Bodyweight plan with 3 levels](bodyweight-workout-plan.html) | 3 |
-| A pair of dumbbells, new to training | [3-day dumbbell plan](dumbbell-workout-at-home.html) | 3 |
-| 6+ months of training, dumbbells, bench and pull-up bar | [4-day intermediate home plan](intermediate-home-workout.html) | 4 |
+| No equipment at all | [Bodyweight plan with 3 levels](bodyweight-workout-plan.html) | 3 or 4 |
+| Dumbbells, 2–3 days a week | [3-day dumbbell plan](dumbbell-workout-at-home.html) | 3 |
+| Dumbbells, 4 days a week (beginners included) | [4-day home plan](intermediate-home-workout.html) | 4 |
 | A busy week: exams, travel, no time | [20-minute home workouts](short-home-workouts.html) | 2 |
 
 Still not sure? Our [plan finder](find-your-plan.html) asks 4 quick questions and picks one for you.

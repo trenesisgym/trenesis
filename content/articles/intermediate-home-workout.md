@@ -1,19 +1,20 @@
 ---
 slug: intermediate-home-workout
-title: Intermediate home workout: a 4-day upper/lower plan
-description: For people who've trained consistently for 6 months or more: a 4-day upper/lower plan with dumbbells, a bench and a pull-up bar, and how to keep progressing at home.
-takeaways: Four days a week: two upper-body and two lower-body sessions, about 10–15 hard sets per muscle a week. | Take most sets to 0–2 reps from failure, and track every session. | Out of weight? Use single-limb exercises, slow reps, pauses and higher rep ranges before buying heavier dumbbells.
+title: 4-day home workout: an upper/lower dumbbell plan
+description: A 4-day upper/lower plan with dumbbells, a bench and a pull-up bar: a gentler start if you're new, and how to keep progressing at home once you're not.
+takeaways: Four days a week: two upper-body and two lower-body sessions, about 10–15 hard sets per muscle a week. | New? Do 2 sets instead of 3 for the first two weeks. Experienced? Take most sets to 0–2 reps from failure. | Out of weight? Use single-limb exercises, slow reps, pauses and higher rep ranges before buying heavier dumbbells.
 section: Training
 guide: home
 related: dumbbell-workout-at-home, how-to-build-a-workout-program, best-exercises-for-each-muscle
 ---
-After about six months of consistent training, three full-body sessions a week can start to feel limiting. This plan splits your week into upper-body and lower-body days, so each muscle gets more work and more recovery.
+If you can train four days a week at home, this plan splits your week into upper-body and lower-body days, so each muscle gets more work and more recovery. It works for beginners and for people who've trained for years; only how hard you push changes.
 
 ## Who it's for
 
-- You've trained regularly for **6 months or more** and know the basic exercises.
 - You can train **4 days a week**.
-- You have **adjustable dumbbells** (ideally up to 24 kg / 50 lb or more each), an **adjustable bench** and a **pull-up bar**. No pull-up bar? Swap pull-ups for one-arm rows.
+- You have **dumbbells** (adjustable ones are ideal, up to 24 kg / 50 lb or more each as you get stronger).
+- A **bench** and a **pull-up bar** help. No bench? Do the presses on the floor. No pull-up bar? Swap pull-ups and chin-ups for one-arm rows.
+- New to training? Read the [gentler start](#new-to-training-start-like-this) first.
 
 ## The week
 
@@ -63,9 +64,17 @@ After about six months of consistent training, three full-body sessions a week c
 | Sliding leg curls (feet on a towel) | 2 × 8–12 | 1–2 min |
 | Side plank | 2 × 30–45 s per side | 1 min |
 
+## New to training? Start like this
+
+1. **Weeks 1–2:** do 2 sets instead of 3 on every exercise, and stop each set when you could still do 2–3 more good reps.
+2. **Use the easier swaps:** band-assisted pull-ups or one-arm rows instead of pull-ups, regular push-ups instead of feet-raised ones, goblet squats instead of Bulgarian split squats.
+3. **From week 3:** move to the full sets and train a bit closer to failure.
+
+If four days turns out to be too much, the [3-day dumbbell plan](dumbbell-workout-at-home.html) works just as well. Showing up every week matters more than the number of days.
+
 ## How hard and how to progress
 
-- Take most sets to **0–2 reps from failure**. You've learned the movements; now effort drives progress.
+- Experienced: take most sets to **0–2 reps from failure**. Beginners: stay about **1–3 reps** away while you learn the movements.
 - Use **double progression**: reach the top of the rep range on every set, then go up in weight.
 - **Track every session.** At this stage progress is slower, and your log is the only way to see it.
 - If you feel run down for a couple of weeks, do one lighter week with fewer sets, then carry on.
@@ -83,4 +92,5 @@ Heavy lower-body work is the hardest part of training at home. Before buying hea
 
 ## Sources
 
+- Schoenfeld BJ, Ogborn D, Krieger JW. [Effects of resistance training frequency on measures of muscle hypertrophy: a systematic review and meta-analysis](https://doi.org/10.1007/s40279-016-0543-8). *Sports Medicine*, 2016.
 - Schoenfeld BJ, Ogborn D, Krieger JW. [Dose-response relationship between weekly resistance training volume and increases in muscle mass](https://doi.org/10.1080/02640414.2016.1210197). *Journal of Sports Sciences*, 2017.

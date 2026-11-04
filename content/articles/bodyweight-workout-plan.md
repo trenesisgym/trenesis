@@ -1,8 +1,8 @@
 ---
 slug: bodyweight-workout-plan
 title: Bodyweight workout plan: 3 levels, no equipment
-description: A no-equipment home plan with three levels for every movement, from complete beginner to advanced, and a clear rule for when to move up.
-takeaways: Train 3 days a week, with 3 sets of each movement, stopping 1–3 reps before failure. | Each movement has 3 levels; move up one movement at a time when you hit the top of the rep range. | Pulling is the hardest without equipment, so a doorway pull-up bar is the one thing worth buying.
+description: A no-equipment home plan for 3 or 4 days a week, with three levels for every movement, from complete beginner to advanced, and a clear rule for when to move up.
+takeaways: Train 3 days a week (full body) or 4 days (upper/lower), stopping each set 1–3 reps before failure. | Each movement has 3 levels; move up one movement at a time when you hit the top of the rep range. | Pulling is the hardest without equipment, so a doorway pull-up bar is the one thing worth buying.
 section: Training
 guide: home
 related: dumbbell-workout-at-home, short-home-workouts, home-workout-plan
@@ -13,6 +13,7 @@ Bodyweight training works, as long as it keeps getting harder. Without weights, 
 
 - Train **3 days a week** on non-consecutive days, for example Monday, Wednesday and Friday.
 - Do **every movement** in the table, **3 sets** each, resting 1–2 minutes between sets.
+- Can train **4 days a week**? Use the [4-day version](#training-4-days-a-week) below instead.
 - Stop each set when you could do about **1–3 more good reps**.
 - Everyone starts at the level that fits them. You can be on level 2 for squats and level 1 for push-ups.
 
@@ -28,6 +29,36 @@ Bodyweight training works, as long as it keeps getting harder. Without weights, 
 | Core (20–60 seconds, or 8–12 reps per side) | Dead bug | Plank | Side plank, then hollow body hold |
 
 Only use a door, towel or table for rows if it can safely hold your full weight. Test it carefully before you lean back.
+
+## Training 4 days a week
+
+Same movements and levels, split into upper-body and lower-body days, so each workout is shorter and every muscle still gets trained twice a week.
+
+| Monday | Tuesday | Wednesday | Thursday | Friday | Weekend |
+| --- | --- | --- | --- | --- | --- |
+| Upper | Lower | Rest | Upper | Lower | Rest |
+
+**Upper day**
+
+| Exercise | Sets | Rest |
+| --- | --- | --- |
+| Push (your level) | 3 | 1–2 min |
+| Pull (your level) | 3 | 1–2 min |
+| Shoulders (your level) | 3 | 1–2 min |
+| Push, one level easier, hands close together | 2 | 1–2 min |
+| Pull, one level easier | 2 | 1–2 min |
+
+**Lower day**
+
+| Exercise | Sets | Rest |
+| --- | --- | --- |
+| Squat (your level) | 3 | 1–2 min |
+| Hinge (your level) | 3 | 1–2 min |
+| Reverse lunges, 8–12 per leg | 2 | 1–2 min |
+| Single-leg calf raises, 10–20 per leg (hold a wall) | 3 | 1 min |
+| Core (your level) | 2 | 1 min |
+
+New to training? For the first two weeks, do 2 sets of everything and stop each set when you could still do 2–3 more reps.
 
 ## When to move up a level
 
