@@ -58,7 +58,7 @@ Stop each set when you could do about 1–2 more good reps. In the first two wee
 Write down every set. That log is how you know the plan is working.
 
 > **Key insight**
-> Run this plan for at least 8–12 weeks. When progress slows down and you can train four days a week, move to an [upper/lower split](how-to-build-a-workout-program.html).
+> Run this plan for at least 8–12 weeks. When progress slows down and you can train four days a week, move to the [4-day upper/lower plan](upper-lower-workout-plan.html). Already able to train four days a week from the start? That plan has a gentler start for beginners too.
 
 ## Questions everyone asks
 

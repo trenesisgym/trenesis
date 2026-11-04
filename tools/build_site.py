@@ -30,7 +30,7 @@ import parts
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = 'https://trenesisgym.github.io/trenesis/'
-VERSION = '20261104-reading'
+VERSION = '20261104-fourday'
 UPDATED = datetime.date(2026, 10, 31)
 
 GUIDES = {
@@ -43,7 +43,7 @@ GUIDES = {
 HUB_PAGE = {'Training': 'training.html', 'Nutrition': 'nutrition.html'}
 # Reading order. A new article must be added here.
 ORDER = [
-    'first-week-at-the-gym', 'strength-training-basics', 'full-body-workout-for-beginners', 'how-to-build-a-workout-program',
+    'first-week-at-the-gym', 'strength-training-basics', 'full-body-workout-for-beginners', 'upper-lower-workout-plan', 'how-to-build-a-workout-program',
     'best-exercises-for-each-muscle', 'recovery-and-sleep', 'strength-training-mistakes',
     'home-workout-plan', 'bodyweight-workout-plan', 'dumbbell-workout-at-home', 'short-home-workouts', 'intermediate-home-workout',
     'cardio-for-lifters', 'heart-rate-zones', 'cardio-plans',
