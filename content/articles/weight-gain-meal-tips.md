@@ -15,6 +15,10 @@ Liquid calories are much easier to get down than solid food when you're not hung
 
 **Simple shake:** whole milk + 2 scoops protein powder + a banana + a tablespoon of peanut butter = roughly 600–700 kcal and 50–60 g of protein.
 
+<div data-article-picks data-pick-section="protein">
+<p>These are whey and plant-protein options for the shakes in this guide. Use the serving information on your chosen powder when calculating your shake; the example totals above are approximate.</p>
+</div>
+
 ## 2. Don't forget to eat
 
 It sounds obvious, but many people who can't gain simply skip meals because they're busy or not hungry. Set reminders if you need to. Three meals plus two snacks is a solid baseline.

@@ -17,6 +17,10 @@ A pair of dumbbells is enough to train every muscle at home. This plan works lik
 
 Not sure what to buy? Our [equipment guide](equipment.html) explains what to look for and shows picks for your country.
 
+<div data-article-picks data-pick-names="Adjustable Dumbbell Set|Hex Dumbbells|Adjustable Weight Bench">
+<p>Choose adjustable or fixed dumbbells for this plan. If you add a bench, an adjustable one covers both the flat presses and incline rows; otherwise use the no-bench swaps.</p>
+</div>
+
 ## The week
 
 | Week | Monday | Wednesday | Friday |

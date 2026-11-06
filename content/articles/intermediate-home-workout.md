@@ -16,6 +16,10 @@ If you can train four days a week at home, this plan splits your week into upper
 - A **bench** and a **pull-up bar** help. No bench? Do the presses on the floor. No pull-up bar? Swap pull-ups and chin-ups for one-arm rows.
 - New to training? Read the [gentler start](#new-to-training-start-like-this) first.
 
+<div data-article-picks data-pick-names="Adjustable Dumbbell Set|Adjustable Weight Bench|Doorframe Pull‑Up Bar (Hook)">
+<p>Dumbbells are the main equipment for this plan; choose a weight range that suits your current lifts and leaves room to progress. The adjustable bench supports the incline exercises, and the pull-up bar is optional. Check doorway compatibility before buying.</p>
+</div>
+
 ## The week
 
 | Monday | Tuesday | Wednesday | Thursday | Friday | Weekend |
