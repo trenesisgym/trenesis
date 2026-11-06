@@ -86,7 +86,8 @@ def header(current):
         '<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="nav-wrap wrap">'
         '<a class="brand" href="index.html" aria-label="Trenesis home"><img src="assets/img/logo.webp" alt="" width="38" height="38"><span>TRENESIS</span></a>'
         f'<nav id="navigation" aria-label="Main navigation">{links}</nav>'
-        '<button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu</button>'
+        + country_picker()
+        + '<button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu</button>'
         '</div></header>'
     )
 
@@ -110,16 +111,13 @@ def footer():
 
 def country_picker():
     opts = ''.join(f'<option value="{c}">{label}</option>' for c, label in COUNTRIES)
-    return ('<div class="local-market"><div class="country-picker"><label class="country-label" for="country">Country</label>'
+    return ('<div class="country-picker site-country"><label class="sr-only" for="country">Country</label>'
             f'<select disabled id="country" aria-describedby="country-hint">{opts}</select>'
-            '<span id="country-hint" class="sr-only">Select your country. Your choice is remembered on this device.</span></div></div>')
+            '<span id="country-hint" class="sr-only">Select your country. Your choice applies across the website.</span></div>')
 
 
 def page(title, desc, path, current, main, og_type='website', extra='', country=False):
-    if country:
-        extra += f'<script defer src="assets/catalogs.js?v={VERSION}"></script>'
-        # The country picker sits at the top of the "local picks" box on gear pages.
-        main = re.sub(r'(<section class="market-status"[^>]*>)', lambda m: m.group(1) + country_picker(), main, count=1)
+    extra += f'<script defer src="assets/catalogs.js?v={VERSION}"></script>'
     return head(title, desc, path, og_type, extra) + header(current) + f'<main id="main" tabindex="-1">{main}</main>' + footer()
 
 
@@ -144,7 +142,8 @@ def load_articles():
         meta['related'] = [r.strip() for r in meta.get('related', '').split(',') if r.strip()]
         meta['takeaways'] = [t.strip() for t in meta.get('takeaways', '').split(' | ') if t.strip()]
         meta['body'] = m.group(2)
-        meta['minutes'] = max(2, math.ceil(len(re.findall(r'\w+', m.group(2))) / 220))
+        reading_text = re.sub(r'<div data-article-picks.*?</div>', '', m.group(2), flags=re.S)
+        meta['minutes'] = max(2, math.ceil(len(re.findall(r'\w+', reading_text)) / 220))
         arts[meta['slug']] = meta
     diff = [s for s in ORDER if s not in arts] + [s for s in arts if s not in ORDER]
     if diff:
@@ -215,14 +214,20 @@ def build_article(a, arts):
         f'<section class="related" aria-labelledby="related-title"><h2 id="related-title">Keep reading</h2>{reading_list([arts[r] for r in a["related"]], numbered=False)}</section>'
         '</article></div>'
     )
-    out = page(f'{a["title"]} | Trenesis', a['description'], f'{a["slug"]}.html', g['hub'], main, 'article', jsonld + crumbs_ld)
+    out = page(f'{a["title"]} | Trenesis', a['description'], f'{a["slug"]}.html', g['hub'], main, 'article', jsonld + crumbs_ld, country='data-article-picks' in body)
     if (ROOT / 'assets' / 'img' / 'og' / f'{a["slug"]}.jpg').exists():  # made by tools/make_share_images.js
         out = out.replace(f'{BASE}assets/img/share.jpg', f'{BASE}assets/img/og/{a["slug"]}.jpg')
     return out
 
 
 def article_body_html(a):
-    return render_md(a['body'])
+    body = render_md(a['body']).replace('<div data-article-picks', '<div hidden data-article-picks')
+    if 'data-article-picks' in body:
+        controls = ('<div class="sr-only" data-category="all"><p id="market-title"></p>'
+                    '<p id="market-detail" role="status" aria-live="polite"></p><div id="local-picks"></div></div>'
+                    '<p class="affiliate-disclosure article-affiliate-note" hidden>Affiliate links: we earn a commission at no extra cost to you.</p>')
+        body = re.sub(r'(<div hidden data-article-picks.*?</div>)', lambda m: m[1] + controls, body, count=1, flags=re.S)
+    return body
 
 
 def build_simple(md_file):
