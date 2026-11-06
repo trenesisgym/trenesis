@@ -30,6 +30,10 @@ Bodyweight training works, as long as it keeps getting harder. Without weights, 
 
 Only use a door, towel or table for rows if it can safely hold your full weight. Test it carefully before you lean back.
 
+<div data-article-picks data-pick-names="Doorframe Pull‑Up Bar (Hook)|Doorframe Pull-Up Bar (Pressure Mount)">
+<p>For level 3 pulling, choose a bar that fits your doorway and follow its installation instructions.</p>
+</div>
+
 ## Training 4 days a week
 
 Same movements and levels, split into upper-body and lower-body days, so each workout is shorter and every muscle still gets trained twice a week.

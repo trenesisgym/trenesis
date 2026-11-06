@@ -29,6 +29,10 @@ You don't need dozens of exercises. Pick one or two per muscle from the lists be
 | Kelso shrugs | Upper back | A good choice if you feel rows mostly in your biceps. |
 | Back extension | Lower back | |
 
+<div data-article-picks data-pick-section="straps">
+<p>If grip limits your pulling sets, straps are an optional extra. Practise the wrap before using heavier loads.</p>
+</div>
+
 ## Arms
 
 | Exercise | Target | Notes |
@@ -40,6 +44,10 @@ You don't need dozens of exercises. Pick one or two per muscle from the lists be
 | Overhead extension | Triceps | Trains the long head in a stretched position. |
 | Reverse curls | Forearms | Emphasises the brachioradialis. |
 | Wrist curls and extensions | Forearms | |
+
+<div data-article-picks data-pick-names="EZ Curl Bar">
+<p>For curls at home, a curl bar is an option if you already have compatible plates. It is not needed for the dumbbell exercises above.</p>
+</div>
 
 ## Shoulders
 

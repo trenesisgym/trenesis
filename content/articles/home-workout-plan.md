@@ -42,6 +42,10 @@ When an exercise gets easy, make it harder in one of these ways:
 
 A pull-up bar and a pair of adjustable dumbbells cover most of what you'll need for a long time. Our [equipment guide](equipment.html) explains what to look for and shows picks for your country.
 
+<div data-article-picks data-pick-names="Adjustable Dumbbell Set|Doorframe Pull‑Up Bar (Hook)">
+<p>These are options for the two additions above. Choose dumbbells to suit your strength and check that the pull-up bar is compatible with your doorway.</p>
+</div>
+
 Prefer the gym? See our [full-body workout for beginners](full-body-workout-for-beginners.html).
 
 ## Sources

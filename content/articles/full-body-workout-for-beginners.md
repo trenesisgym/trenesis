@@ -44,6 +44,10 @@ Any three days work, as long as there's a rest day between sessions. Each workou
 
 Not sure how an exercise works? Our [exercise list per muscle](best-exercises-for-each-muscle.html) has short form tips for each one.
 
+<div data-article-picks data-pick-names="Adjustable Dumbbell Set">
+<p>Following the home alternatives in the tables? A pair of adjustable dumbbells covers their loaded exercises. If you train at a gym, use the equipment there.</p>
+</div>
+
 ## How hard each set should be
 
 Stop each set when you could do about 1–2 more good reps. In the first two weeks, stay a bit further from that point while you learn the movements. Always do 1–2 lighter warm-up sets before your first exercise.

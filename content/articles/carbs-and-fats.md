@@ -54,6 +54,10 @@ Much less than your total daily intake. Hit your calories, spread protein over 3
 
 Yes. Plan your protein: plant sources are often less protein-dense, so combine several (tofu, tempeh, seitan, legumes) and use a plant protein powder if needed.
 
+<div data-article-picks data-pick-names="Organic Plant Protein — Vanilla Bean|Organic Vegan Protein — Natural|Vegan Pea Protein — Chocolate Silk|Vegan Protein — Chocolate|Protein + Supergreens|Vegan Protein">
+<p>If you need the plant-protein option mentioned above, this is one from our Gear guide. Check its ingredients against your dietary needs.</p>
+</div>
+
 ## Sources
 
 - Reed KE et al. [Neither soy nor isoflavone intake affects male reproductive hormones: an expanded and updated meta-analysis of clinical studies](https://pubmed.ncbi.nlm.nih.gov/33383165/). *Reproductive Toxicology*, 2021.
