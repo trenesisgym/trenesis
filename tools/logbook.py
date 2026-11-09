@@ -137,6 +137,7 @@ MAIN = r'''
 <header class="page-intro"><h1>Workout logbook</h1>
 <p class="lead">Log every set of your Trenesis plan and see what you lifted last time. It works on your phone at the gym and is saved on this device only.</p></header>
 
+<p class="log-preview" id="log-preview" hidden>Preview: smart suggestions from the paid program are on in this browser. <button type="button" class="log-link" id="log-preview-off">Turn off</button></p>
 <section class="log-setup" aria-label="Choose your plan and workout">
   <div class="log-field"><label for="log-plan">Your plan</label><select id="log-plan">{{OPTIONS}}</select></div>
   <div class="log-field"><span class="log-label" id="log-wo-label">Workout</span><div class="log-workouts" role="group" aria-labelledby="log-wo-label" id="log-workouts"></div></div>
@@ -173,7 +174,12 @@ MAIN = r'''
 <script>
 (function () {
   'use strict';
-  var SMART = false; // automatic next-weight suggestions: reserved for the 12-Week Program
+  // Automatic next-weight suggestions are reserved for the 12-Week Program. For testing, open
+  // logbook.html?preview=smart once: it stays on for this browser until you press "Turn off".
+  var PREVIEW = 'trenesis.log.preview.v1', qs = new URLSearchParams(location.search);
+  if (qs.get('preview') === 'smart') { try { localStorage.setItem(PREVIEW, '1'); } catch (e) {} }
+  if (qs.get('preview') === 'off') { try { localStorage.removeItem(PREVIEW); } catch (e) {} }
+  var SMART = false; try { SMART = localStorage.getItem(PREVIEW) === '1'; } catch (e) {}
   var KEY = 'trenesis.log.v1', DRAFT = 'trenesis.log.draft.v1', PREF = 'trenesis.log.plan.v1', UNITS = 'trenesis.units.v1', LB = 2.20462;
   var PLANS = JSON.parse(document.getElementById('log-plans').textContent);
   var $ = function (id) { return document.getElementById(id); };
@@ -353,6 +359,7 @@ MAIN = r'''
     rd.readAsText(file);
   });
 
+  if (SMART) { $('log-preview').hidden = false; $('log-preview-off').addEventListener('click', function () { try { localStorage.removeItem(PREVIEW); } catch (e) {} location.href = location.pathname; }); }
   $('log-date').value = today();
   var q = new URLSearchParams(location.search).get('plan'), start = q && planById(q) ? q : null;
   if (!start) { var pref = load(PREF, null); if (pref && planById(pref)) start = pref; }
