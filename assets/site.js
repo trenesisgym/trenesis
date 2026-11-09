@@ -525,3 +525,18 @@
 })();
 
 
+
+
+// Tools menu in the header: click to open, Escape or a click elsewhere closes it.
+(() => {
+  'use strict';
+  document.querySelectorAll('.nav-menu').forEach(menu => {
+    const btn = menu.querySelector('.nav-menu-btn');
+    if (!btn) return;
+    const set = open => { menu.classList.toggle('is-open', open); btn.setAttribute('aria-expanded', String(open)); };
+    btn.addEventListener('click', e => { e.stopPropagation(); set(!menu.classList.contains('is-open')); });
+    document.addEventListener('click', e => { if (!menu.contains(e.target)) set(false); });
+    menu.addEventListener('keydown', e => { if (e.key === 'Escape') { set(false); btn.focus(); } });
+    menu.addEventListener('focusout', e => { if (!menu.contains(e.relatedTarget)) set(false); });
+  });
+})();
