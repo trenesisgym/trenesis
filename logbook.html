@@ -2,29 +2,41 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Free workout logbook | Trenesis</title><meta name="description" content="Log every set of your Trenesis plan on your phone, see what you lifted last time and keep your history. Free, no account, saved on your device."><meta name="theme-color" content="#0f1113"><link rel="canonical" href="https://trenesisgym.github.io/trenesis/logbook.html"><meta property="og:type" content="website"><meta property="og:site_name" content="Trenesis"><meta property="og:title" content="Free workout logbook | Trenesis"><meta property="og:description" content="Log every set of your Trenesis plan on your phone, see what you lifted last time and keep your history. Free, no account, saved on your device."><meta property="og:url" content="https://trenesisgym.github.io/trenesis/logbook.html"><meta property="og:image" content="https://trenesisgym.github.io/trenesis/assets/img/share.jpg"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="assets/img/favicon.png"><link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/styles.css?v=20261109-program"><script defer src="assets/catalogs.js?v=20261109-program"></script><script defer src="assets/site.js?v=20261109-program"></script><link rel="stylesheet" href="assets/revision.css?v=20261109-program"><script>if('serviceWorker' in navigator&&window.isSecureContext){addEventListener('load',()=>{navigator.serviceWorker.register(new URL('sw.js',document.baseURI),{updateViaCache:'none'}).catch(()=>{})},{once:true})}</script></head><body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="nav-wrap wrap"><a class="brand" href="index.html" aria-label="Trenesis home"><img src="assets/img/logo.webp" alt="" width="38" height="38"><span>TRENESIS</span></a><nav id="navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="training.html">Training</a><a href="nutrition.html">Nutrition</a><div class="nav-menu is-current"><button class="nav-menu-btn" type="button" aria-expanded="false" aria-controls="tools-menu">Tools</button><span class="nav-menu-label" aria-hidden="true">Tools</span><div class="nav-sub" id="tools-menu"><a href="find-your-plan.html">Find your plan<span>4 questions, a plan that fits you</span></a><a href="calculator.html">Calorie calculator<span>Your calories and protein</span></a><a href="logbook.html" aria-current="page">Workout logbook<span>Log your sets, beat last time</span></a></div></div><a href="products.html">Gear</a><a href="faq.html">FAQ</a><a href="about.html">About</a></nav><div class="country-picker site-country"><label class="sr-only" for="country">Country</label><select disabled id="country" aria-describedby="country-hint"><option value="GLOBAL">🌐 Other</option><option value="US">🇺🇸 USA</option><option value="DE">🇩🇪 Germany</option><option value="GB">🇬🇧 UK</option><option value="FR">🇫🇷 France</option><option value="CA">🇨🇦 Canada</option><option value="IT">🇮🇹 Italy</option><option value="ES">🇪🇸 Spain</option></select><span id="country-hint" class="sr-only">Select your country. Your choice applies across the website.</span></div><button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu</button></div></header><main id="main" tabindex="-1">
 <div class="wrap log-page">
 <header class="page-intro"><h1>Workout logbook</h1>
-<p class="lead">Log every set of your Trenesis plan and see what you lifted last time. It works on your phone at the gym and is saved on this device only.</p></header>
-
+<p class="lead">Log every set, see what you lifted last time and beat it. Use a Trenesis plan, swap any exercise, or build your own plan, like Push/Pull/Legs. Saved on this device only.</p></header>
 <p class="log-preview" id="log-preview" hidden>Preview: smart suggestions from the paid program are on in this browser. <button type="button" class="log-link" id="log-preview-off">Turn off</button></p>
-<section class="log-setup" aria-label="Choose your plan and workout">
-  <div class="log-field"><label for="log-plan">Your plan</label><select id="log-plan"><option value="full-body-workout-for-beginners">Gym · 3 days (full body)</option><option value="upper-lower-workout-plan">Gym · 4 days (upper/lower)</option><option value="dumbbell-workout-at-home">Home dumbbells · 3 days</option><option value="intermediate-home-workout">Home dumbbells · 4 days</option><option value="bodyweight-workout-plan">Bodyweight · 3 days</option><option value="bodyweight-workout-plan-4">Bodyweight · 4 days</option></select></div>
+
+<section class="log-setup" id="log-setup" aria-label="Choose your plan and workout">
+  <div class="log-field"><label for="log-plan">Your plan</label><select id="log-plan"></select>
+    <button type="button" class="log-link" id="log-edit">Customize this plan</button></div>
   <div class="log-field"><span class="log-label" id="log-wo-label">Workout</span><div class="log-workouts" role="group" aria-labelledby="log-wo-label" id="log-workouts"></div></div>
   <fieldset class="log-units"><legend class="sr-only">Units</legend>
     <label><input type="radio" name="log-units" value="kg" checked> kg</label>
     <label><input type="radio" name="log-units" value="lb"> lb</label>
   </fieldset>
   <div class="log-field"><label for="log-date">Date</label><input type="date" id="log-date" class="log-datein"></div>
-  <p class="log-planlink"><a class="text-link" id="log-planlink" href="#">Open the plan</a></p>
+  <p class="log-planlink" id="log-planlink-wrap"><a class="text-link" id="log-planlink" href="#">Open the plan</a></p>
 </section>
 
 <form id="log-form" class="log-form" novalidate>
   <div id="log-exercises"></div>
-  <div class="log-actions">
-    <button class="btn" type="submit">Save workout</button>
-  </div>
+  <button type="button" class="btn btn-quiet log-add" id="log-add">+ Add an exercise</button>
+  <div class="log-actions"><button class="btn" type="submit">Save workout</button></div>
   <p class="log-status" id="log-status" role="status" aria-live="polite"></p>
 </form>
 
-<section class="log-history" aria-labelledby="log-history-title">
+<section class="log-editor" id="log-editor" hidden aria-labelledby="ed-title">
+  <h2 id="ed-title">Create your own plan</h2>
+  <div class="ed-templates" id="ed-templates"><span class="log-label">Start from</span>
+    <div class="log-workouts"><button type="button" class="log-wo" data-tpl="ppl">Push / Pull / Legs</button><button type="button" class="log-wo" data-tpl="upper-lower-workout-plan">Upper / Lower</button><button type="button" class="log-wo" data-tpl="full-body-workout-for-beginners">Full body</button><button type="button" class="log-wo" data-tpl="blank">Blank</button></div></div>
+  <div class="log-field"><label for="ed-name">Plan name</label><input id="ed-name" class="ed-name" maxlength="40" placeholder="e.g. My PPL"></div>
+  <div id="ed-workouts"></div>
+  <button type="button" class="btn btn-quiet" id="ed-addwo">+ Add a workout day</button>
+  <p class="log-error" id="ed-error" role="alert"></p>
+  <div class="ed-actions"><button type="button" class="btn" id="ed-save">Save plan</button><button type="button" class="btn btn-quiet" id="ed-cancel">Cancel</button>
+    <button type="button" class="log-link log-del" id="ed-delete" hidden>Delete this plan</button></div>
+</section>
+
+<section class="log-history" id="log-history" aria-labelledby="log-history-title">
   <div class="log-history-head"><h2 id="log-history-title">History</h2>
     <div class="log-backup"><button type="button" class="log-link" id="log-export">Download backup</button>
     <label class="log-link log-import">Restore backup<input type="file" id="log-import" accept="application/json,.json" class="sr-only"></label></div></div>
@@ -34,42 +46,76 @@
 
 <aside class="log-note">
   <h2>Your data stays with you</h2>
-  <p>The logbook saves to this browser only: nothing is sent to us, and there's no account. Clearing your browser data deletes it, so download a backup now and then. A backup also lets you move your log to another phone or laptop.</p>
+  <p>The logbook saves to this browser only: nothing is sent to us, and there's no account. Clearing your browser data deletes it, so download a backup now and then. A backup also moves your log, your own plans and your swaps to another phone or laptop.</p>
 </aside>
+<datalist id="log-lib"><option value="Ab wheel rollout"></option><option value="Assisted pull-ups"></option><option value="Back extension"></option><option value="Barbell curls"></option><option value="Barbell row"></option><option value="Bench press"></option><option value="Bench press or machine chest press"></option><option value="Bulgarian split squat"></option><option value="Cable crunch"></option><option value="Cable curls"></option><option value="Cable fly"></option><option value="Cable kickback"></option><option value="Cable lateral raises"></option><option value="Cable or machine chest fly"></option><option value="Cable overhead extension"></option><option value="Chest-supported dumbbell row"></option><option value="Chest-supported row"></option><option value="Chest-supported row (bench set to an incline)"></option><option value="Chest-supported row or one-arm dumbbell row"></option><option value="Chin-ups"></option><option value="Chin-ups (or band-assisted)"></option><option value="Close-grip bench press"></option><option value="Close-grip lat pulldown"></option><option value="Crunches"></option><option value="Crunches or cable crunch"></option><option value="Dead bug"></option><option value="Deadlift"></option><option value="Dips"></option><option value="Dumbbell bench press"></option><option value="Dumbbell curls"></option><option value="Dumbbell fly"></option><option value="Dumbbell hip thrusts"></option><option value="EZ-bar curls"></option><option value="Face pulls"></option><option value="Feet-raised push-ups"></option><option value="Front squat"></option><option value="Glute bridge"></option><option value="Goblet squat"></option><option value="Hack squat"></option><option value="Hammer curls"></option><option value="Hanging knee raises"></option><option value="Hanging knee raises (or dead bugs)"></option><option value="Hip abduction machine"></option><option value="Hip thrusts"></option><option value="Hip thrusts with a dumbbell"></option><option value="Incline bench press"></option><option value="Incline dumbbell curls"></option><option value="Incline dumbbell press"></option><option value="Lat pulldown"></option><option value="Lateral raises"></option><option value="Leg curl"></option><option value="Leg extension"></option><option value="Leg press"></option><option value="Leg press calf raise"></option><option value="Leg press or squat"></option><option value="Leg raises"></option><option value="Machine chest press"></option><option value="Machine chest press or bench press"></option><option value="Machine fly"></option><option value="Machine lateral raises"></option><option value="Machine row"></option><option value="Machine shoulder press"></option><option value="One-arm dumbbell row"></option><option value="Overhead barbell press"></option><option value="Overhead triceps extension"></option><option value="Plank"></option><option value="Preacher curls"></option><option value="Pull-ups"></option><option value="Pull-ups (or band-assisted)"></option><option value="Push-ups"></option><option value="Rear-delt flyes"></option><option value="Reverse flyes"></option><option value="Reverse lunges"></option><option value="Romanian deadlift"></option><option value="Seated cable row"></option><option value="Seated calf raise"></option><option value="Seated dumbbell shoulder press"></option><option value="Seated leg curl"></option><option value="Shoulder press"></option><option value="Side plank"></option><option value="Single-leg Romanian deadlift"></option><option value="Single-leg calf raise"></option><option value="Single-leg calf raises"></option><option value="Skull crushers"></option><option value="Sliding leg curls (feet on a towel)"></option><option value="Split squats"></option><option value="Split squats or walking lunges"></option><option value="Squat"></option><option value="Squat or leg press"></option><option value="Standing calf raise"></option><option value="Straight-arm pulldown"></option><option value="T-bar row"></option><option value="Triceps pushdown"></option><option value="Walking lunges"></option><option value="Wide-grip cable row"></option></datalist>
 </div>
-<script type="application/json" id="log-plans">[{"id": "full-body-workout-for-beginners", "label": "Gym · 3 days (full body)", "href": "full-body-workout-for-beginners.html", "workouts": [{"name": "Workout A", "exercises": [{"name": "Leg press or squat", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Machine chest press or bench press", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Lat pulldown", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Lateral raises", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Leg curl", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Crunches", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}]}, {"name": "Workout B", "exercises": [{"name": "Hip thrusts", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Shoulder press", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Seated cable row", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Leg extension", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Dumbbell curls", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Triceps pushdown", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}]}]}, {"id": "upper-lower-workout-plan", "label": "Gym · 4 days (upper/lower)", "href": "upper-lower-workout-plan.html", "workouts": [{"name": "Upper A", "exercises": [{"name": "Bench press or machine chest press", "sets": 3, "reps": "6–10", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Lat pulldown", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Seated dumbbell shoulder press", "sets": 2, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Seated cable row", "sets": 2, "reps": "10–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Dumbbell curls", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Triceps pushdown", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}]}, {"name": "Lower A", "exercises": [{"name": "Squat or leg press", "sets": 3, "reps": "6–10", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Romanian deadlift", "sets": 3, "reps": "8–10", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Leg extension", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Standing calf raise", "sets": 3, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Crunches or cable crunch", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}]}, {"name": "Upper B", "exercises": [{"name": "Incline dumbbell press", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Chest-supported row or one-arm dumbbell row", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Cable or machine chest fly", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Lateral raises", "sets": 3, "reps": "12–20", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Incline dumbbell curls", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Overhead triceps extension", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}]}, {"name": "Lower B", "exercises": [{"name": "Hip thrusts", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Leg press", "sets": 3, "reps": "10–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Leg curl", "sets": 3, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Split squats or walking lunges", "sets": 2, "reps": "8–12", "note": "per leg", "rest": "1–2 min", "kind": "weight"}, {"name": "Seated calf raise", "sets": 3, "reps": "12–20", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Plank", "sets": 2, "reps": "30–60 s", "note": "", "rest": "1 min", "kind": "time"}]}]}, {"id": "dumbbell-workout-at-home", "label": "Home dumbbells · 3 days", "href": "dumbbell-workout-at-home.html", "workouts": [{"name": "Workout A", "exercises": [{"name": "Goblet squat", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Dumbbell bench press", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "One-arm dumbbell row", "sets": 3, "reps": "8–12", "note": "per arm", "rest": "2 min", "kind": "weight"}, {"name": "Romanian deadlift", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Lateral raises", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Dead bug", "sets": 2, "reps": "8–12", "note": "per side", "rest": "1 min", "kind": "weight"}]}, {"name": "Workout B", "exercises": [{"name": "Reverse lunges", "sets": 3, "reps": "8–12", "note": "per leg", "rest": "2 min", "kind": "weight"}, {"name": "Seated dumbbell shoulder press", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Chest-supported row (bench set to an incline)", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Hip thrusts with a dumbbell", "sets": 3, "reps": "10–15", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Dumbbell curls", "sets": 2, "reps": "10–15", "note": "", "rest": "1 min", "kind": "weight"}, {"name": "Overhead triceps extension", "sets": 2, "reps": "10–15", "note": "", "rest": "1 min", "kind": "weight"}]}]}, {"id": "intermediate-home-workout", "label": "Home dumbbells · 4 days", "href": "intermediate-home-workout.html", "workouts": [{"name": "Upper A", "exercises": [{"name": "Dumbbell bench press", "sets": 3, "reps": "6–10", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Pull-ups (or band-assisted)", "sets": 3, "reps": "6–10", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Incline dumbbell press", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Chest-supported dumbbell row", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Lateral raises", "sets": 3, "reps": "12–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Dumbbell curls", "sets": 2, "reps": "10–15", "note": "", "rest": "1 min", "kind": "weight"}]}, {"name": "Lower A", "exercises": [{"name": "Bulgarian split squat", "sets": 3, "reps": "8–12", "note": "per leg", "rest": "2–3 min", "kind": "weight"}, {"name": "Romanian deadlift", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Goblet squat", "sets": 2, "reps": "10–15", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Single-leg calf raise", "sets": 3, "reps": "10–15", "note": "per leg", "rest": "1 min", "kind": "weight"}, {"name": "Hanging knee raises (or dead bugs)", "sets": 3, "reps": "8–15", "note": "", "rest": "1 min", "kind": "weight"}]}, {"name": "Upper B", "exercises": [{"name": "Seated dumbbell shoulder press", "sets": 3, "reps": "6–10", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "One-arm dumbbell row", "sets": 3, "reps": "8–12", "note": "per arm", "rest": "2 min", "kind": "weight"}, {"name": "Feet-raised push-ups", "sets": 3, "reps": "8–15", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Chin-ups (or band-assisted)", "sets": 3, "reps": "6–10", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Rear-delt flyes", "sets": 2, "reps": "12–15", "note": "", "rest": "1 min", "kind": "weight"}, {"name": "Overhead triceps extension", "sets": 2, "reps": "10–15", "note": "", "rest": "1 min", "kind": "weight"}]}, {"name": "Lower B", "exercises": [{"name": "Dumbbell hip thrusts", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Reverse lunges", "sets": 3, "reps": "8–12", "note": "per leg", "rest": "2 min", "kind": "weight"}, {"name": "Single-leg Romanian deadlift", "sets": 2, "reps": "8–12", "note": "per leg", "rest": "2 min", "kind": "weight"}, {"name": "Sliding leg curls (feet on a towel)", "sets": 2, "reps": "8–12", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Side plank", "sets": 2, "reps": "30–45 s", "note": "per side", "rest": "1 min", "kind": "time"}]}]}, {"id": "bodyweight-workout-plan", "label": "Bodyweight · 3 days", "href": "bodyweight-workout-plan.html", "workouts": [{"name": "Full body", "exercises": [{"name": "Squat", "sets": 3, "reps": "8–15 reps (per leg on levels 2–3)", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Squat to a chair", "Split squat", "Bulgarian split squat (back foot on a chair)"]}, {"name": "Push", "sets": 3, "reps": "6–15 reps", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Push-ups with hands on a table or bench", "Push-ups on the floor", "Push-ups with feet on a chair"]}, {"name": "Hinge", "sets": 3, "reps": "10–20 reps (per leg on levels 2–3)", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Glute bridge", "Single-leg glute bridge", "Single-leg hip thrust (shoulders on a sofa)"]}, {"name": "Pull", "sets": 3, "reps": "6–12 reps", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Doorway towel row", "Row under a sturdy table", "Pull-ups or slow pull-up negatives (needs a bar)"]}, {"name": "Shoulders", "sets": 3, "reps": "6–12 reps", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Pike push-up, hands on a chair", "Pike push-up, hands on the floor", "Pike push-up, feet on a chair"]}, {"name": "Core", "sets": 3, "reps": "20–60 seconds, or 8–12 reps per side", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Dead bug", "Plank", "Side plank, then hollow body hold"]}]}]}, {"id": "bodyweight-workout-plan-4", "label": "Bodyweight · 4 days", "href": "bodyweight-workout-plan.html#training-4-days-a-week", "workouts": [{"name": "Upper", "exercises": [{"name": "Push (your level)", "sets": 3, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Push-ups with hands on a table or bench", "Push-ups on the floor", "Push-ups with feet on a chair"]}, {"name": "Pull (your level)", "sets": 3, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Doorway towel row", "Row under a sturdy table", "Pull-ups or slow pull-up negatives (needs a bar)"]}, {"name": "Shoulders (your level)", "sets": 3, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Pike push-up, hands on a chair", "Pike push-up, hands on the floor", "Pike push-up, feet on a chair"]}, {"name": "Push, one level easier, hands close together", "sets": 2, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Push-ups with hands on a table or bench", "Push-ups on the floor", "Push-ups with feet on a chair"]}, {"name": "Pull, one level easier", "sets": 2, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Doorway towel row", "Row under a sturdy table", "Pull-ups or slow pull-up negatives (needs a bar)"]}]}, {"name": "Lower", "exercises": [{"name": "Squat (your level)", "sets": 3, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Squat to a chair", "Split squat", "Bulgarian split squat (back foot on a chair)"]}, {"name": "Hinge (your level)", "sets": 3, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Glute bridge", "Single-leg glute bridge", "Single-leg hip thrust (shoulders on a sofa)"]}, {"name": "Reverse lunges", "sets": 2, "reps": "8–12", "note": "per leg", "rest": "1–2 min", "kind": "reps"}, {"name": "Single-leg calf raises", "sets": 3, "reps": "10–20", "note": "per leg", "rest": "1 min", "kind": "reps"}, {"name": "Core (your level)", "sets": 2, "reps": "", "note": "", "rest": "1 min", "kind": "level", "levels": ["Dead bug", "Plank", "Side plank, then hollow body hold"]}]}]}]</script>
+<script type="application/json" id="log-data">{"plans": [{"id": "full-body-workout-for-beginners", "label": "Gym · 3 days (full body)", "href": "full-body-workout-for-beginners.html", "workouts": [{"name": "Workout A", "exercises": [{"name": "Leg press or squat", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight", "alt": ["Goblet squat with a dumbbell"]}, {"name": "Machine chest press or bench press", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight", "alt": ["Push-ups (hands raised if needed)"]}, {"name": "Lat pulldown", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight", "alt": ["One-arm dumbbell row"]}, {"name": "Lateral raises", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight", "alt": ["Dumbbell lateral raises"]}, {"name": "Leg curl", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight", "alt": ["Dumbbell Romanian deadlift"]}, {"name": "Crunches", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight", "alt": ["Floor crunches"]}]}, {"name": "Workout B", "exercises": [{"name": "Hip thrusts", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight", "alt": ["Glute bridges with a dumbbell"]}, {"name": "Shoulder press", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight", "alt": ["Seated dumbbell shoulder press"]}, {"name": "Seated cable row", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight", "alt": ["Chest-supported dumbbell row"]}, {"name": "Leg extension", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight", "alt": ["Split squats"]}, {"name": "Dumbbell curls", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight", "alt": ["Dumbbell curls"]}, {"name": "Triceps pushdown", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight", "alt": ["Overhead dumbbell extension"]}]}]}, {"id": "upper-lower-workout-plan", "label": "Gym · 4 days (upper/lower)", "href": "upper-lower-workout-plan.html", "workouts": [{"name": "Upper A", "exercises": [{"name": "Bench press or machine chest press", "sets": 3, "reps": "6–10", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Lat pulldown", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Seated dumbbell shoulder press", "sets": 2, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Seated cable row", "sets": 2, "reps": "10–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Dumbbell curls", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Triceps pushdown", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}]}, {"name": "Lower A", "exercises": [{"name": "Squat or leg press", "sets": 3, "reps": "6–10", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Romanian deadlift", "sets": 3, "reps": "8–10", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Leg extension", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Standing calf raise", "sets": 3, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Crunches or cable crunch", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}]}, {"name": "Upper B", "exercises": [{"name": "Incline dumbbell press", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Chest-supported row or one-arm dumbbell row", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Cable or machine chest fly", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Lateral raises", "sets": 3, "reps": "12–20", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Incline dumbbell curls", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Overhead triceps extension", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}]}, {"name": "Lower B", "exercises": [{"name": "Hip thrusts", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Leg press", "sets": 3, "reps": "10–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Leg curl", "sets": 3, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Split squats or walking lunges", "sets": 2, "reps": "8–12", "note": "per leg", "rest": "1–2 min", "kind": "weight"}, {"name": "Seated calf raise", "sets": 3, "reps": "12–20", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Plank", "sets": 2, "reps": "30–60 s", "note": "", "rest": "1 min", "kind": "time"}]}]}, {"id": "dumbbell-workout-at-home", "label": "Home dumbbells · 3 days", "href": "dumbbell-workout-at-home.html", "workouts": [{"name": "Workout A", "exercises": [{"name": "Goblet squat", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Dumbbell bench press", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight", "alt": ["Floor press"]}, {"name": "One-arm dumbbell row", "sets": 3, "reps": "8–12", "note": "per arm", "rest": "2 min", "kind": "weight", "alt": ["Support your hand on a chair"]}, {"name": "Romanian deadlift", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Lateral raises", "sets": 2, "reps": "10–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Dead bug", "sets": 2, "reps": "8–12", "note": "per side", "rest": "1 min", "kind": "weight"}]}, {"name": "Workout B", "exercises": [{"name": "Reverse lunges", "sets": 3, "reps": "8–12", "note": "per leg", "rest": "2 min", "kind": "weight"}, {"name": "Seated dumbbell shoulder press", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight", "alt": ["Standing shoulder press"]}, {"name": "Chest-supported row (bench set to an incline)", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight", "alt": ["Bent-over row"]}, {"name": "Hip thrusts with a dumbbell", "sets": 3, "reps": "10–15", "note": "", "rest": "2 min", "kind": "weight", "alt": ["Glute bridges with a dumbbell"]}, {"name": "Dumbbell curls", "sets": 2, "reps": "10–15", "note": "", "rest": "1 min", "kind": "weight"}, {"name": "Overhead triceps extension", "sets": 2, "reps": "10–15", "note": "", "rest": "1 min", "kind": "weight"}]}]}, {"id": "intermediate-home-workout", "label": "Home dumbbells · 4 days", "href": "intermediate-home-workout.html", "workouts": [{"name": "Upper A", "exercises": [{"name": "Dumbbell bench press", "sets": 3, "reps": "6–10", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Pull-ups (or band-assisted)", "sets": 3, "reps": "6–10", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Incline dumbbell press", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Chest-supported dumbbell row", "sets": 3, "reps": "8–12", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Lateral raises", "sets": 3, "reps": "12–15", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Dumbbell curls", "sets": 2, "reps": "10–15", "note": "", "rest": "1 min", "kind": "weight"}]}, {"name": "Lower A", "exercises": [{"name": "Bulgarian split squat", "sets": 3, "reps": "8–12", "note": "per leg", "rest": "2–3 min", "kind": "weight"}, {"name": "Romanian deadlift", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Goblet squat", "sets": 2, "reps": "10–15", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Single-leg calf raise", "sets": 3, "reps": "10–15", "note": "per leg", "rest": "1 min", "kind": "weight"}, {"name": "Hanging knee raises (or dead bugs)", "sets": 3, "reps": "8–15", "note": "", "rest": "1 min", "kind": "weight"}]}, {"name": "Upper B", "exercises": [{"name": "Seated dumbbell shoulder press", "sets": 3, "reps": "6–10", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "One-arm dumbbell row", "sets": 3, "reps": "8–12", "note": "per arm", "rest": "2 min", "kind": "weight"}, {"name": "Feet-raised push-ups", "sets": 3, "reps": "8–15", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Chin-ups (or band-assisted)", "sets": 3, "reps": "6–10", "note": "", "rest": "2 min", "kind": "weight"}, {"name": "Rear-delt flyes", "sets": 2, "reps": "12–15", "note": "", "rest": "1 min", "kind": "weight"}, {"name": "Overhead triceps extension", "sets": 2, "reps": "10–15", "note": "", "rest": "1 min", "kind": "weight"}]}, {"name": "Lower B", "exercises": [{"name": "Dumbbell hip thrusts", "sets": 3, "reps": "8–12", "note": "", "rest": "2–3 min", "kind": "weight"}, {"name": "Reverse lunges", "sets": 3, "reps": "8–12", "note": "per leg", "rest": "2 min", "kind": "weight"}, {"name": "Single-leg Romanian deadlift", "sets": 2, "reps": "8–12", "note": "per leg", "rest": "2 min", "kind": "weight"}, {"name": "Sliding leg curls (feet on a towel)", "sets": 2, "reps": "8–12", "note": "", "rest": "1–2 min", "kind": "weight"}, {"name": "Side plank", "sets": 2, "reps": "30–45 s", "note": "per side", "rest": "1 min", "kind": "time"}]}]}, {"id": "bodyweight-workout-plan", "label": "Bodyweight · 3 days", "href": "bodyweight-workout-plan.html", "workouts": [{"name": "Full body", "exercises": [{"name": "Squat", "sets": 3, "reps": "8–15 reps (per leg on levels 2–3)", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Squat to a chair", "Split squat", "Bulgarian split squat (back foot on a chair)"]}, {"name": "Push", "sets": 3, "reps": "6–15 reps", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Push-ups with hands on a table or bench", "Push-ups on the floor", "Push-ups with feet on a chair"]}, {"name": "Hinge", "sets": 3, "reps": "10–20 reps (per leg on levels 2–3)", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Glute bridge", "Single-leg glute bridge", "Single-leg hip thrust (shoulders on a sofa)"]}, {"name": "Pull", "sets": 3, "reps": "6–12 reps", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Doorway towel row", "Row under a sturdy table", "Pull-ups or slow pull-up negatives (needs a bar)"]}, {"name": "Shoulders", "sets": 3, "reps": "6–12 reps", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Pike push-up, hands on a chair", "Pike push-up, hands on the floor", "Pike push-up, feet on a chair"]}, {"name": "Core", "sets": 3, "reps": "20–60 seconds, or 8–12 reps per side", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Dead bug", "Plank", "Side plank, then hollow body hold"]}]}]}, {"id": "bodyweight-workout-plan-4", "label": "Bodyweight · 4 days", "href": "bodyweight-workout-plan.html#training-4-days-a-week", "workouts": [{"name": "Upper", "exercises": [{"name": "Push (your level)", "sets": 3, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Push-ups with hands on a table or bench", "Push-ups on the floor", "Push-ups with feet on a chair"]}, {"name": "Pull (your level)", "sets": 3, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Doorway towel row", "Row under a sturdy table", "Pull-ups or slow pull-up negatives (needs a bar)"]}, {"name": "Shoulders (your level)", "sets": 3, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Pike push-up, hands on a chair", "Pike push-up, hands on the floor", "Pike push-up, feet on a chair"]}, {"name": "Push, one level easier, hands close together", "sets": 2, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Push-ups with hands on a table or bench", "Push-ups on the floor", "Push-ups with feet on a chair"]}, {"name": "Pull, one level easier", "sets": 2, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Doorway towel row", "Row under a sturdy table", "Pull-ups or slow pull-up negatives (needs a bar)"]}]}, {"name": "Lower", "exercises": [{"name": "Squat (your level)", "sets": 3, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Squat to a chair", "Split squat", "Bulgarian split squat (back foot on a chair)"]}, {"name": "Hinge (your level)", "sets": 3, "reps": "", "note": "", "rest": "1–2 min", "kind": "level", "levels": ["Glute bridge", "Single-leg glute bridge", "Single-leg hip thrust (shoulders on a sofa)"]}, {"name": "Reverse lunges", "sets": 2, "reps": "8–12", "note": "per leg", "rest": "1–2 min", "kind": "reps"}, {"name": "Single-leg calf raises", "sets": 3, "reps": "10–20", "note": "per leg", "rest": "1 min", "kind": "reps"}, {"name": "Core (your level)", "sets": 2, "reps": "", "note": "", "rest": "1 min", "kind": "level", "levels": ["Dead bug", "Plank", "Side plank, then hollow body hold"]}]}]}], "library": {"Chest": ["Bench press", "Incline bench press", "Dumbbell bench press", "Incline dumbbell press", "Machine chest press", "Cable fly", "Machine fly", "Dumbbell fly", "Push-ups", "Dips"], "Back": ["Lat pulldown", "Close-grip lat pulldown", "Pull-ups", "Chin-ups", "Assisted pull-ups", "Seated cable row", "Wide-grip cable row", "Chest-supported row", "One-arm dumbbell row", "Barbell row", "T-bar row", "Machine row", "Straight-arm pulldown", "Back extension"], "Shoulders": ["Shoulder press", "Machine shoulder press", "Overhead barbell press", "Lateral raises", "Cable lateral raises", "Machine lateral raises", "Reverse flyes", "Face pulls"], "Biceps": ["Dumbbell curls", "Barbell curls", "EZ-bar curls", "Incline dumbbell curls", "Hammer curls", "Preacher curls", "Cable curls"], "Triceps": ["Triceps pushdown", "Overhead triceps extension", "Skull crushers", "Close-grip bench press", "Cable overhead extension"], "Quads": ["Squat", "Front squat", "Hack squat", "Leg press", "Goblet squat", "Bulgarian split squat", "Split squats", "Walking lunges", "Reverse lunges", "Leg extension"], "Hamstrings & glutes": ["Romanian deadlift", "Deadlift", "Leg curl", "Seated leg curl", "Hip thrusts", "Glute bridge", "Single-leg Romanian deadlift", "Hip abduction machine", "Cable kickback"], "Calves": ["Standing calf raise", "Seated calf raise", "Leg press calf raise", "Single-leg calf raises"], "Core": ["Crunches", "Cable crunch", "Hanging knee raises", "Leg raises", "Plank", "Side plank", "Dead bug", "Ab wheel rollout"]}, "ppl": [{"name": "Push", "exercises": [{"name": "Bench press", "sets": 3, "reps": "6–10"}, {"name": "Incline dumbbell press", "sets": 3, "reps": "8–12"}, {"name": "Shoulder press", "sets": 3, "reps": "8–12"}, {"name": "Lateral raises", "sets": 3, "reps": "12–20"}, {"name": "Triceps pushdown", "sets": 3, "reps": "10–15"}, {"name": "Overhead triceps extension", "sets": 2, "reps": "10–15"}]}, {"name": "Pull", "exercises": [{"name": "Lat pulldown", "sets": 3, "reps": "8–12"}, {"name": "Seated cable row", "sets": 3, "reps": "8–12"}, {"name": "Chest-supported row", "sets": 2, "reps": "8–12"}, {"name": "Face pulls", "sets": 2, "reps": "12–20"}, {"name": "Incline dumbbell curls", "sets": 3, "reps": "10–15"}, {"name": "Hammer curls", "sets": 2, "reps": "10–15"}]}, {"name": "Legs", "exercises": [{"name": "Squat", "sets": 3, "reps": "6–10"}, {"name": "Romanian deadlift", "sets": 3, "reps": "8–10"}, {"name": "Leg press", "sets": 3, "reps": "10–12"}, {"name": "Leg curl", "sets": 3, "reps": "10–15"}, {"name": "Leg extension", "sets": 2, "reps": "10–15"}, {"name": "Standing calf raise", "sets": 3, "reps": "10–15"}]}]}</script>
 <script>
 (function () {
   'use strict';
-  // Automatic next-weight suggestions are reserved for the 12-Week Program. For testing, open
-  // logbook.html?preview=smart once: it stays on for this browser until you press "Turn off".
-  var PREVIEW = 'trenesis.log.preview.v1', qs = new URLSearchParams(location.search);
-  if (qs.get('preview') === 'smart') { try { localStorage.setItem(PREVIEW, '1'); } catch (e) {} }
-  if (qs.get('preview') === 'off') { try { localStorage.removeItem(PREVIEW); } catch (e) {} }
-  var SMART = false; try { SMART = localStorage.getItem(PREVIEW) === '1'; } catch (e) {}
-  var KEY = 'trenesis.log.v1', DRAFT = 'trenesis.log.draft.v1', PREF = 'trenesis.log.plan.v1', UNITS = 'trenesis.units.v1', LB = 2.20462;
-  var PLANS = JSON.parse(document.getElementById('log-plans').textContent);
+  var DATA = JSON.parse(document.getElementById('log-data').textContent);
+  var BUILTIN = DATA.plans, LIB = DATA.library;
+  var KEY = 'trenesis.log.v1', DRAFT = 'trenesis.log.draft.v2', PREF = 'trenesis.log.plan.v1', UNITS = 'trenesis.units.v1',
+      CUSTOM = 'trenesis.log.custom.v1', SWAPS = 'trenesis.log.swaps.v1', PREVIEW = 'trenesis.log.preview.v1', LB = 2.20462;
   var $ = function (id) { return document.getElementById(id); };
   function load(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } }
   function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
-  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function clone(x) { return JSON.parse(JSON.stringify(x)); }
   function today() { var d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); }
   function nice(date) { try { return new Date(date + 'T12:00:00').toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }); } catch (e) { return date; } }
-  var log = load(KEY, { sessions: [] }); if (!log || !Array.isArray(log.sessions)) log = { sessions: [] };
-  var units = 'kg'; try { units = localStorage.getItem(UNITS) === 'imperial' ? 'lb' : 'kg'; } catch (e) {}
-  var planSel = $('log-plan'), state = { plan: null, wo: 0 };
 
-  function planById(id) { for (var i = 0; i < PLANS.length; i++) if (PLANS[i].id === id) return PLANS[i]; return null; }
-  function sessionsFor(planId) { return log.sessions.filter(function (s) { return s.plan === planId; }).sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : b.t - a.t; }); }
+  // Automatic next-weight suggestions are reserved for the 12-Week Program. For testing, open
+  // logbook.html?preview=smart once: it stays on for this browser until you press "Turn off".
+  var qs = new URLSearchParams(location.search);
+  if (qs.get('preview') === 'smart') { try { localStorage.setItem(PREVIEW, '1'); } catch (e) {} }
+  if (qs.get('preview') === 'off') { try { localStorage.removeItem(PREVIEW); } catch (e) {} }
+  var SMART = false; try { SMART = localStorage.getItem(PREVIEW) === '1'; } catch (e) {}
+
+  var log = load(KEY, { sessions: [] }); if (!log || !Array.isArray(log.sessions)) log = { sessions: [] };
+  var custom = load(CUSTOM, []); if (!Array.isArray(custom)) custom = [];
+  var swaps = load(SWAPS, {}); if (!swaps || typeof swaps !== 'object') swaps = {};
+  var units = 'kg'; try { units = localStorage.getItem(UNITS) === 'imperial' ? 'lb' : 'kg'; } catch (e) {}
+  var state = { plan: null, wo: 0 }, ed = null;
+
+  // ---------- plans, exercise groups, swaps
+  function allPlans() { return BUILTIN.concat(custom); }
+  function planById(id) { var a = allPlans(); for (var i = 0; i < a.length; i++) if (a[i].id === id) return a[i]; return null; }
+  function isCustom(p) { return p && String(p.id).indexOf('c-') === 0; }
+  var GROUP_RULES = [
+    ['Calves', /calf/i], ['Core', /crunch|plank|dead bug|knee raise|leg raise|ab wheel|hollow|core/i],
+    ['Hamstrings & glutes', /romanian|deadlift|leg curl|hip thrust|glute|bridge|hinge|kickback|abduction|back extension/i],
+    ['Biceps', /curl/i],
+    ['Triceps', /tricep|pushdown|skull|close-grip bench|overhead (?:dumbbell |cable )?extension/i],
+    ['Quads', /squat|leg press|lunge|leg extension|step-up/i],
+    ['Shoulders', /shoulder|lateral|overhead (?:barbell )?press|rear|face pull|pike|reverse fl/i],
+    ['Back', /row|pulldown|pull-up|pull up|chin|^pull/i],
+    ['Chest', /bench|chest|fly|flye|push-up|push up|dip|^push/i]
+  ];
+  function groupOf(name) { for (var i = 0; i < GROUP_RULES.length; i++) if (GROUP_RULES[i][1].test(name)) return GROUP_RULES[i][0]; return ''; }
+  function slotKey(i) { return state.plan.id + '/' + state.plan.workouts[state.wo].name + '/' + i; }
+  function alternatives(ex, current) {
+    var seen = {}, out = [];
+    function add(n) { if (n && !seen[n.toLowerCase()] && n.toLowerCase() !== String(current).toLowerCase()) { seen[n.toLowerCase()] = 1; out.push(n); } }
+    if (ex.name !== current) add(ex.name);
+    (ex.alt || []).forEach(add);
+    (LIB[groupOf(ex.name)] || []).forEach(add);
+    return out;
+  }
+
+  // ---------- history helpers
+  function byNewest(a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : b.t - a.t; }
+  function sessionsFor(planId) { return log.sessions.filter(function (s) { return s.plan === planId; }).sort(byNewest); }
   function nextWorkout(plan) {
     var last = sessionsFor(plan.id)[0]; if (!last) return 0;
     for (var i = 0; i < plan.workouts.length; i++) if (plan.workouts[i].name === last.workout) return (i + 1) % plan.workouts.length;
     return 0;
   }
   function lastFor(exName) {
-    var all = log.sessions.slice().sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : b.t - a.t; });
+    var all = log.sessions.slice().sort(byNewest), want = String(exName).toLowerCase();
     for (var i = 0; i < all.length; i++) for (var j = 0; j < all[i].entries.length; j++) {
-      var e = all[i].entries[j]; if (e.name === exName && e.sets.some(function (s) { return s.r; })) return { date: all[i].date, sets: e.sets };
+      var e = all[i].entries[j]; if (String(e.name).toLowerCase() === want && e.sets.some(function (s) { return s.r; })) return { date: all[i].date, sets: e.sets };
     }
     return null;
   }
@@ -82,9 +128,7 @@
     return (set.w != null ? showW(set.w) + ' ' + units + ' × ' : '') + (set.r || '–');
   }
   function summary(sets, kind) {
-    // "60 kg × 12, 11, 10" when every set used the same weight; otherwise set by set.
-    var done = sets.filter(function (s) { return s.r || s.w != null; });
-    var ws = done.map(function (s) { return s.w; });
+    var done = sets.filter(function (s) { return s.r || s.w != null; }), ws = done.map(function (s) { return s.w; });
     if (kind === 'weight' && done.length > 1 && ws[0] != null && ws.every(function (w) { return w === ws[0]; }))
       return showW(ws[0]) + ' ' + units + ' × ' + done.map(function (s) { return s.r || '–'; }).join(', ');
     return done.map(function (s) { return setText(s, kind); }).join(', ');
@@ -92,60 +136,104 @@
   function suggestion(ex, last) {
     // Double progression: every set at the top of the rep range -> add the smallest step; otherwise same weight, one more rep.
     if (!SMART || !last || ex.kind !== 'weight') return '';
-    var top = parseInt(String(ex.reps).split(/[–-]/).pop(), 10), w = last.sets[0] && last.sets[0].w;
+    var top = parseInt(String(ex.reps || '').split(/[–-]/).pop(), 10), w = last.sets[0] && last.sets[0].w;
     if (!top || w == null) return '';
-    var done = last.sets.length >= ex.sets && last.sets.every(function (s) { return parseInt(s.r, 10) >= top; });
+    var done = last.sets.filter(function (s) { return s.r; }), hit = done.length >= ex.sets && done.every(function (s) { return parseInt(s.r, 10) >= top; });
     var step = units === 'lb' ? 5 / LB : 2.5;
-    return done ? 'Next: ' + showW(w + step) + ' ' + units + ' (you hit ' + top + ' on every set)' : 'Next: ' + showW(w) + ' ' + units + ', aim for one more rep';
+    return hit ? 'Next: ' + showW(w + step) + ' ' + units + ' (you hit ' + top + ' on every set)' : 'Next: ' + showW(w) + ' ' + units + ', aim for one more rep';
   }
 
+  // ---------- plan picker
+  function renderPlanSelect() {
+    var sel = $('log-plan'), h = '<optgroup label="Trenesis plans">';
+    BUILTIN.forEach(function (p) { h += '<option value="' + esc(p.id) + '">' + esc(p.label) + '</option>'; });
+    h += '</optgroup><optgroup label="Your plans">';
+    custom.forEach(function (p) { h += '<option value="' + esc(p.id) + '">' + esc(p.label) + '</option>'; });
+    h += '<option value="__new">+ Create your own plan</option></optgroup>';
+    sel.innerHTML = h;
+    if (state.plan) sel.value = state.plan.id;
+  }
   function renderWorkouts() {
-    var box = $('log-workouts'); box.textContent = '';
+    var box = $('log-workouts'), nxt = nextWorkout(state.plan), any = sessionsFor(state.plan.id).length; box.textContent = '';
     state.plan.workouts.forEach(function (w, i) {
       var b = document.createElement('button'); b.type = 'button'; b.className = 'log-wo' + (i === state.wo ? ' is-active' : '');
       b.setAttribute('aria-pressed', i === state.wo ? 'true' : 'false'); b.textContent = w.name;
-      if (i === nextWorkout(state.plan) && sessionsFor(state.plan.id).length) { var n = document.createElement('span'); n.className = 'log-next-tag'; n.textContent = 'next'; b.append(' ', n); }
+      if (i === nxt && any) { var n = document.createElement('span'); n.className = 'log-next-tag'; n.textContent = 'next'; b.append(' ', n); }
       b.addEventListener('click', function () { saveDraft(); state.wo = i; renderWorkouts(); renderForm(); });
       box.append(b);
     });
-    $('log-planlink').href = state.plan.href; $('log-planlink').textContent = 'Open the plan: ' + state.plan.label;
+    var link = $('log-planlink');
+    if (state.plan.href) { $('log-planlink-wrap').hidden = false; link.href = state.plan.href; link.textContent = 'Open the plan: ' + state.plan.label; }
+    else $('log-planlink-wrap').hidden = true;
+    $('log-edit').textContent = isCustom(state.plan) ? 'Edit this plan' : 'Customize this plan';
   }
 
-  function inputRow(ex, n, draft) {
-    var d = (draft && draft[n]) || {}, id = 'x' + Math.random().toString(36).slice(2, 8), lab = 'Set ' + (n + 1);
-    var h = '<div class="log-set"><span class="log-setno" aria-hidden="true">' + (n + 1) + '</span>';
-    if (ex.kind === 'weight') h += '<label class="sr-only" for="' + id + 'w">' + lab + ' weight in ' + units + '</label><input class="log-in" id="' + id + 'w" data-f="w" inputmode="decimal" placeholder="' + units + '" value="' + esc(d.w != null ? showW(d.w) : '') + '"><span class="log-x" aria-hidden="true">×</span>';
-    if (ex.kind === 'level') {
-      h += '<label class="sr-only" for="' + id + 'l">' + lab + ' level</label><select class="log-in log-lvl" id="' + id + 'l" data-f="l"><option value="">Level</option>';
-      for (var k = 1; k <= 3; k++) h += '<option value="' + k + '"' + (String(d.l) === String(k) ? ' selected' : '') + '>L' + k + '</option>';
-      h += '</select><span class="log-x" aria-hidden="true">×</span>';
+  // ---------- workout form
+  function draftKey() { return state.plan.id + '/' + state.plan.workouts[state.wo].name; }
+  function getDraft() { var d = load(DRAFT, {}); return d[draftKey()] || { base: {}, extra: [] }; }
+  function putDraft(dd) { var d = load(DRAFT, {}); d[draftKey()] = dd; save(DRAFT, d); }
+  function setRows(ex, sets, count) {
+    var h = '';
+    for (var n = 0; n < count; n++) {
+      var d = sets[n] || {}, id = 'x' + Math.random().toString(36).slice(2, 8), lab = 'Set ' + (n + 1);
+      h += '<div class="log-set"><span class="log-setno" aria-hidden="true">' + (n + 1) + '</span>';
+      if (ex.kind === 'weight') h += '<label class="sr-only" for="' + id + 'w">' + lab + ' weight in ' + units + '</label><input class="log-in" id="' + id + 'w" data-f="w" inputmode="decimal" placeholder="' + units + '" value="' + esc(d.w != null ? showW(d.w) : '') + '"><span class="log-x" aria-hidden="true">×</span>';
+      if (ex.kind === 'level') {
+        h += '<label class="sr-only" for="' + id + 'l">' + lab + ' level</label><select class="log-in log-lvl" id="' + id + 'l" data-f="l"><option value="">Level</option>';
+        for (var k = 1; k <= 3; k++) h += '<option value="' + k + '"' + (String(d.l) === String(k) ? ' selected' : '') + '>L' + k + '</option>';
+        h += '</select><span class="log-x" aria-hidden="true">×</span>';
+      }
+      h += '<label class="sr-only" for="' + id + 'r">' + lab + ' ' + (ex.kind === 'time' ? 'seconds' : 'reps') + '</label><input class="log-in" id="' + id + 'r" data-f="r" inputmode="numeric" placeholder="' + (ex.kind === 'time' ? 's' : 'reps') + '" value="' + esc(d.r || '') + '"></div>';
     }
-    var unit = ex.kind === 'time' ? 's' : 'reps';
-    h += '<label class="sr-only" for="' + id + 'r">' + lab + ' ' + (ex.kind === 'time' ? 'seconds' : 'reps') + '</label><input class="log-in" id="' + id + 'r" data-f="r" inputmode="numeric" placeholder="' + unit + '" value="' + esc(d.r || '') + '"></div>';
     return h;
   }
-
+  function card(ex, i, sets, opts) {
+    var name = opts.name, last = name ? lastFor(name) : null, h = '';
+    var target = ex.sets + ' × ' + (ex.reps || (ex.kind === 'level' ? 'your level' : '')) + (ex.note ? ' ' + ex.note : '') + (ex.rest ? ' · rest ' + ex.rest : '');
+    h += '<fieldset class="log-ex' + (opts.extra ? ' is-extra' : '') + '" data-i="' + i + '"' + (opts.extra ? ' data-extra="1"' : '') + ' data-kind="' + ex.kind + '" data-name="' + esc(name) + '">';
+    if (opts.extra) {
+      var nid = 'n' + Math.random().toString(36).slice(2, 8);
+      h += '<legend class="sr-only">Added exercise</legend><label class="log-label" for="' + nid + '">Exercise</label><input class="log-namein" id="' + nid + '" list="log-lib" data-f="name" placeholder="Start typing, e.g. Cable fly" value="' + esc(name) + '">';
+    } else {
+      h += '<legend><span class="log-exname">' + esc(name) + '</span><span class="log-target">' + esc(target) + '</span></legend>';
+      if (name !== ex.name) h += '<p class="log-swapped">Instead of ' + esc(ex.name) + ' · <button type="button" class="log-link" data-act="unswap">Undo swap</button></p>';
+      if (ex.levels) h += '<p class="log-levels">L1 ' + esc(ex.levels[0]) + ' · L2 ' + esc(ex.levels[1]) + ' · L3 ' + esc(ex.levels[2]) + '</p>';
+    }
+    var bw = /crunch|plank|dead bug|knee raise|leg raise|push-up|pull-up|chin-up|dips|ab wheel|hollow/i.test(name);
+    var first = ex.kind === 'weight' && bw ? 'Bodyweight exercise: leave kg empty, or enter any extra weight you add.' : ex.kind === 'weight' ? 'First time: pick a weight you can lift for the bottom of the rep range.' : ex.kind === 'level' ? 'First time: pick the level where you can just reach the bottom of the rep range.' : 'First time: aim for the bottom of the range with good form.';
+    if (name) h += '<p class="log-last">' + (last ? 'Last time (' + esc(nice(last.date)) + '): ' + esc(summary(last.sets, ex.kind)) : first) + '</p>';
+    var sug = suggestion(Object.assign({}, ex, { name: name }), last); if (sug) h += '<p class="log-suggest">' + esc(sug) + '</p>';
+    h += setRows(ex, sets, Math.max(sets.length, opts.extra ? 3 : ex.sets));
+    h += '<div class="log-ex-tools">';
+    if (!opts.extra && ex.kind !== 'level') h += '<button type="button" class="log-tool" data-act="swap" aria-expanded="false">Swap exercise</button>';
+    h += '<button type="button" class="log-tool" data-act="addset">+ Set</button><button type="button" class="log-tool" data-act="delset">− Set</button>';
+    if (opts.extra) h += '<button type="button" class="log-tool" data-act="remove">Remove</button>';
+    h += '</div>';
+    if (!opts.extra && ex.kind !== 'level') {
+      var sid = 's' + Math.random().toString(36).slice(2, 8), alts = alternatives(ex, name);
+      h += '<div class="log-swap" hidden><label class="log-label" for="' + sid + '">Swap for</label><div class="log-swap-row"><select id="' + sid + '" class="log-swapsel">';
+      alts.forEach(function (a) { h += '<option value="' + esc(a) + '">' + esc(a) + (a === ex.name ? ' (original)' : '') + '</option>'; });
+      h += '<option value="__other">Other: type an exercise…</option></select>';
+      h += '<input class="log-namein log-swapother" list="log-lib" placeholder="Type an exercise" hidden aria-label="Exercise name"><button type="button" class="btn log-swapuse" data-act="useswap">Use</button></div>';
+      h += '<p class="log-hint">Your swap is remembered for this workout. History is kept per exercise.</p></div>';
+    }
+    h += '</fieldset>';
+    return h;
+  }
   function renderForm() {
-    var wo = state.plan.workouts[state.wo], draft = load(DRAFT, {}), dkey = state.plan.id + '/' + wo.name, dd = draft[dkey] || {};
-    var html = '';
+    var wo = state.plan.workouts[state.wo], dd = getDraft(), h = '';
     wo.exercises.forEach(function (ex, i) {
-      var last = lastFor(ex.name), target = ex.sets + ' × ' + (ex.reps || 'your level') + (ex.note ? ' ' + ex.note : '') + (ex.rest ? ' · rest ' + ex.rest : '');
-      html += '<fieldset class="log-ex" data-i="' + i + '"><legend><span class="log-exname">' + esc(ex.name) + '</span><span class="log-target">' + esc(target) + '</span></legend>';
-      if (ex.levels) html += '<p class="log-levels">L1 ' + esc(ex.levels[0]) + ' · L2 ' + esc(ex.levels[1]) + ' · L3 ' + esc(ex.levels[2]) + '</p>';
-      var first = ex.kind === 'weight' ? 'First time: pick a weight you can lift for the bottom of the rep range.' : ex.kind === 'level' ? 'First time: pick the level where you can just reach the bottom of the rep range.' : 'First time: aim for the bottom of the range with good form.';
-      html += '<p class="log-last">' + (last ? 'Last time (' + esc(nice(last.date)) + '): ' + esc(summary(last.sets, ex.kind)) : first) + '</p>';
-      var sug = suggestion(ex, last); if (sug) html += '<p class="log-suggest">' + esc(sug) + '</p>';
-      for (var n = 0; n < ex.sets; n++) html += inputRow(ex, n, dd[i]);
-      html += '</fieldset>';
+      var name = swaps[slotKey(i)] || ex.name;
+      h += card(ex, i, (dd.base && dd.base[i]) || [], { name: name });
     });
-    $('log-exercises').innerHTML = html;
+    (dd.extra || []).forEach(function (x, j) { h += card({ name: x.name, kind: 'weight', sets: 3, reps: '' }, j, x.sets || [], { name: x.name, extra: true }); });
+    $('log-exercises').innerHTML = h;
     $('log-status').textContent = '';
   }
-
   function readForm() {
-    var entries = [];
+    var base = {}, extra = [], entries = [];
     $('log-exercises').querySelectorAll('.log-ex').forEach(function (fs) {
-      var ex = state.plan.workouts[state.wo].exercises[+fs.dataset.i], sets = [];
+      var sets = [];
       fs.querySelectorAll('.log-set').forEach(function (row) {
         var s = {}, w = row.querySelector('[data-f=w]'), l = row.querySelector('[data-f=l]'), r = row.querySelector('[data-f=r]');
         if (w && w.value.trim() !== '') { var kg = toKg(w.value); if (kg != null) s.w = Math.round(kg * 100) / 100; }
@@ -153,25 +241,67 @@
         if (r && r.value.trim() !== '') s.r = r.value.trim().slice(0, 6);
         sets.push(s);
       });
-      entries.push({ name: ex.name, kind: ex.kind, sets: sets });
+      if (fs.dataset.extra) {
+        var nm = fs.querySelector('[data-f=name]').value.trim().slice(0, 60);
+        extra.push({ name: nm, sets: sets });
+        if (nm) entries.push({ name: nm, kind: 'weight', sets: sets });
+      } else {
+        base[fs.dataset.i] = sets;
+        entries.push({ name: fs.dataset.name, kind: fs.dataset.kind, sets: sets });
+      }
     });
-    return entries;
+    return { draft: { base: base, extra: extra }, entries: entries };
   }
-  function saveDraft() {
-    if (!state.plan) return;
-    var wo = state.plan.workouts[state.wo], draft = load(DRAFT, {}), out = {};
-    readForm().forEach(function (e, i) { out[i] = e.sets; });
-    draft[state.plan.id + '/' + wo.name] = out; save(DRAFT, draft);
-  }
+  function saveDraft() { if (state.plan && $('log-exercises').children.length) putDraft(readForm().draft); }
 
+  $('log-exercises').addEventListener('click', function (e) {
+    var btn = e.target.closest('button[data-act]'); if (!btn) return;
+    var fs = btn.closest('.log-ex'), i = +fs.dataset.i, act = btn.dataset.act;
+    if (act === 'swap') {
+      var box = fs.querySelector('.log-swap'), open = box.hidden; box.hidden = !open; btn.setAttribute('aria-expanded', String(open));
+      if (open) fs.querySelector('.log-swapsel').focus();
+      return;
+    }
+    if (act === 'useswap') {
+      var sel = fs.querySelector('.log-swapsel'), other = fs.querySelector('.log-swapother');
+      var pick = sel.value === '__other' ? other.value.trim().slice(0, 60) : sel.value;
+      if (!pick) { other.focus(); return; }
+      saveDraft();
+      var orig = state.plan.workouts[state.wo].exercises[i].name;
+      if (pick.toLowerCase() === orig.toLowerCase()) delete swaps[slotKey(i)]; else swaps[slotKey(i)] = pick;
+      save(SWAPS, swaps); renderForm();
+      $('log-status').textContent = 'Swapped to ' + pick + '.';
+      return;
+    }
+    if (act === 'unswap') { saveDraft(); delete swaps[slotKey(i)]; save(SWAPS, swaps); renderForm(); return; }
+    var r = readForm(), dd = r.draft;
+    if (act === 'addset' || act === 'delset') {
+      var list = fs.dataset.extra ? dd.extra[i].sets : (dd.base[i] = dd.base[i] || []);
+      if (act === 'addset') list.push({}); else if (list.length > 1) list.pop();
+      putDraft(dd); renderForm(); return;
+    }
+    if (act === 'remove') { dd.extra.splice(i, 1); putDraft(dd); renderForm(); return; }
+  });
+  $('log-exercises').addEventListener('change', function (e) {
+    if (e.target.classList.contains('log-swapsel')) {
+      var other = e.target.closest('.log-swap').querySelector('.log-swapother');
+      other.hidden = e.target.value !== '__other'; if (!other.hidden) other.focus();
+    }
+  });
+  $('log-add').addEventListener('click', function () {
+    var dd = readForm().draft; dd.extra.push({ name: '', sets: [{}, {}, {}] }); putDraft(dd); renderForm();
+    var ins = $('log-exercises').querySelectorAll('.is-extra [data-f=name]'); if (ins.length) ins[ins.length - 1].focus();
+  });
+
+  // ---------- history
   function renderHistory() {
-    var list = $('log-sessions'), all = log.sessions.slice().sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : b.t - a.t; });
+    var list = $('log-sessions'), all = log.sessions.slice().sort(byNewest);
     list.textContent = ''; $('log-empty').hidden = all.length > 0;
-    all.slice(0, 30).forEach(function (s) {
+    all.slice(0, 40).forEach(function (s) {
       var plan = planById(s.plan), li = document.createElement('li'); li.className = 'log-session';
       var body = s.entries.filter(function (e) { return e.sets.some(function (x) { return x.r || x.w != null; }); })
         .map(function (e) { return '<li><span>' + esc(e.name) + '</span> ' + esc(summary(e.sets, e.kind)) + '</li>'; }).join('');
-      li.innerHTML = '<details><summary><span class="log-s-date">' + esc(nice(s.date)) + '</span><span class="log-s-name">' + esc(s.workout) + '</span><span class="log-s-plan">' + esc(plan ? plan.label : '') + '</span></summary><ul>' + body + '</ul><button type="button" class="log-link log-del">Delete this workout</button></details>';
+      li.innerHTML = '<details><summary><span class="log-s-date">' + esc(nice(s.date)) + '</span><span class="log-s-name">' + esc(s.workout) + '</span><span class="log-s-plan">' + esc(plan ? plan.label : (s.planLabel || '')) + '</span></summary><ul>' + body + '</ul><button type="button" class="log-link log-del">Delete this workout</button></details>';
       li.querySelector('.log-del').addEventListener('click', function (ev) {
         var btn = ev.currentTarget;
         if (btn.dataset.confirm !== '1') { btn.dataset.confirm = '1'; btn.textContent = 'Tap again to delete'; return; }
@@ -181,32 +311,139 @@
     });
   }
 
+  // ---------- your own plans
+  function showEditor(on) {
+    $('log-editor').hidden = !on; $('log-form').hidden = on; $('log-setup').hidden = on; $('log-history').hidden = on;
+    if (on) { $('log-editor').scrollIntoView({ block: 'start' }); $('ed-name').focus(); }
+  }
+  function blankWorkout(n) { return { name: 'Day ' + n, exercises: [{ name: '', sets: 3, reps: '8–12', kind: 'weight' }] }; }
+  function fromTemplate(tpl) {
+    if (tpl === 'ppl') return clone(DATA.ppl).map(function (w) { w.exercises.forEach(function (x) { x.kind = 'weight'; }); return w; });
+    if (tpl === 'blank') return [blankWorkout(1)];
+    var p = planById(tpl); return p ? clone(p.workouts) : [blankWorkout(1)];
+  }
+  function openEditor(mode) {
+    var p = state.plan;
+    if (mode === 'new') { ed = { id: null, label: '', workouts: fromTemplate('ppl') }; $('ed-title').textContent = 'Create your own plan'; }
+    else if (isCustom(p)) { ed = clone(p); $('ed-title').textContent = 'Edit your plan'; }
+    else {
+      var w = clone(p.workouts);
+      w.forEach(function (wo) { wo.exercises.forEach(function (x, i) { var sw = swaps[p.id + '/' + wo.name + '/' + i]; if (sw) x.name = sw; delete x.alt; }); });
+      ed = { id: null, label: 'My ' + p.label.charAt(0).toLowerCase() + p.label.slice(1), workouts: w, from: p.id }; $('ed-title').textContent = 'Customize: ' + p.label;
+    }
+    $('ed-templates').hidden = mode !== 'new';
+    $('ed-delete').hidden = !(mode !== 'new' && isCustom(p));
+    $('ed-name').value = ed.label; $('ed-error').textContent = '';
+    renderEditor(); showEditor(true);
+  }
+  function renderEditor() {
+    var h = '';
+    ed.workouts.forEach(function (w, wi) {
+      h += '<fieldset class="ed-wo" data-wi="' + wi + '"><legend class="sr-only">Workout ' + (wi + 1) + '</legend>';
+      h += '<div class="ed-wohead"><label class="sr-only" for="edw' + wi + '">Workout name</label><input id="edw' + wi + '" class="ed-woname" data-f="woname" maxlength="24" value="' + esc(w.name) + '" placeholder="Workout name">';
+      h += '<button type="button" class="log-link" data-ed="delwo"' + (ed.workouts.length < 2 ? ' hidden' : '') + '>Remove day</button></div>';
+      h += '<div class="ed-cols" aria-hidden="true"><span>Exercise</span><span>Sets</span><span>Reps</span><span></span></div>';
+      w.exercises.forEach(function (x, ei) {
+        var id = 'e' + wi + '_' + ei;
+        h += '<div class="ed-ex" data-ei="' + ei + '">';
+        h += '<label class="sr-only" for="' + id + 'n">Exercise ' + (ei + 1) + '</label><input id="' + id + 'n" class="log-namein" list="log-lib" data-f="name" maxlength="60" value="' + esc(x.name) + '" placeholder="Exercise"' + (x.kind === 'level' ? ' readonly' : '') + '>';
+        h += '<label class="ed-mini"><span>Sets</span><input class="log-in ed-sets" data-f="sets" inputmode="numeric" value="' + esc(x.sets) + '"></label>';
+        h += '<label class="ed-mini"><span>Reps</span><input class="log-in ed-reps" data-f="reps" value="' + esc(x.reps) + '" placeholder="8–12"></label>';
+        h += '<span class="ed-btns"><button type="button" class="ed-icon" data-ed="up" aria-label="Move up"' + (ei === 0 ? ' disabled' : '') + '>↑</button><button type="button" class="ed-icon" data-ed="down" aria-label="Move down"' + (ei === w.exercises.length - 1 ? ' disabled' : '') + '>↓</button><button type="button" class="ed-icon" data-ed="delex" aria-label="Remove exercise">×</button></span></div>';
+      });
+      h += '<button type="button" class="log-link" data-ed="addex">+ Add exercise</button></fieldset>';
+    });
+    $('ed-workouts').innerHTML = h;
+  }
+  $('ed-workouts').addEventListener('input', function (e) {
+    var f = e.target.dataset.f, wo = e.target.closest('.ed-wo'); if (!f || !wo) return;
+    var w = ed.workouts[+wo.dataset.wi];
+    if (f === 'woname') { w.name = e.target.value; return; }
+    var x = w.exercises[+e.target.closest('.ed-ex').dataset.ei];
+    if (f === 'sets') x.sets = e.target.value; else x[f] = e.target.value;
+  });
+  $('ed-workouts').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-ed]'); if (!b) return;
+    var w = ed.workouts[+b.closest('.ed-wo').dataset.wi], row = b.closest('.ed-ex'), ei = row ? +row.dataset.ei : -1, act = b.dataset.ed;
+    if (act === 'addex') w.exercises.push({ name: '', sets: 3, reps: '8–12', kind: 'weight' });
+    if (act === 'delex') { w.exercises.splice(ei, 1); if (!w.exercises.length) w.exercises.push({ name: '', sets: 3, reps: '8–12', kind: 'weight' }); }
+    if (act === 'up' && ei > 0) w.exercises.splice(ei - 1, 0, w.exercises.splice(ei, 1)[0]);
+    if (act === 'down' && ei < w.exercises.length - 1) w.exercises.splice(ei + 1, 0, w.exercises.splice(ei, 1)[0]);
+    if (act === 'delwo') ed.workouts.splice(+b.closest('.ed-wo').dataset.wi, 1);
+    renderEditor();
+    if (act === 'addex') { var ins = $('ed-workouts').querySelectorAll('.ed-wo')[ed.workouts.indexOf(w)].querySelectorAll('[data-f=name]'); ins[ins.length - 1].focus(); }
+  });
+  $('ed-templates').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-tpl]'); if (!b) return;
+    ed.workouts = fromTemplate(b.dataset.tpl); renderEditor();
+    if (!$('ed-name').value.trim()) $('ed-name').value = { ppl: 'My Push/Pull/Legs', 'upper-lower-workout-plan': 'My upper/lower', 'full-body-workout-for-beginners': 'My full body', blank: '' }[b.dataset.tpl] || '';
+  });
+  $('ed-addwo').addEventListener('click', function () { ed.workouts.push(blankWorkout(ed.workouts.length + 1)); renderEditor(); });
+  $('ed-cancel').addEventListener('click', function () { ed = null; showEditor(false); renderPlanSelect(); });
+  $('ed-save').addEventListener('click', function () {
+    var err = $('ed-error'), label = $('ed-name').value.trim().slice(0, 40), names = {};
+    if (!label) { err.textContent = 'Give your plan a name.'; $('ed-name').focus(); return; }
+    var workouts = ed.workouts.map(function (w, wi) {
+      var exs = w.exercises.filter(function (x) { return String(x.name).trim(); }).map(function (x) {
+        var sets = Math.max(1, Math.min(10, parseInt(x.sets, 10) || 3)), reps = String(x.reps || '').trim().slice(0, 16);
+        var kind = x.kind === 'level' || x.kind === 'reps' ? x.kind : (/\d\s*s(ec)?\b/i.test(reps) ? 'time' : 'weight');
+        var out = { name: String(x.name).trim(), sets: sets, reps: reps, kind: kind };
+        ['levels', 'rest', 'note'].forEach(function (k) { if (x[k]) out[k] = x[k]; });
+        return out;
+      });
+      var nm = String(w.name).trim().slice(0, 24) || 'Day ' + (wi + 1);
+      while (names[nm.toLowerCase()]) nm += ' ' + (wi + 1);
+      names[nm.toLowerCase()] = 1;
+      return { name: nm, exercises: exs };
+    }).filter(function (w) { return w.exercises.length; });
+    if (!workouts.length) { err.textContent = 'Add at least one exercise.'; return; }
+    var plan = { id: ed.id || 'c-' + Date.now().toString(36), label: label, workouts: workouts };
+    var at = custom.findIndex(function (p) { return p.id === plan.id; });
+    if (at >= 0) custom[at] = plan; else custom.push(plan);
+    if (!save(CUSTOM, custom)) { err.textContent = 'Couldn’t save: your browser blocks storage (private mode?).'; return; }
+    ed = null; showEditor(false); renderPlanSelect(); selectPlan(plan.id);
+    $('log-status').textContent = 'Plan saved. Pick a workout and start logging.';
+  });
+  $('ed-delete').addEventListener('click', function () {
+    var b = $('ed-delete');
+    if (b.dataset.confirm !== '1') { b.dataset.confirm = '1'; b.textContent = 'Tap again to delete the plan (your logged workouts stay)'; return; }
+    custom = custom.filter(function (p) { return p.id !== ed.id; }); save(CUSTOM, custom);
+    b.dataset.confirm = ''; b.textContent = 'Delete this plan';
+    ed = null; showEditor(false); state.plan = null; renderPlanSelect(); selectPlan(BUILTIN[0].id);
+  });
+
+  // ---------- wiring
   function selectPlan(id, keepWo) {
-    state.plan = planById(id) || PLANS[0]; planSel.value = state.plan.id; save(PREF, state.plan.id);
+    state.plan = planById(id) || BUILTIN[0]; $('log-plan').value = state.plan.id; save(PREF, state.plan.id);
     if (!keepWo) state.wo = nextWorkout(state.plan);
+    if (state.wo >= state.plan.workouts.length) state.wo = 0;
     renderWorkouts(); renderForm();
   }
-
   $('log-form').addEventListener('input', function () { clearTimeout(saveDraft.t); saveDraft.t = setTimeout(saveDraft, 400); });
   $('log-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    var entries = readForm(), any = entries.some(function (x) { return x.sets.some(function (s) { return s.r; }); });
+    var r = readForm(), any = r.entries.some(function (x) { return x.sets.some(function (s) { return s.r; }); });
     if (!any) { $('log-status').textContent = 'Enter the reps for at least one set before saving.'; return; }
     var wo = state.plan.workouts[state.wo];
-    log.sessions.push({ t: Date.now(), date: $('log-date').value || today(), plan: state.plan.id, workout: wo.name, entries: entries });
+    log.sessions.push({ t: Date.now(), date: $('log-date').value || today(), plan: state.plan.id, planLabel: state.plan.label, workout: wo.name, entries: r.entries });
     if (!save(KEY, log)) { $('log-status').textContent = 'Couldn’t save: your browser blocks storage (private mode?). Download a backup instead.'; return; }
-    var draft = load(DRAFT, {}); delete draft[state.plan.id + '/' + wo.name]; save(DRAFT, draft);
+    var d = load(DRAFT, {}); delete d[draftKey()]; save(DRAFT, d);
     state.wo = nextWorkout(state.plan); renderWorkouts(); renderForm(); renderHistory();
     $('log-status').textContent = 'Saved. Next time: ' + state.plan.workouts[state.wo].name + '.';
     $('log-status').scrollIntoView({ block: 'nearest' });
   });
-  planSel.addEventListener('change', function () { saveDraft(); selectPlan(planSel.value); });
+  $('log-plan').addEventListener('change', function () {
+    saveDraft();
+    if (this.value === '__new') { this.value = state.plan.id; openEditor('new'); return; }
+    selectPlan(this.value);
+  });
+  $('log-edit').addEventListener('click', function () { saveDraft(); openEditor('edit'); });
   document.querySelectorAll('input[name=log-units]').forEach(function (r) {
     r.checked = r.value === units;
     r.addEventListener('change', function () { saveDraft(); units = r.value; try { localStorage.setItem(UNITS, units === 'lb' ? 'imperial' : 'metric'); } catch (e) {} renderForm(); renderHistory(); });
   });
   $('log-export').addEventListener('click', function () {
-    var blob = new Blob([JSON.stringify({ app: 'trenesis-logbook', version: 1, exported: new Date().toISOString(), sessions: log.sessions }, null, 1)], { type: 'application/json' });
+    var blob = new Blob([JSON.stringify({ app: 'trenesis-logbook', version: 2, exported: new Date().toISOString(), sessions: log.sessions, plans: custom, swaps: swaps }, null, 1)], { type: 'application/json' });
     var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'trenesis-logbook-' + today() + '.json'; document.body.append(a); a.click(); a.remove();
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
   });
@@ -218,21 +455,30 @@
         var d = JSON.parse(rd.result); if (!d || !Array.isArray(d.sessions)) throw 0;
         var have = {}; log.sessions.forEach(function (s) { have[s.t] = 1; });
         var added = d.sessions.filter(function (s) { return s && s.t && s.date && s.plan && Array.isArray(s.entries) && !have[s.t]; });
-        log.sessions = log.sessions.concat(added); save(KEY, log); renderHistory(); renderWorkouts(); renderForm();
-        $('log-status').textContent = 'Backup restored: ' + added.length + ' workout' + (added.length === 1 ? '' : 's') + ' added.';
+        log.sessions = log.sessions.concat(added); save(KEY, log);
+        var newPlans = 0;
+        if (Array.isArray(d.plans)) d.plans.forEach(function (p) {
+          if (p && /^c-/.test(p.id) && Array.isArray(p.workouts) && !custom.some(function (c) { return c.id === p.id; })) { custom.push(p); newPlans++; }
+        });
+        save(CUSTOM, custom);
+        if (d.swaps && typeof d.swaps === 'object') { Object.keys(d.swaps).forEach(function (k) { if (!swaps[k] && typeof d.swaps[k] === 'string') swaps[k] = d.swaps[k]; }); save(SWAPS, swaps); }
+        renderPlanSelect(); selectPlan(state.plan.id, true); renderHistory();
+        $('log-status').textContent = 'Backup restored: ' + added.length + ' workout' + (added.length === 1 ? '' : 's') + (newPlans ? ' and ' + newPlans + ' plan' + (newPlans === 1 ? '' : 's') : '') + ' added.';
       } catch (x) { $('log-status').textContent = 'That file isn’t a Trenesis logbook backup.'; }
       e.target.value = '';
     };
     rd.readAsText(file);
   });
-
   if (SMART) { $('log-preview').hidden = false; $('log-preview-off').addEventListener('click', function () { try { localStorage.removeItem(PREVIEW); } catch (e) {} location.href = location.pathname; }); }
+
   $('log-date').value = today();
-  var q = new URLSearchParams(location.search).get('plan'), start = q && planById(q) ? q : null;
+  renderPlanSelect();
+  var q = qs.get('plan'), start = q && planById(q) ? q : null;
   if (!start) { var pref = load(PREF, null); if (pref && planById(pref)) start = pref; }
   if (!start) { var p = load('trenesis.plan.v1', null); if (p && p.steps && p.steps[0]) { var f = String(p.steps[0].href).split('#'); start = f[0].replace('.html', '') + (f[1] ? '-4' : ''); if (!planById(start)) start = null; } }
-  selectPlan(start || PLANS[0].id);
+  selectPlan(start || BUILTIN[0].id);
   renderHistory();
+  if (qs.get('new') === '1') openEditor('new');
   addEventListener('pagehide', saveDraft);
 })();
 </script>
