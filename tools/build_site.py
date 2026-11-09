@@ -26,20 +26,36 @@ import markdown
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import calculator
+import logbook
 import parts
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = 'https://trenesisgym.github.io/trenesis/'
-VERSION = '20261104-fourday2'
+VERSION = '20261109-tools'
 UPDATED = datetime.date(2026, 10, 31)
 
+
+def article_updated(slug):
+    """Date the article's source last changed: today if it has uncommitted edits, else its last commit, else UPDATED."""
+    import subprocess
+    src = f'content/articles/{slug}.md'
+    try:
+        dirty = subprocess.run(['git', 'diff', '--quiet', 'HEAD', '--', src], cwd=ROOT).returncode != 0
+        if dirty:
+            return datetime.date.today()
+        out = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', src], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+        return max(datetime.date.fromisoformat(out), UPDATED) if out else UPDATED
+    except Exception:
+        return UPDATED
+
 GUIDES = {
-    'strength': {'name': 'Strength Training Guide', 'pdf': 'pdfs/strength-training.pdf', 'pages': 12, 'hub': 'Training', 'group': 'Strength training'},
-    'home': {'name': 'Strength Training Guide', 'pdf': 'pdfs/strength-training.pdf', 'pages': 12, 'hub': 'Training', 'group': 'Home training'},
-    'cardio': {'name': 'Cardio Training Guide', 'pdf': 'pdfs/cardio.pdf', 'pages': 9, 'hub': 'Training', 'group': 'Cardio'},
-    'nutrition': {'name': 'Nutrition Basics Guide', 'pdf': 'pdfs/nutrition-basics.pdf', 'pages': 9, 'hub': 'Nutrition', 'group': 'Nutrition basics'},
-    'meal': {'name': 'Meal Planning Guide', 'pdf': 'pdfs/meal-planning.pdf', 'pages': 11, 'hub': 'Nutrition', 'group': 'Meal planning'},
+    'strength': {'name': 'Strength Training Guide', 'pdf': 'pdfs/strength-training.pdf', 'pages': 12, 'hub': 'Training', 'group': 'Strength training', 'covers': 'The principles behind the plans: progression, sets and reps, splits, recovery and common mistakes'},
+    'home': {'name': 'Strength Training Guide', 'pdf': 'pdfs/strength-training.pdf', 'pages': 12, 'hub': 'Training', 'group': 'Home training', 'covers': 'The principles behind the plans: progression, sets and reps, splits, recovery and common mistakes'},
+    'cardio': {'name': 'Cardio Training Guide', 'pdf': 'pdfs/cardio.pdf', 'pages': 9, 'hub': 'Training', 'group': 'Cardio', 'covers': 'Types of cardio, heart rate zones, weekly cardio plans and common mistakes'},
+    'nutrition': {'name': 'Nutrition Basics Guide', 'pdf': 'pdfs/nutrition-basics.pdf', 'pages': 9, 'hub': 'Nutrition', 'group': 'Nutrition basics', 'covers': 'Calories, protein, carbs and fats, and the supplements worth considering'},
+    'meal': {'name': 'Meal Planning Guide', 'pdf': 'pdfs/meal-planning.pdf', 'pages': 11, 'hub': 'Nutrition', 'group': 'Meal planning', 'covers': 'Planning meals around your goal, example days for fat loss and muscle gain, and meal prep'},
 }
+LOGGABLE = {slug.split('#')[0] for slug, _ in logbook.PLANS}
 HUB_PAGE = {'Training': 'training.html', 'Nutrition': 'nutrition.html'}
 # Reading order. A new article must be added here.
 ORDER = [
@@ -79,9 +95,20 @@ def head(title, desc, path, og_type='website', extra=''):
 
 
 def header(current):
-    items = [('Home', 'index.html'), ('Training', 'training.html'), ('Nutrition', 'nutrition.html'), ('Calorie Calculator', 'calculator.html'), ('Gear', 'products.html'), ('About', 'about.html')]
     here = ' aria-current="page"'
-    links = ''.join(f'<a href="{href}"{here if name == current else ""}>{name}</a>' for name, href in items)
+    def link(name, href):
+        return f'<a href="{href}"{here if name == current else ""}>{name}</a>'
+    # Tools live in one menu so the main navigation stays short.
+    tools = [('Find your plan', 'find-your-plan.html', '4 questions, a plan that fits you'),
+             ('Calorie calculator', 'calculator.html', 'Your calories and protein'),
+             ('Workout logbook', 'logbook.html', 'Log your sets, beat last time')]
+    in_tools = current in [t[0] for t in tools]
+    sub = ''.join(f'<a href="{h}"{here if n == current else ""}>{n}<span>{d}</span></a>' for n, h, d in tools)
+    menu = (f'<div class="nav-menu{" is-current" if in_tools else ""}">'
+            '<button class="nav-menu-btn" type="button" aria-expanded="false" aria-controls="tools-menu">Tools</button>'
+            f'<span class="nav-menu-label" aria-hidden="true">Tools</span><div class="nav-sub" id="tools-menu">{sub}</div></div>')
+    links = (link('Home', 'index.html') + link('Training', 'training.html') + link('Nutrition', 'nutrition.html') + menu
+             + link('Gear', 'products.html') + link('FAQ', 'faq.html') + link('About', 'about.html'))
     return (
         '<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="nav-wrap wrap">'
         '<a class="brand" href="index.html" aria-label="Trenesis home"><img src="assets/img/logo.webp" alt="" width="38" height="38"><span>TRENESIS</span></a>'
@@ -99,8 +126,8 @@ def footer():
         '<div class="footer-about"><a class="brand" href="index.html"><img src="assets/img/logo.webp" alt="" width="38" height="38"><span>TRENESIS</span></a>'
         '<p>Free, evidence-based guides to training and nutrition. No hype, just what works.</p></div>'
         '<div class="footer-col"><h2>Learn</h2><ul><li><a href="training.html">Training</a></li><li><a href="nutrition.html">Nutrition</a></li>'
-        '<li><a href="index.html#guides">Free PDF guides</a></li></ul></div>'
-        '<div class="footer-col"><h2>Trenesis</h2><ul><li><a href="about.html">About</a></li><li><a href="products.html">Gear</a></li>'
+        '<li><a href="index.html#guides">Free PDF guides</a></li><li><a href="calculator.html">Calorie calculator</a></li><li><a href="logbook.html">Workout logbook</a></li></ul></div>'
+        '<div class="footer-col"><h2>Trenesis</h2><ul><li><a href="about.html">About</a></li><li><a href="faq.html">Questions &amp; answers</a></li><li><a href="products.html">Gear</a></li>'
         '<li><a href="products.html#approach">How we pick gear</a></li><li><a href="privacy.html">Privacy</a></li></ul></div>'
         f'<div class="footer-col"><h2>Follow</h2><ul>{social}</ul></div></div>'
         f'<div class="footer-note"><span>© <span data-year>{UPDATED.year}</span> Trenesis</span>'
@@ -121,13 +148,24 @@ def page(title, desc, path, current, main, og_type='website', extra='', country=
     return head(title, desc, path, og_type, extra) + header(current) + f'<main id="main" tabindex="-1">{main}</main>' + footer()
 
 
-def build_hand(name, current):
+def build_hand(name, current, extra=''):
     """Pages Linus designed by hand: content/hand/<name>.html holds the <main> content plus title/description comments."""
     s = (ROOT / 'content' / 'hand' / f'{name}.html').read_text(encoding='utf-8')
     title = html.unescape(re.search(r'<!-- title: (.*?) -->', s).group(1))
     desc = html.unescape(re.search(r'<!-- description: (.*?) -->', s).group(1))
     body = re.sub(r'<!-- (title|description): .*? -->\n', '', s).rstrip('\n')
-    return page(title, desc, f'{name}.html', current, body)
+    return page(title, desc, f'{name}.html', current, body, extra=extra)
+
+
+def faq_schema():
+    """FAQPage structured data built from the questions in content/hand/faq.html."""
+    s = (ROOT / 'content' / 'hand' / 'faq.html').read_text(encoding='utf-8')
+    qa = []
+    for q, a in re.findall(r'<details><summary>(.*?)</summary><div>(.*?)</div></details>', s, re.S):
+        text = lambda x: html.unescape(re.sub(r'<[^>]+>', '', x)).strip()
+        qa.append({'@type': 'Question', 'name': text(q), 'acceptedAnswer': {'@type': 'Answer', 'text': text(a)}})
+    data = {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': qa}
+    return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False).replace('</', '<\\/') + '</script>'
 
 
 # ---------------------------------------------------------------- content
@@ -190,7 +228,7 @@ def build_article(a, arts):
     hub_page = HUB_PAGE[g['hub']]
     jsonld = ('<script type="application/ld+json">' + json.dumps({
         '@context': 'https://schema.org', '@type': 'Article', 'headline': a['title'], 'description': a['description'],
-        'dateModified': UPDATED.isoformat(), 'mainEntityOfPage': f'{BASE}{a["slug"]}.html', 'image': f'{BASE}assets/img/share.jpg',
+        'dateModified': article_updated(a['slug']).isoformat(), 'mainEntityOfPage': f'{BASE}{a["slug"]}.html', 'image': f'{BASE}assets/img/share.jpg',
         'author': [{'@type': 'Person', 'name': 'Volodymyr'}, {'@type': 'Person', 'name': 'Linus'}],
         'publisher': {'@type': 'Organization', 'name': 'Trenesis'}}, ensure_ascii=False) + '</script>')
     crumbs, crumbs_ld = parts.breadcrumbs(BASE, g['hub'], hub_page, a['title'])
@@ -201,13 +239,13 @@ def build_article(a, arts):
         f'<header class="article-head"><p class="kicker">{g["group"]}</p><h1>{esc(a["title"])}</h1>'
         f'<p class="article-lead">{esc(a["description"])}</p>'
         f'<p class="article-meta"><span>By <a href="about.html">{parts.AUTHORS}</a></span><span>{a["minutes"]} min read</span>'
-        f'<span>Updated {UPDATED.strftime("%B %Y")}</span></p></header>'
+        f'<span>Updated {article_updated(a["slug"]).strftime("%B %Y")}</span></p></header>'
         + (parts.takeaways_box(a['takeaways']) if a['takeaways'] else '')
-        + (parts.print_button() if a['slug'] in parts.PRINTABLE else '')
+        + (('<div class="plan-actions">' + parts.print_button() + (f'<a class="btn btn-quiet" href="logbook.html?plan={a["slug"]}">Log this workout</a>' if a['slug'] in LOGGABLE else '') + '</div>') if a['slug'] in parts.PRINTABLE else '')
         + parts.toc(body)
         + f'<div class="article-body">{body}</div>'
         + nudge
-        + pdf_box([a['guide']], f'Get the full {g["name"]}', f'All chapters in one {g["pages"]}-page PDF, free to download and print.')
+        + pdf_box([a['guide']], f'Free PDF: {g["name"]}', f'{g["covers"]}, in one {g["pages"]}-page PDF to download and print.')
         + parts.author_box()
         + '<p class="disclaimer">This article is general education, not medical advice. If you have an injury or a health condition, '
           'check with a doctor or physiotherapist before changing your training or diet.</p>'
@@ -268,7 +306,7 @@ def build_gear(name):
 
 def sitemap():
     pages = ['index.html', 'training.html', 'nutrition.html', 'products.html', 'equipment.html', 'supplements.html',
-             'accessories.html', 'about.html', 'calculator.html', 'find-your-plan.html'] + [f'{s}.html' for s in ORDER]
+             'accessories.html', 'about.html', 'faq.html', 'calculator.html', 'logbook.html', 'find-your-plan.html'] + [f'{s}.html' for s in ORDER]
     urls = ''.join(f'<url><loc>{BASE}{"" if p == "index.html" else p}</loc><lastmod>{UPDATED.isoformat()}</lastmod></url>' for p in pages)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n'
 
@@ -289,9 +327,13 @@ def main():
         out[f'{slug}.html'] = html_
     out['calculator.html'] = page('Calorie and protein calculator | Trenesis',
         'Work out your daily calories and protein for fat loss, maintenance or muscle gain, in kilograms or pounds.',
-        'calculator.html', 'Calorie Calculator', calculator.MAIN)
+        'calculator.html', 'Calorie calculator', calculator.MAIN)
+    out['faq.html'] = build_hand('faq', 'FAQ', extra=faq_schema())
+    out['logbook.html'] = page('Free workout logbook | Trenesis',
+        'Log every set of your Trenesis plan on your phone, see what you lifted last time and keep your history. Free, no account, saved on your device.',
+        'logbook.html', 'Workout logbook', logbook.main_html())
     out['find-your-plan.html'] = page('Find your plan | Trenesis', 'Answer 4 quick questions and get the training plan, articles and calorie targets that fit you.',
-        'find-your-plan.html', '', parts.FINDER)
+        'find-your-plan.html', 'Find your plan', parts.FINDER)
     out['start.html'] = page('Start here | Trenesis', 'Trenesis: free beginner plans, a calorie and protein calculator and no-hype guides.',
         'start.html', '', parts.START, extra='<meta name="robots" content="noindex">')
     lost = page('Page not found | Trenesis', 'This page doesn’t exist.', '404.html', '', parts.NOT_FOUND, extra='<meta name="robots" content="noindex">')

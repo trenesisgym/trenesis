@@ -1,8 +1,8 @@
 ---
 slug: calories-and-tdee
 title: Calories and TDEE: how to find out how much you should eat
-description: Energy balance in plain language, a quick way to estimate your daily calorie needs (TDEE), and why you don't need a big bulk to build muscle.
-takeaways: Your weight goes up, down or stays the same depending on calories in versus calories out. | Estimate your maintenance at about 28–40 kcal per kg of bodyweight (13–18 per lb), depending on activity. | To build muscle eat about 200–300 kcal above maintenance; to lose fat, about 300–500 below.
+description: Energy balance in plain language, how to estimate your daily calorie needs (TDEE) for your sex, age, height and activity, and why you don't need a big bulk to build muscle.
+takeaways: Your weight goes up, down or stays the same depending on calories in versus calories out. | Estimate your maintenance from your sex, age, height, weight and activity, then check it against your scale for 2–3 weeks. | To build muscle eat about 5–10% above maintenance; to lose fat, about 10–20% below.
 section: Nutrition
 guide: nutrition
 related: how-much-protein, carbs-and-fats, meal-planning-basics
@@ -21,15 +21,25 @@ A calorie is just a unit of energy. Everything you eat provides some; everything
 
 ## Estimate your TDEE
 
-TDEE (total daily energy expenditure) is the total number of calories you burn in a day, including exercise. A rough starting point:
+TDEE (total daily energy expenditure) is the total number of calories you burn in a day, including exercise. It has two parts: what your body burns at rest, and what you add by moving.
 
-| Activity level | Using kilograms | Using pounds |
-| --- | --- | --- |
-| Mostly sitting, little exercise | Bodyweight (kg) × 28–31 | Bodyweight (lb) × 13–14 |
-| Moderately active (3–4 sessions a week) | Bodyweight (kg) × 32–35 | Bodyweight (lb) × 14.5–16 |
-| Very active (5+ sessions a week) | Bodyweight (kg) × 36–40 | Bodyweight (lb) × 16.5–18 |
+**1. Your resting burn.** The Mifflin-St Jeor equation is the most accurate everyday formula for healthy adults:
 
-Example: a moderately active 70 kg (155 lb) person lands around 2,240–2,450 kcal a day. Or let our [calorie and protein calculator](calculator.html) do the maths for you.
+- Women: 10 × weight (kg) + 6.25 × height (cm) − 5 × age − 161
+- Men: 10 × weight (kg) + 6.25 × height (cm) − 5 × age + 5
+
+**2. Multiply by your activity:**
+
+| Activity level | Multiply by |
+| --- | --- |
+| Mostly sitting, little exercise | 1.2 |
+| Lightly active (1–2 workouts a week, or on your feet a lot) | 1.375 |
+| Moderately active (3–4 workouts a week) | 1.55 |
+| Very active (5+ workouts a week, or a physical job) | 1.725 |
+
+Example: a 25-year-old woman, 165 cm and 60 kg, who trains 3–4 times a week burns about 1,345 kcal at rest × 1.55 ≈ 2,090 kcal a day. Our [calorie and protein calculator](calculator.html) does this maths for you, in kg or lb, and also works if you'd rather not give your sex.
+
+No calculator at hand? Bodyweight (kg) × 30–35 (or lb × 14–16) gives a rough figure for an active person, but it tends to be too high for women, older and shorter people.
 
 These numbers are estimates. The best way to fine-tune them is to track what you eat and your bodyweight for 2–3 weeks: if your average weight is stable, you've found your maintenance.
 
@@ -41,13 +51,15 @@ These numbers are estimates. The best way to fine-tune them is to track what you
 No big bulk needed. Eating far above maintenance doesn't build muscle meaningfully faster; it mostly adds fat.
 
 - **Beginners** and people returning after a break can often build muscle at maintenance, sometimes even in a small deficit.
-- **Most other lifters** do well with a small surplus of about 200–300 kcal a day.
+- **Most other lifters** do well with a small surplus of about 5–10% (200–300 kcal a day for most people).
 
 > **The takeaway**
-> Muscle gain: eat about 200–300 kcal above maintenance. Fat loss: eat about 300–500 kcal below. Avoid extremes either way.
+> Muscle gain: eat about 5–10% above maintenance. Fat loss: eat about 10–20% below. Avoid extremes either way.
 
 Once you know your calorie target, set your [protein target](how-much-protein.html) next.
 
 ## Sources
 
+- Mifflin MD, St Jeor ST et al. [A new predictive equation for resting energy expenditure in healthy individuals](https://doi.org/10.1093/ajcn/51.2.241). *American Journal of Clinical Nutrition*, 1990.
+- Frankenfield D, Roth-Yousey L, Compher C. [Comparison of predictive equations for resting metabolic rate in healthy nonobese and obese adults: a systematic review](https://doi.org/10.1016/j.jada.2005.02.005). *Journal of the American Dietetic Association*, 2005.
 - Iraki J et al. [Nutrition recommendations for bodybuilders in the off-season: a narrative review](https://pmc.ncbi.nlm.nih.gov/articles/PMC6680710/). *Sports*, 2019.
