@@ -716,3 +716,5 @@ select.log-lvl { width: 92px; text-align: left; }
 .log-note p { color: var(--muted); font-size: 15px; }
 @media (max-width: 560px) { .log-in, select.log-lvl { width: 78px; } .log-setup { padding: 18px; } .log-actions .btn { flex: 1; } .log-setup { grid-template-columns: 1fr; } }
 @media (min-width: 700px) { .log-setup { grid-template-columns: 1fr 1fr; } .log-setup .log-field:nth-child(2), .log-planlink { grid-column: 1 / -1; } }
+.log-preview { margin: 8px 0 14px; padding: 10px 14px; border: 1px solid rgba(126, 200, 150, .45); border-radius: 6px; color: #9fdcb2; font-size: 14px; }
+.log-preview .log-link { margin-left: 6px; }
