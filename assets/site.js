@@ -527,6 +527,50 @@
 
 
 
+// Program waitlist forms. Set data-endpoint on the form to the email provider's form URL
+// (for example a MailerLite embedded-form action) to switch them on. Until then they only explain.
+(() => {
+  'use strict';
+  document.querySelectorAll('.waitlist-form').forEach(form => {
+    const status = form.querySelector('.form-status');
+    const input = form.querySelector('input[type="email"]');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const email = (input.value || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        status.textContent = 'Please enter a valid email address.';
+        input.setAttribute('aria-invalid', 'true');
+        input.focus();
+        return;
+      }
+      input.removeAttribute('aria-invalid');
+      const endpoint = form.dataset.endpoint;
+      if (!endpoint) {
+        // No email tool connected yet: open the visitor's email app with a ready-made message to us.
+        const subject = encodeURIComponent('Waitlist: Trenesis 12-Week Program');
+        const body = encodeURIComponent(`Hi Trenesis, please add ${email} to the waitlist for the 12-Week Program.`);
+        location.href = `mailto:trenesisgym@gmail.com?subject=${subject}&body=${body}`;
+        status.textContent = 'Your email app should open with a message to us. Press Send and you’re on the list.';
+        return;
+      }
+      const btn = form.querySelector('button');
+      btn.disabled = true;
+      try {
+        const body = new FormData();
+        body.append('fields[email]', email);
+        await fetch(endpoint, { method: 'POST', body, mode: 'no-cors' });
+        form.classList.add('is-done');
+        status.textContent = 'You’re on the list. Check your inbox to confirm your email.';
+        input.value = '';
+      } catch (_) {
+        status.textContent = 'Something went wrong. Please try again, or email trenesisgym@gmail.com.';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
+})();
+
 // Tools menu in the header: click to open, Escape or a click elsewhere closes it.
 (() => {
   'use strict';

@@ -31,7 +31,7 @@ import parts
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = 'https://trenesisgym.github.io/trenesis/'
-VERSION = '20261109-tools'
+VERSION = '20261109-program'
 UPDATED = datetime.date(2026, 10, 31)
 
 
@@ -127,7 +127,7 @@ def footer():
         '<p>Free, evidence-based guides to training and nutrition. No hype, just what works.</p></div>'
         '<div class="footer-col"><h2>Learn</h2><ul><li><a href="training.html">Training</a></li><li><a href="nutrition.html">Nutrition</a></li>'
         '<li><a href="index.html#guides">Free PDF guides</a></li><li><a href="calculator.html">Calorie calculator</a></li><li><a href="logbook.html">Workout logbook</a></li></ul></div>'
-        '<div class="footer-col"><h2>Trenesis</h2><ul><li><a href="about.html">About</a></li><li><a href="faq.html">Questions &amp; answers</a></li><li><a href="products.html">Gear</a></li>'
+        '<div class="footer-col"><h2>Trenesis</h2><ul><li><a href="program.html">12-Week Program</a></li><li><a href="about.html">About</a></li><li><a href="faq.html">Questions &amp; answers</a></li><li><a href="products.html">Gear</a></li>'
         '<li><a href="products.html#approach">How we pick gear</a></li><li><a href="privacy.html">Privacy</a></li></ul></div>'
         f'<div class="footer-col"><h2>Follow</h2><ul>{social}</ul></div></div>'
         f'<div class="footer-note"><span>© <span data-year>{UPDATED.year}</span> Trenesis</span>'
@@ -233,7 +233,10 @@ def build_article(a, arts):
         'publisher': {'@type': 'Organization', 'name': 'Trenesis'}}, ensure_ascii=False) + '</script>')
     crumbs, crumbs_ld = parts.breadcrumbs(BASE, g['hub'], hub_page, a['title'])
     body = article_body_html(a)
-    nudge = parts.finder_callout() if g['hub'] == 'Training' else parts.calculator_callout()
+    if a['slug'] in parts.PRINTABLE:
+        nudge = parts.program_callout()  # plan pages: the next step after a free plan is the 12-week program
+    else:
+        nudge = parts.finder_callout() if g['hub'] == 'Training' else parts.calculator_callout()
     main = (
         f'<div class="wrap"><article class="article">{crumbs}'
         f'<header class="article-head"><p class="kicker">{g["group"]}</p><h1>{esc(a["title"])}</h1>'
@@ -305,7 +308,7 @@ def build_gear(name):
 
 
 def sitemap():
-    pages = ['index.html', 'training.html', 'nutrition.html', 'products.html', 'equipment.html', 'supplements.html',
+    pages = ['index.html', 'training.html', 'nutrition.html', 'program.html', 'products.html', 'equipment.html', 'supplements.html',
              'accessories.html', 'about.html', 'faq.html', 'calculator.html', 'logbook.html', 'find-your-plan.html'] + [f'{s}.html' for s in ORDER]
     urls = ''.join(f'<url><loc>{BASE}{"" if p == "index.html" else p}</loc><lastmod>{UPDATED.isoformat()}</lastmod></url>' for p in pages)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n'
@@ -315,7 +318,7 @@ def main():
     arts = load_articles()
     # Homepage, Training and Nutrition are hand-designed (content/hand). articles.html now redirects to the homepage.
     out = {'index.html': build_hand('index', 'Home'), 'training.html': build_hand('training', 'Training'),
-           'nutrition.html': build_hand('nutrition', 'Nutrition'),
+           'nutrition.html': build_hand('nutrition', 'Nutrition'), 'program.html': build_hand('program', 'Program'),
            'articles.html': (ROOT / 'content' / 'hand' / 'articles-redirect.html').read_text(encoding='utf-8'),
            'products.html': build_gear_overview()}
     for name in ['equipment', 'supplements', 'accessories']:
