@@ -1,33 +1,44 @@
 """The calorie and protein calculator page (calculator.html).
 
-Uses the same rules as the articles:
-- maintenance = bodyweight (kg) x 28-31 / 32-35 / 36-40 by activity
-- fat loss = 10-20% below maintenance; muscle gain = +200-300 kcal
-- protein 1.6-2.2 g/kg, fat 0.6-1 g/kg, carbs fill the rest
-Safety: never shows a fat-loss target when BMI is under 18.5, and flags any
-target under 1,200 kcal.
+Rules (also explained in calories-and-tdee and how-much-protein):
+- maintenance = Mifflin-St Jeor (sex, age, height, weight) x activity factor 1.2 / 1.375 / 1.55 / 1.725,
+  shown as a +-5% range; "prefer not to say" uses the midpoint of the female and male formulas
+- fat loss = 10-20% below maintenance; muscle gain = 5-10% above
+- protein 1.6-2.2 g/kg, fat 0.6-1 g/kg (at least 20% of calories); above BMI 30 both use the weight at BMI 25
+Safety: no fat-loss target under 18 or under BMI 18.5; fat-loss targets never go below 1,200 kcal
+(1,500 for men); teen estimates carry a warning.
 """
 
 MAIN = r'''
 <div class="wrap"><header class="page-intro"><h1>Calorie and protein calculator</h1>
-<p class="lead">Two numbers decide most of your results: how much you eat and how much protein you get. Fill in four things and get a starting point, in kilograms or pounds.</p></header>
+<p class="lead">Two numbers decide most of your results: how much you eat and how much protein you get. Fill in a few details and get a personal starting point, in kilograms or pounds.</p></header>
 <div class="calc">
 <form id="calc-form" class="calc-form" novalidate>
   <fieldset class="calc-units"><legend>Units</legend>
     <label><input type="radio" name="units" value="metric" checked> kg and cm</label>
     <label><input type="radio" name="units" value="imperial"> lb and ft</label>
   </fieldset>
-  <div class="calc-field"><label for="weight">Bodyweight <span data-unit="w">kg</span></label>
-    <input id="weight" name="weight" type="number" inputmode="decimal" step="0.1" min="0" required></div>
+  <fieldset class="calc-units calc-sex"><legend>Sex <span class="calc-hint">used only for the formula</span></legend>
+    <label><input type="radio" name="sex" value="f"> Female</label>
+    <label><input type="radio" name="sex" value="m"> Male</label>
+    <label><input type="radio" name="sex" value="x" checked> Prefer not to say</label>
+  </fieldset>
+  <div class="calc-row">
+    <div class="calc-field"><label for="age">Age <span>years</span></label>
+      <input id="age" name="age" type="number" inputmode="numeric" min="0" step="1" required></div>
+    <div class="calc-field"><label for="weight">Bodyweight <span data-unit="w">kg</span></label>
+      <input id="weight" name="weight" type="number" inputmode="decimal" step="0.1" min="0" required></div>
+  </div>
   <div class="calc-field" data-metric><label for="height-cm">Height <span>cm</span></label>
     <input id="height-cm" name="height-cm" type="number" inputmode="decimal" min="0" required></div>
   <div class="calc-field calc-ftin" data-imperial hidden><span class="calc-label" id="height-imp-label">Height</span>
     <div><label class="sr-only" for="height-ft">Feet</label><input id="height-ft" type="number" inputmode="numeric" min="0" aria-describedby="height-imp-label"><span>ft</span>
     <label class="sr-only" for="height-in">Inches</label><input id="height-in" type="number" inputmode="numeric" min="0" aria-describedby="height-imp-label"><span>in</span></div></div>
   <fieldset class="calc-choice"><legend>How active are you?</legend>
-    <label><input type="radio" name="activity" value="low"> <span><strong>Mostly sitting</strong> Little or no exercise</span></label>
-    <label><input type="radio" name="activity" value="mid" checked> <span><strong>Moderately active</strong> 3–4 training sessions a week</span></label>
-    <label><input type="radio" name="activity" value="high"> <span><strong>Very active</strong> 5 or more sessions a week</span></label>
+    <label><input type="radio" name="activity" value="1.2"> <span><strong>Mostly sitting</strong> Desk job, little or no exercise</span></label>
+    <label><input type="radio" name="activity" value="1.375"> <span><strong>Lightly active</strong> 1–2 workouts a week, or on your feet a lot</span></label>
+    <label><input type="radio" name="activity" value="1.55" checked> <span><strong>Moderately active</strong> 3–4 workouts a week</span></label>
+    <label><input type="radio" name="activity" value="1.725"> <span><strong>Very active</strong> 5 or more workouts a week, or a physical job</span></label>
   </fieldset>
   <fieldset class="calc-choice"><legend>Your goal</legend>
     <label><input type="radio" name="goal" value="lose"> <span><strong>Lose fat</strong> Keep muscle while the scale goes down</span></label>
@@ -50,18 +61,19 @@ MAIN = r'''
     <div><dt>Maintenance</dt><dd id="r-maint"></dd></div>
   </dl>
   <p class="calc-warn" id="r-warn" hidden></p>
+  <p class="calc-method" id="r-method"></p>
   <p class="calc-how">These are estimates. Eat this way for 2–3 weeks and watch your average weight, then adjust by 100–200 kcal. Read how it works in <a class="text-link" href="calories-and-tdee.html">calories and TDEE</a> and <a class="text-link" href="how-much-protein.html">how much protein you need</a>, then turn the numbers into meals with <a class="text-link" href="meal-planning-basics.html">meal planning made simple</a>.</p>
   </div>
 </section>
 </div>
-<p class="disclaimer">General guidance for healthy adults, not medical advice. If you're pregnant, under 18, have a medical condition or a history of disordered eating, talk to a doctor or dietitian instead of using a calculator.</p>
+<p class="disclaimer">General guidance, not medical advice. If you're pregnant or breastfeeding, have a medical condition or a history of disordered eating, talk to a doctor or dietitian instead of using a calculator. Under 18? The calculator shows maintenance or a small surplus only, because growing bodies need enough food.</p>
 </div>
 <script>
 (function () {
   'use strict';
   var f = document.getElementById('calc-form'), out = document.getElementById('calc-result'), err = document.getElementById('calc-error');
   var KEY = 'trenesis.units.v1', LB = 2.20462;
-  function units() { return f.querySelector('input[name=units]:checked').value; }
+  function val(name) { var el = f.querySelector('input[name=' + name + ']:checked'); return el ? el.value : ''; }
   function setUnits(u) {
     f.querySelector('input[name=units][value=' + u + ']').checked = true;
     f.querySelector('[data-unit=w]').textContent = u === 'metric' ? 'kg' : 'lb';
@@ -72,33 +84,45 @@ MAIN = r'''
   var lang = (navigator.language || '').toLowerCase();
   setUnits(saved === 'metric' || saved === 'imperial' ? saved : (lang === 'en-us' || lang === 'en-lr' || lang === 'my' ? 'imperial' : 'metric'));
   f.addEventListener('change', function (e) {
-    if (e.target.name === 'units') { setUnits(e.target.value); try { localStorage.setItem(KEY, e.target.value); } catch (x) {} if (!out.hidden) calc(); }
-    else if (!out.hidden) calc();
+    if (e.target.name === 'units') { setUnits(e.target.value); try { localStorage.setItem(KEY, e.target.value); } catch (x) {} }
+    if (!out.hidden) calc();
   });
   f.addEventListener('submit', function (e) { e.preventDefault(); calc(); });
   function r10(x) { return Math.round(x / 10) * 10; }
   function r5(x) { return Math.round(x / 5) * 5; }
   function fmt(x) { return x.toLocaleString('en-US'); }
+  function wt(kg) { return val('units') === 'metric' ? '' : ' (' + r5(kg * LB) + ' lb)'; }
+  function fail(msg) { err.textContent = msg; out.hidden = true; document.getElementById('calc-empty').hidden = false; }
   function calc() {
-    var u = units(), w = parseFloat(f.weight.value), kg = u === 'metric' ? w : w / LB, cm;
+    var u = val('units'), w = parseFloat(f.weight.value), kg = u === 'metric' ? w : w / LB, cm, age = parseFloat(f.age.value);
     if (u === 'metric') cm = parseFloat(f['height-cm'].value);
     else cm = ((parseFloat(document.getElementById('height-ft').value) || 0) * 12 + (parseFloat(document.getElementById('height-in').value) || 0)) * 2.54;
     err.textContent = '';
-    if (!(kg >= 30 && kg <= 250)) { err.textContent = 'Enter your bodyweight, between ' + (u === 'metric' ? '30 and 250 kg.' : '66 and 550 lb.'); out.hidden = true; return; }
-    if (!(cm >= 120 && cm <= 230)) { err.textContent = 'Enter your height, between ' + (u === 'metric' ? '120 and 230 cm.' : '4 ft and 7 ft 6 in.'); out.hidden = true; return; }
-    var act = f.querySelector('input[name=activity]:checked').value, goal = f.querySelector('input[name=goal]:checked').value;
-    var F = { low: [28, 31], mid: [32, 35], high: [36, 40] }[act];
-    var mLo = kg * F[0], mHi = kg * F[1], mid = (mLo + mHi) / 2, bmi = kg / Math.pow(cm / 100, 2);
-    var tLo, tHi, note, warn = '';
-    if (goal === 'lose' && bmi < 18.5) {
-      goal = 'keep';
-      warn = 'For your height and weight, losing weight isn’t recommended. We’ve shown maintenance instead. If you want to change your body, aim to build muscle, and check with a doctor if you’re unsure.';
-    }
-    if (goal === 'lose') { tLo = mid * 0.8; tHi = mid * 0.9; note = 'About 10–20% below maintenance: roughly 0.5% of your bodyweight a week.'; }
-    else if (goal === 'gain') { tLo = mid + 200; tHi = mid + 300; note = 'A small surplus of 200–300 kcal: enough to build muscle without much fat.'; }
+    if (!(age >= 14 && age <= 100)) return fail('Enter your age, between 14 and 100.');
+    if (!(kg >= 30 && kg <= 300)) return fail('Enter your bodyweight, between ' + (u === 'metric' ? '30 and 300 kg.' : '66 and 660 lb.'));
+    if (!(cm >= 120 && cm <= 230)) return fail('Enter your height, between ' + (u === 'metric' ? '120 and 230 cm.' : '4 ft and 7 ft 6 in.'));
+    var sex = val('sex'), act = parseFloat(val('activity')), goal = val('goal'), warn = [], teen = age < 18;
+    // Mifflin-St Jeor resting energy, then an activity factor. "Prefer not to say" uses the midpoint of the two formulas.
+    var bmr = 10 * kg + 6.25 * cm - 5 * age + ({ m: 5, f: -161, x: -78 })[sex];
+    var mid = bmr * act, mLo = mid * 0.95, mHi = mid * 1.05, bmi = kg / Math.pow(cm / 100, 2);
+    var floor = sex === 'm' ? 1500 : 1200;
+    if (goal === 'lose' && teen) { goal = 'keep'; warn.push('Under 18, we don’t give a fat-loss target: your body still needs energy to grow. We’ve shown maintenance. Staying active and eating mostly whole foods works well; talk to a doctor if you’re worried about your weight.'); }
+    else if (goal === 'lose' && bmi < 18.5) { goal = 'keep'; warn.push('For your height and weight, losing weight isn’t recommended. We’ve shown maintenance instead. If you want to change your body, aim to build muscle, and check with a doctor if you’re unsure.'); }
+    var tLo, tHi, note;
+    if (goal === 'lose') {
+      tLo = mid * 0.8; tHi = mid * 0.9; note = 'About 10–20% below maintenance: roughly 0.5% of your bodyweight a week.';
+      if (tLo < floor) {
+        tLo = floor;
+        if (tHi <= floor + 50) { tLo = mLo; tHi = mHi; note = 'Your estimated maintenance range.'; warn.push('Your maintenance is already fairly low, so a bigger cut could cost muscle and energy. Lose weight with the help of a doctor or dietitian.'); }
+        else warn.push('We’ve kept the lower end at ' + fmt(floor) + ' kcal. Eating less than that makes it hard to get enough nutrients; talk to a doctor or dietitian first.');
+      }
+    } else if (goal === 'gain') { tLo = mid * 1.05; tHi = mid * 1.1; note = 'A small surplus of 5–10%: enough to build muscle without much fat.'; }
     else { tLo = mLo; tHi = mHi; note = 'Your estimated maintenance range.'; }
-    if (tLo < 1200) warn = (warn ? warn + ' ' : '') + 'This target is very low. Eat closer to maintenance, and talk to a doctor or dietitian before eating less than this.';
-    var tMid = (tLo + tHi) / 2, pLo = kg * 1.6, pHi = kg * 2.2, fLo = kg * 0.6, fHi = kg * 1.0;
+    if (teen) warn.push('Formulas are less accurate for teenagers. Use this as a rough guide and let your energy, growth and hunger lead.');
+    // Protein and fat follow muscle, not total weight: above a BMI of 30 we use the weight at a BMI of 25 for your height.
+    var ref = bmi >= 30 ? 25 * Math.pow(cm / 100, 2) : kg, tMid = (tLo + tHi) / 2;
+    var pLo = ref * 1.6, pHi = ref * 2.2;
+    var fLo = Math.max(ref * 0.6, tMid * 0.2 / 9), fHi = Math.max(ref * 1.0, fLo + 10);
     var carbs = Math.max(0, (tMid - ((pLo + pHi) / 2) * 4 - ((fLo + fHi) / 2) * 9) / 4);
     document.getElementById('r-cal').textContent = fmt(r10(tLo)) + '–' + fmt(r10(tHi));
     document.getElementById('r-cal-note').textContent = note;
@@ -106,7 +130,11 @@ MAIN = r'''
     document.getElementById('r-fat').textContent = r5(fLo) + '–' + r5(fHi) + ' g';
     document.getElementById('r-carbs').textContent = 'about ' + r5(carbs) + ' g';
     document.getElementById('r-maint').textContent = fmt(r10(mLo)) + '–' + fmt(r10(mHi)) + ' kcal';
-    var wEl = document.getElementById('r-warn'); wEl.textContent = warn; wEl.hidden = !warn;
+    var method = 'Calculated with the Mifflin-St Jeor equation, which uses your sex, age, height and weight, times an activity factor.';
+    if (sex === 'x') method += ' Because you chose not to say, we use the midpoint between the female and male formulas.';
+    if (ref !== kg) method += ' Protein and fat are based on ' + r5(ref) + ' kg' + wt(ref) + ', a healthy weight for your height, because protein needs follow muscle rather than total weight.';
+    document.getElementById('r-method').textContent = method;
+    var wEl = document.getElementById('r-warn'); wEl.textContent = warn.join(' '); wEl.hidden = !warn.length;
     out.hidden = false; document.getElementById('calc-empty').hidden = true;
   }
 })();
@@ -132,6 +160,9 @@ CSS = '''
 .calc-choice input, .calc-units input { accent-color: #739cc5; width: 18px; height: 18px; margin: 3px 0 0; flex-shrink: 0; }
 .calc-choice span { display: block; color: var(--muted); font-size: 14px; line-height: 1.45; }
 .calc-choice strong { display: block; color: #fff; font: 600 15px/1.4 var(--head); }
+.calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 460px; }
+.calc-hint { color: var(--faint); font: 400 13px/1.4 var(--body); margin-left: 6px; }
+.calc-method { margin-top: 16px; font-size: 13px; color: var(--faint); line-height: 1.55; }
 .calc-error { color: #ffb3a7; font-size: 14px; min-height: 1px; margin: -8px 0 0; }
 .calc-form .btn { justify-self: start; min-width: 180px; }
 .calc-result { position: sticky; top: 24px; padding: 28px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }

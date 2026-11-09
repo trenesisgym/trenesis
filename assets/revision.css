@@ -7,3 +7,20 @@
 
 /* Bigger tap area for small text links on phones (Claude, sync-linus) */
 .beginner-start>.text-link{display:inline-block;padding:10px 0}
+
+/* Site-wide country choice and quiet article affiliate notes. */
+.site-country { flex-shrink: 0; }
+.article-body .article-affiliate-note { margin: -4px 0 24px; font-size: 12px; color: var(--muted); }
+@media (min-width: 1051px) { .nav-wrap { flex-wrap: wrap; } #navigation { gap: 18px; } }
+@media (min-width: 801px) and (max-width: 1050px) { .site-country { margin-left: auto; } #navigation { order: 3; } }
+@media (max-width: 800px) { .nav-wrap { gap: 12px; } }
+
+/* Compact visual recommendations within articles; full buying-guide cards stay unchanged. */
+.article-product-picks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 12px 0 18px; }
+.article-body a.article-product-pick { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; align-items: start; padding: 14px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); text-decoration: none; color: var(--text); }
+.article-body a.article-product-pick:hover { border-color: var(--ice); }
+.article-product-pick img { width: 64px; height: 64px; padding: 5px; background: white; border-radius: 4px; object-fit: contain; }
+.article-product-brand { display: block; font-size: 11px; line-height: 1.4; color: var(--muted); margin-bottom: 3px; }
+.article-product-name { display: block; font-size: 14px; line-height: 1.4; color: var(--ice); }
+.article-product-reason { display: block; font-size: 12px; line-height: 1.5; color: var(--muted); margin-top: 5px; }
+@media (max-width: 600px) { .article-product-picks { grid-template-columns: 1fr; gap: 8px; } }

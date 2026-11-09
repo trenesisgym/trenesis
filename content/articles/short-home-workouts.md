@@ -20,6 +20,10 @@ Keeping strength and muscle takes far less training than building them. In one s
 - Start with a **3-minute warm-up**: arm circles, hip hinges and 10 easy bodyweight squats.
 - Pick the version that fits what you have: bodyweight or dumbbells.
 
+<div data-article-picks data-pick-names="Adjustable Dumbbell Set|Hex Dumbbells">
+<p>For the dumbbell version, either adjustable or fixed dumbbells works. Choose weights you can use with control for the listed exercises; the bodyweight version needs neither.</p>
+</div>
+
 ## Workout 1 (about 20 minutes)
 
 | Pair | Bodyweight | With dumbbells | Reps |

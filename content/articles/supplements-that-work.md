@@ -19,6 +19,10 @@ Protein powder isn't a special muscle-building substance; it's just a convenient
 - A typical scoop gives about 20–30 g of protein for roughly 100–130 kcal.
 - It's a convenience, not a replacement for whole foods.
 
+<div data-article-picks data-pick-section="protein">
+<p>For the powder option described above, choose whey or plant protein to suit how you eat. Check the ingredients and serving information on the listing.</p>
+</div>
+
 ## Creatine monohydrate
 
 Creatine is the most-studied supplement in sports science and one of the very few with clear performance benefits. It tops up your muscles' phosphocreatine stores, which helps you produce energy in short, hard efforts: exactly what lifting demands.
@@ -28,6 +32,10 @@ Creatine is the most-studied supplement in sports science and one of the very fe
 - **Expect** 1–2 kg (2–4 lb) of extra bodyweight in the first weeks. That's water stored in your muscles, not fat.
 - **Benefits:** a few more reps at a given weight, better recovery between sets and, over time, more strength and muscle.
 - **Buy** plain creatine monohydrate. It's the cheapest and the best-researched form; ignore pricey variants.
+
+<div data-article-picks data-pick-section="creatine">
+<p>If you choose to use creatine, here is a plain monohydrate option.</p>
+</div>
 
 > **Key insight**
 > Supplements sit at the bottom of the hierarchy. No supplement makes up for a poor diet: fix your [calories](calories-and-tdee.html) and [protein](how-much-protein.html) first.

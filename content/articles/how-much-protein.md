@@ -28,9 +28,13 @@ The commonly quoted 0.8 g per kg of bodyweight is a minimum to avoid deficiency,
 | 80 kg (176 lb) | about 130–175 g |
 | 90 kg (198 lb) | about 145–200 g |
 
-Your own number: try the [calorie and protein calculator](calculator.html).
+Carrying a lot of extra weight? Base your target on a healthy weight for your height rather than your current weight, because protein needs follow muscle, not total weight. The [calorie and protein calculator](calculator.html) does this for you automatically.
 
 The lower end of the range already gets you most of the benefit; going higher is useful in a calorie deficit, where protein also helps you keep muscle.
+
+<div data-article-picks data-pick-section="protein">
+<p>If food alone makes your target awkward to reach, a powder can help. Choose whey or plant protein to suit how you eat.</p>
+</div>
 
 > **Myth: high protein damages your kidneys**
 > In people with healthy kidneys, higher protein intakes haven't been shown to cause damage. The real downside of very high protein is that it can crowd out carbs and fats, which you also need. If you have kidney disease, follow your doctor's advice.

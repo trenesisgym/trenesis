@@ -27,6 +27,14 @@ High-protein meals keep you full longer and reduce cravings. If every meal has a
 
 A shake gives about 25 g of protein for roughly 120 kcal. Compared with a 400–600 kcal breakfast, that frees up a lot of calories for the rest of the day. It's one of the simplest ways to create a comfortable deficit, if it suits you.
 
+<div data-article-picks data-pick-section="protein">
+<p>For the whey or plant-protein shake in the example days, these are powder options. Check the chosen product’s serving information; the example calories and protein are not product-specific.</p>
+</div>
+
+<div data-article-picks data-pick-names="Shaker Bottle|Protein Shaker">
+<p>If you need a bottle for mixing powder with water, this is an option. A bottle you already own may do the job.</p>
+</div>
+
 ## 4. Plan for hunger, not just meals
 
 Decide in advance what you'll eat when you're hungry between meals: a boiled egg, a rice cake, a small pot of cottage cheese. A ready answer stops impulse choices when willpower is low.

@@ -24,4 +24,4 @@ Some product pages contain affiliate links. As an Amazon Associate we earn from 
 
 ## Contact
 
-Questions, corrections or collaboration ideas: [trenesisgym@gmail.com](mailto:trenesisgym@gmail.com). You can also find us on [Instagram](https://www.instagram.com/trenesisgym/), [TikTok](https://www.tiktok.com/@trenesis.gym) and [YouTube](https://www.youtube.com/@TrenesisGym).
+Most questions are answered on our [Questions & answers](faq.html) page. Anything else, corrections or collaboration ideas: [trenesisgym@gmail.com](mailto:trenesisgym@gmail.com). You can also find us on [Instagram](https://www.instagram.com/trenesisgym/), [TikTok](https://www.tiktok.com/@trenesis.gym) and [YouTube](https://www.youtube.com/@TrenesisGym).

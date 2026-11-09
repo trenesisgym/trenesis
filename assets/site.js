@@ -59,6 +59,9 @@
   const detail = document.querySelector('#market-detail');
   const list = document.querySelector('#local-picks');
   const category = document.querySelector('[data-category]')?.dataset.category || 'all';
+  const articleSlots = [...document.querySelectorAll('[data-article-picks]')];
+  const matchesSlot = (slot, pick) => slot.dataset.pickSection === pick.guideSection ||
+    (slot.dataset.pickNames || '').split('|').includes(pick.name);
   const valid = code => Object.hasOwn(markets, code);
   let saved = null;
   try { saved = localStorage.getItem(key); } catch (_) { /* browsing still works without storage */ }
@@ -80,16 +83,54 @@
     if (!title || !detail || !list) return;
     const code = valid(select.value) ? select.value : 'GLOBAL';
     const market = markets[code];
-    const picks = category === 'all' ? ['equipment', 'supplements', 'accessories'].flatMap(c => market[c] || []) : (market[category] || []);
+    let picks = category === 'all' ? ['equipment', 'supplements', 'accessories'].flatMap(c => market[c] || []) : (market[category] || []);
+    if (articleSlots.length) picks = picks.filter(pick => articleSlots.some(slot => matchesSlot(slot, pick)));
+    articleSlots.forEach(slot => { slot.hidden = !picks.some(pick => matchesSlot(slot, pick)); });
     list.replaceChildren();
     document.querySelectorAll('.inline-picks').forEach(el => el.remove());
     title.textContent = picks.length ? (category === 'all' ? `Showing picks for ${market.name} inside each guide below.` : `Examples for ${market.name}`) : code === 'GLOBAL' ? 'We don’t have picks for your country yet. Choose the closest country at the top of the page to see examples.' : `Product examples for ${market.name} are coming soon.`;
     detail.hidden = picks.length > 0;
     detail.textContent = picks.length ? '' : 'The buying advice on this page applies wherever you live.';
     document.querySelectorAll('.affiliate-disclosure').forEach(el => { el.hidden = !picks.length; });
-    if (category === 'all') return;
+    if (articleSlots.length) {
+      title.textContent = picks.length ? `Affiliate picks for ${market.name}` : 'Choose your country in the site header for product picks';
+      for (const slot of articleSlots) {
+        slot.querySelector('.article-product-picks')?.remove();
+        const group = document.createElement('div');
+        group.className = 'article-product-picks';
+        for (const pick of picks.filter(pick => matchesSlot(slot, pick))) {
+          const card = document.createElement('a');
+          card.className = 'article-product-pick';
+          card.href = pick.url;
+          card.target = '_blank';
+          card.rel = 'sponsored noopener';
+          card.setAttribute('aria-label', `${pick.brand} ${pick.name} on Amazon (affiliate link, opens a new tab)`);
+          const image = document.createElement('img');
+          image.src = pick.image;
+          image.alt = '';
+          image.width = 72; image.height = 72; image.loading = 'lazy';
+          const info = document.createElement('span');
+          const brand = document.createElement('span');
+          brand.className = 'article-product-brand'; brand.textContent = pick.brand;
+          const name = document.createElement('strong');
+          name.className = 'article-product-name'; name.textContent = pick.name + ' ↗';
+          const reason = document.createElement('span');
+          reason.className = 'article-product-reason'; reason.textContent = pick.reason;
+          info.append(brand, name, reason);
+          if (pick.variantNote) {
+            const note = document.createElement('span');
+            note.className = 'article-product-reason'; note.textContent = pick.variantNote;
+            info.append(note);
+          }
+          card.append(image, info); group.append(card);
+        }
+        slot.append(group);
+      }
+      return;
+    }
+    if (category === 'all' && !articleSlots.length) return;
     // Quick picks: the first pick for each section, so readers see an answer before the details.
-    if (picks.length) {
+    if (picks.length && !articleSlots.length) {
       const firsts = [];
       for (const pick of picks) if (!firsts.some(p => p.guideSection === pick.guideSection)) firsts.push(pick);
       const order = id => { const el = document.getElementById(id); return el ? [...document.querySelectorAll('.advice-row')].indexOf(el) : 99; };
@@ -118,9 +159,9 @@
     const sections = new Map();
     for (const pick of picks) {
       const guide = document.getElementById(pick.guideSection);
-      const body = guide?.querySelector('.advice-body');
+      const body = articleSlots.length ? articleSlots.find(slot => matchesSlot(slot, pick)) : guide?.querySelector('.advice-body');
       if (!body) continue;
-      let examples = sections.get(pick.guideSection);
+      let examples = sections.get(body);
       if (!examples) {
         examples = document.createElement('section');
         examples.className = 'inline-picks';
@@ -128,9 +169,10 @@
         heading.id = `examples-${pick.guideSection}`;
         heading.textContent = 'Options to consider';
         examples.setAttribute('aria-labelledby', heading.id);
-        examples.append(heading);
+        if (!articleSlots.length) examples.append(heading);
+        else { examples.removeAttribute('aria-labelledby'); examples.setAttribute('aria-label', 'Optional product picks'); }
         body.append(examples);
-        sections.set(pick.guideSection, examples);
+        sections.set(body, examples);
       }
       const article = document.createElement('article');
       article.className = pick.imageStyle === 'catalog-photo' ? 'product catalog-photo' : 'product';
@@ -158,6 +200,12 @@
     }
   }
   render();
+  addEventListener('storage', event => {
+    if (event.key !== key) return;
+    select.value = valid(event.newValue) ? event.newValue : suggested || 'GLOBAL';
+    hint.textContent = 'Country preference updated across the website.';
+    render();
+  });
   select.addEventListener('change', () => {
     try {
       localStorage.setItem(key, select.value);
@@ -498,7 +546,11 @@
       input.removeAttribute('aria-invalid');
       const endpoint = form.dataset.endpoint;
       if (!endpoint) {
-        status.textContent = 'Preview: the waitlist isn’t connected yet, so nothing was sent.';
+        // No email tool connected yet: open the visitor's email app with a ready-made message to us.
+        const subject = encodeURIComponent('Waitlist: Trenesis 12-Week Program');
+        const body = encodeURIComponent(`Hi Trenesis, please add ${email} to the waitlist for the 12-Week Program.`);
+        location.href = `mailto:trenesisgym@gmail.com?subject=${subject}&body=${body}`;
+        status.textContent = 'Your email app should open with a message to us. Press Send and you’re on the list.';
         return;
       }
       const btn = form.querySelector('button');
@@ -516,5 +568,19 @@
         btn.disabled = false;
       }
     });
+  });
+})();
+
+// Tools menu in the header: click to open, Escape or a click elsewhere closes it.
+(() => {
+  'use strict';
+  document.querySelectorAll('.nav-menu').forEach(menu => {
+    const btn = menu.querySelector('.nav-menu-btn');
+    if (!btn) return;
+    const set = open => { menu.classList.toggle('is-open', open); btn.setAttribute('aria-expanded', String(open)); };
+    btn.addEventListener('click', e => { e.stopPropagation(); set(!menu.classList.contains('is-open')); });
+    document.addEventListener('click', e => { if (!menu.contains(e.target)) set(false); });
+    menu.addEventListener('keydown', e => { if (e.key === 'Escape') { set(false); btn.focus(); } });
+    menu.addEventListener('focusout', e => { if (!menu.contains(e.relatedTarget)) set(false); });
   });
 })();

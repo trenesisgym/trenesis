@@ -2,7 +2,7 @@
 slug: full-body-workout-for-beginners
 title: Full-body workout for beginners: a free 3-day plan
 description: A complete beginner gym plan: two full-body workouts, three days a week, with sets, reps, rest times, home alternatives and a simple rule for adding weight.
-takeaways: Three full-body workouts a week, alternating Workout A and B, with a rest day in between. | Stop each set 1–2 reps before failure, and add weight once you hit 12 reps on every set. | Run it for 8–12 weeks before moving to an upper/lower split.
+takeaways: Three full-body workouts a week, alternating Workout A and B, with a rest day in between. | Stop each set 1–2 reps before failure, and add weight once you hit 12 reps on every set. | Run it for at least 8–12 weeks. Can you train four days a week? The 4-day plan works from the start too.
 section: Training
 guide: strength
 related: first-week-at-the-gym, how-to-build-a-workout-program, best-exercises-for-each-muscle
@@ -43,6 +43,10 @@ Any three days work, as long as there's a rest day between sessions. Each workou
 | Triceps pushdown | 2 × 10–15 | 1–2 min | Overhead dumbbell extension |
 
 Not sure how an exercise works? Our [exercise list per muscle](best-exercises-for-each-muscle.html) has short form tips for each one.
+
+<div data-article-picks data-pick-names="Hex Dumbbells|Adjustable Dumbbell Set">
+<p>Training at a gym? You don’t need to buy anything. Following the home alternatives instead? A pair of dumbbells covers them: a fixed pair is the cheapest start, adjustable ones save space as you get stronger.</p>
+</div>
 
 ## How hard each set should be
 
