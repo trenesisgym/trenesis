@@ -89,7 +89,7 @@
   // Pro is off for everyone. Testers unlock it once with logbook.html?tester=THEIR-CODE: the code is
   // checked against a SHA-256 hash, so it never appears in this file. ?tester=off locks it again.
   // At launch this check is replaced by the buyer's license key.
-  var TESTER = 'trenesis.log.tester.v1', TESTER_HASH = '95bed3b7e1e7cef531cbf2bbf6701ac57656a94f32e3d381b29b08065d993c74';
+  var TESTER = 'trenesis.log.tester.v1', TESTER_HASH = '5f78e3b84f727c19de23f6f475f838da51b1b729e7e43684833289794b5dd0ec';
   var qs = new URLSearchParams(location.search);
   try { localStorage.removeItem(PREVIEW); } catch (e) {} // retire the old public ?preview=smart switch
   if (qs.get('tester') === 'off') { try { localStorage.removeItem(TESTER); } catch (e) {} }
