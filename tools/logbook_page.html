@@ -2,7 +2,7 @@
 <div class="wrap log-page">
 <header class="page-intro"><h1>Workout logbook</h1>
 <p class="lead">Log every set, see what you lifted last time and beat it. Use a Trenesis plan, swap any exercise, or build your own plan, like Push/Pull/Legs. Saved on this device only.</p></header>
-<p class="log-preview" id="log-preview" hidden><strong>Pro preview.</strong> The paid logbook features are switched on in this browser. <button type="button" class="log-link" id="log-preview-off">Turn off</button></p>
+<p class="log-preview" id="log-preview" hidden><strong>Tester mode.</strong> The paid logbook features are switched on in this browser. <button type="button" class="log-link" id="log-preview-off">Turn off</button></p>
 
 <section class="log-setup" id="log-setup" aria-label="Choose your plan and workout">
   <div class="log-field"><label for="log-plan">Your plan</label><select id="log-plan"></select>
@@ -85,11 +85,24 @@
   // Pro features (targets, RIR, rest timer, warm-ups and plates, PRs, progress, volume, notes,
   // bodyweight, CSV) are reserved for the paid 12-Week Program. For testing, open
   // logbook.html?preview=smart once: it stays on for this browser until you press "Turn off".
+  // Pro is off for everyone. Testers unlock it once with logbook.html?tester=THEIR-CODE: the code is
+  // checked against a SHA-256 hash, so it never appears in this file. ?tester=off locks it again.
+  // At launch this check is replaced by the buyer's license key.
+  var TESTER = 'trenesis.log.tester.v1', TESTER_HASH = '95bed3b7e1e7cef531cbf2bbf6701ac57656a94f32e3d381b29b08065d993c74';
   var qs = new URLSearchParams(location.search);
-  if (qs.get('preview') === 'smart') { try { localStorage.setItem(PREVIEW, '1'); } catch (e) {} }
-  if (qs.get('preview') === 'off') { try { localStorage.removeItem(PREVIEW); } catch (e) {} }
-  var SMART = false; try { SMART = localStorage.getItem(PREVIEW) === '1'; } catch (e) {}
-  var PRO = SMART;
+  try { localStorage.removeItem(PREVIEW); } catch (e) {} // retire the old public ?preview=smart switch
+  if (qs.get('tester') === 'off') { try { localStorage.removeItem(TESTER); } catch (e) {} }
+  else if (qs.get('tester')) { try { localStorage.setItem(TESTER, qs.get('tester').trim().toUpperCase()); } catch (e) {} }
+  var SMART = false, PRO = false;
+  function checkTester() {
+    var code = null; try { code = localStorage.getItem(TESTER); } catch (e) {}
+    if (!code || !(window.crypto && crypto.subtle && window.TextEncoder)) return Promise.resolve(false);
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode('trenesis:' + code)).then(function (buf) {
+      var hex = Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+      if (hex !== TESTER_HASH) { try { localStorage.removeItem(TESTER); } catch (e) {} return false; }
+      return true;
+    }).catch(function () { return false; });
+  }
   var notes = load(NOTES, {}); if (!notes || typeof notes !== 'object') notes = {};
   var body = load(BODY, []); if (!Array.isArray(body)) body = [];
 
@@ -754,8 +767,9 @@
     var csv = rows.map(function (r) { return r.map(function (c) { c = String(c); return /[",\n]/.test(c) ? '"' + c.replace(/"/g, '""') + '"' : c; }).join(','); }).join('\n');
     var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' })); a.download = 'trenesis-workouts-' + today() + '.csv'; document.body.append(a); a.click(); a.remove();
   });
+  function boot() {
   if (PRO) { $('log-pro').hidden = false; $('log-csv').hidden = false; $('log-rirhint').hidden = false; document.querySelector('.log-page').classList.add('is-pro'); }
-  if (SMART) { $('log-preview').hidden = false; $('log-preview-off').addEventListener('click', function () { try { localStorage.removeItem(PREVIEW); } catch (e) {} location.href = location.pathname; }); }
+  if (SMART) { $('log-preview').hidden = false; $('log-preview-off').addEventListener('click', function () { try { localStorage.removeItem(TESTER); } catch (e) {} location.href = location.pathname; }); }
 
   $('log-date').value = today();
   renderPlanSelect();
@@ -766,6 +780,8 @@
   renderHistory();
   renderPro();
   if (qs.get('new') === '1') openEditor('new');
+  }
+  checkTester().then(function (ok) { SMART = PRO = ok; boot(); });
   addEventListener('pagehide', saveDraft);
 })();
 </script>
