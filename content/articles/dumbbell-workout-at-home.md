@@ -54,6 +54,10 @@ Any three days work, as long as there's a rest day in between. Each workout take
 
 Stop each set when you could do about 1–2 more good reps, and do one or two lighter warm-up sets before the first exercise.
 
+## Cool-down (5 minutes)
+
+After your last exercise, walk or cycle easily for 2–3 minutes, then do 3–4 gentle stretches for the muscles you trained, 20–30 seconds each. See the [5-minute cool-down routine](cool-down.html) for which stretches go with which day.
+
 ## How to progress
 
 Use the same double-progression rule as in the gym: once you reach the top of the rep range on every set, move to the next weight and build the reps back up.

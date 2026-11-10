@@ -845,3 +845,9 @@ select.log-rir { width: 84px; font-size: 14px; padding: 8px 6px; color: var(--mu
 .log-rirhint { margin: 0 0 14px; }
 .log-rirhint strong { color: #fff; }
 .log-bodyform .log-field { flex: 0 0 auto; margin: 0; }
+.log-cooldown { margin: 16px 0 0; padding: 14px 16px; border: 1px solid var(--line); border-left: 3px solid #6fb98a; border-radius: 8px; background: var(--panel); }
+.log-cooldown p { margin: 0; color: var(--muted); font-size: 15px; }
+.log-cooldown p + p, .log-cooldown ul + p { margin-top: 6px; }
+.log-cooldown .log-cd-title { color: #fff; font: 600 16px/1.4 var(--head); margin-bottom: 4px; }
+.log-cooldown ul { margin: 6px 0 0; padding-left: 20px; color: var(--text); font-size: 15px; }
+.log-cooldown a { color: var(--ice); text-decoration: underline; text-underline-offset: 3px; }

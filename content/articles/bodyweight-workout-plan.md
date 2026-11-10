@@ -64,6 +64,10 @@ Same movements and levels, split into upper-body and lower-body days, so each wo
 
 New to training? For the first two weeks, do 2 sets of everything and stop each set when you could still do 2–3 more reps.
 
+## Cool-down (5 minutes)
+
+After your last exercise, walk or cycle easily for 2–3 minutes, then do 3–4 gentle stretches for the muscles you trained, 20–30 seconds each. See the [5-minute cool-down routine](cool-down.html) for which stretches go with which day.
+
 ## When to move up a level
 
 Once you can do the **top of the rep range on all 3 sets** with good form, move to the next level for that movement only. Your reps will drop; build them back up.

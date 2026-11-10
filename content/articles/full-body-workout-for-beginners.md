@@ -52,6 +52,10 @@ Not sure how an exercise works? Our [exercise list per muscle](best-exercises-fo
 
 Stop each set when you could do about 1–2 more good reps. In the first two weeks, stay a bit further from that point while you learn the movements. Always do 1–2 lighter warm-up sets before your first exercise.
 
+## Cool-down (5 minutes)
+
+After your last exercise, walk or cycle easily for 2–3 minutes, then do 3–4 gentle stretches for the muscles you trained, 20–30 seconds each. See the [5-minute cool-down routine](cool-down.html) for which stretches go with which day.
+
 ## How to progress: the double progression rule
 
 1. Pick a weight you can lift for the bottom of the rep range, for example 8 reps.

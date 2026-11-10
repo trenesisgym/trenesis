@@ -26,6 +26,8 @@ During deep sleep your body releases growth hormone, repairs muscle and lets you
 
 Rest days don't have to mean lying on the sofa. Light movement such as walking, easy cycling or swimming gets blood flowing and helps you feel fresher. Aim for 20–40 minutes of easy activity, and skip anything that leaves you sore or tired.
 
+A short cool-down after your workout is a nice habit and a good moment to stretch, but it won't make you recover much faster. Our [5-minute cool-down routine](cool-down.html) explains what it does and doesn't do.
+
 ## Stress counts too
 
 Exams, work deadlines and money worries all draw from the same recovery budget as training. Chronically stressed people tend to recover more slowly and stall sooner. In stressful weeks it's fine to train a little less hard; keep showing up and get back to full effort when things calm down.
