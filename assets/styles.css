@@ -768,3 +768,80 @@ select.log-lvl { width: 92px; text-align: left; }
   .ed-mini { display: flex; align-items: center; gap: 8px; }
   .ed-mini span { position: static; width: auto; height: auto; overflow: visible; clip: auto; color: var(--faint); font-size: 13px; }
 }
+
+/* ---------- Logbook Pro (paid program) ---------- */
+.log-preview strong { color: #fff; }
+.pro-tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: rgba(126, 200, 150, .14); border: 1px solid rgba(126, 200, 150, .45); color: #9fdcb2; font: 600 12px/1.4 var(--head); letter-spacing: .04em; vertical-align: middle; }
+.is-pro .log-set { flex-wrap: nowrap; }
+select.log-rir { width: 84px; font-size: 14px; padding: 8px 6px; color: var(--muted); }
+.log-set.is-pr .log-in { border-color: rgba(126, 200, 150, .7); }
+.log-set.is-pr .log-setno { color: #9fdcb2; }
+.log-suggest { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 10px; padding: 10px 12px; border-radius: 8px; background: rgba(126, 200, 150, .08); border: 1px solid rgba(126, 200, 150, .3); }
+.log-suggest p { margin: 0; flex: 1 1 220px; color: #cfeedd; font-size: 14px; }
+.log-suggest.is-stall { background: rgba(230, 160, 122, .08); border-color: rgba(230, 160, 122, .4); }
+.log-suggest.is-stall p { color: #f3cdb6; }
+.log-notes { margin: 0 0 10px; }
+.log-notes summary { cursor: pointer; color: var(--muted); font-size: 14px; padding: 4px 0; }
+.log-notes summary span { color: var(--faint); }
+.log-notein { width: 100%; margin-top: 6px; padding: 10px 12px; border: 1px solid #3d4650; border-radius: 6px; background: var(--bg); color: var(--text); font: 15px/1.45 var(--body); resize: vertical; }
+.log-notein:focus-visible { outline: 2px solid var(--ice); outline-offset: 1px; }
+.log-warm { margin: 8px 0 6px; padding: 12px 14px; border-radius: 8px; background: var(--panel); }
+.log-warmlist { margin: 6px 0 8px; padding-left: 20px; color: var(--text); }
+.log-warmlist li { margin: 4px 0; }
+.log-warmlist span, .log-plates { color: var(--muted); font-size: 14px; }
+.log-plates strong { color: #fff; }
+.log-actions { gap: 10px; align-items: center; flex-wrap: wrap; }
+.log-timer { display: flex; align-items: center; gap: 8px; padding: 6px 8px 6px 14px; border: 1px solid #3a5470; border-radius: 999px; background: var(--panel); }
+.log-timer-label { color: var(--faint); font-size: 13px; }
+.log-timer-time { font: 700 20px/1 var(--head); color: #fff; min-width: 54px; font-variant-numeric: tabular-nums; }
+.log-timer.is-done { border-color: rgba(126, 200, 150, .7); }
+.log-timer.is-done .log-timer-time { color: #9fdcb2; }
+.log-toast { position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%); z-index: 90; max-width: min(92vw, 480px); padding: 12px 18px; border-radius: 10px; background: #173226; border: 1px solid rgba(126, 200, 150, .6); color: #dff5e8; font: 600 15px/1.4 var(--head); box-shadow: 0 12px 30px rgba(0, 0, 0, .5); }
+.log-pro { margin-top: 44px; }
+.log-pro h2 { font-size: 24px; margin-bottom: 12px; }
+.log-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.log-tabpanel { padding: 18px; border: 1px solid var(--line); border-radius: 10px; }
+.log-tabpanel .log-field select { max-width: 360px; }
+.log-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 14px 0; }
+.log-stats div { padding: 12px; border-radius: 8px; background: var(--panel); }
+.log-stats span { display: block; color: var(--faint); font-size: 12px; }
+.log-stats strong { display: block; color: #fff; font: 700 22px/1.25 var(--head); margin-top: 2px; }
+.log-stats em { display: block; color: var(--faint); font-size: 12px; font-style: normal; }
+.log-chart { width: 100%; height: auto; display: block; margin: 6px 0 4px; }
+.log-chart .grid { stroke: #2a3138; stroke-width: 1; }
+.log-chart text { fill: #8a96a3; font: 12px var(--body); }
+.log-chart .line { fill: none; stroke: var(--ice); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.log-chart .pt { fill: var(--bg); stroke: var(--ice); stroke-width: 2; }
+.log-chart .pt.pr { fill: #9fdcb2; stroke: #9fdcb2; }
+.log-chart .band { fill: rgba(182, 215, 244, .06); }
+.log-warn { color: #f3cdb6; font-weight: 600; }
+.log-vol { list-style: none; padding: 0; margin: 10px 0; display: grid; gap: 8px; }
+.log-vol li { display: grid; grid-template-columns: 150px minmax(0, 1fr) 32px; gap: 10px; align-items: center; font-size: 14px; }
+.log-vol-name { color: var(--text); }
+.log-vol-bar { position: relative; height: 14px; border-radius: 7px; background: #1d2228; overflow: hidden; }
+.log-vol-bar .band { position: absolute; top: 0; bottom: 0; background: rgba(182, 215, 244, .12); border-left: 1px dashed rgba(182, 215, 244, .4); border-right: 1px dashed rgba(182, 215, 244, .4); }
+.log-vol-bar .fill { position: absolute; left: 0; top: 3px; bottom: 3px; border-radius: 4px; background: var(--ice); }
+.log-vol li.is-low .fill { background: #c9b27a; }
+.log-vol li.is-high .fill { background: #e6a07a; }
+.log-vol-n { color: #fff; font: 600 14px var(--head); text-align: right; font-variant-numeric: tabular-nums; }
+.log-cal { display: grid; grid-template-rows: repeat(7, 14px); grid-auto-flow: column; grid-auto-columns: 14px; gap: 4px; margin: 6px 0 10px; overflow-x: auto; }
+.log-cal span { width: 14px; height: 14px; border-radius: 3px; background: #1d2228; }
+.log-cal span.on { background: #6fb98a; }
+.log-cal span.today { outline: 1px solid var(--ice); }
+.log-bodyform { display: flex; flex-wrap: wrap; align-items: end; gap: 10px; margin-bottom: 8px; }
+.log-bodyform .log-in { width: 120px; }
+.log-trend { color: var(--text); margin: 8px 0; }
+.log-trend a { color: var(--ice); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 560px) {
+  select.log-rir { width: 66px; font-size: 13px; padding: 8px 2px; }
+  .is-pro .log-in:not(.log-rir) { width: 70px; }
+  .is-pro .log-x { display: none; }
+  .log-stats { grid-template-columns: 1fr 1fr; }
+  .log-stats div:last-child { grid-column: 1 / -1; }
+  .log-vol li { grid-template-columns: 110px minmax(0, 1fr) 28px; font-size: 13px; }
+  .log-tabpanel { padding: 14px; }
+  .log-toast { bottom: 88px; font-size: 14px; }
+}
+.log-rirhint { margin: 0 0 14px; }
+.log-rirhint strong { color: #fff; }
+.log-bodyform .log-field { flex: 0 0 auto; margin: 0; }
