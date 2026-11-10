@@ -45,6 +45,10 @@ Keeping strength and muscle takes far less training than building them. In one s
 > **Key insight**
 > Every exercise here is quiet: no jumping or dropping weights. That makes it apartment-friendly, even late in the evening.
 
+## Cool-down
+
+Short on time? One easy minute of walking and two stretches for the muscles you trained is enough. The full [5-minute cool-down routine](cool-down.html) shows which stretches go with which workout.
+
 ## When things calm down
 
 Go back to your normal plan: the [dumbbell plan](dumbbell-workout-at-home.html), the [bodyweight plan](bodyweight-workout-plan.html) or the [gym plan](full-body-workout-for-beginners.html). You'll usually pick up close to where you left off.

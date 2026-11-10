@@ -31,7 +31,7 @@ import parts
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = 'https://trenesisgym.github.io/trenesis/'
-VERSION = '20261109-program'
+VERSION = '20261110-cooldown'
 UPDATED = datetime.date(2026, 10, 31)
 
 
@@ -60,7 +60,7 @@ HUB_PAGE = {'Training': 'training.html', 'Nutrition': 'nutrition.html'}
 # Reading order. A new article must be added here.
 ORDER = [
     'first-week-at-the-gym', 'strength-training-basics', 'full-body-workout-for-beginners', 'upper-lower-workout-plan', 'how-to-build-a-workout-program',
-    'best-exercises-for-each-muscle', 'recovery-and-sleep', 'strength-training-mistakes',
+    'best-exercises-for-each-muscle', 'cool-down', 'recovery-and-sleep', 'strength-training-mistakes',
     'home-workout-plan', 'bodyweight-workout-plan', 'dumbbell-workout-at-home', 'short-home-workouts', 'intermediate-home-workout',
     'cardio-for-lifters', 'heart-rate-zones', 'cardio-plans',
     'calories-and-tdee', 'how-much-protein', 'carbs-and-fats', 'supplements-that-work',

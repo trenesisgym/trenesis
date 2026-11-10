@@ -83,6 +83,10 @@ If four days turns out to be too much, the [3-day dumbbell plan](dumbbell-workou
 - **Track every session.** At this stage progress is slower, and your log is the only way to see it.
 - If you feel run down for a couple of weeks, do one lighter week with fewer sets, then carry on.
 
+## Cool-down (5 minutes)
+
+After your last exercise, walk or cycle easily for 2–3 minutes, then do 3–4 gentle stretches for the muscles you trained, 20–30 seconds each. See the [5-minute cool-down routine](cool-down.html) for which stretches go with which day.
+
 ## When you run out of weight
 
 Heavy lower-body work is the hardest part of training at home. Before buying heavier dumbbells:
