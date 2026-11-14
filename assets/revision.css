@@ -243,3 +243,8 @@ main .today { display: flex; align-items: center; justify-content: space-between
 .ex-clip.is-playing .ex-play:hover span, .ex-clip.is-playing .ex-play:focus-visible span { opacity: 1; }
 .ex-clip.is-playing .ex-play span::before { left: 15px; top: 14px; box-sizing: content-box; width: 6px; height: 16px; border: 0; border-left: 4px solid #fff; border-right: 4px solid #fff; }
 .ex-play:focus-visible { outline-offset: -4px; }
+
+/* Fix: the collapsed "Your plan" dock is a full-width fixed box on narrow screens; let taps pass
+   through the empty part so it doesn't block the logbook's Save button or anything else at the bottom. */
+.plan-dock { pointer-events: none; }
+.plan-dock > * { pointer-events: auto; }
