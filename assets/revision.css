@@ -66,3 +66,23 @@ main .quick-start > .text-link, main .gear-strip .text-link, .hero-plan > .text-
 .btn-primary:hover { background: #d4e9fc; border-color: #d4e9fc; color: #0f1820; }
 .btn-primary:active, .btn:active { transform: translateY(1px); }
 .btn { border-radius: 6px; transition: background-color .15s ease, border-color .15s ease, transform .1s ease; }
+
+/* 4. Homepage: fewer divider lines, a few calm cards instead */
+main .quick-start { border: 1px solid var(--line); border-left: 3px solid var(--ice); border-radius: 10px; background: var(--panel); padding: 22px 26px; }
+main .destination-grid { gap: 12px; }
+main .destination-grid > a { padding: 20px 22px 22px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); transition: border-color .15s ease, background-color .15s ease; }
+main .destination-grid > a:hover { border-color: #4f7397; background: var(--panel-hover); }
+main .destination-grid h3 { margin: 0 0 6px; font-size: 20px; }
+main .destination-grid p { font-size: 15px; }
+main .compact-guides { gap: 0 40px; padding: 0 24px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+main .compact-guides a { border-top: 1px solid var(--line-soft); padding: 18px 0; }
+main .compact-guides li:nth-child(-n+2) a { border-top: 0; }
+main .gear-strip { border-bottom: 0; padding-bottom: 0; }
+h1, h2, h3 { text-wrap: balance; }
+@media (max-width: 800px) {
+  main .quick-start { padding: 20px; }
+  main .destination-grid { gap: 10px; }
+  main .destination-grid > a { padding: 16px 18px 18px; }
+  main .compact-guides { padding: 0 18px; }
+  main .compact-guides li:nth-child(2) a { border-top: 1px solid var(--line-soft); }
+}
