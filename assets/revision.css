@@ -94,3 +94,10 @@ h1, h2, h3 { text-wrap: balance; }
 }
 .calc-choice label:hover { border-color: #4a5866; }
 .btn-primary:focus-visible { outline-color: #fff; }
+
+/* 6. Consistency: one accent for notes, quieter motion when people ask for it */
+.log-cooldown { border-left-color: #739cc5; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+  .btn:active, .btn-primary:active { transform: none; }
+}
