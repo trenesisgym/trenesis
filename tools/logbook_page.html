@@ -256,7 +256,7 @@
         ['0', '1', '2', '3', '4'].forEach(function (q) { h += '<option value="' + q + '"' + (String(d.q) === q ? ' selected' : '') + '>' + (q === '4' ? '4+' : q) + ' left</option>'; });
         h += '</select>';
       }
-      h += '</div>';
+      h += '<span class="log-mark"><span class="log-tick" aria-hidden="true"></span><span class="log-beat">Beat last time</span></span></div>';
     }
     return h;
   }
@@ -311,6 +311,39 @@
     $('log-exercises').innerHTML = h;
     $('log-status').textContent = '';
     renderCooldown();
+    markSets(false);
+  }
+  // Saved sets get a tick once their reps are stored in the draft; a set that beats the same set
+  // last time (more weight, or more reps at the same weight or level) gets a highlight.
+  function beats(kind, cur, prev) {
+    if (!prev || !prev.r || !cur.r) return false;
+    var r = parseInt(cur.r, 10), pr = parseInt(prev.r, 10);
+    if (!(r >= 1)) return false;
+    if (kind === 'weight') {
+      if (cur.w != null && prev.w != null && cur.w > prev.w + 0.01) return true;
+      var same = (cur.w == null && prev.w == null) || (cur.w != null && prev.w != null && Math.abs(cur.w - prev.w) < 0.01);
+      return same && r > pr;
+    }
+    if (kind === 'level') return (cur.l || 0) > (prev.l || 0) || ((cur.l || 0) === (prev.l || 0) && r > pr);
+    return r > pr;
+  }
+  function markSets(animate) {
+    $('log-exercises').querySelectorAll('.log-ex').forEach(function (fs) {
+      var name = fs.dataset.name || ((fs.querySelector('[data-f=name]') || {}).value || '').trim(), last = name ? lastFor(name) : null;
+      fs.querySelectorAll('.log-set').forEach(function (row, n) {
+        var r = row.querySelector('[data-f=r]'), w = row.querySelector('[data-f=w]'), l = row.querySelector('[data-f=l]');
+        var cur = { r: r && r.value.trim(), w: w && w.value.trim() !== '' ? toKg(w.value) : null, l: l && l.value ? +l.value : null };
+        var done = !!cur.r, beat = done && beats(fs.dataset.kind, cur, last && last.sets[n]);
+        var wasDone = row.classList.contains('is-saved'), wasBeat = row.classList.contains('is-beat');
+        row.classList.toggle('is-saved', done); row.classList.toggle('is-beat', beat);
+        if (!animate) return;
+        if (done && !wasDone) { row.classList.remove('is-fresh'); void row.offsetWidth; row.classList.add('is-fresh'); }
+        if (beat && !wasBeat) {
+          row.classList.remove('is-beat-fresh'); void row.offsetWidth; row.classList.add('is-beat-fresh');
+          $('log-status').textContent = 'Set ' + (n + 1) + (name ? ' of ' + name : '') + ': you beat last time.';
+        }
+      });
+    });
   }
   // Cool-down reminder. Pro picks the stretches for the muscles in today's workout.
   var STRETCH = { 'Chest': 'Doorway chest stretch', 'Back': 'Kneeling lat stretch (hands on a bench)', 'Shoulders': 'Cross-body shoulder stretch', 'Triceps': 'Overhead triceps stretch',
@@ -354,7 +387,7 @@
     });
     return { draft: { base: base, extra: extra, count: count }, entries: entries };
   }
-  function saveDraft() { if (state.plan && $('log-exercises').children.length) putDraft(readForm().draft); }
+  function saveDraft() { if (state.plan && $('log-exercises').children.length) { putDraft(readForm().draft); markSets(true); } }
 
   $('log-exercises').addEventListener('click', function (e) {
     var btn = e.target.closest('button[data-act]'); if (!btn) return;
