@@ -24,3 +24,18 @@
 .article-product-name { display: block; font-size: 14px; line-height: 1.4; color: var(--ice); }
 .article-product-reason { display: block; font-size: 12px; line-height: 1.5; color: var(--muted); margin-top: 5px; }
 @media (max-width: 600px) { .article-product-picks { grid-template-columns: 1fr; gap: 8px; } }
+
+/* ---------- Design pass 2 (Nov 2026) ---------- */
+
+/* 1. Plan tables on phones: one card per row, each value labelled, no sideways scrolling */
+@media (max-width: 600px) {
+  .article-body .table-wrap:has(> .t-stack) { overflow: visible; border: 0; border-radius: 0; background: none; -webkit-mask-image: none; mask-image: none; }
+  .article-body table.t-stack, .article-body .t-stack tbody, .article-body .t-stack tr, .article-body .t-stack td { display: block; width: 100%; }
+  .article-body .t-stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .article-body .t-stack tr { padding: 14px 16px 12px; margin-bottom: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+  .article-body .t-stack td { display: grid; grid-template-columns: minmax(96px, 38%) minmax(0, 1fr); gap: 12px; padding: 5px 0; border: 0; font-size: 15px; white-space: normal; }
+  .article-body .t-stack td::before { content: attr(data-label); color: var(--muted); font: 500 13px/1.6 var(--head); }
+  .article-body .t-stack td:first-child { display: block; padding: 0 0 8px; margin-bottom: 4px; border-bottom: 1px solid var(--line-soft); color: #fff; font: 600 16px/1.4 var(--head); }
+  .article-body .t-stack td:first-child::before { content: none; }
+}
+.article-body td, .hero-plan li { font-variant-numeric: tabular-nums; }
