@@ -173,3 +173,22 @@ h1, h2, h3 { text-wrap: balance; }
 .sheet-opt span { color: var(--faint); font-size: 13px; }
 .sheet-custom { color: var(--ice); font-weight: 600; margin-top: 4px; border-bottom: 0; }
 html.sheet-lock { overflow: hidden; }
+
+/* M4. Plan finder: one question at a time, a slim progress bar, one short reveal for the result */
+.finder-progress { display: grid; gap: 8px; }
+.finder-progress p { margin: 0; color: var(--muted); font: 600 14px/1.4 var(--head); font-variant-numeric: tabular-nums; }
+.finder-bar { display: block; height: 4px; border-radius: 2px; background: #26313b; overflow: hidden; }
+.finder-bar span { display: block; height: 100%; background: var(--ice); transform-origin: left center; transform: scaleX(.25); transition: transform .26s var(--ease-out); }
+.finder.is-steps fieldset { min-height: 0; }
+.finder-nav { display: flex; flex-wrap: wrap; gap: 10px; }
+.finder-nav [hidden] { display: none !important; }
+.finder .finder-nav .btn { min-width: 140px; width: auto; }
+@media (max-width: 800px) { .finder .finder-nav .btn { flex: 1 1 0; min-width: 0; } }
+.finder fieldset.is-in-next { animation: m-in-next .24s var(--ease-out); }
+.finder fieldset.is-in-back { animation: m-in-back .24s var(--ease-out); }
+@keyframes m-in-next { from { transform: translateX(28px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes m-in-back { from { transform: translateX(-28px); opacity: 0; } to { transform: none; opacity: 1; } }
+.finder-result.is-revealed { animation: m-reveal .3s var(--ease-out); }
+@keyframes m-reveal { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
+#fr-title:focus { outline: none; }
+#fr-title:focus-visible { outline: 2px solid var(--ice); outline-offset: 4px; }
