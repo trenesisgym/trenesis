@@ -192,3 +192,11 @@ html.sheet-lock { overflow: hidden; }
 @keyframes m-reveal { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
 #fr-title:focus { outline: none; }
 #fr-title:focus-visible { outline: 2px solid var(--ice); outline-offset: 4px; }
+
+/* M5. Mark as read / unread: the check pops in, and shrinks away when you mark it unread */
+.read-check { display: inline-block; }
+.read-badge.is-fresh .read-check, .read-done.is-fresh .read-check { animation: m-pop .26s var(--ease-out); }
+.read-done.is-fresh { animation: m-rise .24s var(--ease-out); }
+.read-state .read-badge.is-leaving, .read-done.is-leaving { opacity: 0; transform: scale(.92); transition: opacity .18s ease, transform .18s ease; }
+.read-badge.is-leaving .read-check { transform: scale(0); transition: transform .18s ease; }
+.read-state:focus { outline: none; }

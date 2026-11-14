@@ -278,7 +278,12 @@
 
     const state = document.createElement('span');
     state.className = 'read-state';
-    meta.append(state);
+    state.tabIndex = -1;
+    const said = document.createElement('span');
+    said.className = 'sr-only';
+    said.setAttribute('role', 'status');
+    meta.append(state, said);
+    const calm = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function progressNow() {
       const r = body.getBoundingClientRect();
@@ -289,12 +294,12 @@
       const r = body.getBoundingClientRect();
       return r.top < innerHeight && r.bottom > 0;
     }
-    function drawState() {
+    function drawState(fresh) {
       state.textContent = '';
       if (cur.r) {
         const t = document.createElement('span');
-        t.className = 'read-badge is-read';
-        t.textContent = '✓ Read';
+        t.className = 'read-badge is-read' + (fresh ? ' is-fresh' : '');
+        t.innerHTML = '<span class="read-check" aria-hidden="true">✓</span> Read';
         const undo = document.createElement('button');
         undo.type = 'button';
         undo.className = 'read-undo';
@@ -331,17 +336,23 @@
       const d = load(); delete d[page]; save(d);
       paused = true;
       cur = fresh();
-      document.querySelector('.read-done')?.remove();
-      drawState(); announce();
+      const gone = document.querySelectorAll('.read-state .read-badge, .read-done');
+      gone.forEach(el => el.classList.add('is-leaving'));
+      setTimeout(() => {
+        document.querySelector('.read-done')?.remove();
+        drawState(); announce();
+        said.textContent = 'Marked as unread';
+        state.focus({ preventScroll: true });
+      }, gone.length && !calm() ? 180 : 0);
     }
     function finish() {
       cur.r = Date.now();
       put(cur);
-      drawState();
+      drawState(true);
       const note = document.createElement('p');
-      note.className = 'read-done';
+      note.className = 'read-done is-fresh';
       note.setAttribute('role', 'status');
-      note.innerHTML = '<span>✓ Marked as read</span>';
+      note.innerHTML = '<span><span class="read-check" aria-hidden="true">✓</span> Marked as read</span>';
       const undo = document.createElement('button');
       undo.type = 'button';
       undo.className = 'read-undo';
