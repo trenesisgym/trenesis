@@ -35,7 +35,7 @@ BASE = 'https://trenesisgym.github.io/trenesis/'
 # waitlist line on the privacy page). Hidden for now; set to True to show it all again.
 SHOW_PROGRAM = False
 
-VERSION = '20261114-design'
+VERSION = '20261114-motion2'
 UPDATED = datetime.date(2026, 10, 31)
 
 
@@ -160,6 +160,8 @@ def build_hand(name, current, extra=''):
     body = re.sub(r'<!-- (title|description): .*? -->\n', '', s).rstrip('\n')
     if '<!-- plan-preview -->' in body:
         body = body.replace('<!-- plan-preview -->', plan_preview())
+    if '<!-- today-card -->' in body:
+        body = body.replace('<!-- today-card -->', today_card())
     return page(title, desc, f'{name}.html', current, body, extra=extra)
 
 
@@ -170,6 +172,37 @@ def plan_preview():
     return ('<aside class="hero-plan" aria-label="Preview of the free 3-day gym plan">'
             f'<p class="hp-label">From the free 3-day gym plan</p><h2>{esc(wo["name"])}</h2><ol>{rows}</ol>'
             '<a class="text-link" href="full-body-workout-for-beginners.html">See the whole plan →</a></aside>')
+
+
+def today_card():
+    """Homepage: "Today's workout" for returning visitors with logbook data (hidden for everyone else).
+    Reads the logbook's saved data (trenesis.log.v1 and friends) without changing it."""
+    plans = {p['id']: {'label': p['label'], 'workouts': [w['name'] for w in p['workouts']]} for p in logbook.plan_data()}
+    data = json.dumps(plans, ensure_ascii=False).replace('</', '<\\/')
+    return ('<section class="today" id="today-card" hidden aria-labelledby="today-title">'
+            '<div class="today-text"><p class="today-kicker">Today’s workout</p><h2 id="today-title"></h2>'
+            '<p class="today-meta"><span id="today-plan"></span><span id="today-last"></span></p></div>'
+            '<a class="btn" id="today-open" href="logbook.html">Open logbook</a></section>'
+            f'<script type="application/json" id="today-plans">{data}</script>'
+            """<script>
+(function () {
+  function load(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } }
+  var log = load('trenesis.log.v1', null), sessions = log && Array.isArray(log.sessions) ? log.sessions.filter(function (s) { return s && s.date && s.plan; }) : [];
+  if (!sessions.length) return;
+  sessions.sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : (b.t || 0) - (a.t || 0); });
+  var last = sessions[0], plans = JSON.parse(document.getElementById('today-plans').textContent), plan = plans[last.plan];
+  if (!plan) { var custom = load('trenesis.log.custom.v1', []); (Array.isArray(custom) ? custom : []).forEach(function (p) { if (p && p.id === last.plan && Array.isArray(p.workouts)) plan = { label: p.label, workouts: p.workouts.map(function (w) { return w.name; }) }; }); }
+  var at = plan ? plan.workouts.indexOf(last.workout) : -1, next = plan && plan.workouts.length ? plan.workouts[(at + 1) % plan.workouts.length] : '';
+  var d0 = new Date(last.date + 'T12:00:00'), now = new Date(); now.setHours(12, 0, 0, 0);
+  var days = Math.round((now - d0) / 864e5);
+  var when = days <= 0 ? 'today' : days === 1 ? 'yesterday' : days + ' days ago';
+  document.getElementById('today-title').textContent = next || last.workout;
+  document.getElementById('today-plan').textContent = (plan ? plan.label : last.planLabel || '');
+  document.getElementById('today-last').textContent = 'Last workout ' + when + (next ? ' (' + last.workout + ')' : '');
+  document.getElementById('today-open').href = 'logbook.html?plan=' + encodeURIComponent(last.plan);
+  document.getElementById('today-card').hidden = false;
+})();
+</script>""")
 
 
 def faq_schema():
@@ -253,6 +286,7 @@ def build_article(a, arts):
     else:
         nudge = parts.finder_callout() if g['hub'] == 'Training' else parts.calculator_callout()
     body = parts.compact_tables(body)
+    body = parts.expandable_exercises(body, ROOT, {s: x['title'] for s, x in arts.items()})
     side = parts.side_toc(body)
     main = (
         f'<div class="wrap"><div class="article-layout{" has-side" if side else ""}"><article class="article">{crumbs}'

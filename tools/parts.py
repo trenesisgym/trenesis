@@ -115,6 +115,7 @@ FINDER = r'''
 <div class="wrap"><header class="page-intro"><h1>Find your plan</h1>
 <p class="lead">Four quick questions, then we point you to the plan, articles and numbers that fit you. No email needed.</p></header>
 <form class="finder" id="finder" novalidate>
+  <div class="finder-progress" id="finder-progress" hidden><p id="finder-count" aria-live="polite">1 of 4</p><span class="finder-bar" aria-hidden="true"><span id="finder-fill"></span></span></div>
   <fieldset class="calc-choice"><legend>1. Where will you train?</legend>
     <label><input type="radio" name="place" value="gym" checked> <span><strong>At a gym</strong> Machines, barbells and dumbbells</span></label>
     <label><input type="radio" name="place" value="dumbbells"> <span><strong>At home, with dumbbells</strong> A pair of dumbbells, maybe a bench</span></label>
@@ -133,11 +134,11 @@ FINDER = r'''
     <label><input type="radio" name="goal" value="fat"> <span><strong>Lose fat</strong></span></label>
     <label><input type="radio" name="goal" value="fit"> <span><strong>Get fitter and healthier</strong></span></label>
   </fieldset>
-  <button class="btn btn-primary" type="submit">Show my plan</button>
+  <div class="finder-nav"><button type="button" class="btn btn-quiet" id="finder-back" hidden>Back</button><button type="button" class="btn btn-primary" id="finder-next" hidden>Next</button><button class="btn btn-primary" type="submit" id="finder-submit">Show my plan</button></div>
 </form>
 <section class="finder-result" id="finder-result" aria-live="polite" hidden>
   <p class="kicker">Your plan</p>
-  <h2 id="fr-title"></h2>
+  <h2 id="fr-title" tabindex="-1"></h2>
   <p id="fr-why"></p>
   <a class="btn" id="fr-link" href="#">Open the plan</a>
   <h3>Then read</h3>
@@ -168,6 +169,31 @@ FINDER = r'''
     exercises: ['The best exercises for each muscle', 'best-exercises-for-each-muscle.html']
   };
   function v(n) { return f.querySelector('input[name=' + n + ']:checked').value; }
+  // One question at a time: slide to the next, Back to return, a slim "2 of 4" progress bar.
+  var steps = Array.prototype.slice.call(f.querySelectorAll('fieldset')), at = 0, $ = function (id) { return document.getElementById(id); };
+  function show(i, dir, focus) {
+    at = Math.max(0, Math.min(steps.length - 1, i));
+    steps.forEach(function (fs, n) { fs.hidden = n !== at; fs.classList.remove('is-in-next', 'is-in-back'); });
+    if (dir) { var cur = steps[at]; void cur.offsetWidth; cur.classList.add(dir > 0 ? 'is-in-next' : 'is-in-back'); }
+    $('finder-count').textContent = (at + 1) + ' of ' + steps.length;
+    $('finder-fill').style.transform = 'scaleX(' + ((at + 1) / steps.length) + ')';
+    $('finder-back').hidden = at === 0;
+    $('finder-next').hidden = at === steps.length - 1;
+    $('finder-submit').hidden = at !== steps.length - 1;
+    if (focus) steps[at].querySelector('input:checked').focus();
+  }
+  f.classList.add('is-steps'); $('finder-progress').hidden = false; show(0);
+  $('finder-next').addEventListener('click', function () { show(at + 1, 1, true); });
+  $('finder-back').addEventListener('click', function () { show(at - 1, -1, true); });
+  // A tap or click on an answer moves on by itself; keyboard users choose with the arrows and press Next.
+  var pressed = 0, moving = false;
+  f.addEventListener('pointerdown', function () { pressed = Date.now(); });
+  f.addEventListener('keydown', function () { pressed = 0; });
+  f.addEventListener('click', function (e) {
+    if (e.target.type !== 'radio' || Date.now() - pressed > 800 || moving || at === steps.length - 1) return;
+    moving = true; pressed = 0;
+    setTimeout(function () { moving = false; show(at + 1, 1, true); }, 160);
+  });
   f.addEventListener('submit', function (e) {
     e.preventDefault();
     var place = v('place'), level = v('level'), days = v('days'), goal = v('goal'), plan, why, next = [];
@@ -202,12 +228,13 @@ FINDER = r'''
     document.getElementById('fr-link').href = plan[1];
     var ol = document.getElementById('fr-next'); ol.replaceChildren();
     next.slice(0, 4).forEach(function (n) { var li = document.createElement('li'), a = document.createElement('a'); a.href = n[1]; a.textContent = n[0]; a.className = 'text-link'; li.append(a); ol.append(li); });
-    box.hidden = false;
+    box.hidden = false; box.classList.remove('is-revealed'); void box.offsetWidth; box.classList.add('is-revealed');
     // Save the result so site.js can show "Your plan" on every page.
     var steps = [{ title: plan[0], href: plan[1] }].concat(next.slice(0, 4).map(function (n) { return { title: n[0], href: n[1] }; }));
     try { localStorage.setItem('trenesis.plan.v1', JSON.stringify({ created: Date.now(), steps: steps, done: [] })); } catch (err) {}
     document.dispatchEvent(new CustomEvent('trenesis:plan'));
     box.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    document.getElementById('fr-title').focus({ preventScroll: true });
   });
 })();
 </script>
@@ -313,3 +340,81 @@ CSS = '''
   table { page-break-inside: avoid; }
 }
 '''
+
+
+def _ex_slug(name):
+    return re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+
+
+def exercise_parts(cell_text):
+    """'Leg press or squat (machine)' -> ['Leg press', 'squat']: the exercises named in a table cell."""
+    t = re.sub(r'\([^)]*\)', '', cell_text)
+    t = re.split(r',', t)[0]
+    return [p.strip() for p in re.split(r'\s+or\s+', t) if p.strip()]
+
+
+def expandable_exercises(body_html, root, titles):
+    """Plan tables (with a Sets column): exercise names with cues or a clip become buttons that open a
+    detail row underneath (cues from tools/exercise_cues.py, clip from assets/clips/<slug>.mp4)."""
+    import exercise_cues as EC
+    count = [0]
+
+    def lookup(part):
+        s = _ex_slug(part)
+        s = EC.ALIASES.get(s, s)
+        return s, EC.CUES.get(s)
+
+    def clip_html(slug, label):
+        base = f'assets/clips/{slug}'
+        if not (root / f'{base}.mp4').exists():
+            return ''
+        poster = f' poster="{base}.jpg"' if (root / f'{base}.jpg').exists() else ''
+        webm = f'<source data-src="{base}.webm" type="video/webm">' if (root / f'{base}.webm').exists() else ''
+        return (f'<figure class="ex-clip"><video muted loop playsinline preload="none" width="720" height="720"{poster} '
+                f'aria-label="Silent clip: {html.escape(label, quote=True)}">{webm}<source data-src="{base}.mp4" type="video/mp4"></video>'
+                f'<button type="button" class="ex-play" aria-label="Play clip of {html.escape(label, quote=True)}"><span aria-hidden="true"></span></button></figure>')
+
+    def table(m):
+        t = m.group(0)
+        heads = [re.sub(r'<[^>]+>', '', h).strip().lower() for h in re.findall(r'<th[^>]*>(.*?)</th>', t, re.S)]
+        if not heads or not heads[0].startswith('exercise') or not any(h.startswith('sets') for h in heads):
+            return t
+        cols = len(heads)
+
+        def row(r):
+            tr = r.group(0)
+            cell = re.search(r'<td([^>]*)>(.*?)</td>', tr, re.S)
+            if not cell:
+                return tr
+            name = re.sub(r'<[^>]+>', '', cell.group(2)).strip()
+            parts_ = exercise_parts(name)
+            found, clips, seen = [], [], set()
+            for p in parts_:
+                slug, entry = lookup(p)
+                if entry:
+                    cues = [c for c in entry['cues'] if c not in seen]
+                    seen.update(cues)
+                    if cues:
+                        found.append((entry['name'], cues, entry['source']))
+                c = clip_html(slug, entry['name'] if entry else p)
+                if c:
+                    clips.append(c)
+            if not found and not clips:
+                return tr
+            count[0] += 1
+            did = f'exd-{count[0]}'
+            label = len(parts_) > 1
+            inner = ''
+            for nm, cues, src in found:
+                inner += (f'<p class="ex-part">{html.escape(nm)}</p>' if label else '') + '<ul class="ex-cues">' + ''.join(f'<li>{html.escape(c)}</li>' for c in cues) + '</ul>'
+            inner += ''.join(clips)
+            srcs = sorted({s for _, _, s in found})
+            if srcs:
+                inner += '<p class="ex-src">From ' + ' and '.join(f'<a href="{s}.html">{html.escape(titles.get(s, s))}</a>' for s in srcs) + '</p>'
+            btn = (f'<button type="button" class="ex-toggle" aria-expanded="false" aria-controls="{did}">{cell.group(2)}'
+                   '<span class="ex-chev" aria-hidden="true"></span></button>')
+            tr = tr.replace(cell.group(0), f'<td{cell.group(1)}>{btn}</td>', 1).replace('<tr>', '<tr class="ex-row">', 1)
+            return tr + f'<tr class="ex-detail" id="{did}" hidden><td colspan="{cols}"><div class="ex-detail-in">{inner}</div></td></tr>'
+        return re.sub(r'<tr>(?:(?!</tr>).)*?<td.*?</tr>', row, t, flags=re.S)
+
+    return re.sub(r'<table[^>]*>.*?</table>', table, body_html, flags=re.S)

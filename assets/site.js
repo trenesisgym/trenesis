@@ -278,7 +278,12 @@
 
     const state = document.createElement('span');
     state.className = 'read-state';
-    meta.append(state);
+    state.tabIndex = -1;
+    const said = document.createElement('span');
+    said.className = 'sr-only';
+    said.setAttribute('role', 'status');
+    meta.append(state, said);
+    const calm = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function progressNow() {
       const r = body.getBoundingClientRect();
@@ -289,12 +294,12 @@
       const r = body.getBoundingClientRect();
       return r.top < innerHeight && r.bottom > 0;
     }
-    function drawState() {
+    function drawState(fresh) {
       state.textContent = '';
       if (cur.r) {
         const t = document.createElement('span');
-        t.className = 'read-badge is-read';
-        t.textContent = '✓ Read';
+        t.className = 'read-badge is-read' + (fresh ? ' is-fresh' : '');
+        t.innerHTML = '<span class="read-check" aria-hidden="true">✓</span> Read';
         const undo = document.createElement('button');
         undo.type = 'button';
         undo.className = 'read-undo';
@@ -331,17 +336,23 @@
       const d = load(); delete d[page]; save(d);
       paused = true;
       cur = fresh();
-      document.querySelector('.read-done')?.remove();
-      drawState(); announce();
+      const gone = document.querySelectorAll('.read-state .read-badge, .read-done');
+      gone.forEach(el => el.classList.add('is-leaving'));
+      setTimeout(() => {
+        document.querySelector('.read-done')?.remove();
+        drawState(); announce();
+        said.textContent = 'Marked as unread';
+        state.focus({ preventScroll: true });
+      }, gone.length && !calm() ? 180 : 0);
     }
     function finish() {
       cur.r = Date.now();
       put(cur);
-      drawState();
+      drawState(true);
       const note = document.createElement('p');
-      note.className = 'read-done';
+      note.className = 'read-done is-fresh';
       note.setAttribute('role', 'status');
-      note.innerHTML = '<span>✓ Marked as read</span>';
+      note.innerHTML = '<span><span class="read-check" aria-hidden="true">✓</span> Marked as read</span>';
       const undo = document.createElement('button');
       undo.type = 'button';
       undo.className = 'read-undo';
@@ -621,4 +632,44 @@ document.addEventListener('error', e => {
   const check = w => { const s = w.scrollWidth > w.clientWidth + 2; w.classList.toggle('scrolls', s); w.classList.toggle('at-end', !s || w.scrollLeft + w.clientWidth >= w.scrollWidth - 4); };
   wraps.forEach(w => { check(w); w.addEventListener('scroll', () => check(w), { passive: true }); });
   addEventListener('resize', () => wraps.forEach(check), { passive: true });
+})();
+
+// Plan tables: tap an exercise name to show its how-to cues (and a short clip, if there is one).
+(() => {
+  'use strict';
+  const calm = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function loadClip(v) {
+    if (v.dataset.loaded) return;
+    v.querySelectorAll('source[data-src]').forEach(s => { s.src = s.dataset.src; });
+    v.dataset.loaded = '1';
+    v.load();
+  }
+  function setPlaying(fig, on) {
+    const v = fig.querySelector('video'), b = fig.querySelector('.ex-play');
+    if (!v) return;
+    if (on) { loadClip(v); const p = v.play(); if (p && p.catch) p.catch(() => fig.classList.remove('is-playing')); }
+    else v.pause();
+    fig.classList.toggle('is-playing', on);
+    const name = (v.getAttribute('aria-label') || '').replace(/^Silent clip: /, '');
+    b.setAttribute('aria-label', (on ? 'Pause clip of ' : 'Play clip of ') + name);
+  }
+  document.addEventListener('click', e => {
+    const play = e.target.closest('.ex-play');
+    if (play) { const fig = play.closest('.ex-clip'); setPlaying(fig, !fig.classList.contains('is-playing')); return; }
+    const t = e.target.closest('.ex-toggle');
+    if (!t) return;
+    const detail = document.getElementById(t.getAttribute('aria-controls'));
+    if (!detail) return;
+    const open = t.getAttribute('aria-expanded') !== 'true';
+    t.setAttribute('aria-expanded', String(open));
+    t.closest('tr').classList.toggle('is-open', open);
+    detail.hidden = !open;
+    if (open) { detail.classList.remove('is-fresh'); void detail.offsetWidth; detail.classList.add('is-fresh'); }
+    // Clips play when you open the exercise (never on their own); with reduced motion you see the poster and a play button.
+    detail.querySelectorAll('.ex-clip').forEach(fig => {
+      if (!open) setPlaying(fig, false);
+      else if (calm()) { loadClip(fig.querySelector('video')); fig.classList.add('is-ready'); }
+      else setPlaying(fig, true);
+    });
+  });
 })();
