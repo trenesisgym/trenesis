@@ -41,6 +41,32 @@ def toc(body_html):
     return f'<details class="toc" open><summary>On this page</summary><ol>{items}</ol></details>'
 
 
+def side_toc(body_html):
+    """The same table of contents as a sticky sidebar for wide screens (site.js highlights the current section)."""
+    heads = [(i, re.sub(r'<[^>]+>', '', t)) for i, t in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body_html) if i != 'sources']
+    if len(heads) < 3:
+        return ''
+    items = ''.join(f'<li><a href="#{i}">{t}</a></li>' for i, t in heads)
+    return f'<aside class="article-side" aria-label="On this page"><nav class="side-toc"><p>On this page</p><ol>{items}</ol></nav></aside>'
+
+
+def compact_tables(body_html):
+    """Tables whose cells are all short (like a weekly schedule) keep each cell on one line."""
+    def short(c):
+        return len(re.sub(r'<[^>]+>', '', c.group(2)).strip()) <= 12
+    def cell(c):
+        # keep short values like "3 × 8–12" or "2–3 min" on one line
+        return f'<{c.group(1)} class="nw">{c.group(2)}</{c.group(1)}>' if short(c) else c.group(0)
+    def fix(m):
+        t = m.group(0)
+        cells = re.findall(r'<(t[hd])>(.*?)</t[hd]>', t, re.S)
+        t = re.sub(r'<(t[hd])>(.*?)</\1>', cell, t, flags=re.S)
+        if cells and all(len(re.sub(r'<[^>]+>', '', c[1]).strip()) <= 12 for c in cells):
+            t = t.replace('<table>', '<table class="t-compact">', 1)
+        return t
+    return re.sub(r'<table>.*?</table>', fix, body_html, flags=re.S)
+
+
 def author_box():
     return ('<aside class="author-box" aria-label="About the authors"><img src="assets/img/logo.webp" alt="" width="48" height="48">'
             f'<div><p class="author-name">Written by {AUTHORS}</p>'

@@ -584,3 +584,41 @@
     menu.addEventListener('focusout', e => { if (!menu.contains(e.relatedTarget)) set(false); });
   });
 })();
+
+
+// Article sidebar: highlight the section you're reading.
+(() => {
+  'use strict';
+  const links = [...document.querySelectorAll('.side-toc a')];
+  if (!links.length || !('IntersectionObserver' in window)) return;
+  const byId = new Map(links.map(a => [decodeURIComponent(a.hash.slice(1)), a]));
+  const heads = [...byId.keys()].map(id => document.getElementById(id)).filter(Boolean);
+  const set = id => links.forEach(a => a.classList.toggle('is-current', a === byId.get(id)));
+  const io = new IntersectionObserver(() => {
+    let current = heads[0];
+    for (const h of heads) if (h.getBoundingClientRect().top < innerHeight * 0.3) current = h;
+    if (current) set(current.id);
+  }, { rootMargin: '0px 0px -60% 0px', threshold: [0, 1] });
+  heads.forEach(h => io.observe(h));
+  addEventListener('scroll', () => { let c = heads[0]; for (const h of heads) if (h.getBoundingClientRect().top < innerHeight * 0.3) c = h; if (c) set(c.id); }, { passive: true });
+})();
+
+// Product photos that can't load get a quiet placeholder instead of a broken-image box.
+document.addEventListener('error', e => {
+  const img = e.target;
+  if (!(img instanceof HTMLImageElement) || !img.closest('.article-product-pick, .product-image-area')) return;
+  const ph = document.createElement('span');
+  ph.className = 'img-fallback'; ph.setAttribute('aria-hidden', 'true');
+  ph.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 8v8M3 10v4M18 8v8M21 10v4M6 12h12"/></svg>';
+  img.replaceWith(ph);
+}, true);
+
+
+// Tables wider than the screen fade out on the right until you've swiped to the end.
+(() => {
+  'use strict';
+  const wraps = [...document.querySelectorAll('.table-wrap')];
+  const check = w => { const s = w.scrollWidth > w.clientWidth + 2; w.classList.toggle('scrolls', s); w.classList.toggle('at-end', !s || w.scrollLeft + w.clientWidth >= w.scrollWidth - 4); };
+  wraps.forEach(w => { check(w); w.addEventListener('scroll', () => check(w), { passive: true }); });
+  addEventListener('resize', () => wraps.forEach(check), { passive: true });
+})();

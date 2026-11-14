@@ -35,7 +35,7 @@ BASE = 'https://trenesisgym.github.io/trenesis/'
 # waitlist line on the privacy page). Hidden for now; set to True to show it all again.
 SHOW_PROGRAM = False
 
-VERSION = '20261110-cooldown'
+VERSION = '20261114-polish'
 UPDATED = datetime.date(2026, 10, 31)
 
 
@@ -158,7 +158,18 @@ def build_hand(name, current, extra=''):
     title = html.unescape(re.search(r'<!-- title: (.*?) -->', s).group(1))
     desc = html.unescape(re.search(r'<!-- description: (.*?) -->', s).group(1))
     body = re.sub(r'<!-- (title|description): .*? -->\n', '', s).rstrip('\n')
+    if '<!-- plan-preview -->' in body:
+        body = body.replace('<!-- plan-preview -->', plan_preview())
     return page(title, desc, f'{name}.html', current, body, extra=extra)
+
+
+def plan_preview():
+    """Homepage: the first workout of the 3-day plan, read from the plan itself so it never goes out of date."""
+    wo = logbook.weighted_plan('full-body-workout-for-beginners')[0]
+    rows = ''.join(f'<li><span>{esc(e["name"])}</span><span class="hp-sets">{e["sets"]} × {esc(e["reps"])}</span></li>' for e in wo['exercises'])
+    return ('<aside class="hero-plan" aria-label="Preview of the free 3-day gym plan">'
+            f'<p class="hp-label">From the free 3-day gym plan</p><h2>{esc(wo["name"])}</h2><ol>{rows}</ol>'
+            '<a class="text-link" href="full-body-workout-for-beginners.html">See the whole plan →</a></aside>')
 
 
 def faq_schema():
@@ -241,8 +252,10 @@ def build_article(a, arts):
         nudge = parts.program_callout()  # plan pages: the next step after a free plan is the 12-week program
     else:
         nudge = parts.finder_callout() if g['hub'] == 'Training' else parts.calculator_callout()
+    body = parts.compact_tables(body)
+    side = parts.side_toc(body)
     main = (
-        f'<div class="wrap"><article class="article">{crumbs}'
+        f'<div class="wrap"><div class="article-layout{" has-side" if side else ""}"><article class="article">{crumbs}'
         f'<header class="article-head"><p class="kicker">{g["group"]}</p><h1>{esc(a["title"])}</h1>'
         f'<p class="article-lead">{esc(a["description"])}</p>'
         f'<p class="article-meta"><span>By <a href="about.html">{parts.AUTHORS}</a></span><span>{a["minutes"]} min read</span>'
@@ -257,7 +270,7 @@ def build_article(a, arts):
         + '<p class="disclaimer">This article is general education, not medical advice. If you have an injury or a health condition, '
           'check with a doctor or physiotherapist before changing your training or diet.</p>'
         f'<section class="related" aria-labelledby="related-title"><h2 id="related-title">Keep reading</h2>{reading_list([arts[r] for r in a["related"]], numbered=False)}</section>'
-        '</article></div>'
+        '</article>' + side + '</div></div>'
     )
     out = page(f'{a["title"]} | Trenesis', a['description'], f'{a["slug"]}.html', g['hub'], main, 'article', jsonld + crumbs_ld, country='data-article-picks' in body)
     if (ROOT / 'assets' / 'img' / 'og' / f'{a["slug"]}.jpg').exists():  # made by tools/make_share_images.js
