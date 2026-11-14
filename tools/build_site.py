@@ -286,6 +286,7 @@ def build_article(a, arts):
     else:
         nudge = parts.finder_callout() if g['hub'] == 'Training' else parts.calculator_callout()
     body = parts.compact_tables(body)
+    body = parts.expandable_exercises(body, ROOT, {s: x['title'] for s, x in arts.items()})
     side = parts.side_toc(body)
     main = (
         f'<div class="wrap"><div class="article-layout{" has-side" if side else ""}"><article class="article">{crumbs}'

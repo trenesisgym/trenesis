@@ -633,3 +633,19 @@ document.addEventListener('error', e => {
   wraps.forEach(w => { check(w); w.addEventListener('scroll', () => check(w), { passive: true }); });
   addEventListener('resize', () => wraps.forEach(check), { passive: true });
 })();
+
+// Plan tables: tap an exercise name to show its how-to cues.
+(() => {
+  'use strict';
+  document.addEventListener('click', e => {
+    const t = e.target.closest('.ex-toggle');
+    if (!t) return;
+    const detail = document.getElementById(t.getAttribute('aria-controls'));
+    if (!detail) return;
+    const open = t.getAttribute('aria-expanded') !== 'true';
+    t.setAttribute('aria-expanded', String(open));
+    t.closest('tr').classList.toggle('is-open', open);
+    detail.hidden = !open;
+    if (open) { detail.classList.remove('is-fresh'); void detail.offsetWidth; detail.classList.add('is-fresh'); }
+  });
+})();

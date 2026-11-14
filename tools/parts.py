@@ -340,3 +340,67 @@ CSS = '''
   table { page-break-inside: avoid; }
 }
 '''
+
+
+def _ex_slug(name):
+    return re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+
+
+def exercise_parts(cell_text):
+    """'Leg press or squat (machine)' -> ['Leg press', 'squat']: the exercises named in a table cell."""
+    t = re.sub(r'\([^)]*\)', '', cell_text)
+    t = re.split(r',', t)[0]
+    return [p.strip() for p in re.split(r'\s+or\s+', t) if p.strip()]
+
+
+def expandable_exercises(body_html, root, titles):
+    """Plan tables (with a Sets column): exercise names with cues become buttons that open a
+    detail row underneath (cues from tools/exercise_cues.py)."""
+    import exercise_cues as EC
+    count = [0]
+
+    def lookup(part):
+        s = _ex_slug(part)
+        s = EC.ALIASES.get(s, s)
+        return s, EC.CUES.get(s)
+
+    def table(m):
+        t = m.group(0)
+        heads = [re.sub(r'<[^>]+>', '', h).strip().lower() for h in re.findall(r'<th[^>]*>(.*?)</th>', t, re.S)]
+        if not heads or not heads[0].startswith('exercise') or not any(h.startswith('sets') for h in heads):
+            return t
+        cols = len(heads)
+
+        def row(r):
+            tr = r.group(0)
+            cell = re.search(r'<td([^>]*)>(.*?)</td>', tr, re.S)
+            if not cell:
+                return tr
+            name = re.sub(r'<[^>]+>', '', cell.group(2)).strip()
+            parts_ = exercise_parts(name)
+            found, seen = [], set()
+            for p in parts_:
+                slug, entry = lookup(p)
+                if entry:
+                    cues = [c for c in entry['cues'] if c not in seen]
+                    seen.update(cues)
+                    if cues:
+                        found.append((entry['name'], cues, entry['source']))
+            if not found:
+                return tr
+            count[0] += 1
+            did = f'exd-{count[0]}'
+            label = len(parts_) > 1
+            inner = ''
+            for nm, cues, src in found:
+                inner += (f'<p class="ex-part">{html.escape(nm)}</p>' if label else '') + '<ul class="ex-cues">' + ''.join(f'<li>{html.escape(c)}</li>' for c in cues) + '</ul>'
+            srcs = sorted({s for _, _, s in found})
+            if srcs:
+                inner += '<p class="ex-src">From ' + ' and '.join(f'<a href="{s}.html">{html.escape(titles.get(s, s))}</a>' for s in srcs) + '</p>'
+            btn = (f'<button type="button" class="ex-toggle" aria-expanded="false" aria-controls="{did}">{cell.group(2)}'
+                   '<span class="ex-chev" aria-hidden="true"></span></button>')
+            tr = tr.replace(cell.group(0), f'<td{cell.group(1)}>{btn}</td>', 1).replace('<tr>', '<tr class="ex-row">', 1)
+            return tr + f'<tr class="ex-detail" id="{did}" hidden><td colspan="{cols}"><div class="ex-detail-in">{inner}</div></td></tr>'
+        return re.sub(r'<tr>(?:(?!</tr>).)*?<td.*?</tr>', row, t, flags=re.S)
+
+    return re.sub(r'<table[^>]*>.*?</table>', table, body_html, flags=re.S)
