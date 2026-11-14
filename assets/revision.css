@@ -392,3 +392,20 @@ body:has(.log-page) .plan-dock { bottom: 84px; }
 .trust-line span + span::before { content: "·"; margin: 0 10px; color: var(--faint); }
 .trust-line span:first-child::before { content: ""; display: inline-block; width: 8px; height: 5px; margin: 0 9px 3px 2px; border-left: 2px solid var(--ice); border-bottom: 2px solid var(--ice); transform: rotate(-45deg); }
 @media (max-width: 800px) { .trust-line { margin: -8px 0 24px; } }
+
+/* I7a. Hero media slot (assets/hero/): a quiet background behind the hero; without files the hero is unchanged */
+main .home-intro.has-media { position: relative; isolation: isolate; overflow: hidden; margin-top: 24px; padding: 56px 40px; border-radius: 16px; border: 1px solid var(--line); }
+.hero-media { position: absolute; inset: 0; z-index: -1; background: #0b0d0f; }
+.hero-media img, .hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-media video { opacity: 0; transition: opacity .3s ease; }
+.hero-media.is-playing video { opacity: 1; }
+.hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15, 17, 19, .92) 0%, rgba(15, 17, 19, .78) 45%, rgba(15, 17, 19, .45) 100%); }
+.hero-pause { position: absolute; right: 12px; bottom: 12px; z-index: 1; min-height: 44px; padding: 8px 14px; border: 1px solid rgba(255, 255, 255, .28); border-radius: 999px; background: rgba(15, 17, 19, .7); color: var(--text); font: 600 13px/1.2 var(--head); cursor: pointer; }
+.hero-pause:hover { border-color: #fff; }
+main .home-intro.has-media + .trust-line { margin-top: 16px; }
+@media (max-width: 899px) {
+  main .home-intro.has-media { padding: 36px 20px 20px; }
+  .hero-media::after { background: linear-gradient(180deg, rgba(15, 17, 19, .8) 0%, rgba(15, 17, 19, .9) 60%, rgba(15, 17, 19, .96) 100%); }
+  .hero-pause { top: 12px; bottom: auto; }
+}
+@media print { .hero-media { display: none; } }

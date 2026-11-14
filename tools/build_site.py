@@ -189,6 +189,11 @@ def build_hand(name, current, extra=''):
     body = re.sub(r'<!-- (title|description): .*? -->\n', '', s).rstrip('\n')
     if '<!-- plan-preview -->' in body:
         body = body.replace('<!-- plan-preview -->', plan_preview())
+    if '<!-- hero-media -->' in body:
+        media = hero_media()
+        body = body.replace('<!-- hero-media -->', media)
+        if media:
+            body = body.replace('class="home-intro has-preview"', 'class="home-intro has-preview has-media"', 1)
     if '<!-- trust-line -->' in body:
         body = body.replace('<!-- trust-line -->', trust_line())
     if '<!-- logbook-demo -->' in body:
@@ -205,6 +210,22 @@ def plan_preview():
     return ('<aside class="hero-plan" aria-label="Preview of the free 3-day gym plan">'
             f'<p class="hp-label">From the free 3-day gym plan</p><h2>{esc(wo["name"])}</h2><ol>{rows}</ol>'
             '<a class="text-link" href="full-body-workout-for-beginners.html">See the whole plan →</a></aside>')
+
+
+def hero_media():
+    """Homepage hero background: shown only when assets/hero/hero.mp4 or hero.jpg exists (see assets/hero/README.md).
+    The video is silent, loops, and is only fetched after the page has loaded; with reduced motion only the poster shows."""
+    d = ROOT / 'assets' / 'hero'
+    has = lambda n: (d / n).exists()
+    if not has('hero.mp4') and not has('hero.jpg'):
+        return ''
+    poster = '<img class="hero-poster" src="assets/hero/hero.jpg" alt="" width="1600" height="900" fetchpriority="high">' if has('hero.jpg') else ''
+    video = ''
+    if has('hero.mp4'):
+        portrait = ' data-src-portrait="assets/hero/hero-portrait.mp4"' if has('hero-portrait.mp4') else ''
+        video = (f'<video muted loop playsinline preload="none" tabindex="-1" data-src="assets/hero/hero.mp4"{portrait}></video>'
+                 '<button type="button" class="hero-pause" hidden aria-pressed="false">Pause video</button>')
+    return f'<div class="hero-media" aria-hidden="{"false" if video else "true"}">{poster}{video}</div>'
 
 
 def trust_line():

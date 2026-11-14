@@ -686,3 +686,30 @@ document.addEventListener('error', e => {
     });
   });
 })();
+
+// Home hero video (only present when assets/hero/hero.mp4 exists): fetched after the page has loaded,
+// never with reduced motion (the poster stays), paused while off screen, with a pause button.
+(() => {
+  'use strict';
+  const box = document.querySelector('.hero-media'), v = box && box.querySelector('video');
+  if (!v || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const btn = box.querySelector('.hero-pause');
+  let userPaused = false;
+  const start = () => {
+    const narrow = matchMedia('(max-width: 700px)').matches;
+    v.src = (narrow && v.dataset.srcPortrait) || v.dataset.src;
+    v.addEventListener('playing', () => { box.classList.add('is-playing'); btn.hidden = false; }, { once: true });
+    v.play().catch(() => {});
+    if ('IntersectionObserver' in window) new IntersectionObserver(es => {
+      if (userPaused) return;
+      if (es[0].isIntersecting) v.play().catch(() => {}); else v.pause();
+    }).observe(box);
+  };
+  btn.addEventListener('click', () => {
+    userPaused = !userPaused;
+    if (userPaused) v.pause(); else v.play().catch(() => {});
+    btn.setAttribute('aria-pressed', String(userPaused));
+    btn.textContent = userPaused ? 'Play video' : 'Pause video';
+  });
+  if (document.readyState === 'complete') setTimeout(start, 300); else addEventListener('load', () => setTimeout(start, 300), { once: true });
+})();
