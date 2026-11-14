@@ -341,3 +341,11 @@ body:has(.log-page) .plan-dock { bottom: 84px; }
 .footer-country { margin-top: 32px; }
 .footer-country label { color: var(--muted); font-weight: 500; }
 @media (max-width: 800px) { .nav-wrap { flex-wrap: nowrap; } }
+
+/* I5. Plan articles: the plan comes first, then takeaways, contents and the explanations */
+.article-body > h2:first-child { margin-top: 8px; }
+.plan-actions { margin: 0 0 28px; }
+.after-plan { margin: 40px 0 8px; }
+.article-body .takeaways h2 { margin: 0 0 10px; font: 700 16px/1.4 var(--head); letter-spacing: 0; }
+.article-body .takeaways a, .article-body .toc a { text-decoration: none; }
+.article-body .toc li { margin-bottom: 0; padding-left: 0; }

@@ -330,6 +330,18 @@ def build_article(a, arts):
         nudge = parts.finder_callout() if g['hub'] == 'Training' else parts.calculator_callout()
     body = parts.compact_tables(body)
     body = parts.expandable_exercises(body, ROOT, {s: x['title'] for s, x in arts.items()})
+    is_plan = a['slug'] in parts.PRINTABLE
+    plan_html, rest_html = parts.plan_first(body) if is_plan else ('', body)
+    takeaways = parts.takeaways_box(a['takeaways']) if a['takeaways'] else ''
+    actions = ''
+    if is_plan:  # Log this workout is the one primary action; printing is secondary
+        log_btn = f'<a class="btn btn-primary" href="logbook.html?plan={a["slug"]}">Log this workout</a>' if a['slug'] in LOGGABLE else ''
+        actions = '<div class="plan-actions">' + log_btn + parts.print_button() + '</div>'
+    if plan_html:  # plan first: tables right under the title, then takeaways, contents and the explanations
+        body = plan_html + rest_html
+        article_main = actions + f'<div class="article-body">{plan_html}<div class="after-plan">{takeaways}{parts.toc(body)}</div>{rest_html}</div>'
+    else:
+        article_main = takeaways + actions + parts.toc(body) + f'<div class="article-body">{body}</div>'
     side = parts.side_toc(body)
     main = (
         f'<div class="wrap"><div class="article-layout{" has-side" if side else ""}"><article class="article">{crumbs}'
@@ -337,10 +349,7 @@ def build_article(a, arts):
         f'<p class="article-lead">{esc(a["description"])}</p>'
         f'<p class="article-meta"><span>By <a href="about.html">{parts.AUTHORS}</a></span><span>{a["minutes"]} min read</span>'
         f'<span>Updated {article_updated(a["slug"]).strftime("%B %Y")}</span></p></header>'
-        + (parts.takeaways_box(a['takeaways']) if a['takeaways'] else '')
-        + (('<div class="plan-actions">' + parts.print_button() + (f'<a class="btn btn-quiet" href="logbook.html?plan={a["slug"]}">Log this workout</a>' if a['slug'] in LOGGABLE else '') + '</div>') if a['slug'] in parts.PRINTABLE else '')
-        + parts.toc(body)
-        + f'<div class="article-body">{body}</div>'
+        + article_main
         + nudge
         + pdf_box([a['guide']], f'Free PDF: {g["name"]}', f'{g["covers"]}, in one {g["pages"]}-page PDF to download and print.')
         + parts.author_box()

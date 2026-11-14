@@ -418,3 +418,17 @@ def expandable_exercises(body_html, root, titles):
         return re.sub(r'<tr>(?:(?!</tr>).)*?<td.*?</tr>', row, t, flags=re.S)
 
     return re.sub(r'<table[^>]*>.*?</table>', table, body_html, flags=re.S)
+
+
+def plan_first(body_html):
+    """Plan articles: split the body into (the plan, the rest). The plan is every h2 section that holds a
+    table, plus "The week"; it's shown directly under the title. Nothing is reworded, only reordered."""
+    chunks = re.split(r'(?=<h2[ >])', body_html)
+    intro, sections = chunks[0], chunks[1:]
+    def is_plan(sec):
+        title = re.sub(r'<[^>]+>', '', re.match(r'<h2[^>]*>(.*?)</h2>', sec, re.S).group(1)).strip()
+        return '<table' in sec or title == 'The week'
+    plan = [x for x in sections if is_plan(x)]
+    if not plan:
+        return '', body_html
+    return ''.join(plan), intro + ''.join(x for x in sections if not is_plan(x))
