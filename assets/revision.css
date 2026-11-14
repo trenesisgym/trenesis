@@ -200,3 +200,11 @@ html.sheet-lock { overflow: hidden; }
 .read-state .read-badge.is-leaving, .read-done.is-leaving { opacity: 0; transform: scale(.92); transition: opacity .18s ease, transform .18s ease; }
 .read-badge.is-leaving .read-check { transform: scale(0); transition: transform .18s ease; }
 .read-state:focus { outline: none; }
+
+/* M6. Homepage: "Today's workout" for returning visitors with logbook data */
+main .today { display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; flex-wrap: wrap; margin: 0 0 28px; padding: 20px 24px; border: 1px solid #3a5470; border-radius: 10px; background: var(--panel); }
+.today-kicker { margin: 0 0 2px; color: var(--ice); font: 600 14px/1.4 var(--head); }
+.today h2 { font-size: 24px; letter-spacing: -.01em; }
+.today-meta { display: flex; flex-wrap: wrap; gap: 2px 14px; margin-top: 4px; color: var(--muted); font-size: 15px; }
+.today .btn { flex-shrink: 0; }
+@media (max-width: 800px) { main .today { padding: 18px 20px; } .today .btn { width: 100%; } }
