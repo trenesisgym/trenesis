@@ -39,3 +39,24 @@
   .article-body .t-stack td:first-child::before { content: none; }
 }
 .article-body td, .hero-plan li { font-variant-numeric: tabular-nums; }
+
+/* 2. Tap targets of at least 44px (touch screens and narrow windows) */
+.menu-toggle, .country-picker select, .log-tool { min-height: 44px; }
+.brand { min-height: 44px; }
+.section-jumps a, .jump-links a, .faq-jumps a { display: inline-flex; align-items: center; min-height: 44px; }
+main .quick-start > .text-link, main .gear-strip .text-link, .hero-plan > .text-link, .beginner-start > .text-link, .log-planlink .text-link,
+.log-setup .log-link, .log-backup .log-link, .ed-actions .log-link, .log-pro .log-link { display: inline-flex; align-items: center; min-height: 44px; }
+.crumbs a { padding: 12px 0; }
+.toc summary { padding: 11px 0; }
+@media (max-width: 800px), (pointer: coarse) {
+  .footer-col ul { gap: 0; }
+  .footer-col a { display: inline-flex; align-items: center; min-height: 44px; }
+  .toc ol { gap: 0; }
+  .toc a { padding: 10px 0; }
+  .back { min-height: 44px; display: inline-flex; align-items: center; }
+}
+.toc summary { padding: 12px 0; }
+.starter-links a { display: inline-flex; align-items: center; min-height: 44px; }
+.read-continue, .read-undo { padding: 14px 0; margin: -14px 0; }
+.article-meta a { display: inline-block; padding: 14px 0; margin: -14px 0; }
+@media (max-width: 800px) { .starter-links { gap: 0; margin: 10px 0; } }
