@@ -183,6 +183,8 @@ def build_hand(name, current, extra=''):
     body = re.sub(r'<!-- (title|description): .*? -->\n', '', s).rstrip('\n')
     if '<!-- plan-preview -->' in body:
         body = body.replace('<!-- plan-preview -->', plan_preview())
+    if '<!-- logbook-demo -->' in body:
+        body = body.replace('<!-- logbook-demo -->', logbook_demo())
     if '<!-- today-card -->' in body:
         body = body.replace('<!-- today-card -->', today_card())
     return page(title, desc, f'{name}.html', current, body, extra=extra)
@@ -195,6 +197,18 @@ def plan_preview():
     return ('<aside class="hero-plan" aria-label="Preview of the free 3-day gym plan">'
             f'<p class="hp-label">From the free 3-day gym plan</p><h2>{esc(wo["name"])}</h2><ol>{rows}</ol>'
             '<a class="text-link" href="full-body-workout-for-beginners.html">See the whole plan →</a></aside>')
+
+
+def logbook_demo():
+    """Homepage: a static example of one logbook exercise (the first exercise of the 3-day plan). Not interactive."""
+    e = logbook.weighted_plan('full-body-workout-for-beginners')[0]['exercises'][0]
+    return ('<div class="tool-demo" aria-hidden="true">'
+            f'<p class="td-name">{esc(e["name"])} <span>{e["sets"]} × {esc(e["reps"])}</span></p>'
+            '<p class="td-last">Last time: 40 kg × 10, 10, 9</p>'
+            '<p class="td-set is-beat"><span class="td-n">1</span><span class="td-in">42.5</span><span class="td-x">×</span><span class="td-in">10</span><span class="td-tick"></span><span class="td-note">Beat last time</span></p>'
+            '<p class="td-set is-saved"><span class="td-n">2</span><span class="td-in">40</span><span class="td-x">×</span><span class="td-in">10</span><span class="td-tick"></span></p>'
+            '<p class="td-set"><span class="td-n">3</span><span class="td-in is-empty">kg</span><span class="td-x">×</span><span class="td-in is-empty">reps</span></p>'
+            '</div>')
 
 
 def today_card():
