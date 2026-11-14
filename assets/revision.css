@@ -386,3 +386,9 @@ body:has(.log-page) .plan-dock { bottom: 84px; }
 .product-image-area { width: 112px; height: auto; aspect-ratio: 1 / 1; }
 .article-product-pick .img-fallback { width: 64px; height: 64px; min-height: 0; }
 @media (max-width: 800px) { .product-image-area { width: 84px; } }
+
+/* I7b. Trust line under the home hero (content/trust/trust.json; only filled-in parts show) */
+.trust-line { display: flex; flex-wrap: wrap; gap: 4px 0; margin: -20px 0 28px; color: var(--muted); font-size: 14px; }
+.trust-line span + span::before { content: "·"; margin: 0 10px; color: var(--faint); }
+.trust-line span:first-child::before { content: ""; display: inline-block; width: 8px; height: 5px; margin: 0 9px 3px 2px; border-left: 2px solid var(--ice); border-bottom: 2px solid var(--ice); transform: rotate(-45deg); }
+@media (max-width: 800px) { .trust-line { margin: -8px 0 24px; } }

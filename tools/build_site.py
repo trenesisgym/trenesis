@@ -189,6 +189,8 @@ def build_hand(name, current, extra=''):
     body = re.sub(r'<!-- (title|description): .*? -->\n', '', s).rstrip('\n')
     if '<!-- plan-preview -->' in body:
         body = body.replace('<!-- plan-preview -->', plan_preview())
+    if '<!-- trust-line -->' in body:
+        body = body.replace('<!-- trust-line -->', trust_line())
     if '<!-- logbook-demo -->' in body:
         body = body.replace('<!-- logbook-demo -->', logbook_demo())
     if '<!-- today-card -->' in body:
@@ -203,6 +205,17 @@ def plan_preview():
     return ('<aside class="hero-plan" aria-label="Preview of the free 3-day gym plan">'
             f'<p class="hp-label">From the free 3-day gym plan</p><h2>{esc(wo["name"])}</h2><ol>{rows}</ol>'
             '<a class="text-link" href="full-body-workout-for-beginners.html">See the whole plan →</a></aside>')
+
+
+def trust_line():
+    """Homepage: one line under the hero from content/trust/trust.json. Only the filled-in parts show."""
+    f = ROOT / 'content' / 'trust' / 'trust.json'
+    data = json.loads(f.read_text(encoding='utf-8')) if f.exists() else {}
+    parts_ = [str(data.get(k, '')).strip() for k in ('who', 'followers', 'sources')]
+    parts_ = [p for p in parts_ if p]
+    if not parts_:
+        return ''
+    return '<p class="trust-line">' + ''.join(f'<span>{esc(p)}</span>' for p in parts_) + '</p>'
 
 
 def logbook_demo():
