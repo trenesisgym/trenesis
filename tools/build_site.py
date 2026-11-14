@@ -31,6 +31,10 @@ import parts
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = 'https://trenesisgym.github.io/trenesis/'
+# The paid 12-Week Program (program.html, homepage strip, plan-page box, quiz line, footer link,
+# waitlist line on the privacy page). Hidden for now; set to True to show it all again.
+SHOW_PROGRAM = False
+
 VERSION = '20261110-cooldown'
 UPDATED = datetime.date(2026, 10, 31)
 
@@ -233,7 +237,7 @@ def build_article(a, arts):
         'publisher': {'@type': 'Organization', 'name': 'Trenesis'}}, ensure_ascii=False) + '</script>')
     crumbs, crumbs_ld = parts.breadcrumbs(BASE, g['hub'], hub_page, a['title'])
     body = article_body_html(a)
-    if a['slug'] in parts.PRINTABLE:
+    if a['slug'] in parts.PRINTABLE and SHOW_PROGRAM:
         nudge = parts.program_callout()  # plan pages: the next step after a free plan is the 12-week program
     else:
         nudge = parts.finder_callout() if g['hub'] == 'Training' else parts.calculator_callout()
@@ -308,10 +312,19 @@ def build_gear(name):
 
 
 def sitemap():
-    pages = ['index.html', 'training.html', 'nutrition.html', 'program.html', 'products.html', 'equipment.html', 'supplements.html',
+    pages = ['index.html', 'training.html', 'nutrition.html'] + (['program.html'] if SHOW_PROGRAM else []) + ['products.html', 'equipment.html', 'supplements.html',
              'accessories.html', 'about.html', 'faq.html', 'calculator.html', 'logbook.html', 'find-your-plan.html'] + [f'{s}.html' for s in ORDER]
     urls = ''.join(f'<url><loc>{BASE}{"" if p == "index.html" else p}</loc><lastmod>{UPDATED.isoformat()}</lastmod></url>' for p in pages)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n'
+
+
+def hide_program(text):
+    """Remove every link to and mention of the paid program from a built page."""
+    text = re.sub(r'<section class="program-teaser".*?</section>', '', text, flags=re.S)
+    text = re.sub(r'\s*<p class="finder-program">.*?</p>', '', text, flags=re.S)
+    text = text.replace('<li><a href="program.html">12-Week Program</a></li>', '')
+    text = re.sub(r'<li><strong>Program waitlist\.</strong>.*?</li>\s*', '', text, flags=re.S)
+    return text
 
 
 def main():
@@ -341,6 +354,10 @@ def main():
         'start.html', '', parts.START, extra='<meta name="robots" content="noindex">')
     lost = page('Page not found | Trenesis', 'This page doesn’t exist.', '404.html', '', parts.NOT_FOUND, extra='<meta name="robots" content="noindex">')
     out['404.html'] = lost.replace('<meta charset="utf-8">', '<meta charset="utf-8">' + parts.BASE_SCRIPT, 1)
+    if not SHOW_PROGRAM:
+        out.pop('program.html', None)
+        (ROOT / 'program.html').unlink(missing_ok=True)
+        out = {name: hide_program(text) for name, text in out.items()}
     for name, text in out.items():
         (ROOT / name).write_text(text, encoding='utf-8')
     (ROOT / 'sitemap.xml').write_text(sitemap(), encoding='utf-8')

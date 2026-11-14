@@ -51,3 +51,7 @@ when someone's BMI is under 18.5.
 (`start.html`, for Instagram and TikTok bios), the 404 page, and the article extras:
 key takeaways (the `takeaways:` line in each article's header, three points split by ` | `),
 table of contents, breadcrumbs, author box and the plan/calculator boxes.
+
+## The paid 12-Week Program
+
+The program page and every link to it (homepage strip, box under the plans, quiz line, footer, privacy line) are hidden for now. To show them again, set `SHOW_PROGRAM = True` at the top of `tools/build_site.py` and rebuild. The page itself is `content/hand/program.html`.
