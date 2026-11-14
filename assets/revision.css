@@ -131,3 +131,19 @@ h1, h2, h3 { text-wrap: balance; }
   .log-beat { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .log-set.is-beat .log-tick::before { width: 0; height: 0; border: 5px solid transparent; border-bottom: 7px solid var(--ice); border-top: 0; transform: translateY(-1px); }
 }
+
+/* M2. Rest timer (Pro): a ring that empties as the rest runs down, readable from a distance */
+.log-timer { gap: 12px; padding: 8px 10px 8px 8px; border-radius: 18px; }
+.log-ring { position: relative; flex-shrink: 0; width: 64px; height: 64px; border-radius: 50%; box-shadow: inset 0 0 0 6px #26313b; }
+.log-ring-half { position: absolute; inset: 0; }
+.log-ring-half.is-r { clip-path: inset(0 0 0 50%); }
+.log-ring-half.is-l { clip-path: inset(0 50% 0 0); }
+.log-ring-fill { position: absolute; inset: 0; border-radius: 50%; box-shadow: inset 0 0 0 6px var(--ice); transition: transform .25s linear; will-change: transform; }
+.log-ring-half.is-r .log-ring-fill { clip-path: inset(0 50% 0 0); }
+.log-ring-half.is-l .log-ring-fill { clip-path: inset(0 0 0 50%); }
+.log-timer-text { display: grid; gap: 2px; min-width: 76px; }
+.log-timer-label { line-height: 1; }
+.log-timer .log-timer-time { font-size: 30px; line-height: 1.05; min-width: 0; }
+.log-timer.is-done .log-ring { box-shadow: inset 0 0 0 6px var(--ok-line); animation: m-pulse .28s var(--ease-out) 2; }
+@keyframes m-pulse { 50% { transform: scale(1.08); opacity: .75; } }
+@media (max-width: 560px) { .log-timer { width: 100%; } .log-timer .log-tool:first-of-type { margin-left: auto; } }

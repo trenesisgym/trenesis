@@ -22,7 +22,7 @@
   <div id="log-exercises"></div>
   <button type="button" class="btn btn-quiet log-add" id="log-add">+ Add an exercise</button>
   <aside class="log-cooldown" id="log-cooldown" aria-label="Cool-down"></aside>
-  <div class="log-actions"><div class="log-timer" id="log-timer" hidden role="timer" aria-live="off"><span class="log-timer-label">Rest</span><span class="log-timer-time" id="log-timer-time">0:00</span><button type="button" class="log-tool" id="log-timer-plus">+30 s</button><button type="button" class="log-tool" id="log-timer-skip">Skip</button></div><button class="btn btn-primary" type="submit">Save workout</button></div>
+  <div class="log-actions"><div class="log-timer" id="log-timer" hidden role="timer" aria-live="off"><span class="log-ring" aria-hidden="true"><span class="log-ring-half is-r"><span class="log-ring-fill" id="log-ring-r"></span></span><span class="log-ring-half is-l"><span class="log-ring-fill" id="log-ring-l"></span></span></span><span class="log-timer-text"><span class="log-timer-label">Rest</span><span class="log-timer-time" id="log-timer-time">0:00</span></span><button type="button" class="log-tool" id="log-timer-plus">+30 s</button><button type="button" class="log-tool" id="log-timer-skip">Skip</button></div><button class="btn btn-primary" type="submit">Save workout</button></div>
   <p class="log-status" id="log-status" role="status" aria-live="polite"></p>
 </form>
 
@@ -657,9 +657,16 @@
     return Math.max(30, Math.min(300, (/s\b|sec/.test(ex && ex.rest || '') ? mins : mins * 60)));
   }
   function fmtT(sec) { sec = Math.max(0, Math.round(sec)); return Math.floor(sec / 60) + ':' + ('0' + sec % 60).slice(-2); }
+  // The ring shows the time left: two half-rings rotate (transform only) to reveal the remaining arc.
+  function drawRing(left) {
+    var p = timer.total > 0 ? Math.max(0, Math.min(1, left / timer.total)) : 0, a = p * 360;
+    $('log-ring-r').style.transform = 'rotate(' + Math.min(a, 180) + 'deg)';
+    $('log-ring-l').style.transform = 'rotate(' + Math.max(0, a - 180) + 'deg)';
+  }
   function tick() {
     var left = (timer.end - Date.now()) / 1000;
     $('log-timer-time').textContent = fmtT(left);
+    drawRing(left);
     if (left <= 0) {
       clearInterval(timer.id); timer.id = null;
       $('log-timer').classList.add('is-done'); $('log-timer-time').textContent = 'Go!';
@@ -669,10 +676,10 @@
     }
   }
   function startTimer(sec) {
-    timer.end = Date.now() + sec * 1000; $('log-timer').hidden = false; $('log-timer').classList.remove('is-done');
+    timer.end = Date.now() + sec * 1000; timer.total = sec; $('log-timer').hidden = false; $('log-timer').classList.remove('is-done');
     if (timer.id) clearInterval(timer.id); timer.id = setInterval(tick, 250); tick();
   }
-  $('log-timer-plus').addEventListener('click', function () { timer.end = Math.max(timer.end, Date.now()) + 30000; if (!timer.id) { timer.id = setInterval(tick, 250); $('log-timer').classList.remove('is-done'); } tick(); });
+  $('log-timer-plus').addEventListener('click', function () { timer.end = Math.max(timer.end, Date.now()) + 30000; timer.total = Math.max(timer.total, (timer.end - Date.now()) / 1000); if (!timer.id) { timer.id = setInterval(tick, 250); $('log-timer').classList.remove('is-done'); } tick(); });
   $('log-timer-skip').addEventListener('click', function () { if (timer.id) clearInterval(timer.id); timer.id = null; $('log-timer').hidden = true; });
 
   // Live personal records while you log.
