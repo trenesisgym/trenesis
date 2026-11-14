@@ -86,3 +86,11 @@ h1, h2, h3 { text-wrap: balance; }
   main .compact-guides { padding: 0 18px; }
   main .compact-guides li:nth-child(2) a { border-top: 1px solid var(--line-soft); }
 }
+
+/* 5. Keyboard focus: the whole choice card shows the ring, not just the small radio */
+@supports selector(:has(*)) {
+  .calc-choice label:has(input:focus-visible), .calc-units label:has(input:focus-visible) { outline: 2px solid var(--ice); outline-offset: 2px; border-radius: 6px; }
+  .calc-choice input:focus-visible, .calc-units input:focus-visible { outline: none; }
+}
+.calc-choice label:hover { border-color: #4a5866; }
+.btn-primary:focus-visible { outline-color: #fff; }
