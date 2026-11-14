@@ -49,12 +49,16 @@
       highlightHashGuide();
     }
   });
-  const select = document.querySelector('#country');
+  // Every country picker on the page (gear pages: one near the top and one in the footer) stays in sync.
+  const selects = [...document.querySelectorAll('select[data-country]')];
+  const select = selects[0];
   if (!select) return;
-  select.disabled = false;
+  selects.forEach(s => { s.disabled = false; });
+  const setValue = v => selects.forEach(s => { s.value = v; });
+  const hints = [...document.querySelectorAll('[data-country-hint]')];
+  const hint = { set textContent(t) { hints.forEach(h => { h.textContent = t; }); } };
   const markets = window.TRENESIS_MARKETS || {};
   const key = 'trenesis.review-country.v1';
-  const hint = document.querySelector('#country-hint');
   const title = document.querySelector('#market-title');
   const detail = document.querySelector('#market-detail');
   const list = document.querySelector('#local-picks');
@@ -77,7 +81,7 @@
       if (region && valid(NEAREST[region])) { suggested = NEAREST[region]; nearest = true; break; }
     } catch (_) { /* malformed/unsupported locale */ }
   }
-  select.value = valid(saved) ? saved : suggested || 'GLOBAL';
+  setValue(valid(saved) ? saved : suggested || 'GLOBAL');
   hint.textContent = valid(saved) ? 'Using your saved country. Change it anytime.' : suggested ? (nearest ? 'The closest store we cover to your region. You can change it anytime.' : 'Suggested from your browser region. You can change it anytime.') : 'Choose your country; your preference stays on this device.';
   function render() {
     if (!title || !detail || !list) return;
@@ -93,7 +97,7 @@
     detail.textContent = picks.length ? '' : 'The buying advice on this page applies wherever you live.';
     document.querySelectorAll('.affiliate-disclosure').forEach(el => { el.hidden = !picks.length; });
     if (articleSlots.length) {
-      title.textContent = picks.length ? `Affiliate picks for ${market.name}` : 'Choose your country in the site header for product picks';
+      title.textContent = picks.length ? `Affiliate picks for ${market.name}` : 'Choose your country in the footer for product picks';
       for (const slot of articleSlots) {
         slot.querySelector('.article-product-picks')?.remove();
         const group = document.createElement('div');
@@ -202,11 +206,12 @@
   render();
   addEventListener('storage', event => {
     if (event.key !== key) return;
-    select.value = valid(event.newValue) ? event.newValue : suggested || 'GLOBAL';
+    setValue(valid(event.newValue) ? event.newValue : suggested || 'GLOBAL');
     hint.textContent = 'Country preference updated across the website.';
     render();
   });
-  select.addEventListener('change', () => {
+  selects.forEach(el => el.addEventListener('change', () => {
+    setValue(el.value);
     try {
       localStorage.setItem(key, select.value);
       hint.textContent = 'Country saved on this device. Change it anytime.';
@@ -214,7 +219,7 @@
       hint.textContent = 'Selected for this page. Your browser is not allowing preferences to be saved.';
     }
     render();
-  });
+  }));
 })();
 
 

@@ -331,3 +331,13 @@ main .tool-links { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top:
 .log-page.is-returning .log-setup { margin-bottom: 18px; }
 /* The "Your plan" pill sits above the logbook's sticky Save bar instead of on top of it */
 body:has(.log-page) .plan-dock { bottom: 84px; }
+
+/* I4. Country picker: on the gear pages (near the top) and in the footer, no longer in the header */
+.gear-country, .footer-country { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; margin: 0; order: 0; }
+.gear-country label, .footer-country label { color: var(--text); font: 600 14px/1.4 var(--head); }
+.gear-country select, .footer-country select { width: 170px; padding: 9px 32px 9px 12px; font-size: 14px; background-position: right 10px center; }
+.gear-country { margin-bottom: 14px; }
+.country-note { flex-basis: 100%; color: var(--muted); font-size: 13px; }
+.footer-country { margin-top: 32px; }
+.footer-country label { color: var(--muted); font-weight: 500; }
+@media (max-width: 800px) { .nav-wrap { flex-wrap: nowrap; } }

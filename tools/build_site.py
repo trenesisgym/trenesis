@@ -140,7 +140,6 @@ def header(current):
         '<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="nav-wrap wrap">'
         '<a class="brand" href="index.html" aria-label="Trenesis home"><img src="assets/img/logo.webp" alt="" width="38" height="38"><span>TRENESIS</span></a>'
         f'<nav id="navigation" aria-label="Main navigation">{links}</nav>'
-        + country_picker()
         + '<button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu</button>'
         '</div></header>'
     )
@@ -157,21 +156,28 @@ def footer():
         '<div class="footer-col"><h2>Trenesis</h2><ul><li><a href="program.html">12-Week Program</a></li><li><a href="about.html">About</a></li><li><a href="faq.html">Questions &amp; answers</a></li><li><a href="products.html">Gear</a></li>'
         '<li><a href="products.html#approach">How we pick gear</a></li><li><a href="privacy.html">Privacy</a></li></ul></div>'
         f'<div class="footer-col"><h2>Follow</h2><ul>{social}</ul></div></div>'
+        + country_picker('footer') +
         f'<div class="footer-note"><span>© <span data-year>{UPDATED.year}</span> Trenesis</span>'
         '<span>Some gear links are affiliate links. We earn a small commission at no extra cost to you.</span></div>'
         '</div></footer></body></html>\n'
     )
 
 
-def country_picker():
+def country_picker(where):
+    """The country choice only changes the gear picks, so it lives on the gear pages (near the top) and in the footer.
+    site.js keeps every picker on the page in sync and stores the choice under the same key as before."""
     opts = ''.join(f'<option value="{c}">{label}</option>' for c, label in COUNTRIES)
-    return ('<div class="country-picker site-country"><label class="sr-only" for="country">Country</label>'
-            f'<select disabled id="country" aria-describedby="country-hint">{opts}</select>'
-            '<span id="country-hint" class="sr-only">Select your country. Your choice applies across the website.</span></div>')
+    if where == 'gear':
+        return ('<div class="country-picker gear-country"><label for="country">Show picks for</label>'
+                f'<select disabled id="country" data-country aria-describedby="country-hint">{opts}</select>'
+                '<span id="country-hint" class="country-note" data-country-hint></span></div>')
+    return ('<div class="country-picker footer-country"><label for="country-footer">Country for gear picks</label>'
+            f'<select disabled id="country-footer" data-country>{opts}</select></div>')
 
 
 def page(title, desc, path, current, main, og_type='website', extra='', country=False):
     extra += f'<script defer src="assets/catalogs.js?v={VERSION}"></script>'
+    main = re.sub(r'(<section class="market-status"[^>]*>)', lambda m: m[1] + country_picker('gear'), main, count=1)
     return head(title, desc, path, og_type, extra) + header(current) + f'<main id="main" tabindex="-1">{main}</main>' + footer()
 
 
