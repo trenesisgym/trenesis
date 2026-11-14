@@ -309,7 +309,7 @@
         go.textContent = `Continue where you left off (${Math.round(cur.at * 100)}%) ↓`;
         go.addEventListener('click', () => {
           const r = body.getBoundingClientRect();
-          scrollTo({ top: scrollY + r.top + cur.at * r.height - innerHeight * 0.85, behavior: 'smooth' });
+          scrollTo({ top: scrollY + r.top + cur.at * r.height - innerHeight * 0.85, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
           go.remove();
         });
         state.append(go);

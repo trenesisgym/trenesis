@@ -63,8 +63,21 @@ def compact_tables(body_html):
         t = re.sub(r'<(t[hd])>(.*?)</\1>', cell, t, flags=re.S)
         if cells and all(len(re.sub(r'<[^>]+>', '', c[1]).strip()) <= 12 for c in cells):
             t = t.replace('<table>', '<table class="t-compact">', 1)
-        return t
+        return stackable(t)
     return re.sub(r'<table>.*?</table>', fix, body_html, flags=re.S)
+
+
+def stackable(t):
+    """Tables with 4+ columns become one card per row on phones (CSS .t-stack): each cell gets its column name."""
+    heads = [re.sub(r'<[^>]+>', '', h).strip() for h in re.findall(r'<th[^>]*>(.*?)</th>', t, re.S)]
+    if len(heads) < 4:
+        return t
+    def row(m):
+        i = iter(heads)
+        return re.sub(r'<td([^>]*)>', lambda c: f'<td{c.group(1)} data-label="{html.escape(next(i, ""), quote=True)}">', m.group(0))
+    t = re.sub(r'<tr>.*?</tr>', row, t, flags=re.S)
+    t = re.sub(r'<table( class="([^"]*)")?>', lambda m: f'<table class="{(m.group(2) + " ") if m.group(2) else ""}t-stack">', t, count=1)
+    return t
 
 
 def author_box():
@@ -120,7 +133,7 @@ FINDER = r'''
     <label><input type="radio" name="goal" value="fat"> <span><strong>Lose fat</strong></span></label>
     <label><input type="radio" name="goal" value="fit"> <span><strong>Get fitter and healthier</strong></span></label>
   </fieldset>
-  <button class="btn" type="submit">Show my plan</button>
+  <button class="btn btn-primary" type="submit">Show my plan</button>
 </form>
 <section class="finder-result" id="finder-result" aria-live="polite" hidden>
   <p class="kicker">Your plan</p>

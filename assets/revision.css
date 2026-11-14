@@ -24,3 +24,80 @@
 .article-product-name { display: block; font-size: 14px; line-height: 1.4; color: var(--ice); }
 .article-product-reason { display: block; font-size: 12px; line-height: 1.5; color: var(--muted); margin-top: 5px; }
 @media (max-width: 600px) { .article-product-picks { grid-template-columns: 1fr; gap: 8px; } }
+
+/* ---------- Design pass 2 (Nov 2026) ---------- */
+
+/* 1. Plan tables on phones: one card per row, each value labelled, no sideways scrolling */
+@media (max-width: 600px) {
+  .article-body .table-wrap:has(> .t-stack) { overflow: visible; border: 0; border-radius: 0; background: none; -webkit-mask-image: none; mask-image: none; }
+  .article-body table.t-stack, .article-body .t-stack tbody, .article-body .t-stack tr, .article-body .t-stack td { display: block; width: 100%; }
+  .article-body .t-stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .article-body .t-stack tr { padding: 14px 16px 12px; margin-bottom: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+  .article-body .t-stack td { display: grid; grid-template-columns: minmax(96px, 38%) minmax(0, 1fr); gap: 12px; padding: 5px 0; border: 0; font-size: 15px; white-space: normal; }
+  .article-body .t-stack td::before { content: attr(data-label); color: var(--muted); font: 500 13px/1.6 var(--head); }
+  .article-body .t-stack td:first-child { display: block; padding: 0 0 8px; margin-bottom: 4px; border-bottom: 1px solid var(--line-soft); color: #fff; font: 600 16px/1.4 var(--head); }
+  .article-body .t-stack td:first-child::before { content: none; }
+}
+.article-body td, .hero-plan li { font-variant-numeric: tabular-nums; }
+
+/* 2. Tap targets of at least 44px (touch screens and narrow windows) */
+.menu-toggle, .country-picker select, .log-tool { min-height: 44px; }
+.brand { min-height: 44px; }
+.section-jumps a, .jump-links a, .faq-jumps a { display: inline-flex; align-items: center; min-height: 44px; }
+main .quick-start > .text-link, main .gear-strip .text-link, .hero-plan > .text-link, .beginner-start > .text-link, .log-planlink .text-link,
+.log-setup .log-link, .log-backup .log-link, .ed-actions .log-link, .log-pro .log-link { display: inline-flex; align-items: center; min-height: 44px; }
+.crumbs a { padding: 12px 0; }
+.toc summary { padding: 11px 0; }
+@media (max-width: 800px), (pointer: coarse) {
+  .footer-col ul { gap: 0; }
+  .footer-col a { display: inline-flex; align-items: center; min-height: 44px; }
+  .toc ol { gap: 0; }
+  .toc a { padding: 10px 0; }
+  .back { min-height: 44px; display: inline-flex; align-items: center; }
+}
+.toc summary { padding: 12px 0; }
+.starter-links a { display: inline-flex; align-items: center; min-height: 44px; }
+.read-continue, .read-undo { padding: 14px 0; margin: -14px 0; }
+.article-meta a { display: inline-block; padding: 14px 0; margin: -14px 0; }
+@media (max-width: 800px) { .starter-links { gap: 0; margin: 10px 0; } }
+
+/* 3. One primary button style: ice blue for the main action on each page; steel stays for other buttons */
+.btn-primary, .btn-primary:visited { background: var(--ice); border-color: var(--ice); color: #0f1820; }
+.btn-primary:hover { background: #d4e9fc; border-color: #d4e9fc; color: #0f1820; }
+.btn-primary:active, .btn:active { transform: translateY(1px); }
+.btn { border-radius: 6px; transition: background-color .15s ease, border-color .15s ease, transform .1s ease; }
+
+/* 4. Homepage: fewer divider lines, a few calm cards instead */
+main .quick-start { border: 1px solid var(--line); border-left: 3px solid var(--ice); border-radius: 10px; background: var(--panel); padding: 22px 26px; }
+main .destination-grid { gap: 12px; }
+main .destination-grid > a { padding: 20px 22px 22px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); transition: border-color .15s ease, background-color .15s ease; }
+main .destination-grid > a:hover { border-color: #4f7397; background: var(--panel-hover); }
+main .destination-grid h3 { margin: 0 0 6px; font-size: 20px; }
+main .destination-grid p { font-size: 15px; }
+main .compact-guides { gap: 0 40px; padding: 0 24px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+main .compact-guides a { border-top: 1px solid var(--line-soft); padding: 18px 0; }
+main .compact-guides li:nth-child(-n+2) a { border-top: 0; }
+main .gear-strip { border-bottom: 0; padding-bottom: 0; }
+h1, h2, h3 { text-wrap: balance; }
+@media (max-width: 800px) {
+  main .quick-start { padding: 20px; }
+  main .destination-grid { gap: 10px; }
+  main .destination-grid > a { padding: 16px 18px 18px; }
+  main .compact-guides { padding: 0 18px; }
+  main .compact-guides li:nth-child(2) a { border-top: 1px solid var(--line-soft); }
+}
+
+/* 5. Keyboard focus: the whole choice card shows the ring, not just the small radio */
+@supports selector(:has(*)) {
+  .calc-choice label:has(input:focus-visible), .calc-units label:has(input:focus-visible) { outline: 2px solid var(--ice); outline-offset: 2px; border-radius: 6px; }
+  .calc-choice input:focus-visible, .calc-units input:focus-visible { outline: none; }
+}
+.calc-choice label:hover { border-color: #4a5866; }
+.btn-primary:focus-visible { outline-color: #fff; }
+
+/* 6. Consistency: one accent for notes, quieter motion when people ask for it */
+.log-cooldown { border-left-color: #739cc5; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+  .btn:active, .btn-primary:active { transform: none; }
+}

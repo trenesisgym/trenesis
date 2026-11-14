@@ -35,7 +35,7 @@ BASE = 'https://trenesisgym.github.io/trenesis/'
 # waitlist line on the privacy page). Hidden for now; set to True to show it all again.
 SHOW_PROGRAM = False
 
-VERSION = '20261114-polish'
+VERSION = '20261114-design'
 UPDATED = datetime.date(2026, 10, 31)
 
 
