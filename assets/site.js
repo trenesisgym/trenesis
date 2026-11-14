@@ -634,10 +634,28 @@ document.addEventListener('error', e => {
   addEventListener('resize', () => wraps.forEach(check), { passive: true });
 })();
 
-// Plan tables: tap an exercise name to show its how-to cues.
+// Plan tables: tap an exercise name to show its how-to cues (and a short clip, if there is one).
 (() => {
   'use strict';
+  const calm = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function loadClip(v) {
+    if (v.dataset.loaded) return;
+    v.querySelectorAll('source[data-src]').forEach(s => { s.src = s.dataset.src; });
+    v.dataset.loaded = '1';
+    v.load();
+  }
+  function setPlaying(fig, on) {
+    const v = fig.querySelector('video'), b = fig.querySelector('.ex-play');
+    if (!v) return;
+    if (on) { loadClip(v); const p = v.play(); if (p && p.catch) p.catch(() => fig.classList.remove('is-playing')); }
+    else v.pause();
+    fig.classList.toggle('is-playing', on);
+    const name = (v.getAttribute('aria-label') || '').replace(/^Silent clip: /, '');
+    b.setAttribute('aria-label', (on ? 'Pause clip of ' : 'Play clip of ') + name);
+  }
   document.addEventListener('click', e => {
+    const play = e.target.closest('.ex-play');
+    if (play) { const fig = play.closest('.ex-clip'); setPlaying(fig, !fig.classList.contains('is-playing')); return; }
     const t = e.target.closest('.ex-toggle');
     if (!t) return;
     const detail = document.getElementById(t.getAttribute('aria-controls'));
@@ -647,5 +665,11 @@ document.addEventListener('error', e => {
     t.closest('tr').classList.toggle('is-open', open);
     detail.hidden = !open;
     if (open) { detail.classList.remove('is-fresh'); void detail.offsetWidth; detail.classList.add('is-fresh'); }
+    // Clips play when you open the exercise (never on their own); with reduced motion you see the poster and a play button.
+    detail.querySelectorAll('.ex-clip').forEach(fig => {
+      if (!open) setPlaying(fig, false);
+      else if (calm()) { loadClip(fig.querySelector('video')); fig.classList.add('is-ready'); }
+      else setPlaying(fig, true);
+    });
   });
 })();

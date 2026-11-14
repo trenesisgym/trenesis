@@ -354,8 +354,8 @@ def exercise_parts(cell_text):
 
 
 def expandable_exercises(body_html, root, titles):
-    """Plan tables (with a Sets column): exercise names with cues become buttons that open a
-    detail row underneath (cues from tools/exercise_cues.py)."""
+    """Plan tables (with a Sets column): exercise names with cues or a clip become buttons that open a
+    detail row underneath (cues from tools/exercise_cues.py, clip from assets/clips/<slug>.mp4)."""
     import exercise_cues as EC
     count = [0]
 
@@ -363,6 +363,16 @@ def expandable_exercises(body_html, root, titles):
         s = _ex_slug(part)
         s = EC.ALIASES.get(s, s)
         return s, EC.CUES.get(s)
+
+    def clip_html(slug, label):
+        base = f'assets/clips/{slug}'
+        if not (root / f'{base}.mp4').exists():
+            return ''
+        poster = f' poster="{base}.jpg"' if (root / f'{base}.jpg').exists() else ''
+        webm = f'<source data-src="{base}.webm" type="video/webm">' if (root / f'{base}.webm').exists() else ''
+        return (f'<figure class="ex-clip"><video muted loop playsinline preload="none" width="720" height="720"{poster} '
+                f'aria-label="Silent clip: {html.escape(label, quote=True)}">{webm}<source data-src="{base}.mp4" type="video/mp4"></video>'
+                f'<button type="button" class="ex-play" aria-label="Play clip of {html.escape(label, quote=True)}"><span aria-hidden="true"></span></button></figure>')
 
     def table(m):
         t = m.group(0)
@@ -378,7 +388,7 @@ def expandable_exercises(body_html, root, titles):
                 return tr
             name = re.sub(r'<[^>]+>', '', cell.group(2)).strip()
             parts_ = exercise_parts(name)
-            found, seen = [], set()
+            found, clips, seen = [], [], set()
             for p in parts_:
                 slug, entry = lookup(p)
                 if entry:
@@ -386,7 +396,10 @@ def expandable_exercises(body_html, root, titles):
                     seen.update(cues)
                     if cues:
                         found.append((entry['name'], cues, entry['source']))
-            if not found:
+                c = clip_html(slug, entry['name'] if entry else p)
+                if c:
+                    clips.append(c)
+            if not found and not clips:
                 return tr
             count[0] += 1
             did = f'exd-{count[0]}'
@@ -394,6 +407,7 @@ def expandable_exercises(body_html, root, titles):
             inner = ''
             for nm, cues, src in found:
                 inner += (f'<p class="ex-part">{html.escape(nm)}</p>' if label else '') + '<ul class="ex-cues">' + ''.join(f'<li>{html.escape(c)}</li>' for c in cues) + '</ul>'
+            inner += ''.join(clips)
             srcs = sorted({s for _, _, s in found})
             if srcs:
                 inner += '<p class="ex-src">From ' + ' and '.join(f'<a href="{s}.html">{html.escape(titles.get(s, s))}</a>' for s in srcs) + '</p>'
