@@ -851,3 +851,52 @@ select.log-rir { width: 84px; font-size: 14px; padding: 8px 6px; color: var(--mu
 .log-cooldown .log-cd-title { color: #fff; font: 600 16px/1.4 var(--head); margin-bottom: 4px; }
 .log-cooldown ul { margin: 6px 0 0; padding-left: 20px; color: var(--text); font-size: 15px; }
 .log-cooldown a { color: var(--ice); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Polish (Nov 2026) ---------- */
+/* Small labels in sentence case instead of tracked-out capitals */
+main .eyebrow { text-transform: none; letter-spacing: .01em; font-size: 14px; }
+
+/* Homepage hero: a real preview of the 3-day plan beside the headline */
+.hero-plan { padding: 22px 24px 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.hero-plan .hp-label { color: var(--faint); font-size: 13px; margin: 0 0 4px; }
+.hero-plan h2 { font-size: 22px; margin: 0 0 10px; }
+.hero-plan ol { list-style: none; margin: 0 0 14px; padding: 0; counter-reset: hp; }
+.hero-plan li { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-top: 1px solid var(--line-soft); font-size: 15px; color: var(--text); }
+.hero-plan .hp-sets { color: var(--ice); font-variant-numeric: tabular-nums; white-space: nowrap; }
+@media (min-width: 900px) { main .home-intro.has-preview { display: grid; max-width: none; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); gap: 64px; align-items: center; } }
+@media (max-width: 899px) { .hero-plan { display: none; } }
+
+/* Homepage: four destinations in one row on desktop, two on tablets */
+@media (min-width: 1000px) { main .destination-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 640px) and (max-width: 999px) { main .destination-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Article contents: numbers the same size as the text */
+.toc li { font-size: 15px; color: var(--faint); }
+.toc li::marker { color: var(--faint); }
+
+/* Wide screens: contents as a sticky sidebar instead of empty space */
+.article-side { display: none; }
+@media (min-width: 1180px) {
+  .article-layout.has-side { display: grid; grid-template-columns: minmax(0, var(--read)) 240px; gap: 0 72px; align-items: start; }
+  .article-layout.has-side .article .toc { display: none; }
+  .article-side { display: block; position: sticky; top: 24px; margin-top: 260px; max-height: calc(100vh - 48px); overflow: auto; }
+  .side-toc p { font: 600 14px/1.4 var(--head); color: #fff; margin: 0 0 10px; }
+  .side-toc ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--line); }
+  .side-toc a { display: block; padding: 6px 0 6px 14px; margin-left: -1px; border-left: 2px solid transparent; color: var(--muted); font-size: 14px; line-height: 1.4; }
+  .side-toc a:hover { color: #fff; }
+  .side-toc a.is-current { color: var(--ice); border-left-color: var(--ice); }
+}
+@media print { .article-side { display: none !important; } }
+
+/* Short tables (like a weekly schedule) don't break cells over two lines */
+.t-compact th, .t-compact td { white-space: nowrap; }
+
+/* Product photo that fails to load: a quiet placeholder instead of a broken image */
+.img-fallback { display: grid; place-items: center; width: 100%; height: 100%; min-height: 72px; background: #f1f3f5; color: #9aa4ae; border-radius: 4px; }
+.img-fallback svg { width: 34px; height: 34px; }
+/* Tables wider than the screen: smaller type on phones and a fade that hints you can swipe */
+@media (max-width: 560px) {
+  .article-body .t-compact th, .article-body .t-compact td { padding: 10px 12px; font-size: 14px; }
+}
+.table-wrap.scrolls:not(.at-end) { -webkit-mask-image: linear-gradient(to right, #000 82%, transparent); mask-image: linear-gradient(to right, #000 82%, transparent); }
+.article-body .nw { white-space: nowrap; }
