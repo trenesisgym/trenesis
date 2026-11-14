@@ -60,3 +60,9 @@ main .quick-start > .text-link, main .gear-strip .text-link, .hero-plan > .text-
 .read-continue, .read-undo { padding: 14px 0; margin: -14px 0; }
 .article-meta a { display: inline-block; padding: 14px 0; margin: -14px 0; }
 @media (max-width: 800px) { .starter-links { gap: 0; margin: 10px 0; } }
+
+/* 3. One primary button style: ice blue for the main action on each page; steel stays for other buttons */
+.btn-primary, .btn-primary:visited { background: var(--ice); border-color: var(--ice); color: #0f1820; }
+.btn-primary:hover { background: #d4e9fc; border-color: #d4e9fc; color: #0f1820; }
+.btn-primary:active, .btn:active { transform: translateY(1px); }
+.btn { border-radius: 6px; transition: background-color .15s ease, border-color .15s ease, transform .1s ease; }
