@@ -1,3 +1,11 @@
+// Quiet placeholder for a product picture that is missing or fails to load.
+window.trenesisImgFallback = () => {
+  const ph = document.createElement('span');
+  ph.className = 'img-fallback'; ph.setAttribute('aria-hidden', 'true');
+  ph.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 8v8M3 10v4M18 8v8M21 10v4M6 12h12"/></svg>';
+  return ph;
+};
+
 (() => {
   'use strict';
   const menu = document.querySelector('#navigation');
@@ -83,6 +91,15 @@
   }
   setValue(valid(saved) ? saved : suggested || 'GLOBAL');
   hint.textContent = valid(saved) ? 'Using your saved country. Change it anytime.' : suggested ? (nearest ? 'The closest store we cover to your region. You can change it anytime.' : 'Suggested from your browser region. You can change it anytime.') : 'Choose your country; your preference stays on this device.';
+  // A product's picture is optional: "photo" (our own file in assets/products/, see the README there) wins over
+  // "image" (the retailer's picture). With neither, or if it fails to load, the quiet placeholder shows instead.
+  function productImage(pick, w, h, alt) {
+    const src = pick.photo || pick.image;
+    if (!src) return window.trenesisImgFallback();
+    const image = document.createElement('img');
+    image.src = src; image.alt = alt; image.width = w; image.height = h; image.loading = 'lazy'; image.decoding = 'async';
+    return image;
+  }
   function render() {
     if (!title || !detail || !list) return;
     const code = valid(select.value) ? select.value : 'GLOBAL';
@@ -109,10 +126,7 @@
           card.target = '_blank';
           card.rel = 'sponsored noopener';
           card.setAttribute('aria-label', `${pick.brand} ${pick.name} on Amazon (affiliate link, opens a new tab)`);
-          const image = document.createElement('img');
-          image.src = pick.image;
-          image.alt = '';
-          image.width = 72; image.height = 72; image.loading = 'lazy';
+          const image = productImage(pick, 72, 72, '');
           const info = document.createElement('span');
           const brand = document.createElement('span');
           brand.className = 'article-product-brand'; brand.textContent = pick.brand;
@@ -186,10 +200,7 @@
       media.target = '_blank';
       media.rel = 'sponsored noopener';
       media.setAttribute('aria-label', `${pick.brand} ${pick.name} on Amazon (affiliate link, opens a new tab)`);
-      const image = document.createElement('img');
-      image.src = pick.image;
-      image.alt = `${pick.brand} ${pick.name}`;
-      image.width = 1280; image.height = 720; image.loading = 'lazy';
+      const image = productImage(pick, 640, 640, `${pick.brand} ${pick.name}`);
       media.append(image);
       const info = document.createElement('div'); info.className = 'product-info';
       const brand = document.createElement('p'); brand.className = 'brand-name'; brand.textContent = pick.brand;
@@ -623,10 +634,7 @@
 document.addEventListener('error', e => {
   const img = e.target;
   if (!(img instanceof HTMLImageElement) || !img.closest('.article-product-pick, .product-image-area')) return;
-  const ph = document.createElement('span');
-  ph.className = 'img-fallback'; ph.setAttribute('aria-hidden', 'true');
-  ph.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 8v8M3 10v4M18 8v8M21 10v4M6 12h12"/></svg>';
-  img.replaceWith(ph);
+  img.replaceWith(window.trenesisImgFallback());
 }, true);
 
 

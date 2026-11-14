@@ -381,3 +381,8 @@ body:has(.log-page) .plan-dock { bottom: 84px; }
 .log-toast { background: #2a2214; color: #fbe6c2; }
 .is-done .plan-mark { background: var(--gain); border-color: var(--gain); }
 .is-done .plan-mark::after { border-color: #1a1408; }
+
+/* I7c. Product pictures: optional, always in a fixed square box (no layout jump, placeholder when missing) */
+.product-image-area { width: 112px; height: auto; aspect-ratio: 1 / 1; }
+.article-product-pick .img-fallback { width: 64px; height: 64px; min-height: 0; }
+@media (max-width: 800px) { .product-image-area { width: 84px; } }
