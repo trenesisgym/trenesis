@@ -64,6 +64,16 @@
   <h2>Your data stays with you</h2>
   <p>The logbook saves to this browser only: nothing is sent to us, and there's no account. Clearing your browser data deletes it, so download a backup now and then. A backup also moves your log, your own plans and your swaps to another phone or laptop.</p>
 </aside>
+<dialog class="sheet" id="swap-sheet" aria-labelledby="sheet-title">
+  <div class="sheet-scrim" data-close></div>
+  <div class="sheet-panel">
+    <div class="sheet-drag" id="sheet-drag"><span class="sheet-grab" aria-hidden="true"></span>
+      <div class="sheet-head"><h2 id="sheet-title" tabindex="-1">Swap exercise</h2><button type="button" class="sheet-close" data-close aria-label="Close">×</button></div></div>
+    <label class="sr-only" for="sheet-q">Search exercises</label>
+    <input id="sheet-q" class="sheet-search" type="search" placeholder="Search, e.g. row…" autocomplete="off" spellcheck="false">
+    <div class="sheet-list" id="sheet-list"></div>
+  </div>
+</dialog>
 <datalist id="log-lib">{{DATALIST}}</datalist>
 </div>
 <script type="application/json" id="log-data">{{DATA}}</script>
@@ -393,6 +403,7 @@
     var btn = e.target.closest('button[data-act]'); if (!btn) return;
     var fs = btn.closest('.log-ex'), i = +fs.dataset.i, act = btn.dataset.act;
     if (act === 'swap') {
+      if (sheetWanted()) { openSheet(i, btn); return; }
       var box = fs.querySelector('.log-swap'), open = box.hidden; box.hidden = !open; btn.setAttribute('aria-expanded', String(open));
       if (open) fs.querySelector('.log-swapsel').focus();
       return;
@@ -401,11 +412,7 @@
       var sel = fs.querySelector('.log-swapsel'), other = fs.querySelector('.log-swapother');
       var pick = sel.value === '__other' ? other.value.trim().slice(0, 60) : sel.value;
       if (!pick) { other.focus(); return; }
-      saveDraft();
-      var orig = state.plan.workouts[state.wo].exercises[i].name;
-      if (pick.toLowerCase() === orig.toLowerCase()) delete swaps[slotKey(i)]; else swaps[slotKey(i)] = pick;
-      save(SWAPS, swaps); renderForm();
-      $('log-status').textContent = 'Swapped to ' + pick + '.';
+      applySwap(i, pick);
       return;
     }
     if (act === 'unswap') { saveDraft(); delete swaps[slotKey(i)]; save(SWAPS, swaps); renderForm(); return; }
@@ -427,6 +434,85 @@
     }
     if (act === 'remove') { dd.extra.splice(i, 1); var c2 = {}; Object.keys(dd.count).forEach(function (k) { if (k[0] === 'b') c2[k] = dd.count[k]; else { var j = +k.slice(1); if (j < i) c2[k] = dd.count[k]; else if (j > i) c2['x' + (j - 1)] = dd.count[k]; } }); dd.count = c2; putDraft(dd); renderForm(); return; }
   });
+  function applySwap(i, pick) {
+    saveDraft();
+    var orig = state.plan.workouts[state.wo].exercises[i].name;
+    if (pick.toLowerCase() === orig.toLowerCase()) delete swaps[slotKey(i)]; else swaps[slotKey(i)] = pick;
+    save(SWAPS, swaps); renderForm();
+    $('log-status').textContent = 'Swapped to ' + pick + '.';
+  }
+
+  // ---------- swap sheet (phones): search at the top, exercises grouped by muscle
+  var sheet = $('swap-sheet'), sheetCtx = null, REDUCED = matchMedia('(prefers-reduced-motion: reduce)');
+  function sheetWanted() { return typeof sheet.showModal === 'function' && matchMedia('(max-width: 699px)').matches; }
+  function renderSheet() {
+    var q = $('sheet-q').value.trim().toLowerCase(), cur = sheetCtx.current.toLowerCase(), h = '', any = false, exact = false;
+    var plan = [sheetCtx.ex.name].concat(sheetCtx.ex.alt || []);
+    var groups = [['From the plan', plan]].concat(Object.keys(LIB).map(function (g) { return [g, LIB[g]]; }));
+    groups.forEach(function (g) {
+      var seen = {}, items = g[1].filter(function (n) { var k = n.toLowerCase(); if (seen[k]) return false; seen[k] = 1; return k !== cur && (!q || k.indexOf(q) >= 0); });
+      if (!items.length) return;
+      any = true;
+      h += '<section class="sheet-group"><h3>' + esc(g[0]) + '</h3><ul>';
+      items.forEach(function (n) {
+        if (n.toLowerCase() === q) exact = true;
+        h += '<li><button type="button" class="sheet-opt" data-pick="' + esc(n) + '">' + esc(n) + (n === sheetCtx.ex.name ? ' <span>original</span>' : '') + '</button></li>';
+      });
+      h += '</ul></section>';
+    });
+    var typed = $('sheet-q').value.trim().slice(0, 60);
+    if (typed && !exact && typed.toLowerCase() !== cur) h += '<button type="button" class="sheet-opt sheet-custom" data-pick="' + esc(typed) + '">Not in the list? Use “' + esc(typed) + '”</button>';
+    if (!any && !typed) h = '<p class="log-hint">No exercises to show.</p>';
+    $('sheet-list').innerHTML = h;
+  }
+  function openSheet(i, btn) {
+    var ex = state.plan.workouts[state.wo].exercises[i];
+    sheetCtx = { i: i, btn: btn, ex: ex, current: swaps[slotKey(i)] || ex.name };
+    $('sheet-title').textContent = 'Swap ' + sheetCtx.current;
+    $('sheet-q').value = ''; renderSheet();
+    sheet.querySelector('.sheet-panel').style.transform = '';
+    sheet.showModal(); document.documentElement.classList.add('sheet-lock');
+    btn.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(function () { sheet.classList.add('is-open'); });
+    $('sheet-title').focus();
+  }
+  function closeSheet(pick) {
+    if (!sheet.open || sheet.classList.contains('is-closing')) return;
+    var ctx = sheetCtx, panel = sheet.querySelector('.sheet-panel');
+    sheet.classList.add('is-closing'); sheet.classList.remove('is-open'); panel.style.transform = '';
+    setTimeout(function () {
+      sheet.close(); sheet.classList.remove('is-closing'); document.documentElement.classList.remove('sheet-lock');
+      if (pick) applySwap(ctx.i, pick); else ctx.btn.setAttribute('aria-expanded', 'false');
+      var b = $('log-exercises').querySelector('.log-ex[data-i="' + ctx.i + '"]:not([data-extra]) [data-act=swap]');
+      if (b) b.focus();
+    }, REDUCED.matches ? 120 : 260);
+  }
+  $('sheet-q').addEventListener('input', renderSheet);
+  $('sheet-q').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); var first = $('sheet-list').querySelector('.sheet-opt'); if (first) first.click(); } });
+  sheet.addEventListener('click', function (e) {
+    if (e.target.closest('[data-close]') || e.target === sheet) { closeSheet(); return; }
+    var opt = e.target.closest('.sheet-opt'); if (opt) closeSheet(opt.dataset.pick);
+  });
+  sheet.addEventListener('cancel', function (e) { e.preventDefault(); closeSheet(); });
+  sheet.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    var f = Array.prototype.filter.call(sheet.querySelectorAll('button, input'), function (x) { return !x.disabled && x.offsetParent !== null; });
+    if (!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && (document.activeElement === first || document.activeElement === $('sheet-title'))) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+  (function () {
+    var drag = $('sheet-drag'), panel = sheet.querySelector('.sheet-panel'), y0 = null, t0 = 0, dy = 0;
+    drag.addEventListener('pointerdown', function (e) { if (e.target.closest('button')) return; y0 = e.clientY; t0 = Date.now(); dy = 0; drag.setPointerCapture(e.pointerId); panel.classList.add('is-dragging'); });
+    drag.addEventListener('pointermove', function (e) { if (y0 == null) return; dy = Math.max(0, e.clientY - y0); panel.style.transform = 'translateY(' + dy + 'px)'; });
+    function end() {
+      if (y0 == null) return; y0 = null; panel.classList.remove('is-dragging');
+      if (dy > 90 || (dy > 30 && dy / Math.max(1, Date.now() - t0) > 0.5)) closeSheet(); else panel.style.transform = '';
+    }
+    drag.addEventListener('pointerup', end); drag.addEventListener('pointercancel', end);
+  })();
+
   $('log-exercises').addEventListener('change', function (e) {
     if (e.target.classList.contains('log-swapsel')) {
       var other = e.target.closest('.log-swap').querySelector('.log-swapother');
