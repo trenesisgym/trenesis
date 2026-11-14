@@ -349,3 +349,35 @@ body:has(.log-page) .plan-dock { bottom: 84px; }
 .article-body .takeaways h2 { margin: 0 0 10px; font: 700 16px/1.4 var(--head); letter-spacing: 0; }
 .article-body .takeaways a, .article-body .toc a { text-decoration: none; }
 .article-body .toc li { margin-bottom: 0; padding-left: 0; }
+
+/* I6. One warm accent, used ONLY for progress: a set that beats last time, a personal best (Pro),
+   a finished workout and an article marked read. #f2b45c is about 10:1 on the page background (WCAG AA). */
+:root { --gain: #f2b45c; --gain-soft: rgba(242, 180, 92, .12); --gain-line: rgba(242, 180, 92, .5); }
+/* a saved set is just "done": quiet blue, so the warm colour stays special */
+.log-set::before { background: rgba(156, 197, 237, .06); }
+.log-tick { background: rgba(156, 197, 237, .16); }
+.log-tick::before { border-color: var(--ice); }
+.log-set.is-saved .log-setno { color: var(--ice); }
+/* beats last time */
+.log-set::after { background: var(--gain-soft); box-shadow: inset 0 0 0 1px var(--gain-line); }
+.log-beat, .log-set.is-beat .log-setno { color: var(--gain); }
+.log-set.is-beat .log-tick { background: rgba(242, 180, 92, .2); }
+.log-set.is-beat .log-tick::before { border-color: var(--gain); }
+@media (max-width: 560px) { .log-set.is-beat .log-tick::before { border-color: transparent; border-bottom-color: var(--gain); } }
+.td-set.is-beat { background: var(--gain-soft); box-shadow: inset 0 0 0 1px var(--gain-line); }
+.td-set.is-beat .td-tick { background: rgba(242, 180, 92, .2); }
+.td-set.is-beat .td-tick::before { border-color: var(--gain); }
+.td-set.is-beat .td-note { color: var(--gain); }
+/* personal best (Pro) */
+.log-set.is-pr .log-in { border-color: var(--gain-line); }
+.log-set.is-pr .log-setno { color: var(--gain); }
+.log-toast { border-color: var(--gain-line); }
+/* finished workout */
+.log-status.is-done { color: var(--gain); font-weight: 600; }
+.log-status.is-done::before { content: "✓ "; }
+/* article marked read */
+.read-badge.is-read { background: var(--gain-soft); color: var(--gain); border-color: var(--gain-line); }
+.read-done { border-color: var(--gain-line); color: var(--gain); }
+.log-toast { background: #2a2214; color: #fbe6c2; }
+.is-done .plan-mark { background: var(--gain); border-color: var(--gain); }
+.is-done .plan-mark::after { border-color: #1a1408; }

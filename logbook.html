@@ -668,7 +668,7 @@
     if (state.wo >= state.plan.workouts.length) state.wo = 0;
     renderWorkouts(); renderForm();
   }
-  $('log-form').addEventListener('input', function () { clearTimeout(saveDraft.t); saveDraft.t = setTimeout(saveDraft, 400); });
+  $('log-form').addEventListener('input', function () { $('log-status').classList.remove('is-done'); clearTimeout(saveDraft.t); saveDraft.t = setTimeout(saveDraft, 400); });
   $('log-form').addEventListener('submit', function (e) {
     e.preventDefault();
     var r = readForm(), any = r.entries.some(function (x) { return x.sets.some(function (s) { return s.r; }); });
@@ -680,6 +680,7 @@
     state.wo = nextWorkout(state.plan); renderWorkouts(); renderForm(); renderHistory(); renderPro();
     if (timer.id) { clearInterval(timer.id); timer.id = null; $('log-timer').hidden = true; }
     $('log-status').textContent = 'Saved. Next time: ' + state.plan.workouts[state.wo].name + '. Don’t forget your 5-minute cool-down.';
+    $('log-status').classList.add('is-done');
     $('log-status').scrollIntoView({ block: 'nearest' });
   });
   $('log-plan').addEventListener('change', function () {
