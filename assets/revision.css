@@ -248,3 +248,31 @@ main .today { display: flex; align-items: center; justify-content: space-between
    through the empty part so it doesn't block the logbook's Save button or anything else at the bottom. */
 .plan-dock { pointer-events: none; }
 .plan-dock > * { pointer-events: auto; }
+
+/* ================= Identity pass (Nov 2026) ================= */
+
+/* I1. Type: one body/interface face (Inter) and one heading face, kept in --display
+   (set in the page head by HEADING_FONT in tools/build_site.py). */
+:root { --head: Inter, "Body Fallback", Arial, sans-serif; --body: Inter, "Body Fallback", Arial, sans-serif; }
+.home-intro h1, .page-intro h1, .page-head h1, .article-head h1, .start-head h1, .program-hero h1,
+.section-head h2, .article-body h2, .reading > h2, .faq-group h2, .log-history h2, .log-pro h2, .log-editor h2,
+.advice-title h2, .finder-result h2, .today h2, .quick-start h2, .gear-strip h2, .beginner-start h2,
+.related > h2, .approach h2, .hero-plan h2, .pdf-box h2, .tool h2, .log-now-wo {
+  font-family: var(--display); font-weight: var(--display-weight); font-stretch: var(--display-stretch); letter-spacing: var(--display-spacing);
+}
+.home-intro h1 { font-size: calc(clamp(40px, 5vw, 64px) * var(--display-k)); line-height: 1; }
+.page-intro h1, .page-head h1 { font-size: calc(clamp(36px, 4.4vw, 48px) * var(--display-k)); line-height: 1.05; }
+.article-head h1 { font-size: calc(clamp(30px, 4vw, 40px) * var(--display-k)); line-height: 1.1; }
+.start-head h1 { font-size: calc(32px * var(--display-k)); }
+.section-head h2 { font-size: calc(28px * var(--display-k)); }
+.article-body h2 { font-size: calc(25px * var(--display-k)); line-height: 1.15; }
+.finder-result h2 { font-size: calc(28px * var(--display-k)); }
+.advice-title h2 { font-size: calc(26px * var(--display-k)); }
+.reading > h2, .faq-group h2, .log-history h2, .log-pro h2, .today h2, .beginner-start h2 { font-size: calc(24px * var(--display-k)); }
+.quick-start h2, .gear-strip h2, .related > h2, .approach h2, .hero-plan h2, .log-editor h2, .pdf-box h2 { font-size: calc(22px * var(--display-k)); }
+@media (max-width: 800px) {
+  .home-intro h1 { font-size: calc(42px * var(--display-k)); }
+  .page-intro h1, .page-head h1 { font-size: calc(36px * var(--display-k)); }
+  .section-head h2 { font-size: calc(25px * var(--display-k)); }
+  .article-body h2 { font-size: calc(22px * var(--display-k)); }
+}

@@ -35,7 +35,31 @@ BASE = 'https://trenesisgym.github.io/trenesis/'
 # waitlist line on the privacy page). Hidden for now; set to True to show it all again.
 SHOW_PROGRAM = False
 
-VERSION = '20261114-motion2'
+VERSION = '20261114-identity'
+
+# Heading typeface. To switch, change HEADING_FONT to another name from HEADING_FONTS and rebuild.
+# Each option loads ONE font file (plus one for Inter, the body and interface face). The CSS reads the
+# face from the single variable --display. "adjust" sizes the fallback font so text doesn't jump
+# when the web font arrives; "scale" evens out how big each face looks at the same font size.
+HEADING_FONT = 'Barlow Condensed'
+HEADING_FONTS = {
+    'Barlow Condensed': {'google': 'Barlow+Condensed:wght@700', 'weight': 700, 'stretch': '100%', 'adjust': '76.1%', 'scale': 1.2, 'spacing': '0'},
+    'Archivo': {'google': 'Archivo:wdth,wght@125,800', 'weight': 800, 'stretch': '125%', 'adjust': '127.9%', 'scale': 0.82, 'spacing': '-.01em'},
+    'Bricolage Grotesque': {'google': 'Bricolage+Grotesque:opsz,wght@12..96,700', 'weight': 700, 'stretch': '100%', 'adjust': '91.5%', 'scale': 1.0, 'spacing': '-.015em'},
+}
+
+
+def font_head():
+    f = HEADING_FONTS[HEADING_FONT]
+    return (
+        '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+        f'<link href="https://fonts.googleapis.com/css2?family={f["google"]}&family=Inter:wght@400..700&display=swap" rel="stylesheet">'
+        '<style>'
+        f'@font-face{{font-family:"Display Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Arial");size-adjust:{f["adjust"]}}}'
+        '@font-face{font-family:"Body Fallback";src:local("Arial"),local("ArialMT");size-adjust:107.7%}'
+        f':root{{--display:"{HEADING_FONT}","Display Fallback",Arial,sans-serif;--display-weight:{f["weight"]};--display-stretch:{f["stretch"]};'
+        f'--display-k:{f["scale"]};--display-spacing:{f["spacing"]}}}'
+        '</style>')
 UPDATED = datetime.date(2026, 10, 31)
 
 
@@ -89,8 +113,7 @@ def head(title, desc, path, og_type='website', extra=''):
         f'<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}">'
         f'<meta property="og:image" content="{BASE}assets/img/share.jpg"><meta name="twitter:card" content="summary_large_image">'
         '<link rel="icon" href="assets/img/favicon.png"><link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">'
-        '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-        '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">'
+        + font_head() +
         f'<link rel="stylesheet" href="assets/styles.css?v={VERSION}">{extra}'
         f'<script defer src="assets/site.js?v={VERSION}"></script><link rel="stylesheet" href="assets/revision.css?v={VERSION}">'
         "<script>if('serviceWorker' in navigator&&window.isSecureContext){addEventListener('load',()=>{navigator.serviceWorker.register(new URL('sw.js',document.baseURI),{updateViaCache:'none'}).catch(()=>{})},{once:true})}</script>"
