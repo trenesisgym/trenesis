@@ -35,7 +35,7 @@ BASE = 'https://trenesisgym.github.io/trenesis/'
 # waitlist line on the privacy page). Hidden for now; set to True to show it all again.
 SHOW_PROGRAM = False
 
-VERSION = '20261115-review'
+VERSION = '20261115-calc'
 
 # Heading typeface. To switch, change HEADING_FONT to another name from HEADING_FONTS and rebuild.
 # Each option loads ONE font file (plus one for Inter, the body and interface face). The CSS reads the
