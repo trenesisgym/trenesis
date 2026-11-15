@@ -410,3 +410,10 @@ main .home-intro.has-media + .trust-line { margin-top: 16px; }
   .hero-pause { top: 12px; bottom: auto; }
 }
 @media print { .hero-media { display: none; } }
+
+/* R1. Design review 15 Nov */
+/* Trust line sits inside the hero, under the button, instead of floating between sections */
+.home-intro .trust-line { margin: 18px 0 0; }
+main .home-intro.has-media .trust-line { margin-top: 18px; }
+/* Home: the calculator example sits in the middle of its box, so both example cards look balanced */
+.tool-demo-calc { display: flex; flex-direction: column; justify-content: center; }
