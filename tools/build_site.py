@@ -35,7 +35,7 @@ BASE = 'https://trenesisgym.github.io/trenesis/'
 # waitlist line on the privacy page). Hidden for now; set to True to show it all again.
 SHOW_PROGRAM = False
 
-VERSION = '20261115-calc'
+VERSION = '20261115-yours'
 
 # Heading typeface. To switch, change HEADING_FONT to another name from HEADING_FONTS and rebuild.
 # Each option loads ONE font file (plus one for Inter, the body and interface face). The CSS reads the
@@ -242,9 +242,9 @@ def trust_line():
 def logbook_demo():
     """Homepage: a static example of one logbook exercise (the first exercise of the 3-day plan). Not interactive."""
     e = logbook.weighted_plan('full-body-workout-for-beginners')[0]['exercises'][0]
-    return ('<div class="tool-demo" aria-hidden="true">'
-            f'<p class="td-name">{esc(e["name"])} <span>{e["sets"]} × {esc(e["reps"])}</span></p>'
-            '<p class="td-last">Last time: 40 kg × 10, 10, 9</p>'
+    return ('<div class="tool-demo" id="lb-demo" aria-hidden="true">'
+            f'<p class="td-name" id="lb-name">{esc(e["name"])} <span>{e["sets"]} × {esc(e["reps"])}</span></p>'
+            '<p class="td-last" id="lb-last">Last time: 40 kg × 10, 10, 9</p>'
             '<p class="td-set is-beat"><span class="td-n">1</span><span class="td-in">42.5</span><span class="td-x">×</span><span class="td-in">10</span><span class="td-tick"></span><span class="td-note">Beat last time</span></p>'
             '<p class="td-set is-saved"><span class="td-n">2</span><span class="td-in">40</span><span class="td-x">×</span><span class="td-in">10</span><span class="td-tick"></span></p>'
             '<p class="td-set"><span class="td-n">3</span><span class="td-in is-empty">kg</span><span class="td-x">×</span><span class="td-in is-empty">reps</span></p>'
@@ -254,7 +254,9 @@ def logbook_demo():
 def today_card():
     """Homepage: "Today's workout" for returning visitors with logbook data (hidden for everyone else).
     Reads the logbook's saved data (trenesis.log.v1 and friends) without changing it."""
-    plans = {p['id']: {'label': p['label'], 'workouts': [w['name'] for w in p['workouts']]} for p in logbook.plan_data()}
+    plans = {p['id']: {'label': p['label'], 'workouts': [w['name'] for w in p['workouts']],
+                       'ex': {w['name']: [{'name': e['name'], 'sets': e['sets'], 'reps': e['reps']} for e in w['exercises']] for w in p['workouts']}}
+             for p in logbook.plan_data()}
     data = json.dumps(plans, ensure_ascii=False).replace('</', '<\\/')
     return ('<section class="today" id="today-card" hidden aria-labelledby="today-title">'
             '<div class="today-text"><p class="today-kicker">Today’s workout</p><h2 id="today-title"></h2>'
