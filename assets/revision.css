@@ -417,3 +417,7 @@ main .home-intro.has-media + .trust-line { margin-top: 16px; }
 main .home-intro.has-media .trust-line { margin-top: 18px; }
 /* Home: the calculator example sits in the middle of its box, so both example cards look balanced */
 .tool-demo-calc { display: flex; flex-direction: column; justify-content: center; }
+/* One chip shape everywhere: section jumps and "In this guide" links match the FAQ topic pills */
+.section-jumps a, .jump-links a { border-radius: 999px; padding-inline: 16px; }
+/* Logbook: kg/lb lines up with the date field next to it */
+@media (min-width: 700px) { .log-setup .log-units { align-self: end; } .log-setup .log-units label { min-height: 46px; } }
