@@ -38,7 +38,8 @@
   .article-body .t-stack td:first-child { display: block; padding: 0 0 8px; margin-bottom: 4px; border-bottom: 1px solid var(--line-soft); color: #fff; font: 600 16px/1.4 var(--head); }
   .article-body .t-stack td:first-child::before { content: none; }
 }
-.article-body td, .hero-plan li { font-variant-numeric: tabular-nums; }
+/* Tabular figures only where numbers line up: Inter's tabular hyphen made "Push-ups" read as "Push - ups" */
+.article-body td.nw, .hero-plan .hp-sets { font-variant-numeric: tabular-nums; }
 
 /* 2. Tap targets of at least 44px (touch screens and narrow windows) */
 .menu-toggle, .country-picker select, .log-tool { min-height: 44px; }
