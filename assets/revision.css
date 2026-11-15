@@ -421,3 +421,5 @@ main .home-intro.has-media .trust-line { margin-top: 18px; }
 .section-jumps a, .jump-links a { border-radius: 999px; padding-inline: 16px; }
 /* Logbook: kg/lb lines up with the date field next to it */
 @media (min-width: 700px) { .log-setup .log-units { align-self: end; } .log-setup .log-units label { min-height: 46px; } }
+/* Home calculator card: the number keeps the big style when it shows the visitor's own result */
+.tc-kcal .tc-num { color: #fff; font: inherit; letter-spacing: inherit; }

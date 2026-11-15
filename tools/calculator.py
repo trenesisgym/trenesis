@@ -5,6 +5,7 @@ Rules (also explained in calories-and-tdee and how-much-protein):
   shown as a +-5% range; "prefer not to say" uses the midpoint of the female and male formulas
 - fat loss = 10-20% below maintenance; muscle gain = 5-10% above
 - protein 1.6-2.2 g/kg, fat 0.6-1 g/kg (at least 20% of calories); above BMI 30 both use the weight at BMI 25
+Your last details and result are saved on the device (trenesis.calc.v1) so the home page can show them.
 Safety: no fat-loss target under 18 or under BMI 18.5; fat-loss targets never go below 1,200 kcal
 (1,500 for men); teen estimates carry a warning.
 """
@@ -72,7 +73,7 @@ MAIN = r'''
 (function () {
   'use strict';
   var f = document.getElementById('calc-form'), out = document.getElementById('calc-result'), err = document.getElementById('calc-error');
-  var KEY = 'trenesis.units.v1', LB = 2.20462;
+  var KEY = 'trenesis.units.v1', CALC_KEY = 'trenesis.calc.v1', LB = 2.20462;
   function val(name) { var el = f.querySelector('input[name=' + name + ']:checked'); return el ? el.value : ''; }
   function setUnits(u) {
     f.querySelector('input[name=units][value=' + u + ']').checked = true;
@@ -136,7 +137,29 @@ MAIN = r'''
     document.getElementById('r-method').textContent = method;
     var wEl = document.getElementById('r-warn'); wEl.textContent = warn.join(' '); wEl.hidden = !warn.length;
     out.hidden = false; document.getElementById('calc-empty').hidden = true;
+    // Remember the details and the result on this device, so the home page and this page can show them again.
+    var ACT = { '1.2': 'Mostly sitting', '1.375': '1–2 workouts a week', '1.55': '3–4 workouts a week', '1.725': '5+ workouts a week' };
+    var GOAL = { lose: 'Lose fat', keep: 'Maintain', gain: 'Build muscle' };
+    var ft = document.getElementById('height-ft').value, inch = document.getElementById('height-in').value;
+    var size = u === 'metric' ? [Math.round(w * 10) / 10 + ' kg', Math.round(cm) + ' cm'] : [Math.round(w) + ' lb', (ft || 0) + ' ft ' + (inch || 0) + ' in'];
+    var summary = [Math.round(age) + ' years'].concat(size, [ACT[val('activity')] || '', GOAL[goal] || '']).filter(Boolean).join(' · ');
+    try {
+      localStorage.setItem(CALC_KEY, JSON.stringify({ v: 1, t: Date.now(),
+        inputs: { units: u, sex: sex, age: f.age.value, weight: f.weight.value, cm: f['height-cm'].value, ft: ft, inch: inch, activity: val('activity'), goal: val('goal') },
+        out: { summary: summary, kcal: document.getElementById('r-cal').textContent, protein: document.getElementById('r-protein').textContent, fat: document.getElementById('r-fat').textContent, carbs: document.getElementById('r-carbs').textContent } }));
+    } catch (x) {}
   }
+  // Coming back: fill in the details from last time and show the result again.
+  (function () {
+    var last = null; try { last = JSON.parse(localStorage.getItem(CALC_KEY)); } catch (e) {}
+    var i = last && last.v === 1 && last.inputs; if (!i) return;
+    function pick(name, v) { var el = f.querySelector('input[name=' + name + '][value="' + String(v).replace(/"/g, '') + '"]'); if (el) el.checked = true; }
+    if (i.units === 'metric' || i.units === 'imperial') setUnits(i.units);
+    pick('sex', i.sex); pick('activity', i.activity); pick('goal', i.goal);
+    f.age.value = i.age || ''; f.weight.value = i.weight || ''; f['height-cm'].value = i.cm || '';
+    document.getElementById('height-ft').value = i.ft || ''; document.getElementById('height-in').value = i.inch || '';
+    if (f.age.value && f.weight.value) calc();
+  })();
 })();
 </script>
 '''
