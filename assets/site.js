@@ -1,3 +1,11 @@
+// Quiet placeholder for a product picture that is missing or fails to load.
+window.trenesisImgFallback = () => {
+  const ph = document.createElement('span');
+  ph.className = 'img-fallback'; ph.setAttribute('aria-hidden', 'true');
+  ph.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 8v8M3 10v4M18 8v8M21 10v4M6 12h12"/></svg>';
+  return ph;
+};
+
 (() => {
   'use strict';
   const menu = document.querySelector('#navigation');
@@ -49,12 +57,16 @@
       highlightHashGuide();
     }
   });
-  const select = document.querySelector('#country');
+  // Every country picker on the page (gear pages: one near the top and one in the footer) stays in sync.
+  const selects = [...document.querySelectorAll('select[data-country]')];
+  const select = selects[0];
   if (!select) return;
-  select.disabled = false;
+  selects.forEach(s => { s.disabled = false; });
+  const setValue = v => selects.forEach(s => { s.value = v; });
+  const hints = [...document.querySelectorAll('[data-country-hint]')];
+  const hint = { set textContent(t) { hints.forEach(h => { h.textContent = t; }); } };
   const markets = window.TRENESIS_MARKETS || {};
   const key = 'trenesis.review-country.v1';
-  const hint = document.querySelector('#country-hint');
   const title = document.querySelector('#market-title');
   const detail = document.querySelector('#market-detail');
   const list = document.querySelector('#local-picks');
@@ -77,8 +89,17 @@
       if (region && valid(NEAREST[region])) { suggested = NEAREST[region]; nearest = true; break; }
     } catch (_) { /* malformed/unsupported locale */ }
   }
-  select.value = valid(saved) ? saved : suggested || 'GLOBAL';
+  setValue(valid(saved) ? saved : suggested || 'GLOBAL');
   hint.textContent = valid(saved) ? 'Using your saved country. Change it anytime.' : suggested ? (nearest ? 'The closest store we cover to your region. You can change it anytime.' : 'Suggested from your browser region. You can change it anytime.') : 'Choose your country; your preference stays on this device.';
+  // A product's picture is optional: "photo" (our own file in assets/products/, see the README there) wins over
+  // "image" (the retailer's picture). With neither, or if it fails to load, the quiet placeholder shows instead.
+  function productImage(pick, w, h, alt) {
+    const src = pick.photo || pick.image;
+    if (!src) return window.trenesisImgFallback();
+    const image = document.createElement('img');
+    image.src = src; image.alt = alt; image.width = w; image.height = h; image.loading = 'lazy'; image.decoding = 'async';
+    return image;
+  }
   function render() {
     if (!title || !detail || !list) return;
     const code = valid(select.value) ? select.value : 'GLOBAL';
@@ -93,7 +114,7 @@
     detail.textContent = picks.length ? '' : 'The buying advice on this page applies wherever you live.';
     document.querySelectorAll('.affiliate-disclosure').forEach(el => { el.hidden = !picks.length; });
     if (articleSlots.length) {
-      title.textContent = picks.length ? `Affiliate picks for ${market.name}` : 'Choose your country in the site header for product picks';
+      title.textContent = picks.length ? `Affiliate picks for ${market.name}` : 'Choose your country in the footer for product picks';
       for (const slot of articleSlots) {
         slot.querySelector('.article-product-picks')?.remove();
         const group = document.createElement('div');
@@ -105,10 +126,7 @@
           card.target = '_blank';
           card.rel = 'sponsored noopener';
           card.setAttribute('aria-label', `${pick.brand} ${pick.name} on Amazon (affiliate link, opens a new tab)`);
-          const image = document.createElement('img');
-          image.src = pick.image;
-          image.alt = '';
-          image.width = 72; image.height = 72; image.loading = 'lazy';
+          const image = productImage(pick, 72, 72, '');
           const info = document.createElement('span');
           const brand = document.createElement('span');
           brand.className = 'article-product-brand'; brand.textContent = pick.brand;
@@ -182,10 +200,7 @@
       media.target = '_blank';
       media.rel = 'sponsored noopener';
       media.setAttribute('aria-label', `${pick.brand} ${pick.name} on Amazon (affiliate link, opens a new tab)`);
-      const image = document.createElement('img');
-      image.src = pick.image;
-      image.alt = `${pick.brand} ${pick.name}`;
-      image.width = 1280; image.height = 720; image.loading = 'lazy';
+      const image = productImage(pick, 640, 640, `${pick.brand} ${pick.name}`);
       media.append(image);
       const info = document.createElement('div'); info.className = 'product-info';
       const brand = document.createElement('p'); brand.className = 'brand-name'; brand.textContent = pick.brand;
@@ -202,11 +217,12 @@
   render();
   addEventListener('storage', event => {
     if (event.key !== key) return;
-    select.value = valid(event.newValue) ? event.newValue : suggested || 'GLOBAL';
+    setValue(valid(event.newValue) ? event.newValue : suggested || 'GLOBAL');
     hint.textContent = 'Country preference updated across the website.';
     render();
   });
-  select.addEventListener('change', () => {
+  selects.forEach(el => el.addEventListener('change', () => {
+    setValue(el.value);
     try {
       localStorage.setItem(key, select.value);
       hint.textContent = 'Country saved on this device. Change it anytime.';
@@ -214,7 +230,7 @@
       hint.textContent = 'Selected for this page. Your browser is not allowing preferences to be saved.';
     }
     render();
-  });
+  }));
 })();
 
 
@@ -618,10 +634,7 @@
 document.addEventListener('error', e => {
   const img = e.target;
   if (!(img instanceof HTMLImageElement) || !img.closest('.article-product-pick, .product-image-area')) return;
-  const ph = document.createElement('span');
-  ph.className = 'img-fallback'; ph.setAttribute('aria-hidden', 'true');
-  ph.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 8v8M3 10v4M18 8v8M21 10v4M6 12h12"/></svg>';
-  img.replaceWith(ph);
+  img.replaceWith(window.trenesisImgFallback());
 }, true);
 
 
@@ -672,4 +685,31 @@ document.addEventListener('error', e => {
       else setPlaying(fig, true);
     });
   });
+})();
+
+// Home hero video (only present when assets/hero/hero.mp4 exists): fetched after the page has loaded,
+// never with reduced motion (the poster stays), paused while off screen, with a pause button.
+(() => {
+  'use strict';
+  const box = document.querySelector('.hero-media'), v = box && box.querySelector('video');
+  if (!v || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const btn = box.querySelector('.hero-pause');
+  let userPaused = false;
+  const start = () => {
+    const narrow = matchMedia('(max-width: 700px)').matches;
+    v.src = (narrow && v.dataset.srcPortrait) || v.dataset.src;
+    v.addEventListener('playing', () => { box.classList.add('is-playing'); btn.hidden = false; }, { once: true });
+    v.play().catch(() => {});
+    if ('IntersectionObserver' in window) new IntersectionObserver(es => {
+      if (userPaused) return;
+      if (es[0].isIntersecting) v.play().catch(() => {}); else v.pause();
+    }).observe(box);
+  };
+  btn.addEventListener('click', () => {
+    userPaused = !userPaused;
+    if (userPaused) v.pause(); else v.play().catch(() => {});
+    btn.setAttribute('aria-pressed', String(userPaused));
+    btn.textContent = userPaused ? 'Play video' : 'Pause video';
+  });
+  if (document.readyState === 'complete') setTimeout(start, 300); else addEventListener('load', () => setTimeout(start, 300), { once: true });
 })();

@@ -4,6 +4,8 @@
 <p class="lead">Log every set, see what you lifted last time and beat it. Use a Trenesis plan, swap any exercise, or build your own plan, like Push/Pull/Legs. Saved on this device only.</p></header>
 <p class="log-preview" id="log-preview" hidden><strong>Tester mode.</strong> The paid logbook features are switched on in this browser. <button type="button" class="log-link" id="log-preview-off">Turn off</button></p>
 
+<div class="log-now" id="log-now" hidden><p><span class="log-now-plan" id="log-now-plan"></span><strong class="log-now-wo" id="log-now-wo"></strong></p>
+  <button type="button" class="log-tool" id="log-settings" aria-expanded="false" aria-controls="log-setup">Settings</button></div>
 <section class="log-setup" id="log-setup" aria-label="Choose your plan and workout">
   <div class="log-field"><label for="log-plan">Your plan</label><select id="log-plan"></select>
     <button type="button" class="log-link" id="log-edit">Customize this plan</button></div>
@@ -243,7 +245,22 @@
     if (state.plan.href) { $('log-planlink-wrap').hidden = false; link.href = state.plan.href; link.textContent = 'Open the plan: ' + state.plan.label; }
     else $('log-planlink-wrap').hidden = true;
     $('log-edit').textContent = isCustom(state.plan) ? 'Edit this plan' : 'Customize this plan';
+    $('log-now-plan').textContent = state.plan.label; $('log-now-wo').textContent = state.plan.workouts[state.wo].name;
   }
+  // Returning visitors (saved workouts exist) land on today's workout: plan and workout as one line,
+  // with plan, workout, units and date behind "Settings". First-time visitors see the full setup.
+  var compact = false, settingsOpen = false;
+  function syncSetup() {
+    var editing = !$('log-editor').hidden;
+    document.querySelector('.log-page').classList.toggle('is-returning', compact);
+    $('log-now').hidden = !compact || editing;
+    $('log-setup').hidden = editing || (compact && !settingsOpen);
+    $('log-settings').setAttribute('aria-expanded', String(settingsOpen));
+  }
+  $('log-settings').addEventListener('click', function () {
+    settingsOpen = !settingsOpen; syncSetup();
+    if (settingsOpen) $('log-plan').focus();
+  });
 
   // ---------- workout form
   function draftKey() { return state.plan.id + '/' + state.plan.workouts[state.wo].name; }
@@ -544,7 +561,7 @@
 
   // ---------- your own plans
   function showEditor(on) {
-    $('log-editor').hidden = !on; $('log-form').hidden = on; $('log-setup').hidden = on; $('log-history').hidden = on;
+    $('log-editor').hidden = !on; $('log-form').hidden = on; $('log-history').hidden = on; syncSetup();
     if (on) { $('log-editor').scrollIntoView({ block: 'start' }); $('ed-name').focus(); }
   }
   function blankWorkout(n) { return { name: 'Day ' + n, exercises: [{ name: '', sets: 3, reps: '8–12', kind: 'weight' }] }; }
@@ -650,7 +667,7 @@
     if (state.wo >= state.plan.workouts.length) state.wo = 0;
     renderWorkouts(); renderForm();
   }
-  $('log-form').addEventListener('input', function () { clearTimeout(saveDraft.t); saveDraft.t = setTimeout(saveDraft, 400); });
+  $('log-form').addEventListener('input', function () { $('log-status').classList.remove('is-done'); clearTimeout(saveDraft.t); saveDraft.t = setTimeout(saveDraft, 400); });
   $('log-form').addEventListener('submit', function (e) {
     e.preventDefault();
     var r = readForm(), any = r.entries.some(function (x) { return x.sets.some(function (s) { return s.r; }); });
@@ -662,6 +679,7 @@
     state.wo = nextWorkout(state.plan); renderWorkouts(); renderForm(); renderHistory(); renderPro();
     if (timer.id) { clearInterval(timer.id); timer.id = null; $('log-timer').hidden = true; }
     $('log-status').textContent = 'Saved. Next time: ' + state.plan.workouts[state.wo].name + '. Don’t forget your 5-minute cool-down.';
+    $('log-status').classList.add('is-done');
     $('log-status').scrollIntoView({ block: 'nearest' });
   });
   $('log-plan').addEventListener('change', function () {
@@ -918,6 +936,7 @@
   if (SMART) { $('log-preview').hidden = false; $('log-preview-off').addEventListener('click', function () { try { localStorage.removeItem(TESTER); } catch (e) {} location.href = location.pathname; }); }
 
   $('log-date').value = today();
+  compact = log.sessions.length > 0; syncSetup();
   renderPlanSelect();
   var q = qs.get('plan'), start = q && planById(q) ? q : null;
   if (!start) { var pref = load(PREF, null); if (pref && planById(pref)) start = pref; }

@@ -35,7 +35,31 @@ BASE = 'https://trenesisgym.github.io/trenesis/'
 # waitlist line on the privacy page). Hidden for now; set to True to show it all again.
 SHOW_PROGRAM = False
 
-VERSION = '20261114-motion2'
+VERSION = '20261114-identity'
+
+# Heading typeface. To switch, change HEADING_FONT to another name from HEADING_FONTS and rebuild.
+# Each option loads ONE font file (plus one for Inter, the body and interface face). The CSS reads the
+# face from the single variable --display. "adjust" sizes the fallback font so text doesn't jump
+# when the web font arrives; "scale" evens out how big each face looks at the same font size.
+HEADING_FONT = 'Barlow Condensed'
+HEADING_FONTS = {
+    'Barlow Condensed': {'google': 'Barlow+Condensed:wght@700', 'weight': 700, 'stretch': '100%', 'adjust': '76.1%', 'scale': 1.2, 'spacing': '0'},
+    'Archivo': {'google': 'Archivo:wdth,wght@125,800', 'weight': 800, 'stretch': '125%', 'adjust': '127.9%', 'scale': 0.82, 'spacing': '-.01em'},
+    'Bricolage Grotesque': {'google': 'Bricolage+Grotesque:opsz,wght@12..96,700', 'weight': 700, 'stretch': '100%', 'adjust': '91.5%', 'scale': 1.0, 'spacing': '-.015em'},
+}
+
+
+def font_head():
+    f = HEADING_FONTS[HEADING_FONT]
+    return (
+        '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+        f'<link href="https://fonts.googleapis.com/css2?family={f["google"]}&family=Inter:wght@400..700&display=swap" rel="stylesheet">'
+        '<style>'
+        f'@font-face{{font-family:"Display Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Arial");size-adjust:{f["adjust"]}}}'
+        '@font-face{font-family:"Body Fallback";src:local("Arial"),local("ArialMT");size-adjust:107.7%}'
+        f':root{{--display:"{HEADING_FONT}","Display Fallback",Arial,sans-serif;--display-weight:{f["weight"]};--display-stretch:{f["stretch"]};'
+        f'--display-k:{f["scale"]};--display-spacing:{f["spacing"]}}}'
+        '</style>')
 UPDATED = datetime.date(2026, 10, 31)
 
 
@@ -89,8 +113,7 @@ def head(title, desc, path, og_type='website', extra=''):
         f'<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}">'
         f'<meta property="og:image" content="{BASE}assets/img/share.jpg"><meta name="twitter:card" content="summary_large_image">'
         '<link rel="icon" href="assets/img/favicon.png"><link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">'
-        '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-        '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">'
+        + font_head() +
         f'<link rel="stylesheet" href="assets/styles.css?v={VERSION}">{extra}'
         f'<script defer src="assets/site.js?v={VERSION}"></script><link rel="stylesheet" href="assets/revision.css?v={VERSION}">'
         "<script>if('serviceWorker' in navigator&&window.isSecureContext){addEventListener('load',()=>{navigator.serviceWorker.register(new URL('sw.js',document.baseURI),{updateViaCache:'none'}).catch(()=>{})},{once:true})}</script>"
@@ -117,7 +140,6 @@ def header(current):
         '<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="nav-wrap wrap">'
         '<a class="brand" href="index.html" aria-label="Trenesis home"><img src="assets/img/logo.webp" alt="" width="38" height="38"><span>TRENESIS</span></a>'
         f'<nav id="navigation" aria-label="Main navigation">{links}</nav>'
-        + country_picker()
         + '<button class="menu-toggle" hidden aria-expanded="false" aria-controls="navigation" aria-label="Open navigation menu">Menu</button>'
         '</div></header>'
     )
@@ -134,21 +156,28 @@ def footer():
         '<div class="footer-col"><h2>Trenesis</h2><ul><li><a href="program.html">12-Week Program</a></li><li><a href="about.html">About</a></li><li><a href="faq.html">Questions &amp; answers</a></li><li><a href="products.html">Gear</a></li>'
         '<li><a href="products.html#approach">How we pick gear</a></li><li><a href="privacy.html">Privacy</a></li></ul></div>'
         f'<div class="footer-col"><h2>Follow</h2><ul>{social}</ul></div></div>'
+        + country_picker('footer') +
         f'<div class="footer-note"><span>© <span data-year>{UPDATED.year}</span> Trenesis</span>'
         '<span>Some gear links are affiliate links. We earn a small commission at no extra cost to you.</span></div>'
         '</div></footer></body></html>\n'
     )
 
 
-def country_picker():
+def country_picker(where):
+    """The country choice only changes the gear picks, so it lives on the gear pages (near the top) and in the footer.
+    site.js keeps every picker on the page in sync and stores the choice under the same key as before."""
     opts = ''.join(f'<option value="{c}">{label}</option>' for c, label in COUNTRIES)
-    return ('<div class="country-picker site-country"><label class="sr-only" for="country">Country</label>'
-            f'<select disabled id="country" aria-describedby="country-hint">{opts}</select>'
-            '<span id="country-hint" class="sr-only">Select your country. Your choice applies across the website.</span></div>')
+    if where == 'gear':
+        return ('<div class="country-picker gear-country"><label for="country">Show picks for</label>'
+                f'<select disabled id="country" data-country aria-describedby="country-hint">{opts}</select>'
+                '<span id="country-hint" class="country-note" data-country-hint></span></div>')
+    return ('<div class="country-picker footer-country"><label for="country-footer">Country for gear picks</label>'
+            f'<select disabled id="country-footer" data-country>{opts}</select></div>')
 
 
 def page(title, desc, path, current, main, og_type='website', extra='', country=False):
     extra += f'<script defer src="assets/catalogs.js?v={VERSION}"></script>'
+    main = re.sub(r'(<section class="market-status"[^>]*>)', lambda m: m[1] + country_picker('gear'), main, count=1)
     return head(title, desc, path, og_type, extra) + header(current) + f'<main id="main" tabindex="-1">{main}</main>' + footer()
 
 
@@ -160,6 +189,15 @@ def build_hand(name, current, extra=''):
     body = re.sub(r'<!-- (title|description): .*? -->\n', '', s).rstrip('\n')
     if '<!-- plan-preview -->' in body:
         body = body.replace('<!-- plan-preview -->', plan_preview())
+    if '<!-- hero-media -->' in body:
+        media = hero_media()
+        body = body.replace('<!-- hero-media -->', media)
+        if media:
+            body = body.replace('class="home-intro has-preview"', 'class="home-intro has-preview has-media"', 1)
+    if '<!-- trust-line -->' in body:
+        body = body.replace('<!-- trust-line -->', trust_line())
+    if '<!-- logbook-demo -->' in body:
+        body = body.replace('<!-- logbook-demo -->', logbook_demo())
     if '<!-- today-card -->' in body:
         body = body.replace('<!-- today-card -->', today_card())
     return page(title, desc, f'{name}.html', current, body, extra=extra)
@@ -172,6 +210,45 @@ def plan_preview():
     return ('<aside class="hero-plan" aria-label="Preview of the free 3-day gym plan">'
             f'<p class="hp-label">From the free 3-day gym plan</p><h2>{esc(wo["name"])}</h2><ol>{rows}</ol>'
             '<a class="text-link" href="full-body-workout-for-beginners.html">See the whole plan →</a></aside>')
+
+
+def hero_media():
+    """Homepage hero background: shown only when assets/hero/hero.mp4 or hero.jpg exists (see assets/hero/README.md).
+    The video is silent, loops, and is only fetched after the page has loaded; with reduced motion only the poster shows."""
+    d = ROOT / 'assets' / 'hero'
+    has = lambda n: (d / n).exists()
+    if not has('hero.mp4') and not has('hero.jpg'):
+        return ''
+    poster = '<img class="hero-poster" src="assets/hero/hero.jpg" alt="" width="1600" height="900" fetchpriority="high">' if has('hero.jpg') else ''
+    video = ''
+    if has('hero.mp4'):
+        portrait = ' data-src-portrait="assets/hero/hero-portrait.mp4"' if has('hero-portrait.mp4') else ''
+        video = (f'<video muted loop playsinline preload="none" tabindex="-1" data-src="assets/hero/hero.mp4"{portrait}></video>'
+                 '<button type="button" class="hero-pause" hidden aria-pressed="false">Pause video</button>')
+    return f'<div class="hero-media" aria-hidden="{"false" if video else "true"}">{poster}{video}</div>'
+
+
+def trust_line():
+    """Homepage: one line under the hero from content/trust/trust.json. Only the filled-in parts show."""
+    f = ROOT / 'content' / 'trust' / 'trust.json'
+    data = json.loads(f.read_text(encoding='utf-8')) if f.exists() else {}
+    parts_ = [str(data.get(k, '')).strip() for k in ('who', 'followers', 'sources')]
+    parts_ = [p for p in parts_ if p]
+    if not parts_:
+        return ''
+    return '<p class="trust-line">' + ''.join(f'<span>{esc(p)}</span>' for p in parts_) + '</p>'
+
+
+def logbook_demo():
+    """Homepage: a static example of one logbook exercise (the first exercise of the 3-day plan). Not interactive."""
+    e = logbook.weighted_plan('full-body-workout-for-beginners')[0]['exercises'][0]
+    return ('<div class="tool-demo" aria-hidden="true">'
+            f'<p class="td-name">{esc(e["name"])} <span>{e["sets"]} × {esc(e["reps"])}</span></p>'
+            '<p class="td-last">Last time: 40 kg × 10, 10, 9</p>'
+            '<p class="td-set is-beat"><span class="td-n">1</span><span class="td-in">42.5</span><span class="td-x">×</span><span class="td-in">10</span><span class="td-tick"></span><span class="td-note">Beat last time</span></p>'
+            '<p class="td-set is-saved"><span class="td-n">2</span><span class="td-in">40</span><span class="td-x">×</span><span class="td-in">10</span><span class="td-tick"></span></p>'
+            '<p class="td-set"><span class="td-n">3</span><span class="td-in is-empty">kg</span><span class="td-x">×</span><span class="td-in is-empty">reps</span></p>'
+            '</div>')
 
 
 def today_card():
@@ -287,6 +364,18 @@ def build_article(a, arts):
         nudge = parts.finder_callout() if g['hub'] == 'Training' else parts.calculator_callout()
     body = parts.compact_tables(body)
     body = parts.expandable_exercises(body, ROOT, {s: x['title'] for s, x in arts.items()})
+    is_plan = a['slug'] in parts.PRINTABLE
+    plan_html, rest_html = parts.plan_first(body) if is_plan else ('', body)
+    takeaways = parts.takeaways_box(a['takeaways']) if a['takeaways'] else ''
+    actions = ''
+    if is_plan:  # Log this workout is the one primary action; printing is secondary
+        log_btn = f'<a class="btn btn-primary" href="logbook.html?plan={a["slug"]}">Log this workout</a>' if a['slug'] in LOGGABLE else ''
+        actions = '<div class="plan-actions">' + log_btn + parts.print_button() + '</div>'
+    if plan_html:  # plan first: tables right under the title, then takeaways, contents and the explanations
+        body = plan_html + rest_html
+        article_main = actions + f'<div class="article-body">{plan_html}<div class="after-plan">{takeaways}{parts.toc(body)}</div>{rest_html}</div>'
+    else:
+        article_main = takeaways + actions + parts.toc(body) + f'<div class="article-body">{body}</div>'
     side = parts.side_toc(body)
     main = (
         f'<div class="wrap"><div class="article-layout{" has-side" if side else ""}"><article class="article">{crumbs}'
@@ -294,10 +383,7 @@ def build_article(a, arts):
         f'<p class="article-lead">{esc(a["description"])}</p>'
         f'<p class="article-meta"><span>By <a href="about.html">{parts.AUTHORS}</a></span><span>{a["minutes"]} min read</span>'
         f'<span>Updated {article_updated(a["slug"]).strftime("%B %Y")}</span></p></header>'
-        + (parts.takeaways_box(a['takeaways']) if a['takeaways'] else '')
-        + (('<div class="plan-actions">' + parts.print_button() + (f'<a class="btn btn-quiet" href="logbook.html?plan={a["slug"]}">Log this workout</a>' if a['slug'] in LOGGABLE else '') + '</div>') if a['slug'] in parts.PRINTABLE else '')
-        + parts.toc(body)
-        + f'<div class="article-body">{body}</div>'
+        + article_main
         + nudge
         + pdf_box([a['guide']], f'Free PDF: {g["name"]}', f'{g["covers"]}, in one {g["pages"]}-page PDF to download and print.')
         + parts.author_box()
