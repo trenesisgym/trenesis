@@ -55,3 +55,12 @@ table of contents, breadcrumbs, author box and the plan/calculator boxes.
 ## The paid 12-Week Program
 
 The program page and every link to it (homepage strip, box under the plans, quiz line, footer, privacy line) are hidden for now. To show them again, set `SHOW_PROGRAM = True` at the top of `tools/build_site.py` and rebuild. The page itself is `content/hand/program.html`.
+
+## Own domain and analytics
+
+Two switches at the top of `tools/build_site.py`, both off (`''`) for now:
+
+- `CUSTOM_DOMAIN`: set it to the bought domain (e.g. `'trenesis.com'`) once its DNS points at GitHub Pages, then rebuild. Canonical links, share tags, `sitemap.xml`, `robots.txt` and the `CNAME` file follow automatically. Also enter the domain under Settings > Pages and tick "Enforce HTTPS".
+- `ANALYTICS_TOKEN`: paste the site token from Cloudflare Web Analytics (cookie-free, no banner needed) and rebuild. Update the Analytics section of `content/pages/privacy.md` in the same pull request.
+
+Saved logs, settings and reading progress live in the browser per address, so they don't move over to the new domain by themselves. Before switching, tell testers to export their logbook (CSV) first.
