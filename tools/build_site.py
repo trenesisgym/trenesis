@@ -30,7 +30,16 @@ import logbook
 import parts
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-BASE = 'https://trenesisgym.github.io/trenesis/'
+OLD_BASE = 'https://trenesisgym.github.io/trenesis/'
+# Own domain. Leave '' while the site lives at trenesisgym.github.io/trenesis.
+# After buying the domain and pointing its DNS at GitHub Pages, put it here (e.g. 'trenesis.com') and rebuild:
+# canonical links, share tags, sitemap.xml, robots.txt and the CNAME file all follow.
+CUSTOM_DOMAIN = ''
+BASE = f'https://{CUSTOM_DOMAIN}/' if CUSTOM_DOMAIN else OLD_BASE
+# Cookie-free visitor counting with Cloudflare Web Analytics. '' = off, nothing loads.
+# To turn it on, paste the site token from Cloudflare (Analytics & Logs > Web Analytics) and update the
+# Analytics section of content/pages/privacy.md in the same pull request.
+ANALYTICS_TOKEN = ''
 # The paid 12-Week Program (program.html, homepage strip, plan-page box, quiz line, footer link,
 # waitlist line on the privacy page). Hidden for now; set to True to show it all again.
 SHOW_PROGRAM = False
@@ -117,8 +126,15 @@ def head(title, desc, path, og_type='website', extra=''):
         f'<link rel="stylesheet" href="assets/styles.css?v={VERSION}">{extra}'
         f'<script defer src="assets/site.js?v={VERSION}"></script><link rel="stylesheet" href="assets/revision.css?v={VERSION}">'
         "<script>if('serviceWorker' in navigator&&window.isSecureContext){addEventListener('load',()=>{navigator.serviceWorker.register(new URL('sw.js',document.baseURI),{updateViaCache:'none'}).catch(()=>{})},{once:true})}</script>"
-        '</head>'
+        + analytics() + '</head>'
     )
+
+
+def analytics():
+    if not ANALYTICS_TOKEN:
+        return ''
+    beacon = json.dumps({'token': ANALYTICS_TOKEN})
+    return f"<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" data-cf-beacon='{beacon}'></script>"
 
 
 def header(current):
@@ -493,9 +509,16 @@ def main():
         out.pop('program.html', None)
         (ROOT / 'program.html').unlink(missing_ok=True)
         out = {name: hide_program(text) for name, text in out.items()}
+    if CUSTOM_DOMAIN:
+        out = {name: text.replace(OLD_BASE, BASE).replace(OLD_BASE[8:-1], CUSTOM_DOMAIN) for name, text in out.items()}
     for name, text in out.items():
         (ROOT / name).write_text(text, encoding='utf-8')
     (ROOT / 'sitemap.xml').write_text(sitemap(), encoding='utf-8')
+    (ROOT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {BASE}sitemap.xml\n', encoding='utf-8')
+    if CUSTOM_DOMAIN:
+        (ROOT / 'CNAME').write_text(CUSTOM_DOMAIN + '\n', encoding='utf-8')
+    else:
+        (ROOT / 'CNAME').unlink(missing_ok=True)
     print(f'built {len(out)} pages and sitemap.xml')
 
 
