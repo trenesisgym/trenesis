@@ -713,3 +713,40 @@ document.addEventListener('error', e => {
   });
   if (document.readyState === 'complete') setTimeout(start, 300); else addEventListener('load', () => setTimeout(start, 300), { once: true });
 })();
+
+// Free email list (Branch 5). The boxes only exist when NEWSLETTER_FORM is set in tools/build_site.py.
+// Kit's form URL accepts a plain POST with "email_address", so we send it in the background and stay on the page.
+// Without JavaScript the form still works: it posts straight to Kit, which shows its own thank-you page.
+(() => {
+  'use strict';
+  document.querySelectorAll('.newsletter-form').forEach(form => {
+    const status = form.querySelector('.form-status');
+    const input = form.querySelector('input[type="email"]');
+    const btn = form.querySelector('button');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const email = (input.value || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        status.textContent = 'Please enter a valid email address.';
+        input.setAttribute('aria-invalid', 'true');
+        input.focus();
+        return;
+      }
+      input.removeAttribute('aria-invalid');
+      btn.disabled = true;
+      status.textContent = 'Signing you up…';
+      try {
+        const body = new FormData();
+        body.append('email_address', email);
+        await fetch(form.dataset.endpoint, { method: 'POST', body, mode: 'no-cors' });
+        form.classList.add('is-done');
+        input.value = '';
+        status.textContent = 'Almost done: check your inbox and click the link in our email to confirm.';
+      } catch (_) {
+        status.textContent = 'Something went wrong. Please try again, or email trenesisgym@gmail.com.';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
+})();

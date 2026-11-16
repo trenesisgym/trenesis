@@ -35,7 +35,13 @@ BASE = 'https://trenesisgym.github.io/trenesis/'
 # waitlist line on the privacy page). Hidden for now; set to True to show it all again.
 SHOW_PROGRAM = False
 
-VERSION = '20261115-yours'
+# Free email list (Branch 5). Paste the action URL of the Kit form here, for example
+# 'https://app.kit.com/forms/1234567/subscriptions' (Kit: Grow > Landing Pages & Forms > your form > Publish > HTML,
+# copy the action="..." value). While it's empty there are no signup boxes anywhere and the privacy page keeps
+# saying there's no newsletter. Set it back to '' to hide everything again.
+NEWSLETTER_FORM = ''
+
+VERSION = '20261116-newsletter'
 
 # Heading typeface. To switch, change HEADING_FONT to another name from HEADING_FONTS and rebuild.
 # Each option loads ONE font file (plus one for Inter, the body and interface face). The CSS reads the
@@ -145,10 +151,34 @@ def header(current):
     )
 
 
+def newsletter_box(where):
+    """Free email signup (footer of every page, end of every article). Empty string while NEWSLETTER_FORM is unset.
+    Works without JavaScript too (the form posts straight to Kit); site.js keeps the visitor on the page."""
+    if not NEWSLETTER_FORM:
+        return ''
+    url = esc(NEWSLETTER_FORM)
+    return (f'<aside class="newsletter-box newsletter-{where}" aria-labelledby="nl-title-{where}"><div class="newsletter-copy">'
+            f'<h2 id="nl-title-{where}">Get the next guide by email</h2>'
+            '<p>New guides and one practical training tip, about twice a month. Free, no spam, unsubscribe anytime.</p></div>'
+            f'<form class="newsletter-form" action="{url}" method="post" data-endpoint="{url}" novalidate>'
+            f'<label class="sr-only" for="nl-email-{where}">Your email</label>'
+            f'<div class="signup-row"><input id="nl-email-{where}" type="email" name="email_address" placeholder="you@example.com" autocomplete="email" required>'
+            '<button class="btn btn-primary" type="submit">Sign up</button></div>'
+            '<p class="form-note">We’ll send one email first so you can confirm. Sent with Kit. <a href="privacy.html#email-newsletter">Privacy</a></p>'
+            '<p class="form-status" role="status" aria-live="polite"></p></form></aside>')
+
+
+def newsletter_text(md):
+    """The privacy page holds two versions of its newsletter section; keep the one that matches NEWSLETTER_FORM."""
+    drop, keep = ('off', 'on') if NEWSLETTER_FORM else ('on', 'off')
+    md = re.sub(rf'<!-- newsletter-{drop} -->.*?<!-- /newsletter-{drop} -->\n*', '', md, flags=re.S)
+    return re.sub(rf'<!-- /?newsletter-{keep} -->\n*', '', md)
+
+
 def footer():
     social = ''.join(f'<li><a href="{u}" target="_blank" rel="noopener noreferrer">{n}</a></li>' for n, u in SOCIAL)
     return (
-        '<footer class="site-footer"><div class="wrap"><div class="footer-grid">'
+        '<footer class="site-footer"><div class="wrap">' + newsletter_box('footer') + '<div class="footer-grid">'
         '<div class="footer-about"><a class="brand" href="index.html"><img src="assets/img/logo.webp" alt="" width="38" height="38"><span>TRENESIS</span></a>'
         '<p>Free, evidence-based guides to training and nutrition. No hype, just what works.</p></div>'
         '<div class="footer-col"><h2>Learn</h2><ul><li><a href="training.html">Training</a></li><li><a href="nutrition.html">Nutrition</a></li>'
@@ -388,6 +418,7 @@ def build_article(a, arts):
         + article_main
         + nudge
         + pdf_box([a['guide']], f'Free PDF: {g["name"]}', f'{g["covers"]}, in one {g["pages"]}-page PDF to download and print.')
+        + newsletter_box('article')
         + parts.author_box()
         + '<p class="disclaimer">This article is general education, not medical advice. If you have an injury or a health condition, '
           'check with a doctor or physiotherapist before changing your training or diet.</p>'
@@ -411,7 +442,7 @@ def article_body_html(a):
 
 
 def build_simple(md_file):
-    m = re.match(r'---\n(.*?)\n---\n(.*)', md_file.read_text(encoding='utf-8'), re.S)
+    m = re.match(r'---\n(.*?)\n---\n(.*)', newsletter_text(md_file.read_text(encoding='utf-8')), re.S)
     meta = dict(line.split(': ', 1) for line in m.group(1).splitlines() if line.strip())
     main = (f'<div class="wrap"><article class="article"><header class="article-head"><h1>{esc(meta["title"])}</h1></header>'
             f'<div class="article-body">{render_md(m.group(2))}</div></article></div>')
