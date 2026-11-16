@@ -32,7 +32,16 @@ We don't set advertising or tracking cookies.
 
 ## Email newsletter
 
+<!-- newsletter-off -->
 We don't run a newsletter yet. Before we start one, we'll update this page to explain what we collect, which service stores it and how to unsubscribe.
+<!-- /newsletter-off -->
+<!-- newsletter-on -->
+If you sign up for our emails, you send us your email address. We use it only to send you Trenesis emails: new guides, training tips and news about Trenesis, including our own products once they exist. We never sell or share it.
+
+- **How you sign up.** After you enter your address, you get one email with a link to confirm. You're only on the list once you click it. This is how we can show you agreed (GDPR Art. 6(1)(a): your consent).
+- **Who stores it.** Our emails are sent with **Kit** (ConvertKit LLC, USA). Kit stores your address and, like most email services, records whether an email was opened and which links were clicked, so we can see what's useful. Kit is certified under the EU-U.S. Data Privacy Framework, which covers the transfer to the US. See [Kit's privacy policy](https://kit.com/privacy).
+- **How to stop.** Every email has an unsubscribe link at the bottom. You can also email us and we'll remove your address and delete it from Kit.
+<!-- /newsletter-on -->
 
 ## Analytics
 
