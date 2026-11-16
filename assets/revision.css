@@ -423,3 +423,17 @@ main .home-intro.has-media .trust-line { margin-top: 18px; }
 @media (min-width: 700px) { .log-setup .log-units { align-self: end; } .log-setup .log-units label { min-height: 46px; } }
 /* Home calculator card: the number keeps the big style when it shows the visitor's own result */
 .tc-kcal .tc-num { color: #fff; font: inherit; letter-spacing: inherit; }
+
+/* ---------- Free email list (Branch 5) ---------- */
+/* Shown only when NEWSLETTER_FORM is set in tools/build_site.py. Reuses .signup-row, .form-note and .form-status. */
+.newsletter-box { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 16px 40px; align-items: center; padding: 28px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.newsletter-box h2 { font-size: 21px; }
+.newsletter-copy p { color: var(--muted); font-size: 15px; margin-top: 6px; }
+.newsletter-form .form-note a { color: var(--ice); }
+.newsletter-form.is-done .form-status { color: #9fdcb2; }
+.newsletter-form input[aria-invalid="true"] { border-color: #e6a07a; }
+.newsletter-form .btn:disabled { opacity: .7; cursor: progress; }
+.article .newsletter-article { margin-top: 20px; }
+.site-footer .newsletter-footer { margin-bottom: 40px; }
+@media (max-width: 800px) { .newsletter-box { grid-template-columns: 1fr; padding: 22px; } }
+@media print { .newsletter-box { display: none !important; } }
