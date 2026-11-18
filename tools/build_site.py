@@ -35,7 +35,7 @@ BASE = 'https://trenesisgym.github.io/trenesis/'
 # waitlist line on the privacy page). Hidden for now; set to True to show it all again.
 SHOW_PROGRAM = False
 
-VERSION = '20261115-yours'
+VERSION = '20261117-local-fonts'
 
 # Heading typeface. To switch, change HEADING_FONT to another name from HEADING_FONTS and rebuild.
 # Each option loads ONE font file (plus one for Inter, the body and interface face). The CSS reads the
@@ -52,8 +52,7 @@ HEADING_FONTS = {
 def font_head():
     f = HEADING_FONTS[HEADING_FONT]
     return (
-        '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-        f'<link href="https://fonts.googleapis.com/css2?family={f["google"]}&family=Inter:wght@400..700&display=swap" rel="stylesheet">'
+        f'<link rel="stylesheet" href="assets/fonts/fonts.css?v={VERSION}">'
         '<style>'
         f'@font-face{{font-family:"Display Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Arial");size-adjust:{f["adjust"]}}}'
         '@font-face{font-family:"Body Fallback";src:local("Arial"),local("ArialMT");size-adjust:107.7%}'
