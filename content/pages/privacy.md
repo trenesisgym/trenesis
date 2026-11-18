@@ -4,7 +4,7 @@ title: Privacy policy
 description: What data the Trenesis website collects, why, and your rights.
 eyebrow: Privacy
 ---
-*Last updated: 31 October 2026*
+*Last updated: 17 November 2026*
 
 We keep data collection to a minimum. This page explains what happens when you use trenesisgym.github.io/trenesis.
 
@@ -26,7 +26,7 @@ We don't set advertising or tracking cookies.
 ## Third parties involved
 
 - **GitHub Pages** hosts the website. GitHub may log visitors' IP addresses for security purposes. See the [GitHub privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
-- **Google Fonts** delivers the fonts the site uses, which means your browser connects to Google's servers and shares your IP address with Google.
+- **Fonts.** Font files are hosted alongside the website on GitHub Pages. Loading them does not connect your browser to Google Fonts.
 - **Amazon.** When you click an affiliate link you leave our site. Amazon then uses its own cookies, for example to credit the referral to us, under its own privacy notice.
 - **Social media.** Links to Instagram, TikTok and YouTube take you to those platforms, which apply their own privacy policies.
 
@@ -40,4 +40,4 @@ We don't use any analytics or visitor tracking yet. If we add it, we'll use a co
 
 ## Your rights
 
-Under the GDPR you can ask us to access, correct or delete personal data we hold about you, and object to how we use it. Email [trenesisgym@gmail.com](mailto:trenesisgym@gmail.com). You also have the right to complain to the Dutch data protection authority, the [Autoriteit Persoonsgegevens](https://autoriteitpersoonsgegevens.nl/).
+Under the GDPR you can ask us to access, correct or delete personal data we hold about you, and object to how we use it. Email [trenesisgym@gmail.com](mailto:trenesisgym@gmail.com). Where the GDPR applies, you also have the right to lodge a complaint with a competent data protection authority, including in the country of your habitual residence, place of work or the alleged infringement.
